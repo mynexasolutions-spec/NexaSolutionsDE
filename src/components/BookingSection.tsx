@@ -15,7 +15,11 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
-export default function BookingSection() {
+interface BookingSectionProps {
+  onOpenContact?: () => void;
+}
+
+export default function BookingSection({ onOpenContact }: BookingSectionProps = {}) {
   const { t } = useLanguage();
 
   const [selectedCallType, setSelectedCallType] = useState<string>("discovery");
@@ -330,6 +334,21 @@ export default function BookingSection() {
                       </>
                     )}
                   </button>
+
+                  {onOpenContact && (
+                    <div className="text-center pt-1">
+                      <p className="text-xs text-slate-500">
+                        {t("Lieber schriftlich anfragen?", "Prefer to write a message?")}{" "}
+                        <button
+                          type="button"
+                          onClick={onOpenContact}
+                          className="text-orange-600 font-semibold hover:underline cursor-pointer ml-1"
+                        >
+                          {t("Nachricht senden", "Send an inquiry")}
+                        </button>
+                      </p>
+                    </div>
+                  )}
                 </form>
               </div>
             </div>

@@ -76,8 +76,8 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
   ];
 
   return (
-    <section id="faq" className="py-20 md:py-24 bg-white relative overflow-hidden border-b border-slate-100">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="faq" className="py-10 sm:py-12 lg:py-16  bg-white relative overflow-hidden border-b border-slate-100">
+      <div className="max-w-[1050px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-3">
@@ -85,7 +85,7 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
             <span>{t("HÄUFIG GESTELLTE FRAGEN", "FREQUENTLY ASKED QUESTIONS")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0F172A] tracking-tight leading-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#0B132B] tracking-tight leading-[1.15] my-[15px]">
             {t("Antworten auf Ihre wichtigsten Fragen", "Clear Answers to Your Key Questions")}
           </h2>
 
@@ -98,13 +98,13 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-3.5 mb-12">
+        <div className="space-y-4 mb-12">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                className={`rounded-[5px] border transition-all duration-300 overflow-hidden ${
                   isOpen
                     ? "bg-slate-50/80 border-orange-300/80 shadow-xs"
                     : "bg-white border-slate-200 hover:border-slate-300"
@@ -141,7 +141,7 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
         </div>
 
         {/* Still have questions? Help Box */}
-        <div className="p-6 rounded-2xl bg-blue-50/60 border border-blue-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div className="p-6 rounded-[5px] bg-blue-50/60 border border-blue-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
               <MessageSquare className="w-5 h-5" />

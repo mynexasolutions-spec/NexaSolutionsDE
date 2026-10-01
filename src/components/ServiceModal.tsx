@@ -38,7 +38,7 @@ export default function ServiceModal({ serviceId, onClose, onGetQuote }: Service
       titleEn: "Web Development",
       taglineDe: "Skalierbare, hochperformante digitale Plattformen",
       taglineEn: "Scalable, High-Performance Digital Platforms",
-      image: "/images/web-dev.jpg",
+      image: "/images/web-dev.png",
       descriptionDe:
         "Wir entwickeln blitzschnelle, SEO-optimierte und unternehmensgerechte Webanwendungen, die exakt auf Ihre Geschäftsprozesse zugeschnitten sind. Von modernen Marketingportalen bis hin zu komplexen SaaS-Dashboards.",
       descriptionEn:
@@ -66,7 +66,7 @@ export default function ServiceModal({ serviceId, onClose, onGetQuote }: Service
       titleEn: "App Development",
       taglineDe: "Native & plattformübergreifende mobile Anwendungen",
       taglineEn: "Native & Cross-Platform Mobile Applications",
-      image: "/images/app-dev.jpg",
+      image: "/images/app-dev.png",
       descriptionDe:
         "Von der Idee bis zum Launch im Google Play Store und Apple App Store entwickeln wir begeisternde mobile Erlebnisse mit flüssigem UI, Offline-Unterstützung, Push-Benachrichtigungen in Echtzeit und robuster Backend-Infrastruktur.",
       descriptionEn:
@@ -94,7 +94,7 @@ export default function ServiceModal({ serviceId, onClose, onGetQuote }: Service
       titleEn: "AI & Automation",
       taglineDe: "Intelligente Workflows & Agenten-Systeme",
       taglineEn: "Intelligent Workflows & Agentic Systems",
-      image: "/images/ai-robot.jpg",
+      image: "/images/ai-robot.png",
       descriptionDe:
         "Nutzen Sie moderne Large Language Models, maßgeschneiderte KI-Agenten und automatisierte Workflows, um manuelle Aufgaben zu eliminieren, den Support drastisch zu beschleunigen und wertvolle Erkenntnisse aus Ihren Geschäftsdaten zu gewinnen.",
       descriptionEn:

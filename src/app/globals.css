@@ -1,17 +1,75 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
+  /* Core Base Colors */
   --background: #ffffff;
   --foreground: #0F172A;
+
+  /* Primary Brand Orange Palette */
+  --primary: #EA580C;
+  --primary-hover: #C2410C;
+  --primary-light: #F97316;
+  --primary-accent: #FB923C;
+  --primary-50: #FFF7ED;
+  --primary-100: #FFEDD5;
+  --primary-200: #FED7AA;
+
+  /* Dark Theme Section Backgrounds */
+  --dark-bg: #090D16;
+  --dark-surface: #0D111A;
+  --dark-navy: #0F172A;
+  --dark-card: #111827;
+
+  /* Light Theme / Neutral Backgrounds */
+  --light-bg: #F8FAFC;
+  --light-surface: #F1F5F9;
+  --light-border: #E2E8F0;
+
+  /* Neutral Slate Palette */
+  --slate-50: #F8FAFC;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-300: #CBD5E1;
+  --slate-400: #94A3B8;
+  --slate-500: #64748B;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1E293B;
+  --slate-900: #0F172A;
+
+  /* Trust Blue Accent Palette */
+  --blue-primary: #2563EB;
+  --blue-hover: #1D4ED8;
+  --blue-50: #EFF6FF;
+  --blue-100: #DBEAFE;
+  --blue-200: #BFDBFE;
+
+  /* Success Emerald Accent Palette */
+  --emerald-500: #10B981;
+  --emerald-700: #047857;
+  --emerald-50: #ECFDF5;
+
+  /* Integrations & Partner Colors */
+  --n8n: #EA4B71;
+  --aws: #FF9900;
+  --aws-navy: #232F3E;
+  --meta: #0668E1;
+  --make: #0C2340;
+  --make-blue: #0284C7;
+  --google-red: #EA4335;
+  --google-yellow: #FBBC04;
+  --google-green: #0F9D58;
+
+  /* Typography Variables - DM Sans everywhere */
   --font-sans: var(--font-dm-sans);
-  --font-heading: var(--font-manrope);
+  --font-heading: var(--font-dm-sans);
+  --font-manrope: var(--font-dm-sans);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-dm-sans);
-  --font-heading: var(--font-manrope);
+html {
+  font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
@@ -28,6 +86,97 @@ h4,
 h5,
 h6,
 .font-heading {
-  font-family: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   letter-spacing: -0.025em;
 }
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  outline: none !important;
+  border: 0;
+}
+
+
+/* Smooth Infinite Marquee Animation */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-infinite {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-infinite:hover {
+  animation-play-state: paused;
+}
+
+/* Global All-Over Modern Scrollbar */
+
+/* Firefox Fallback */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #C2410C #ffffff;
+  }
+}
+
+/* Chrome, Edge, Safari, Opera (WebKit & Chromium) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #C2410C;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #9A3412;
+}
+
+/* Modern Ultra-Thin Custom Scrollbar for Modal and Overlays */
+@supports not selector(::-webkit-scrollbar) {
+  .custom-modal-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #C2410C #ffffff;
+  }
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar-track {
+  background: #ffffff;
+  margin: 6px 0;
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #C2410C;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+.custom-modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #9A3412;
+}
+
+

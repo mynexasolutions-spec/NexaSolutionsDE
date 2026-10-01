@@ -42,7 +42,7 @@ const heroSlides = [
     titleEn: "High-Performance Websites",
     descriptionDe: "SEO-optimiert, ultraschnell und auf Konversion ausgerichtet.",
     descriptionEn: "SEO-friendly, ultra-fast & conversion-focused web apps.",
-    image: "/images/web-dev.jpg",
+    image: "/images/web-dev.png",
     icon: Globe,
   },
   {
@@ -53,7 +53,7 @@ const heroSlides = [
     titleEn: "Custom Mobile Applications",
     descriptionDe: "Nahtlose plattformübergreifende Apps für iOS und Android.",
     descriptionEn: "Seamless cross-platform apps for iOS and Android.",
-    image: "/images/app-dev.jpg",
+    image: "/images/app-dev.png",
     icon: Smartphone,
   },
   {
@@ -64,7 +64,7 @@ const heroSlides = [
     titleEn: "AI Workflows & n8n Automation",
     descriptionDe: "Autonome Agenten und intelligente Prozess-Pipelines.",
     descriptionEn: "Autonomous agents and intelligent process pipelines.",
-    image: "/images/ai-robot.jpg",
+    image: "/images/ai-robot.png",
     icon: Bot,
   },
   {
@@ -129,31 +129,44 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
   const ActiveIcon = activeSlide.icon;
 
   return (
-    <section id="home" className="relative pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 overflow-hidden bg-white">
-      {/* Background Subtle Gradient & Glow */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-100/40 via-orange-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10 translate-x-1/4 -translate-y-1/4" />
-      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-tr from-orange-100/30 via-amber-50/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10 -translate-x-1/4" />
+    <section id="home" className="relative pt-28 pb-14 sm:pt-36 lg:pt-40 lg:pb-10 overflow-hidden bg-white">
+      {/* Modern Background Subtle Grid Pattern & Ambient Glows */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-70 pointer-events-none -z-10" />
+      <div className="absolute -top-24 right-0 w-[500px] sm:w-[650px] h-[500px] sm:h-[650px] bg-gradient-to-bl from-blue-100/50 via-indigo-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10 translate-x-1/4" />
+      <div className="absolute -bottom-20 left-0 w-[400px] sm:w-[500px] h-[400px] sm:h-[500px] bg-gradient-to-tr from-orange-100/40 via-amber-50/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10 -translate-x-1/4" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-          {/* Left Column: Heading, Subtext, CTAs */}
-          <div className="lg:col-span-6 flex flex-col items-start z-10">
-            {/* Eyebrow Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50/80 text-blue-600 text-xs font-bold tracking-wider uppercase mb-6 shadow-2xs">
-              <span className="text-blue-500 font-bold">|&rarr;</span>
-              <span>{t("IHR DIGITALPARTNER", "YOUR TECH PARTNER")}</span>
+      {/* Hero Container with custom max-width 1430px */}
+      <div className="w-full max-w-[1430px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 xl:gap-14 items-center">
+          {/* Left Column: Heading, Subtext, CTAs (Modernized & Fully Responsive) */}
+          <div className="lg:col-span-6 flex flex-col items-center lg:items-start justify-content-center z-10">
+            {/* Modern Eyebrow Pill with Live Indicator */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-full border border-blue-200/80 bg-blue-50/80 hover:bg-blue-50 text-blue-700 text-xs font-semibold tracking-wide mb-5 sm:mb-6 shadow-2xs transition-colors backdrop-blur-xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+              </span>
+              <span className="uppercase tracking-wider font-bold text-[11px] text-blue-800">
+                {t("IHR DIGITALPARTNER", "YOUR TECH PARTNER")}
+              </span>
+              <span className="text-slate-300">|</span>
+              <span className="text-slate-600 font-medium hidden sm:inline">
+                {t("Web • App • KI-Automation", "Web • App • AI Automation")}
+              </span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-black text-[#0F172A] tracking-tight leading-[1.12] mb-5">
+            <h1 className="text-[40px] sm:text-[60px] lg:text-[65px] font-[900] text-[#0F172A] tracking-tight leading-[1.14] sm:leading-[1.12] mb-5 text-center lg:text-left">
               {t("Digitale Lösungen", "Digital Solutions")} <br />
-              {t("für ein", "for a")}{" "}
-              <span className="text-blue-600">{t("smarteres", "Smarter")}</span> <br />
+              <span className="font-[900] text-slate-800">{t("für ein", "for a")}</span>{" "}
+              <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
+                {t("smarteres", "Smarter")}
+              </span> <br />
               {t("Morgen", "Tomorrow")}
             </h1>
 
             {/* Subtext */}
-            <p className="text-base sm:text-[17px] text-slate-600 leading-relaxed max-w-xl mb-8">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mb-7 sm:mb-8 font-normal lg:text-left text-center">
               {t(
                 "Wir unterstützen Unternehmen bei modernen Websites, mobilen Apps und intelligenter KI-Automatisierung – für mehr Effizienz, geringere Kosten und schnelles Wachstum.",
                 "We help businesses build modern websites, mobile apps and AI-powered automation to save time, reduce costs and grow faster."
@@ -161,10 +174,10 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 mb-8 sm:mb-9 w-full sm:w-auto">
               <button
                 onClick={onOpenContact}
-                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[#EA580C] hover:bg-[#C2410C] text-white text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-orange-500/25 group cursor-pointer"
+                className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm font-semibold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
               >
                 <span>{t("Kostenlose Beratung anfragen", "Get a Free Consultation")}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -172,26 +185,38 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
 
               <Link
                 href="#work"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-slate-300 bg-white text-slate-800 text-sm font-semibold hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 shadow-2xs cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-slate-300/80 bg-white/90 backdrop-blur-xs text-slate-800 text-sm font-semibold hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
                 <span>{t("Unsere Arbeiten", "View Our Work")}</span>
               </Link>
             </div>
 
-            {/* Subtle Trust Indicators */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-[13px] font-medium text-slate-500 pt-2">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                {t("Individuelle Lösungen", "Custom Solutions")}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                {t("Schnelle Umsetzung", "Fast Turnaround")}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                {t("Kontinuierlicher Support", "Continuous Support")}
-              </span>
+            {/* Modern Trust Indicators */}
+            <div className="w-full pt-6 border-t border-slate-200/70 flex flex-col gap-6 lg:justify-start justify-center lg:items-start items-center">
+              <div className="flex flex-wrap items-center lg:justify-start justify-center gap-4 sm:gap-8 text-xs sm:text-[13px] font-medium text-slate-600">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  {t("Individuelle Lösungen", "Custom Solutions")}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  {t("Schnelle Umsetzung", "Fast Turnaround")}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  {t("Kontinuierlicher Support", "Continuous Support")}
+                </span>
+              </div>
+
+              {/* German Quality Standard Badge */}
+              <div className="inline-flex items-center gap-2 text-xs text-slate-500">
+                <span className="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-blue-100/80 text-blue-700 font-bold text-[10px]">
+                  DE
+                </span>
+                <span>
+                  <strong className="text-slate-800 font-semibold">{t("Deutscher Qualitätsstandard", "German Quality Standard")}</strong> &bull; {t("100% DSGVO-konform", "100% GDPR Compliant")}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -199,7 +224,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
           <div className="lg:col-span-6 relative flex flex-col justify-center items-center">
             {/* Device Mockup Frame with Image Carousel */}
             <div
-              className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-slate-200/90 bg-slate-900 group"
+              className="relative w-full rounded-[10px] overflow-hidden shadow-2xl border border-slate-200/90 bg-slate-900 group"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
               onTouchStart={handleTouchStart}

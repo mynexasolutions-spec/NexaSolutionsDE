@@ -6,13 +6,14 @@ import Link from "next/link";
 interface BrandLogoProps {
   className?: string;
   isDark?: boolean;
+  href?: string;
 }
 
-export default function BrandLogo({ className = "", isDark = false }: BrandLogoProps) {
+export default function BrandLogo({ className = "", isDark = false, href = "/#home" }: BrandLogoProps) {
   return (
-    <Link href="#home" className={`inline-flex items-center gap-3 group select-none ${className}`}>
+    <Link href={href} className={`inline-flex items-center gap-1.5 group select-none shrink-0 ${className}`}>
       {/* Stylized NX Monogram Icon */}
-      <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center">
+      <div className="relative w-11 h-11 sm:w-13.5 sm:h-13.5 shrink-0 flex items-center justify-center">
         <svg
           viewBox="0 0 44 44"
           fill="none"
@@ -46,9 +47,9 @@ export default function BrandLogo({ className = "", isDark = false }: BrandLogoP
       </div>
 
       {/* Brand Text */}
-      <div className="flex flex-col">
+      <div className="flex flex-col text-left">
         <span
-          className={`text-lg sm:text-xl font-black tracking-tight leading-tight transition-colors ${
+          className={`text-base sm:text-lg font-black tracking-tight leading-tight transition-colors ${
             isDark
               ? "text-white group-hover:text-orange-400"
               : "text-[#0F172A] group-hover:text-orange-600"
@@ -57,11 +58,11 @@ export default function BrandLogo({ className = "", isDark = false }: BrandLogoP
           Nexa Solutions
         </span>
         <span
-          className={`text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase transition-colors ${
+          className={`text-[8.5px] sm:text-[9.5px] font-bold tracking-[0.14em] uppercase transition-colors ${
             isDark ? "text-slate-400" : "text-slate-500"
           }`}
         >
-          Build &bull; Automate &bull; Grow
+          BUILD &bull; AUTOMATE &bull; GROW
         </span>
       </div>
     </Link>

@@ -80,7 +80,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
   const activeCall = callTypes.find((c) => c.id === selectedCallType) || callTypes[0];
 
   return (
-    <section id="booking" className="py-20 md:py-24 bg-gradient-to-b from-white via-slate-50/60 to-white relative overflow-hidden border-b border-slate-100">
+    <section id="booking" className="py-10 sm:py-12 lg:py-16  bg-gradient-to-b from-white via-slate-50/60 to-white relative overflow-hidden border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -89,7 +89,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
             <span>{t("TERMIN DIREKT ONLINE BUCHEN", "SCHEDULE A CONSULTATION")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#0F172A] tracking-tight leading-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#0B132B] tracking-tight leading-[1.25] my-[18px]">
             {t("Wählen Sie Ihren Wunschtermin für ein Erstgespräch", "Select Your Preferred Time for a Free Discovery Call")}
           </h2>
 
@@ -102,7 +102,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
         </div>
 
         {/* Booking Container */}
-        <div className="max-w-5xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+        <div className="max-w-[1150px] mx-auto bg-white rounded-[5px] border border-slate-200 shadow-xl overflow-hidden">
           {bookingSubmitted ? (
             <div className="p-10 sm:p-16 text-center flex flex-col items-center">
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-5 animate-in zoom-in-75">
@@ -157,14 +157,14 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                     {t("Art der Beratung wählen", "Select Consultation Type")}
                   </h3>
 
-                  <div className="space-y-3 mb-6">
+                  <div className="space-y-3.5 mb-6">
                     {callTypes.map((type) => {
                       const isSelected = selectedCallType === type.id;
                       return (
                         <div
                           key={type.id}
                           onClick={() => setSelectedCallType(type.id)}
-                          className={`p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                          className={`p-4 rounded-[5px] border transition-all duration-200 cursor-pointer ${
                             isSelected
                               ? "bg-white border-orange-500 shadow-sm ring-1 ring-orange-500/30"
                               : "bg-white/80 border-slate-200 hover:border-slate-300"
@@ -188,7 +188,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 text-xs text-slate-600 space-y-2">
+                <div className="p-4 rounded-[5px] bg-white border border-slate-200 text-xs text-slate-600 space-y-2">
                   <div className="flex items-center gap-2 font-bold text-slate-900">
                     <ShieldCheck className="w-4 h-4 text-emerald-600" />
                     <span>{t("100% Unverbindlich & Kostenlos", "100% Free & No Obligation")}</span>
@@ -218,7 +218,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                             type="button"
                             key={idx}
                             onClick={() => setSelectedDay(idx)}
-                            className={`py-3 px-2 rounded-xl text-center border transition-all cursor-pointer ${
+                            className={`py-3 px-2 rounded-[5px] text-center border transition-all cursor-pointer ${
                               isSelected
                                 ? "bg-slate-900 text-white border-slate-900 shadow-sm"
                                 : "bg-white border-slate-200 hover:border-slate-300 text-slate-700"
@@ -247,7 +247,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                             type="button"
                             key={time}
                             onClick={() => setSelectedTime(time)}
-                            className={`py-2 px-1 text-xs font-semibold rounded-lg border text-center transition-all cursor-pointer ${
+                            className={`py-2 px-1 text-xs font-semibold rounded-[5px] border text-center transition-all cursor-pointer ${
                               isSelected
                                 ? "bg-orange-500 text-white border-orange-500 shadow-sm"
                                 : "bg-slate-50 border-slate-200 hover:border-slate-300 text-slate-700"
@@ -275,7 +275,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                             placeholder={t("z.B. Alexander Weber", "e.g. Alexander Weber")}
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                            className="w-full pl-9 pr-3 py-2.5 rounded-[5px] border border-slate-200 text-xs focus:outline-none focus:border-orange-500 bg-slate-50/50"
                           />
                         </div>
                       </div>
@@ -292,7 +292,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                             placeholder="name@company.de"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                            className="w-full pl-9 pr-3 py-2.5 rounded-[5px] border border-slate-200 text-xs focus:outline-none focus:border-orange-500 bg-slate-50/50"
                           />
                         </div>
                       </div>
@@ -309,7 +309,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                           placeholder={t("z.B. Nexa Tech GmbH", "e.g. Acme Corp")}
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                          className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                          className="w-full pl-9 pr-3 py-2.5 rounded-[5px] border border-slate-200 text-xs focus:outline-none focus:border-orange-500 bg-slate-50/50"
                         />
                       </div>
                     </div>
@@ -318,7 +318,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 rounded-full bg-[#EA580C] hover:bg-[#C2410C] text-white text-xs sm:text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-orange-500/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
+                    className="w-full py-3.5 rounded-[5px] bg-[#EA580C] hover:bg-[#C2410C] text-white text-xs sm:text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-orange-500/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
                   >
                     {isSubmitting ? (
                       <span>{t("Termin wird gebucht...", "Booking session...")}</span>

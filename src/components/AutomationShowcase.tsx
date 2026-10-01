@@ -173,7 +173,7 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-center">
           
           {/* Left Column: Heading, Subtext, CTA and Micro-Badges */}
-          <div className="lg:col-span-4 flex flex-col items-center text-center lg:items-start lg:text-left">
+          <div className="lg:col-span-5 flex flex-col items-center text-center lg:items-start lg:text-left">
             {/* Eyebrow Pill */}
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-purple-200/90 bg-purple-50/90 text-purple-700 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <span className="text-purple-600">⚡</span>
@@ -181,9 +181,9 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
             </div>
 
             {/* Main Headline with Highlight Gradient and Playful Swoosh */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-black text-[#0B132B] tracking-tight leading-[1.15] mb-4 sm:mb-5">
-              {t("Manuelle Arbeit in", "Turn Manual Work")} <br />
-              <span>{t("", "Into ")}</span>
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center lg:text-left">
+              {t("Manuelle Arbeit in", "Turn Manual Work")}
+              <span> {t("", "Into ")} </span>
               <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
                 {t("smarte Automatisierung", "Smart Automation")}
 
@@ -205,7 +205,7 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
             </h2>
 
             {/* Description */}
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-7 max-w-lg">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-lg mt-4 sm:mb-6 font-normal lg:text-left text-center">
               {t(
                 "Wir entwickeln KI-Agenten und n8n-Workflows, die Ihre Tools verbinden, repetitive Aufgaben automatisieren und Ihnen helfen, sich auf das Wesentliche zu konzentrieren — das Wachstum Ihres Unternehmens.",
                 "We build AI agents and n8n workflows that connect your tools, automate repetitive tasks and help you focus on what really matters — growing your business."
@@ -213,10 +213,10 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
             </p>
 
             {/* CTA Button */}
-            <div className="mb-8">
+            <div className="mb-8 mt-8 lg:mt-0">
               <button
                 onClick={onExploreAutomation}
-                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm sm:text-base font-bold shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer group"
+                className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group"
               >
                 <span>{t("KI-Automatisierung entdecken", "Explore AI Automation")}</span>
                 <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
@@ -226,7 +226,7 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
             </div>
 
             {/* 3 Bottom Feature Badges */}
-            <div className="flex items-center justify-center lg:justify-start gap-4 sm:gap-6 pt-5 border-t border-slate-200/80 w-full max-w-md mx-auto lg:mx-0">
+            <div className="flex items-center justify-center lg:justify-start gap-2 sm:gap-4 pt-5 border-t border-slate-200/80 w-full max-w-[490px] mx-auto lg:mx-0">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-xl bg-purple-50 border border-purple-200/80 flex items-center justify-center text-purple-600 shrink-0">
                   <Settings className="w-4 h-4" />
@@ -261,7 +261,7 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
           </div>
 
           {/* Right Column: Visual Automation Workflow Canvas */}
-          <div className="lg:col-span-8 relative lg:ml-6">
+          <div className="lg:col-span-7 relative lg:ml-6">
             
             {/* 3D Floating Decorative Cubes / Icons (Matching Reference Image) */}
             {/* 1. Top AI Bot 3D Badge */}
@@ -318,10 +318,10 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
                             {tool.logo}
                           </div>
                           <div>
-                            <div className="text-xs sm:text-sm font-bold text-slate-800 tracking-tight">
+                            <div className="text-[12.5px] sm:text-[15px] font-bold text-slate-800 tracking-tight">
                               {tool.name}
                             </div>
-                            <div className="text-[10px] sm:text-[11px] text-slate-400 font-normal">
+                            <div className="text-[11.5px] sm:text-[13.5px] text-slate-400 font-normal">
                               {tool.subtext}
                             </div>
                           </div>
@@ -342,7 +342,7 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
                 </div>
 
                 {/* 2. Central n8n Hub & AI Logic Badge */}
-                <div className="md:col-span-4 flex flex-col items-center justify-center py-2 sm:py-0 relative">
+                <div className="md:col-span-3 flex flex-col items-center justify-center py-2 sm:py-0 relative">
                   
                   {/* SVG Connecting Flow Lines (Desktop Only) */}
                   <div className="hidden md:block absolute inset-0 w-full h-full pointer-events-none -z-0 overflow-visible">
@@ -415,7 +415,7 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
                   </div>
 
                   {/* Central n8n Node Card */}
-                  <div className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-[5px] bg-white border border-rose-100/90 shadow-[0_20px_45px_rgba(234,75,113,0.18)] flex flex-col items-center justify-center p-3 text-center transition-all duration-300 hover:scale-105">
+                  <div className="relative z-10 w-30 h-30 sm:w-28 sm:h-28 rounded-[5px] bg-white border border-rose-100/90 shadow-[0_20px_45px_rgba(234,75,113,0.18)] flex flex-col items-center justify-center p-3 text-center transition-all duration-300 hover:scale-105">
                     {/* Pink/Rose Ambient Glow */}
                     <div className="absolute inset-0 rounded-[5px] bg-gradient-to-br from-rose-50/60 to-pink-50/20 -z-0 pointer-events-none" />
 
@@ -451,7 +451,7 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
                 </div>
 
                 {/* 3. Right Outcomes Stack (4 items) */}
-                <div className="md:col-span-4 flex flex-col gap-2.5 sm:gap-3">
+                <div className="md:col-span-5 flex flex-col gap-2.5 sm:gap-3">
                   {outcomes.map((outcome, idx) => {
                     const Icon = outcome.icon;
                     const isActive = activeStep === idx;
@@ -475,10 +475,10 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
                         <div className="flex items-center gap-3">
                           {outcome.icon}
                           <div>
-                            <div className="text-[14px] sm:text-[14px] font-bold text-slate-800 tracking-tight">
+                            <div className="text-[12.5px] sm:text-[15px] font-bold text-slate-800 tracking-tight">
                               {outcome.title}
                             </div>
-                            <div className="text-[9px] sm:text-[11px] text-slate-400 font-normal">
+                            <div className="text-[11.5px] sm:text-[13.5px] text-slate-400 font-normal">
                               {outcome.subtext}
                             </div>
                           </div>

@@ -121,12 +121,12 @@ export default function FeaturedProjects({
             </div>
 
             {/* Main Headline */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#0B132B] tracking-tight leading-[1.15]">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.10] sm:leading-[1.09] mb-3 text-center">
               {t("Einige unserer neuesten Projekte", "Some of Our Latest Projects")}
             </h2>
 
             {/* Subtext Below Headline */}
-            <p className="text-slate-500 text-sm sm:text-base font-normal mt-2 leading-relaxed">
+            <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl text-center font-normal">
               {t(
                 "Echte Projekte. Echte Ergebnisse. Entwickelt mit modernen Lösungen.",
                 "Real projects. Real results. Crafted with modern solutions."

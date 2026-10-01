@@ -101,7 +101,7 @@ export default function Footer() {
             {/* Logo */}
             <BrandLogo className="mb-4" />
 
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 max-w-sm">
+            <p className="text-slate-600 text-[13.5px] xl:text-[14px] font-mediumm leading-relaxed mb-6 max-w-sm">
               {t(
                 "Wir entwickeln digitale Produkte, mobile Apps und KI-Automatisierungslösungen, um Unternehmen schneller wachsen zu lassen.",
                 "We build digital products, mobile apps and AI automation solutions to help businesses grow faster and work smarter."
@@ -173,25 +173,25 @@ export default function Footer() {
               <div className="w-6 h-0.5 bg-blue-600 rounded-full mt-1.5" />
             </div>
 
-            <ul className="space-y-3 text-xs sm:text-[13px] text-slate-600 font-medium">
+            <ul className="space-y-3.5 text-xs sm:text-[13px] text-slate-600 font-medium">
               {[
-                { label: t("Startseite", "Home"), href: "#home" },
-                { label: t("Über uns", "About Us"), href: "#process" },
-                { label: t("Leistungen", "Services"), href: "#services" },
-                { label: t("Unsere Arbeit", "Our Work"), href: "#work" },
-                { label: t("Partner", "Partners"), href: "#partners" },
-                { label: "Blog", href: "#work" },
-                { label: t("Kontakt", "Contact"), href: "#contact" },
+                { label: t("Startseite", "Home"), href: "/#home" },
+                { label: t("Über uns", "About Us"), href: "/#process" },
+                { label: t("Leistungen", "Services"), href: "/#services" },
+                { label: t("Unsere Arbeit", "Our Work"), href: "/#work" },
+                { label: t("Partner", "Partners"), href: "/#partners" },
+                { label: "Blog", href: "/blog" },
+                { label: t("Kontakt", "Contact"), href: "/#contact" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link
                     href={link.href}
                     className="group inline-flex items-center gap-1.5 hover:text-orange-600 transition-colors"
                   >
-                    <span className="text-slate-400 group-hover:text-orange-500 font-bold text-xs transition-colors">
+                    <span className="truncate group-hover:text-orange-500 font-bold text-[13.5px] xl:text-[14px] transition-colors">
                       &gt;
                     </span>
-                    <span>{link.label}</span>
+                    <span className="truncate text-[13.5px] xl:text-[14px] font-medium">{link.label}</span>
                   </Link>
                 </li>
               ))}
@@ -258,7 +258,7 @@ export default function Footer() {
                       >
                         <Icon className="w-3.5 h-3.5 stroke-[2.2]" />
                       </div>
-                      <span className="truncate">{svc.title}</span>
+                      <span className="truncate text-[13.5px] xl:text-[14px] font-medium">{svc.title}</span>
                     </Link>
                   </li>
                 );
@@ -286,7 +286,7 @@ export default function Footer() {
                 <div className="w-7 h-7 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <Mail className="w-3.5 h-3.5 stroke-[2.2]" />
                 </div>
-                <span className="text-xs sm:text-[13px] font-medium text-slate-800 group-hover:text-blue-600 truncate transition-colors">
+                <span className="text-[13.5px] xl:text-[14px] font-medium text-slate-800 group-hover:text-blue-600 truncate transition-colors">
                   info@nexa-solutions.io
                 </span>
               </a>
@@ -299,7 +299,7 @@ export default function Footer() {
                 <div className="w-7 h-7 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <Phone className="w-3.5 h-3.5 stroke-[2.2]" />
                 </div>
-                <span className="text-xs sm:text-[13px] font-medium text-slate-800 group-hover:text-sky-600 truncate transition-colors">
+                <span className="text-[13.5px] xl:text-[14px] font-medium text-slate-800 group-hover:text-sky-600 truncate transition-colors">
                   +91 99105 43210
                 </span>
               </a>
@@ -309,7 +309,7 @@ export default function Footer() {
                 <div className="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
                   <MapPin className="w-3.5 h-3.5 stroke-[2.2]" />
                 </div>
-                <span className="text-xs sm:text-[13px] font-medium text-slate-800 truncate">
+                <span className="text-[13.5px] xl:text-[14px] font-medium text-slate-800 truncate">
                   Hyderabad, India
                 </span>
               </div>

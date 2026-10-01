@@ -269,7 +269,7 @@ export default function WhyChooseUs({ onOpenContact }: WhyChooseUsProps) {
 
             {/* Headline with swoosh underline and spark ticks */}
             <div className="relative mb-5 sm:mb-6">
-              <h2 className="text-3xl sm:text-5xl lg:text-[50px] font-black text-[#0F172A] tracking-tight leading-[1.12]">
+              <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15]">
                 {t("Ihr Wachstum", "Your Growth")} <br />
                 <span>{t("Unsere", "Our")} </span>
                 <span className="relative inline-block text-blue-600">
@@ -300,7 +300,7 @@ export default function WhyChooseUs({ onOpenContact }: WhyChooseUsProps) {
             </div>
 
             {/* Subtext */}
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-7 sm:mb-8 max-w-lg text-center lg:text-left">
+            <p className="text-slate-600 text-base sm:text-lg  leading-relaxed mb-7 sm:mb-8 max-w-lg text-center lg:text-left">
               {t(
                 "Wir verbinden deutsche Qualitätsstandards, intuitive User Experience und moderne KI-Technologie, um digitale Produkte zu entwickeln, die einen messbaren Unterschied für Ihr Unternehmen machen.",
                 "We combine German quality standards, intuitive user experience, and modern AI engineering to build digital products that make a measurable impact on your business."
@@ -311,7 +311,7 @@ export default function WhyChooseUs({ onOpenContact }: WhyChooseUsProps) {
             {onOpenContact && (
               <button
                 onClick={onOpenContact}
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm sm:text-base font-bold shadow-md shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer group mb-9 sm:mb-11"
+                className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group mb-9 sm:mb-11"
               >
                 <span>{t("Erstgespräch anfragen", "Schedule a Consultation")}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -319,7 +319,7 @@ export default function WhyChooseUs({ onOpenContact }: WhyChooseUsProps) {
             )}
 
             {/* Stats Counter Row (Bottom of Left Column) */}
-            <div className="flex items-center justify-center lg:justify-start gap-4 sm:gap-4 pt-5 border-t border-slate-200/80 w-full max-w-md mx-auto lg:mx-0">
+            <div className="flex items-center lg:items-start justify-center lg:justify-start gap-4 sm:gap-10 pt-5 border-t border-slate-200/80 w-full max-w-md lg:mx-w-2xl">
               <div>
                 <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight text-center">100+</div>
                 <div className="text-xs text-slate-800 font-medium mt-0.5 text-center">{t("Projekte geliefert", "Projects Delivered")}</div>
@@ -345,7 +345,7 @@ export default function WhyChooseUs({ onOpenContact }: WhyChooseUsProps) {
                 return (
                   <div
                     key={item.id}
-                    className="p-5 sm:p-6 rounded-[5px] bg-white border border-slate-200/80 shadow-[0_8px_25px_-12px_rgba(0,0,0,0.06)] hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group min-h-[110px]"
+                    className="p-5 sm:p-6 rounded-[5px] bg-white border border-slate-200/80 shadow-[0_8px_25px_-12px_rgba(0,0,0,0.06)] hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group min-h-[120px]"
                   >
                     {/* Top-Right Decorative Frosted 3D Sphere */}
                     <div className={`absolute top-3 right-3 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br border ${item.cornerOrb} pointer-events-none`} />
@@ -371,10 +371,10 @@ export default function WhyChooseUs({ onOpenContact }: WhyChooseUsProps) {
                       </div>
 
                       {/* Content */}
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-[19px] sm:text-[21px] font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
                         {item.title}
                       </h3>
-                      <p className="text-xs sm:text-[13.5px] text-slate-600 leading-relaxed max-w-[280px]">
+                      <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-[280px] mb-2">
                         {item.description}
                       </p>
                     </div>

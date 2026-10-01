@@ -87,23 +87,23 @@ export default function ProcessSection() {
       </div>
 
       <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header Section: Centered on Mobile, Split Left/Right on Desktop */}
-        <div className="flex flex-col items-center text-center lg:items-end lg:text-left lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-14 lg:mb-20">
-          <div className="max-w-2xl flex flex-col items-center lg:items-start text-center lg:text-left">
+        {/* Header Section */}
+        <div className="flex flex-col items-center text-center justify-center gap-4 sm:gap-2 max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
+          <div className="flex flex-col items-center text-center">
             {/* Small Orange Badge */}
-            <div className="inline-flex items-center justify-center gap-1.5 text-orange-500 text-xs sm:text-sm font-extrabold tracking-wider uppercase mb-2 sm:mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50/90 text-orange-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <span className="text-orange-500">⚡</span>
               <span>{t("UNSER PROZESS", "OUR PROCESS")}</span>
             </div>
             {/* Main Headline */}
-            <h2 className="text-2xl sm:text-3xl lg:text-[42px] font-black text-[#0B132B] tracking-tight leading-tight lg:leading-[1.15]">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.10] sm:leading-[1.09] mb-3 text-center">
               {t("Ein einfacher Prozess", "A Simple Process")} <br className="hidden sm:inline" />
               {t("für erfolgreiche Projekte", "for Successful Projects")}
             </h2>
           </div>
 
-          {/* Right Supporting Paragraph */}
-          <p className="text-slate-500 text-xs sm:text-sm lg:text-base leading-relaxed max-w-md text-center lg:text-right font-normal">
+          {/* Supporting Paragraph */}
+          <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl text-center font-normal">
             {t(
               "Wir folgen einem klaren und kollaborativen Prozess, um hochwertige Ergebnisse pünktlich und im Budget zu liefern.",
               "We follow a clear and collaborative process to ensure high-quality results, on time and within budget."
@@ -238,7 +238,7 @@ export default function ProcessSection() {
                         <div className="flex items-center justify-between w-full mb-3 sm:mb-6">
                           {/* 3D Icon Container */}
                           <div
-                            className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl border flex items-center justify-center transition-transform duration-300 group-hover:scale-105 ${step.iconBg}`}
+                            className={`w-10 h-10 sm:w-14 sm:h-14 rounded-[5px] sm:rounded-2xl border flex items-center justify-center transition-transform duration-300 group-hover:scale-105 ${step.iconBg}`}
                           >
                             <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
                           </div>
@@ -255,7 +255,7 @@ export default function ProcessSection() {
                         <h3 className="text-base sm:text-xl font-bold text-[#0B132B] mb-1 sm:mb-2 tracking-tight transition-colors duration-200 group-hover:text-slate-900">
                           {step.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-slate-500 font-normal leading-snug sm:leading-relaxed">
+                        <p className="text-[12px] sm:text-[15px] text-slate-500 font-normal leading-snug sm:leading-relaxed">
                           {step.description}
                         </p>
                       </div>

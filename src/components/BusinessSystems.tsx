@@ -212,15 +212,15 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
 
       <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 sm:mb-14">
-          <div className="max-w-2xl">
+        <div className="flex flex-col items-center justify-center gap-4 mb-6 sm:mb-8">
+          <div className="max-w-4xl flex flex-col items-center text-center">
             {/* Eyebrow Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50/90 text-orange-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Sparkles className="w-3.5 h-3.5 text-orange-500" />
               <span>{t("MAßGESCHNEIDERTE UNTERNEHMENSSYSTEME", "CUSTOM BUSINESS SYSTEMS")}</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0B132B] tracking-tight leading-[1.15]">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.15] sm:leading-[1.07] mb-3 text-center">
               {t("Ein einziges System,", "One Single System,")} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-orange-500 to-amber-600">
                 {t("das Ihr Unternehmen komplett steuert", "Managing Your Entire Business")}
@@ -228,7 +228,7 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
             </h2>
           </div>
 
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-md">
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mb-4 sm:mb-4 font-normal text-center">
             {t(
               "Statt dutzender teurer SaaS-Abos und verstreuter Excel-Dateien: Wir entwickeln modulare, maßgeschneiderte Systeme, die genau zu Ihren internen Abläufen passen.",
               "Instead of dozens of expensive SaaS subscriptions and scattered Excel spreadsheets: We build modular, custom operating systems tailored precisely to your workflow."
@@ -272,13 +272,13 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
 
                 <div className="flex flex-col min-w-0">
                   <span
-                    className={`text-xs sm:text-[14px] font-bold tracking-tight truncate ${
+                    className={`text-[14px] sm:text-[16px]  font-bold tracking-tight truncate ${
                       isHighlighted ? "text-[#0B132B]" : "text-slate-700"
                     }`}
                   >
                     {s.navTitle}
                   </span>
-                  <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate hidden sm:block">
+                  <span className="text-[11px] sm:text-[13px] text-slate-600 font-medium truncate hidden sm:block">
                     {s.badge}
                   </span>
                 </div>
@@ -350,7 +350,7 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
                     {currentSystem.heading}
                   </h3>
 
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                  <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
                     {currentSystem.description}
                   </p>
 
@@ -361,8 +361,8 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
                         key={idx}
                         className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50/80 border border-slate-100 hover:border-slate-200 transition-colors"
                       >
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                        <span className="text-xs sm:text-[13px] text-slate-700 font-medium leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-2" />
+                        <span className="text-[12px] sm:text-[15px] text-slate-700 font-medium leading-snug">
                           {feat}
                         </span>
                       </div>
@@ -371,7 +371,7 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
 
                   <button
                     onClick={() => onOpenContact(currentSystem.navTitle)}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-500 text-white text-xs sm:text-sm font-bold shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300 cursor-pointer group active:scale-[0.99]"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group"
                   >
                     <span>{t("Individuelles System anfragen", "Inquire About This System")}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -390,7 +390,7 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
                         <div className="text-xl sm:text-2xl font-black text-orange-600 tracking-tight">
                           {m.value}
                         </div>
-                        <div className="text-[10px] sm:text-[11px] text-slate-600 mt-1 font-semibold leading-tight">
+                        <div className="text-[12px] sm:text-[15px] text-slate-600 mt-1 font-semibold leading-tight">
                           {m.label}
                         </div>
                       </div>
@@ -399,14 +399,14 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
 
                   {/* Architecture Guarantee Card */}
                   <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs">
-                    <div className="flex items-center gap-2 mb-3.5 text-xs font-bold text-[#0B132B] uppercase tracking-wider">
+                    <div className="flex items-center gap-2 mb-3.5 text-[15px] sm:text-[17px] font-bold text-[#0B132B] uppercase tracking-wider">
                       <div className="w-6 h-6 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center">
                         <Database className="w-3.5 h-3.5" />
                       </div>
                       <span>{t("Technologische Grundlage", "Engineering Foundation")}</span>
                     </div>
 
-                    <div className="space-y-2 text-xs text-slate-600 leading-relaxed mb-4">
+                    <div className="space-y-2 text-[12px] sm:text-[15px] text-slate-600 leading-relaxed mb-4">
                       <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0" />
                         <span>{t("Next.js & TypeScript UI für flüssige Bedienung", "Next.js & TypeScript UI for instantaneous response times")}</span>
@@ -425,7 +425,7 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 pt-3 border-t border-slate-200 text-[11px] text-emerald-700 font-bold">
+                    <div className="flex items-center gap-2 pt-3 border-t border-slate-200 text-[12px] sm:text-[15px] text-emerald-700 font-bold">
                       <ShieldCheck className="w-4 h-4 text-emerald-600" />
                       <span>{t("100% DSGVO & GoBD-konform implementiert", "100% GDPR & GoBD compliant architecture")}</span>
                     </div>

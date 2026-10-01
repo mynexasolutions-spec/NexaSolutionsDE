@@ -79,7 +79,7 @@ export default function CtaBanner({ onOpenContact }: CtaBannerProps) {
                   <span className="w-1 h-4 bg-orange-500 rounded-full translate-y-1" />
                 </span>
 
-                <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-black text-[#0B132B] tracking-tight leading-[1.20]">
+                <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.10] sm:leading-[1.09] mb-2 text-center">
                   {t("Haben Sie ein Projekt", "Have a Project")}{" "}
                   <span>{t("im Sinn?", "in ")}</span>
                   <span className="text-blue-600">{t("", "Mind?")}</span>
@@ -113,7 +113,7 @@ export default function CtaBanner({ onOpenContact }: CtaBannerProps) {
                 {/* 1. Get Free Consultation Button */}
                 <button
                   onClick={onOpenContact}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-[#F97316] hover:from-orange-600 hover:to-orange-500 text-white text-xs sm:text-sm font-bold transition-all duration-300 shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/35 hover:scale-105 active:scale-95 cursor-pointer group"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group"
                 >
                   <span>{t("Kostenlose Beratung anfragen", "Get a Free Consultation")}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -122,7 +122,7 @@ export default function CtaBanner({ onOpenContact }: CtaBannerProps) {
                 {/* 2. Contact Us Button */}
                 <button
                   onClick={onOpenContact}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-bold transition-all duration-300 shadow-2xs hover:scale-105 active:scale-95 cursor-pointer group"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 text-sm sm:text-base font-bold transition-all duration-300 shadow-2xs hover:scale-105 active:scale-95 cursor-pointer group"
                 >
                   <span>{t("Kontakt aufnehmen", "Contact Us")}</span>
                   <Send className="w-3.5 h-3.5 text-slate-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

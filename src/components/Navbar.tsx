@@ -20,6 +20,7 @@ import {
   Users2,
   Sparkles,
   Command,
+  BookOpen,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import BrandLogo from "./BrandLogo";
@@ -52,6 +53,11 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
+      if (pathname.startsWith("/blog")) {
+        setActiveNav("blog");
+        return;
+      }
+
       if (!isHomePage) return;
 
       const sections = [
@@ -79,9 +85,10 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
       }
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHomePage]);
+  }, [isHomePage, pathname]);
 
   // Click outside to close language dropdown
   useEffect(() => {
@@ -161,6 +168,11 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
       id: "work",
       name: t("Projekte", "Projects"),
       href: isHomePage ? "#work" : "/#work",
+    },
+    {
+      id: "blog",
+      name: "Blog",
+      href: "/blog",
     },
     {
       id: "about",
@@ -285,6 +297,16 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
       subtitle: t("Team & Philosophie", "Our team & mission"),
       href: isHomePage ? "#about" : "/#about",
       icon: Users2,
+    },
+    {
+      category: t("Ressourcen", "Resources"),
+      title: t("Blog & Fachartikel", "Blog & Tech Insights"),
+      subtitle: t(
+        "KI-Automatisierung, Next.js & App-Entwicklung",
+        "AI automation, Next.js & cross-platform apps",
+      ),
+      href: "/blog",
+      icon: BookOpen,
     },
     {
       category: t("Aktion", "Action"),

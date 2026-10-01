@@ -20,7 +20,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
       badgeIcon: Globe,
       iconColor: "text-blue-600",
       checkBg: "bg-blue-600",
-      buttonGradient: "from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 shadow-blue-500/25",
+      buttonGradient: "from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 shadow-orange-500/25",
       hoverColor: "hover:text-blue-600",
       title: t("Website-Entwicklung", "Website Development"),
       description: t(
@@ -62,7 +62,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
       badgeIcon: Sparkles,
       iconColor: "text-purple-600",
       checkBg: "bg-purple-600",
-      buttonGradient: "from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-purple-500/25",
+      buttonGradient: "from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 shadow-orange-500/25",
       hoverColor: "hover:text-purple-600",
       title: t("KI-Automatisierung & n8n Workflows", "AI Automation & n8n Workflows"),
       description: t(
@@ -96,7 +96,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
 
       <div className="w-full max-w-[1430px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Centered Section Header */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           {/* Eyebrow Pill */}
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/80 text-orange-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
             <span className="text-orange-500 font-bold">⚡</span>
@@ -104,7 +104,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
           </div>
 
           {/* Heading with Modern Gradient */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0F172A] tracking-tight leading-[1.36] mb-4" style={{ lineHeight: "1.15" }}>
+          <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
             {t("Digitale Komplettlösungen für", "Full Stack Digital Solutions for")}{" "}
             <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
@@ -112,7 +112,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
             </span>
           </h2>
 
-          <p className="text-sm sm:text-base md:text-[17px] text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal text-center">
             {t(
               "Von der Idee bis zur Umsetzung bieten wir End-to-End-Lösungen für Aufbau, Automatisierung und Skalierung Ihres Unternehmens.",
               "From idea to implementation, we provide end-to-end solutions to help you build, automate and scale your business."
@@ -149,17 +149,17 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
                 {/* Card Body (Compact Spacing & Typography) */}
                 <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
                   <div>
-                    <h3 className={`text-lg sm:text-[22px] font-bold text-slate-900 mb-3 ${service.hoverColor} transition-colors`}>
+                    <h3 className={`text-[19px] sm:text-[24px] font-bold text-slate-900 mb-3 ${service.hoverColor} transition-colors`}>
                       {service.title}
                     </h3>
-                    <p className="text-xs sm:text-[13.5px] text-slate-600 leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
                       {service.description}
                     </p>
 
                     {/* Bullet Points (Compact Gap) */}
-                    <div className="space-y-3.5 mb-5">
+                    <div className="space-y-2.5 mb-5">
                       {service.points.map((point, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs sm:text-[14px] text-slate-700 font-medium">
+                        <div key={idx} className="flex items-center gap-2 first-line:text-base sm:text-lg text-slate-700 font-medium">
                           <div className={`w-3.5 h-3.5 rounded-full ${service.checkBg} text-white flex items-center justify-center shrink-0 shadow-2xs`}>
                             <Check className="w-2 h-2 stroke-[3]" />
                           </div>
@@ -176,7 +176,6 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
                       className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-[5px] bg-gradient-to-r ${service.buttonGradient} text-white text-xs sm:text-[13px] font-bold shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer`}
                     >
                       <span>{t("Mehr erfahren", "Learn More")}</span>
-                      <ArrowRight className="w-3 h-3" />
                     </button>
 
                     <Link

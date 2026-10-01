@@ -28,7 +28,7 @@ export default function AuthorizedPartners() {
     <section id="partners" className="py-10 sm:py-12 lg:py-16 bg-white relative border-b border-slate-100 overflow-hidden">
       <div className="w-full max-w-[1350px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered Header: Eyebrow, Heading, Description */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-6 sm:mb-8">
           {/* Eyebrow Pill */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 text-blue-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
             <span className="w-2 h-2 rounded-full bg-blue-600"></span>
@@ -36,12 +36,12 @@ export default function AuthorizedPartners() {
           </div>
 
           {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-black text-[#0F172A] tracking-tight leading-[1.2] mb-3.5">
+          <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
             {t("Autorisierter Partner führender Plattformen", "Authorized Partner with Leading Platforms")}
           </h2>
 
           {/* Subtext */}
-          <p className="text-sm sm:text-base md:text-[17px] text-slate-600 leading-relaxed max-w-2xl">
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mb-7 sm:mb-8 font-normal text-center">
             {t(
               "Wir arbeiten mit globalen Technologieführern zusammen, um zuverlässige, sichere und zukunftssichere Lösungen für Ihr Unternehmen zu liefern.",
               "We collaborate with global technology leaders to deliver reliable, secure, and future-ready solutions for your business."

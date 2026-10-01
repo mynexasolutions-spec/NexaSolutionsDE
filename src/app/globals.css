@@ -97,7 +97,6 @@ select,
 textarea {
   font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   outline: none !important;
-  border: 0;
 }
 
 
@@ -177,6 +176,33 @@ textarea {
 
 .custom-modal-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #9A3412;
+}
+
+/* High-Contrast Visible Table Horizontal Scrollbar for Mobile */
+.table-horizontal-scrollbar {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #EA580C #F1F5F9;
+}
+
+.table-horizontal-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-horizontal-scrollbar::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 9999px;
+  margin: 0 12px 6px 12px;
+}
+
+.table-horizontal-scrollbar::-webkit-scrollbar-thumb {
+  background: #EA580C;
+  border-radius: 9999px;
+}
+
+.table-horizontal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #C2410C;
 }
 
 

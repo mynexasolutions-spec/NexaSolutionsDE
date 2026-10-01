@@ -89,14 +89,14 @@ export default function TrustGuarantees({ onOpenContact }: TrustGuaranteesProps)
           </div>
 
           {/* Heading with Modern Gradient Accent */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0F172A] tracking-tight leading-[1.45] mb-4" style={{ lineHeight: "1.30" }}>
+          <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 text-center max-w-2xl mx-auto" style={{ lineHeight: "1.09" }}>
             {t("Transparenz, Sicherheit & Verlässlichkeit in", "Transparency, Security & Reliability in")}{" "}
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
               {t("jedem Projekt", "Every Project")}
             </span>
           </h2>
 
-          <p className="text-sm sm:text-base md:text-[17px] text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-7 sm:mb-8 font-normal  text-center">
             {t(
               "Wir arbeiten nach höchsten Qualitätskriterien für verlässliche, rechtssichere und zukunftsfähige Softwarelösungen.",
               "We adhere to the highest engineering standards to deliver reliable, legally compliant, and future-proof software."
@@ -128,12 +128,12 @@ export default function TrustGuarantees({ onOpenContact }: TrustGuaranteesProps)
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg sm:text-[19px] font-bold text-slate-900 mb-2.5 group-hover:text-blue-600 transition-colors leading-snug">
+                  <h3 className="text-[19px] sm:text-[22px] font-bold text-slate-900 mb-2.5 group-hover:text-blue-600 transition-colors leading-snug">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
+                  <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -156,21 +156,21 @@ export default function TrustGuarantees({ onOpenContact }: TrustGuaranteesProps)
             <ShieldCheck className="w-16 sm:w-20 h-16 sm:h-20 stroke-[1.2]" />
           </div>
 
-          <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 relative z-10">
-            <div className="w-11 h-11 rounded-2xl bg-blue-100/90 border border-blue-200/80 text-blue-600 flex items-center justify-center shrink-0 shadow-2xs">
+          <div className="flex items-start flex-col sm:flex-col md:flex-row sm:items-center gap-3.5 sm:gap-4 relative z-10">
+            <div className="w-12 h-12 rounded-[5px] bg-blue-100/90 border border-blue-200/80 text-blue-600 flex items-center justify-center shrink-0 shadow-2xs">
               <Scale className="w-5 h-5 stroke-[2]" />
             </div>
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs sm:text-sm font-bold text-slate-900">
+                <span className="text-[19px] sm:text-[22px] font-bold text-slate-900">
                   {t("Barrierefreiheit nach BFSG & WCAG 2.1 AA", "Accessibility Standard BFSG & WCAG 2.1 AA")}
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-bold shadow-2xs">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[13px] font-bold shadow-2xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                   {t("EU-Konform 2025+", "EU Compliant 2025+")}
                 </span>
               </div>
-              <p className="text-xs text-slate-600 mt-1 max-w-2xl leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-600 mt-1 max-w-2xl leading-relaxed">
                 {t(
                   "Unsere Webanwendungen erfüllen die Richtlinien des Barrierefreiheitsstärkungsgesetzes (European Accessibility Act).",
                   "All web applications built by Nexa comply with the European Accessibility Act (BFSG) and WCAG 2.1 AA guidelines."

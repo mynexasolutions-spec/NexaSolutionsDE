@@ -155,7 +155,7 @@ export default function TestimonialsSection() {
 
       <div className="w-full max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 sm:mb-6">
           <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
             {/* Small Orange Eyebrow Pill */}
             <div className="inline-flex items-center gap-1.5 text-orange-500 text-xs sm:text-sm font-extrabold tracking-wider uppercase mb-2 sm:mb-2.5">
@@ -164,13 +164,13 @@ export default function TestimonialsSection() {
             </div>
 
             {/* Main Headline */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#0B132B] tracking-tight leading-[1.15] flex items-center">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.10] sm:leading-[1.09] mb-2 text-center">
               <span className="text-orange-500 mr-0.5 select-none">&apos;</span>
               <span>{t("Was unsere Kunden sagen", "What Our Clients Say")}</span>
             </h2>
 
             {/* Subtext Below Headline */}
-            <p className="text-slate-500 text-sm sm:text-base font-normal mt-2 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mb-7 sm:mb-8 font-normal lg:text-left text-center">
               {t(
                 "Echte Geschichten von echten Kunden, die uns vertraut und großartige Ergebnisse erzielt haben.",
                 "Real stories from real clients who trusted us and achieved great results."
@@ -235,7 +235,7 @@ export default function TestimonialsSection() {
                       &ldquo;&ldquo;
                     </div>
 
-                    <p className="text-slate-600 text-xs sm:text-[14px] leading-relaxed mb-6 font-normal">
+                    <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-6 font-normal">
                       &ldquo;{item.quote}&rdquo;
                     </p>
                   </div>
@@ -255,10 +255,10 @@ export default function TestimonialsSection() {
                         </div>
                       )}
                       <div>
-                        <h4 className="text-xs sm:text-sm font-bold text-[#0B132B] leading-tight">
+                        <h4 className="text-base sm:text-lg font-bold text-[#0B132B] leading-tight">
                           {item.name}
                         </h4>
-                        <p className="text-[11px] text-slate-500 mt-0.5 font-normal">{item.role}</p>
+                        <p className="text-[13px] text-slate-500 mt-0.3 font-normal">{item.role}</p>
                       </div>
                     </div>
 
@@ -276,7 +276,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Carousel Navigation Controls (Bottom Center) */}
-        <div className="flex items-center justify-center gap-3.5 mt-8 sm:mt-10">
+        <div className="flex items-center justify-center gap-3.5 mt-4 sm:mt-6">
           {/* Previous Button */}
           <button
             onClick={handlePrev}

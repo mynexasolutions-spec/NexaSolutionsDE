@@ -129,7 +129,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
   const ActiveIcon = activeSlide.icon;
 
   return (
-    <section id="home" className="relative pt-28 pb-14 sm:pt-36 lg:pt-40 lg:pb-10 overflow-hidden bg-white">
+    <section id="home" className="relative pt-28 pb-8 sm:pt-36 lg:pt-40 lg:pb-10 overflow-hidden bg-white">
       {/* Modern Background Subtle Grid Pattern & Ambient Glows */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-70 pointer-events-none -z-10" />
       <div className="absolute -top-24 right-0 w-[500px] sm:w-[650px] h-[500px] sm:h-[650px] bg-gradient-to-bl from-blue-100/50 via-indigo-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10 translate-x-1/4" />
@@ -156,7 +156,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-[40px] sm:text-[60px] lg:text-[65px] font-[900] text-[#0F172A] tracking-tight leading-[1.14] sm:leading-[1.12] mb-5 text-center lg:text-left">
+            <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 text-center lg:text-left">
               {t("Digitale Lösungen", "Digital Solutions")} <br />
               <span className="font-[900] text-slate-800">{t("für ein", "for a")}</span>{" "}
               <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
@@ -177,7 +177,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 mb-8 sm:mb-9 w-full sm:w-auto">
               <button
                 onClick={onOpenContact}
-                className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm font-semibold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
+                className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group"
               >
                 <span>{t("Kostenlose Beratung anfragen", "Get a Free Consultation")}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -185,7 +185,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
 
               <Link
                 href="#work"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-slate-300/80 bg-white/90 backdrop-blur-xs text-slate-800 text-sm font-semibold hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-slate-300/80 bg-white/90 backdrop-blur-xs text-slate-800 text-sm sm:text-base font-bold hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
                 <span>{t("Unsere Arbeiten", "View Our Work")}</span>
               </Link>
@@ -193,7 +193,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
 
             {/* Modern Trust Indicators */}
             <div className="w-full pt-6 border-t border-slate-200/70 flex flex-col gap-6 lg:justify-start justify-center lg:items-start items-center">
-              <div className="flex flex-wrap items-center lg:justify-start justify-center gap-4 sm:gap-8 text-xs sm:text-[13px] font-medium text-slate-600">
+              <div className="flex flex-wrap items-center lg:justify-start justify-center gap-4 sm:gap-8 text-[14px] sm:text-[16px] font-medium text-slate-600">
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                   {t("Individuelle Lösungen", "Custom Solutions")}
@@ -209,8 +209,8 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
               </div>
 
               {/* German Quality Standard Badge */}
-              <div className="inline-flex items-center gap-2 text-xs text-slate-500">
-                <span className="inline-flex items-center justify-center px-1.5 py-0.5 rounded bg-blue-100/80 text-blue-700 font-bold text-[10px]">
+              <div className="inline-flex items-center gap-2 text-[13px] text-slate-500">
+                <span className="inline-flex items-center justify-center px-1.5 py-1.5 rounded bg-blue-100/80 text-blue-700 font-bold text-[14px]">
                   DE
                 </span>
                 <span>

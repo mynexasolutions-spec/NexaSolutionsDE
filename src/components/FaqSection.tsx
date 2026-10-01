@@ -85,11 +85,11 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
             <span>{t("HÄUFIG GESTELLTE FRAGEN", "FREQUENTLY ASKED QUESTIONS")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#0B132B] tracking-tight leading-[1.15] my-[15px]">
+          <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.10] sm:leading-[1.09] mb-3 text-center">
             {t("Antworten auf Ihre wichtigsten Fragen", "Clear Answers to Your Key Questions")}
           </h2>
 
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-7 sm:mb-8 font-normal text-center">
             {t(
               "Alles, was Sie über unsere Zusammenarbeit, Kosten, Datenschutz und technische Umsetzung wissen möchten.",
               "Everything you need to know regarding our workflow, fixed pricing, data privacy, and engineering process."
@@ -116,7 +116,7 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
                   className="w-full px-6 py-5 flex items-center justify-between text-left gap-4 cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                  <span className="text-[14px] sm:text-[17px] font-bold text-slate-900 leading-snug">
                     {faq.q}
                   </span>
                   <div
@@ -131,7 +131,7 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100/60 animate-in fade-in duration-200">
+                  <div className="px-6 pb-6 pt-1 text-[13px] sm:text-[16px]  text-slate-600 leading-relaxed border-t border-slate-100/60 animate-in fade-in duration-200">
                     {faq.a}
                   </div>
                 )}
@@ -142,15 +142,15 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
 
         {/* Still have questions? Help Box */}
         <div className="p-6 rounded-[5px] bg-blue-50/60 border border-blue-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center  flex-col sm:flex-row gap-3">
             <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
               <MessageSquare className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-slate-900">
+              <h4 className="text-[16px] sm:text-[22px] font-bold text-slate-900">
                 {t("Haben Sie eine spezielle technische Frage?", "Have a specific technical question?")}
               </h4>
-              <p className="text-xs text-slate-600">
+              <p className="text-base sm:text-lg text-slate-600">
                 {t(
                   "Sprechen Sie direkt mit einem unserer Tech Leads – unverbindlich und kostenlos.",
                   "Speak directly with one of our tech leads — complimentary and without obligation."

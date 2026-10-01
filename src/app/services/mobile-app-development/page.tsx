@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -11,6 +11,8 @@ import {
   Cpu,
   ShieldCheck,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Star,
   Zap,
   Bell,
@@ -333,6 +335,39 @@ export default function MobileAppPage() {
   const [activeScreenTab, setActiveScreenTab] = useState<"ecommerce" | "dashboard" | "offline">("ecommerce");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const [tableScrollPercent, setTableScrollPercent] = useState(0);
+
+  const handleTableScroll = () => {
+    if (tableScrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = tableScrollRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+      if (maxScroll > 0) {
+        setTableScrollPercent(Math.min(100, Math.max(0, (scrollLeft / maxScroll) * 100)));
+      }
+    }
+  };
+
+  const scrollTable = (direction: "left" | "right") => {
+    if (tableScrollRef.current) {
+      const scrollAmount = 260;
+      tableScrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const percent = Number(e.target.value);
+    setTableScrollPercent(percent);
+    if (tableScrollRef.current) {
+      const { scrollWidth, clientWidth } = tableScrollRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+      tableScrollRef.current.scrollLeft = (percent / 100) * maxScroll;
+    }
+  };
+
   const { t, lang } = useLanguage();
 
   const handleOpenContactWithPackage = (pkgName: string) => {
@@ -346,7 +381,7 @@ export default function MobileAppPage() {
       <Navbar onOpenContact={() => { setSelectedPackage("Mobile-App-Entwicklung"); setContactOpen(true); }} />
 
       {/* Hero Section */}
-      <section className="relative pt-28 pb-16 lg:pt-32 lg:pb-20 overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-slate-50/40">
+      <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-28 overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-slate-50/40">
         {/* Ambient glows */}
         <div className="absolute top-10 right-0 w-[550px] h-[550px] bg-gradient-to-bl from-blue-200/40 via-indigo-100/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10 translate-x-1/4 -translate-y-1/4" />
         <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-tr from-orange-100/30 via-sky-50/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10 -translate-x-1/4 translate-y-1/4" />
@@ -379,25 +414,27 @@ export default function MobileAppPage() {
               className="lg:col-span-7"
             >
               {/* Eyebrow Badge */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50/90 text-blue-700 text-xs font-bold tracking-wide uppercase mb-6 shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-                </span>
-                <span>{t("Cross-Platform & Native iOS/Android • 100% Store Approval", "Cross-Platform & Native iOS/Android • 100% Store Approval")}</span>
+              <div className="flex justify-center lg:justify-start">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50/90 text-blue-700 text-xs font-bold tracking-wider uppercase mb-5 sm:mb-6 shadow-2xs">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+                  </span>
+                  <span>{t("Cross-Platform & Native iOS/Android • 100% Store Approval", "Cross-Platform & Native iOS/Android • 100% Store Approval")}</span>
+                </div>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-[#0F172A] tracking-tight leading-[1.12] mb-6">
+              <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
                 {t("Mobile Apps, die Nutzer ", "Mobile Apps Designed to ")}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-400">
                   {t("begeistern & App Stores", "Captivate Users & Dominate")}
                 </span>{" "}
                 {t("erobern.", "App Stores.")}
               </h1>
 
               {/* Subheading */}
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {t(
                   "Von der ersten Figma-Skizze bis zum weltweiten Rollout im Apple App Store & Google Play Store: Wir entwickeln butterweiche, native & cross-platform Apps mit React Native und Flutter – für maximale Reichweite und geringere Entwicklungskosten.",
                   "From initial Figma wireframes to worldwide Apple App Store & Google Play distribution: We build buttery-smooth, native & cross-platform mobile apps with React Native and Flutter — maximizing reach while slashing engineering costs."
@@ -426,18 +463,18 @@ export default function MobileAppPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3.5">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
                 <button
                   onClick={() => { setSelectedPackage("Mobile App Beratung"); setContactOpen(true); }}
-                  className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold transition-all duration-300 shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 hover:-translate-y-0.5 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
                 >
                   <span>{t("App-Projekt unverbindlich anfragen", "Request App Consultation")}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 <Link
                   href="#pricing"
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-slate-300/90 bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold transition-all duration-200 shadow-sm"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-slate-300/80 bg-white/90 backdrop-blur-xs text-slate-800 text-sm sm:text-base font-bold hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                 >
                   <Sliders className="w-4 h-4 text-slate-500" />
                   <span>{t("Pakete & Preise ansehen", "View Packages & Pricing")}</span>
@@ -502,7 +539,7 @@ export default function MobileAppPage() {
                       <div className="flex-1 flex flex-col justify-between space-y-3">
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-[11px] font-mono text-blue-400">Order #8492</span>
+                            <span className="text-[11px] font-medium text-blue-400">Order #8492</span>
                             <span className="text-[10px] bg-emerald-950/80 text-emerald-400 border border-emerald-800/50 px-2 py-0.5 rounded-full font-bold">
                               Delivered
                             </span>
@@ -584,21 +621,21 @@ export default function MobileAppPage() {
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
                             <span className="text-xs font-bold text-white">SQLite Local Store</span>
-                            <span className="text-[10px] text-emerald-400 font-mono">Status: Offline-Ready</span>
+                            <span className="text-[10px] text-emerald-400 font-medium">Status: Offline-Ready</span>
                           </div>
 
                           <div className="p-3 bg-slate-800/80 rounded-2xl border border-slate-700 space-y-1.5 text-[11px]">
                             <div className="flex justify-between">
                               <span className="text-slate-400">Gecachte Datensätze:</span>
-                              <span className="text-white font-mono">1,420 Items</span>
+                              <span className="text-white font-semibold">1,420 Items</span>
                             </div>
                             <div className="flex justify-between">
                               <span className="text-slate-400">Lokale DB:</span>
-                              <span className="text-white font-mono">WatermelonDB</span>
+                              <span className="text-white font-semibold">WatermelonDB</span>
                             </div>
                             <div className="flex justify-between">
                               <span className="text-slate-400">Sync-Konflikte:</span>
-                              <span className="text-emerald-400 font-mono">0 (Auto-Merge)</span>
+                              <span className="text-emerald-400 font-semibold">0 (Auto-Merge)</span>
                             </div>
                           </div>
 
@@ -644,15 +681,15 @@ export default function MobileAppPage() {
       {/* Core Capabilities */}
       <section className="py-10 sm:py-12 lg:py-16  bg-white border-t border-b border-slate-100">
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Layers className="w-3.5 h-3.5" />
               <span>{t("APP-LEISTUNGEN", "MOBILE CAPABILITIES")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Alles, was eine erfolgreiche App benötigt", "Everything Your App Needs to Scale")}
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Keine halben Sachen. Von butterweichem UI-Design bis hin zu robuster Cloud-Architektur und Push-Marketing.",
                 "Zero compromises. From bespoke UI micro-interactions to cloud backend orchestration and retention funnels."
@@ -670,23 +707,23 @@ export default function MobileAppPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="rounded-3xl border border-slate-200/90 bg-slate-50/50 p-8 hover:border-blue-300 hover:bg-blue-50/20 transition-all duration-300 group flex flex-col justify-between shadow-sm hover:shadow-md"
+                  className="rounded-[5px] border border-slate-200/90 bg-slate-50/50 p-8 hover:border-blue-300 hover:bg-blue-50/20 transition-all duration-300 group flex flex-col justify-between shadow-sm hover:shadow-md"
                 >
                   <div>
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 border border-blue-200 text-blue-600 inline-flex items-center justify-center mb-6 shrink-0 shadow-sm group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 border border-blue-200 text-blue-600 inline-flex items-center justify-center mb-6 shrink-0 shadow-sm group-hover:scale-105 group-hover:bg-blue-600  group-hover:border-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
                       <Icon className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.8] group-hover:scale-110 transition-transform duration-300" />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">
+                    <h3 className="text-[19px] sm:text-[24px] font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                       {t(cap.titleDe, cap.titleEn)}
                     </h3>
-                    <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
                       {t(cap.descDe, cap.descEn)}
                     </p>
                   </div>
 
                   <div className="pt-4 border-t border-slate-200/70 space-y-1.5">
                     {(lang === "de" ? cap.tagsDe : cap.tagsEn).map((tag, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <div key={i} className="flex items-center gap-2 text-sm sm:text-base font-medium text-slate-700">
                         <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                         <span>{tag}</span>
                       </div>
@@ -702,15 +739,15 @@ export default function MobileAppPage() {
       {/* Cross-Platform vs. Pure Native Comparison */}
       <section className="py-10 sm:py-12 lg:py-16  bg-slate-50/70">
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 bg-white text-slate-700 text-xs font-bold tracking-wider uppercase mb-3 shadow-sm">
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 bg-white text-slate-700 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Compass className="w-3.5 h-3.5 text-blue-600" />
               <span>{t("ARCHITEKTUR-VERGLEICH", "ARCHITECTURE COMPARISON")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Cross-Platform vs. Reines Native", "Cross-Platform vs. Traditional Native")}
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Warum 85% unserer Kunden auf React Native oder Flutter setzen – und wann reine Native Entwicklung sinnvoll ist.",
                 "Why 85% of our clients choose unified cross-platform stacks — and when pure native development makes sense."
@@ -718,26 +755,30 @@ export default function MobileAppPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-md overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[650px]">
+          <div className="bg-white rounded-[5px] border border-slate-200/90 shadow-md overflow-hidden">
+            <div
+              ref={tableScrollRef}
+              onScroll={handleTableScroll}
+              className="overflow-x-auto table-horizontal-scrollbar pb-1 sm:pb-0"
+            >
+              <table className="w-full text-left border-collapse min-w-[680px]">
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-100/60">
-                    <th className="py-4 px-6 text-sm font-bold text-slate-700 w-1/3">
+                    <th className="py-4 px-6 text-sm sm:text-base font-bold text-slate-700 w-1/3">
                       {t("Kriterium", "Evaluation Metric")}
                     </th>
-                    <th className="py-4 px-6 text-sm font-bold text-blue-600 bg-blue-50/50 w-1/3">
+                    <th className="py-4 px-6 text-sm sm:text-base font-bold text-blue-600 bg-blue-50/50 w-1/3">
                       <span className="flex items-center gap-1.5">
                         <Sparkles className="w-4 h-4 text-blue-500" />
                         React Native / Flutter (Nexa Standard)
                       </span>
                     </th>
-                    <th className="py-4 px-6 text-sm font-bold text-slate-500 w-1/3">
+                    <th className="py-4 px-6 text-sm sm:text-base font-bold text-slate-500 w-1/3">
                       {t("Zwei separate Native Apps (Swift + Kotlin)", "Two Separate Native Apps (Swift + Kotlin)")}
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-sm">
+                <tbody className="divide-y divide-slate-100 text-sm sm:text-base">
                   {comparisonData.map((row, i) => (
                     <tr key={i} className="hover:bg-slate-50/50 transition-colors">
                       <td className="py-5 px-6 font-semibold text-slate-900">
@@ -751,7 +792,7 @@ export default function MobileAppPage() {
                       </td>
                       <td className="py-5 px-6 text-slate-500">
                         <span className="flex items-start gap-2">
-                          <span className="text-slate-400 font-mono">•</span>
+                          <span className="text-slate-400 font-medium">•</span>
                           <span>{t(row.nativeDe, row.nativeEn)}</span>
                         </span>
                       </td>
@@ -759,6 +800,64 @@ export default function MobileAppPage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            {/* Mobile Bottom Scroll Bar & Controller */}
+            <div className="flex sm:hidden flex-col gap-2.5 px-4 py-3 bg-slate-50 border-t border-slate-200/80">
+              <div className="flex items-center justify-between text-xs font-semibold text-slate-600">
+                <span className="flex items-center gap-1.5 text-blue-600 font-bold">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                  {t("Tabelle horizontal scrollen", "Swipe or scroll table")}
+                </span>
+                <span className="text-[11px] font-bold text-slate-500 bg-slate-200/80 px-2 py-0.5 rounded-full">
+                  {tableScrollPercent < 30
+                    ? t("Kriterium", "Evaluation Metric")
+                    : tableScrollPercent > 70
+                    ? t("Native Swift/Kotlin", "Native Swift/Kotlin")
+                    : "Cross-Platform (Nexa)"}
+                </span>
+              </div>
+
+              {/* Interactive Scroll Bar Track with Left/Right Buttons */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => scrollTable("left")}
+                  aria-label="Scroll left"
+                  className="w-8 h-8 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-slate-700 active:scale-95 active:bg-blue-50 active:text-blue-600 transition-all cursor-pointer shrink-0"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+
+                <div className="relative flex-1 h-3 bg-slate-200 rounded-full overflow-hidden p-0.5 flex items-center">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={tableScrollPercent}
+                    onChange={handleSliderChange}
+                    aria-label="Table horizontal scroll position"
+                    className="w-full h-full opacity-0 absolute inset-0 cursor-ew-resize z-10"
+                  />
+                  {/* Visual blue thumb */}
+                  <div
+                    className="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-[width,transform] duration-75 pointer-events-none"
+                    style={{
+                      width: "42%",
+                      transform: `translateX(${(tableScrollPercent / 100) * 138}%)`,
+                    }}
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => scrollTable("right")}
+                  aria-label="Scroll right"
+                  className="w-8 h-8 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-slate-700 active:scale-95 active:bg-blue-50 active:text-blue-600 transition-all cursor-pointer shrink-0"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -770,14 +869,14 @@ export default function MobileAppPage() {
 
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-wider uppercase mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Cpu className="w-3.5 h-3.5" />
               <span>{t("MOBILE TECH STACK", "MOBILE TECHNOLOGIES")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-white tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Ausgewählt für Top-Performance auf iOS & Android", "Proven Frameworks for iOS & Android Dominance")}
             </h2>
-            <p className="text-slate-400 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Modernste mobile Bibliotheken und APIs für schnelle Entwicklungszyklen und null Ausfallzeiten.",
                 "Modern mobile SDKs and pipelines guaranteeing fast release velocity and rock-solid uptime."
@@ -785,25 +884,25 @@ export default function MobileAppPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
             {techStack.map((tech) => (
               <div
                 key={tech.name}
-                className={`p-4 rounded-2xl border transition-all duration-200 ${
+                className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border transition-all duration-200 flex flex-col justify-between ${
                   tech.highlight
                     ? "bg-slate-900/90 border-blue-500/40 hover:border-blue-400 shadow-sm"
                     : "bg-slate-900/50 border-slate-800 hover:border-slate-700"
                 }`}
               >
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-bold text-sm text-white">{tech.name}</span>
+                <div className="flex items-start justify-between gap-1.5 mb-2 sm:mb-1.5">
+                  <span className="font-bold text-sm text-white leading-snug">{tech.name}</span>
                   {tech.highlight && (
-                    <span className="w-2 h-2 rounded-full bg-blue-400" />
+                    <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0 mt-1" />
                   )}
                 </div>
-                <div className="flex items-center justify-between text-[11px] text-slate-400">
-                  <span>{tech.category}</span>
-                  <span className="font-mono text-slate-500">{tech.note}</span>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-1 text-[11px]">
+                  <span className="text-blue-400/90 font-medium">{tech.category}</span>
+                  <span className="text-slate-400 font-medium">{tech.note}</span>
                 </div>
               </div>
             ))}
@@ -814,15 +913,15 @@ export default function MobileAppPage() {
       {/* 4-Step App Delivery Process */}
       <section id="process" className="py-10 sm:py-12 lg:py-16  bg-white border-b border-slate-100">
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Rocket className="w-3.5 h-3.5" />
               <span>{t("DER ABLAUF", "APP LIFECYCLE")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Von der Idee zum Store-Launch in 4 Meilensteinen", "From Idea to Store Launch in 4 Milestones")}
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Kein Blindflug. Sie halten bereits nach den ersten 14 Tagen den ersten interaktiven Prototyp in der Hand.",
                 "Zero guesswork. You'll test an interactive prototype on your device within the first 14 days."
@@ -845,14 +944,14 @@ export default function MobileAppPage() {
                     <span className="w-12 h-12 rounded-2xl bg-blue-600 text-white font-black text-lg flex items-center justify-center shadow-md shadow-blue-500/20">
                       {step.step}
                     </span>
-                    <span className="text-xs font-mono font-bold text-blue-600 bg-blue-100/70 px-2.5 py-1 rounded-full">
+                    <span className="text-xs font-bold text-blue-600 bg-blue-100/70 px-2.5 py-1 rounded-full">
                       {step.phase}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2.5">
+                  <h3 className="text-[19px] sm:text-[22px] font-bold text-slate-900 mb-2.5">
                     {t(step.titleDe, step.titleEn)}
                   </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
                     {t(step.descDe, step.descEn)}
                   </p>
                 </div>
@@ -867,17 +966,17 @@ export default function MobileAppPage() {
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-xs font-bold tracking-wider uppercase mb-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>{t("PROJEKTE", "FEATURED APPS")}</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-[#0F172A] tracking-tight">
+              <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-2">
                 {t("Erfolgreich veröffentlichte Apps", "Apps We've Engineered & Shipped")}
               </h2>
             </div>
             <Link
               href="/#projects"
-              className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-blue-600 hover:text-blue-700 transition-colors"
             >
               <span>{t("Alle Projekte ansehen", "View All Projects")}</span>
               <ArrowRight className="w-4 h-4" />
@@ -936,8 +1035,8 @@ export default function MobileAppPage() {
                     <span className="text-xs font-semibold text-blue-600 uppercase tracking-wide block mb-1">
                       {app.category}
                     </span>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">{app.title}</h3>
-                    <p className="text-sm text-slate-600 mb-5 leading-relaxed">
+                    <h3 className="text-[19px] sm:text-[22px] font-bold text-slate-900 mb-2">{app.title}</h3>
+                    <p className="text-base sm:text-lg text-slate-600 mb-5 leading-relaxed">
                       {t(app.descDe, app.descEn)}
                     </p>
                   </div>
@@ -962,15 +1061,15 @@ export default function MobileAppPage() {
       {/* Pricing / Packages */}
       <section id="pricing" className="py-10 sm:py-12 lg:py-16  bg-white border-b border-slate-100">
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Sliders className="w-3.5 h-3.5" />
               <span>{t("TRANSPARENTE PAKETE", "APP PACKAGES")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Kalkulierbare App-Pakete für jedes Budget", "Predictable App Packages Tailored to Your Stage")}
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Keine versteckten Gebühren. Jedes Paket beinhaltet den Store-Zulassungsprozess und vollständigen Code-Besitz.",
                 "Zero hidden surprises. Every package includes store submission management and 100% IP ownership."
@@ -1011,13 +1110,13 @@ export default function MobileAppPage() {
                   </div>
 
                   <div className="mb-4">
-                    <span className="text-3xl sm:text-4xl font-black tracking-tight">
+                    <span className="text-3xl sm:text-4xl lg:text-[42px] font-[900] tracking-tight">
                       {t(pkg.priceDe, pkg.priceEn)}
                     </span>
                   </div>
 
                   <p
-                    className={`text-sm mb-8 leading-relaxed ${
+                    className={`text-base sm:text-lg mb-8 leading-relaxed ${
                       pkg.popular ? "text-slate-300" : "text-slate-600"
                     }`}
                   >
@@ -1026,7 +1125,7 @@ export default function MobileAppPage() {
 
                   <div className="space-y-3 mb-8">
                     {(lang === "de" ? pkg.featuresDe : pkg.featuresEn).map((feat, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-xs font-medium">
+                      <div key={i} className="flex items-start gap-2.5 text-sm sm:text-base font-medium">
                         <Check
                           className={`w-4 h-4 shrink-0 mt-0.5 ${
                             pkg.popular ? "text-blue-400" : "text-blue-600"
@@ -1042,7 +1141,7 @@ export default function MobileAppPage() {
 
                 <button
                   onClick={() => handleOpenContactWithPackage(lang === "de" ? pkg.nameDe : pkg.nameEn)}
-                  className={`w-full py-3.5 px-6 rounded-full text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
+                  className={`w-full py-3.5 px-6 rounded-full text-sm sm:text-base font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
                     pkg.popular
                       ? "bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30"
                       : "bg-slate-900 hover:bg-slate-800 text-white"
@@ -1060,15 +1159,15 @@ export default function MobileAppPage() {
       {/* FAQ Accordion */}
       <section className="py-10 sm:py-12 lg:py-16  bg-slate-50/70 border-b border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 text-xs font-bold tracking-wider uppercase mb-3 shadow-sm">
+          <div className="text-center mb-14 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
               <span>{t("HÄUFIG GESTELLTE FRAGEN", "FAQ")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Antworten rund um Ihre mobile App", "Everything About Your Mobile Project")}
             </h2>
-            <p className="text-slate-600 text-base">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Klare Details zu Stores, Rechten, Kosten und Betreuung nach dem Launch.",
                 "Transparent details concerning stores, code ownership, costs, and ongoing updates."
@@ -1086,7 +1185,7 @@ export default function MobileAppPage() {
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full flex items-center justify-between p-6 text-left cursor-pointer gap-4"
                 >
-                  <span className="text-base font-bold text-slate-900">
+                  <span className="text-[16px] sm:text-[18px] font-bold text-slate-900">
                     {t(faq.qDe, faq.qEn)}
                   </span>
                   <ChevronDown
@@ -1096,7 +1195,7 @@ export default function MobileAppPage() {
                   />
                 </button>
                 {openFaq === idx && (
-                  <div className="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                  <div className="px-6 pb-6 text-[14px] sm:text-[16px] text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                     {t(faq.aDe, faq.aEn)}
                   </div>
                 )}
@@ -1111,16 +1210,16 @@ export default function MobileAppPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-wider uppercase mb-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>{t("BEREIT FÜR DEN APP STORE?", "READY TO LAUNCH YOUR APP?")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-6">
+          <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-white tracking-tight leading-[1.10] sm:leading-[1.09] mb-5 text-center">
             {t("Lassen Sie uns Ihre App-Idee verwirklichen.", "Let's bring your mobile vision to life.")}
           </h2>
 
-          <p className="text-slate-300 text-base sm:text-lg mb-9 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8 font-normal text-center">
             {t(
               "Sichern Sie sich ein kostenloses 20-minütiges Beratungsgespräch. Wir klären Machbarkeit, Store-Anforderungen und erstellen Ihnen eine unverbindliche Roadmap.",
               "Book a no-obligation 20-minute strategy call. We'll assess technical feasibility, evaluate store guidelines, and draft a timeline estimate."
@@ -1130,16 +1229,16 @@ export default function MobileAppPage() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => { setSelectedPackage("Mobile App Beratung"); setContactOpen(true); }}
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-all duration-300 shadow-xl shadow-blue-600/30 hover:scale-105 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
             >
               <span>{t("Kostenloses Gespräch buchen", "Book a Free Consultation")}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
             <a
               href="https://wa.me/4915213233841"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white/15 text-white text-sm font-semibold transition-all duration-200 border border-white/15"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-sm sm:text-base font-bold transition-all duration-200 border border-white/15 cursor-pointer"
             >
               <PhoneCall className="w-4 h-4 text-emerald-400" />
               <span>WhatsApp Chat</span>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -11,6 +11,8 @@ import {
   Cpu,
   ShieldCheck,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Star,
   Zap,
   Code2,
@@ -356,6 +358,39 @@ export default function WebDevelopmentPage() {
   const [heroTab, setHeroTab] = useState<"preview" | "architecture" | "performance">("preview");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const [tableScrollPercent, setTableScrollPercent] = useState(0);
+
+  const handleTableScroll = () => {
+    if (tableScrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = tableScrollRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+      if (maxScroll > 0) {
+        setTableScrollPercent(Math.min(100, Math.max(0, (scrollLeft / maxScroll) * 100)));
+      }
+    }
+  };
+
+  const scrollTable = (direction: "left" | "right") => {
+    if (tableScrollRef.current) {
+      const scrollAmount = 260;
+      tableScrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const percent = Number(e.target.value);
+    setTableScrollPercent(percent);
+    if (tableScrollRef.current) {
+      const { scrollWidth, clientWidth } = tableScrollRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+      tableScrollRef.current.scrollLeft = (percent / 100) * maxScroll;
+    }
+  };
+
   const { t, lang } = useLanguage();
 
   const filteredTech = selectedTechCategory === "all"
@@ -373,7 +408,7 @@ export default function WebDevelopmentPage() {
       <Navbar onOpenContact={() => { setSelectedPackage("Website-Entwicklung"); setContactOpen(true); }} />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50">
+      <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-28 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50">
         {/* Subtle decorative glowing background orbs */}
         <div className="absolute top-10 right-0 w-[550px] h-[550px] bg-gradient-to-bl from-orange-200/35 via-amber-100/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10 translate-x-1/4 -translate-y-1/4" />
         <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-tr from-blue-100/40 via-indigo-50/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10 -translate-x-1/4 translate-y-1/4" />
@@ -406,16 +441,18 @@ export default function WebDevelopmentPage() {
               className="lg:col-span-7"
             >
               {/* Modern Eyebrow Badge */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-orange-200/80 bg-orange-50/90 text-orange-700 text-xs font-bold tracking-wide uppercase mb-6 shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-                </span>
-                <span>{t("Next-Gen Web Architecture • German Engineering", "Next-Gen Web Architecture • German Engineering")}</span>
+              <div className="flex justify-center lg:justify-start">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200/80 bg-orange-50/90 text-orange-700 text-xs font-bold tracking-wider uppercase mb-5 sm:mb-6 shadow-2xs">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                  </span>
+                  <span>{t("Next-Gen Web Architecture • German Engineering", "Next-Gen Web Architecture • German Engineering")}</span>
+                </div>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-[#0F172A] tracking-tight leading-[1.12] mb-6">
+              <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
                 {t("Websites & Web-Apps, die ", "High-Performance Websites & ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">
                   {t("Besucher in Kunden", "Apps That Convert")}
@@ -424,7 +461,7 @@ export default function WebDevelopmentPage() {
               </h1>
 
               {/* Subheading */}
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {t(
                   "Wir entwickeln maßgeschneiderte, ultra-schnelle Web-Plattformen mit Next.js 15, React und TypeScript. Perfekte Core Web Vitals, überragende SEO-Sichtbarkeit und modernste UX für maximales Unternehmenswachstum.",
                   "We engineer custom, ultra-fast web platforms with Next.js 15, React, and TypeScript. Flawless Core Web Vitals, unmatched Google rankings, and intuitive UX built for measurable business growth."
@@ -453,18 +490,18 @@ export default function WebDevelopmentPage() {
               </div>
 
               {/* Call-to-actions */}
-              <div className="flex flex-wrap items-center gap-3.5">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
                 <button
                   onClick={() => { setSelectedPackage("Website-Entwicklung Beratung"); setContactOpen(true); }}
-                  className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-[#EA580C] hover:bg-[#C2410C] text-white text-sm font-bold transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
                 >
                   <span>{t("Kostenloses Angebot anfragen", "Request a Free Quote")}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 <Link
                   href="#pricing"
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-slate-300/90 bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold transition-all duration-200 shadow-sm"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-slate-300/80 bg-white/90 backdrop-blur-xs text-slate-800 text-sm sm:text-base font-bold hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                 >
                   <Sliders className="w-4 h-4 text-slate-500" />
                   <span>{t("Pakete & Preise ansehen", "View Packages & Pricing")}</span>
@@ -487,11 +524,11 @@ export default function WebDevelopmentPage() {
                     <div className="w-3 h-3 rounded-full bg-amber-500/80" />
                     <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
                   </div>
-                  <div className="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1 rounded-full text-[11px] font-mono text-slate-300">
+                  <div className="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1 rounded-full text-[11px] font-medium text-slate-300">
                     <Lock className="w-3 h-3 text-emerald-400" />
                     <span>nexasolutions.de/live-app</span>
                   </div>
-                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/70 border border-emerald-800/50 px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-950/70 border border-emerald-800/50 px-2 py-0.5 rounded-full">
                     98+ Score
                   </span>
                 </div>
@@ -532,10 +569,10 @@ export default function WebDevelopmentPage() {
 
                 {/* Tab 1: Live Web Preview */}
                 {heroTab === "preview" && (
-                  <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[4/3] flex flex-col justify-between p-5 text-white">
+                  <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 min-h-[300px] sm:aspect-[4/3] flex flex-col justify-between p-4 sm:p-5 text-white">
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-wider">
+                        <span className="text-xs font-semibold text-orange-400 uppercase tracking-wider">
                           Next.js 15 App Router
                         </span>
                         <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-medium">
@@ -573,60 +610,60 @@ export default function WebDevelopmentPage() {
 
                 {/* Tab 2: Lighthouse Audit */}
                 {heroTab === "performance" && (
-                  <div className="rounded-2xl bg-slate-900 border border-slate-800 aspect-[4/3] flex flex-col justify-center p-6 text-white">
-                    <div className="text-center mb-5">
-                      <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest">
+                  <div className="rounded-2xl bg-slate-900 border border-slate-800 min-h-[300px] sm:aspect-[4/3] flex flex-col justify-between p-4 sm:p-6 text-white">
+                    <div className="text-center mb-3 sm:mb-5">
+                      <span className="text-[11px] sm:text-xs font-semibold text-emerald-400 uppercase tracking-widest block">
                         Google Lighthouse 10.0 Verification
                       </span>
-                      <h4 className="text-base font-bold text-white mt-1">
+                      <h4 className="text-sm sm:text-base font-bold text-white mt-1">
                         {t("Offizielle Performance-Bewertung", "Official Performance Benchmark")}
                       </h4>
                     </div>
 
-                    <div className="grid grid-cols-4 gap-3 text-center">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center">
                       {[
                         { score: "100%", label: "Performance", color: "text-emerald-400", border: "border-emerald-500/30" },
                         { score: "100%", label: "Accessibility", color: "text-emerald-400", border: "border-emerald-500/30" },
                         { score: "100%", label: "Best Practices", color: "text-emerald-400", border: "border-emerald-500/30" },
                         { score: "100%", label: "SEO", color: "text-emerald-400", border: "border-emerald-500/30" },
                       ].map((item) => (
-                        <div key={item.label} className={`p-3 rounded-2xl bg-slate-800/60 border ${item.border}`}>
-                          <div className={`text-2xl font-black ${item.color}`}>{item.score}</div>
-                          <div className="text-[10px] text-slate-300 font-medium mt-1 leading-tight">{item.label}</div>
+                        <div key={item.label} className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-800/60 border ${item.border}`}>
+                          <div className={`text-xl sm:text-2xl font-black ${item.color}`}>{item.score}</div>
+                          <div className="text-[11px] sm:text-xs text-slate-300 font-medium mt-1 leading-tight">{item.label}</div>
                         </div>
                       ))}
                     </div>
 
-                    <div className="mt-6 flex items-center justify-between text-xs text-slate-400 bg-slate-800/40 p-3 rounded-xl border border-slate-700/40">
+                    <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-0 text-xs sm:text-sm text-slate-400 bg-slate-800/40 p-2.5 sm:p-3 rounded-xl border border-slate-700/40 text-center sm:text-left">
                       <span>Server-Side Rendered (SSR)</span>
-                      <span className="text-emerald-400 font-mono">0 Cumulative Layout Shift</span>
+                      <span className="text-emerald-400 font-medium">0 Cumulative Layout Shift</span>
                     </div>
                   </div>
                 )}
 
                 {/* Tab 3: Stack Architecture */}
                 {heroTab === "architecture" && (
-                  <div className="rounded-2xl bg-slate-900 border border-slate-800 aspect-[4/3] flex flex-col justify-between p-5 text-white">
-                    <span className="text-xs font-mono text-sky-400 uppercase tracking-wider">
+                  <div className="rounded-2xl bg-slate-900 border border-slate-800 min-h-[300px] sm:aspect-[4/3] flex flex-col justify-between p-4 sm:p-5 text-white">
+                    <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider">
                       {t("Enterprise Full-Stack Pipeline", "Enterprise Full-Stack Pipeline")}
                     </span>
 
                     <div className="space-y-2 text-xs">
                       <div className="flex items-center justify-between p-2 rounded-lg bg-slate-800/80 border border-slate-700/60">
                         <span className="font-semibold text-slate-200">1. Edge Layer</span>
-                        <span className="text-orange-400 font-mono">Vercel Global CDN + SSL</span>
+                        <span className="text-orange-400 font-medium">Vercel Global CDN + SSL</span>
                       </div>
                       <div className="flex items-center justify-between p-2 rounded-lg bg-slate-800/80 border border-slate-700/60">
                         <span className="font-semibold text-slate-200">2. App Framework</span>
-                        <span className="text-sky-400 font-mono">Next.js 15 React Server Comps</span>
+                        <span className="text-sky-400 font-medium">Next.js 15 React Server Comps</span>
                       </div>
                       <div className="flex items-center justify-between p-2 rounded-lg bg-slate-800/80 border border-slate-700/60">
                         <span className="font-semibold text-slate-200">3. Data & Auth</span>
-                        <span className="text-emerald-400 font-mono">PostgreSQL / Supabase / Prisma</span>
+                        <span className="text-emerald-400 font-medium">PostgreSQL / Supabase / Prisma</span>
                       </div>
                       <div className="flex items-center justify-between p-2 rounded-lg bg-slate-800/80 border border-slate-700/60">
                         <span className="font-semibold text-slate-200">4. Headless CMS</span>
-                        <span className="text-purple-400 font-mono">Sanity / Contentful i18n</span>
+                        <span className="text-purple-400 font-medium">Sanity / Contentful i18n</span>
                       </div>
                     </div>
 
@@ -647,15 +684,15 @@ export default function WebDevelopmentPage() {
       {/* Core Solutions Grid */}
       <section className="py-10 sm:py-12 lg:py-16  bg-white border-t border-b border-slate-100">
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Layers className="w-3.5 h-3.5" />
               <span>{t("LEISTUNGEN IM DETAIL", "OUR CORE CAPABILITIES")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Maßgeschneiderte Web-Lösungen für jedes Wachstumsziel", "Tailored Web Solutions for Every Business Stage")}
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Kein generisches Baukastensystem. Jede Zeile Code wird exakt auf Ihre geschäftlichen Workflows und Conversion-Ziele abgestimmt.",
                 "Zero generic templates. Every line of code is tailored to your exact business workflows and conversion metrics."
@@ -676,13 +713,13 @@ export default function WebDevelopmentPage() {
                   className="rounded-3xl border border-slate-200/90 bg-slate-50/40 p-8 sm:p-10 hover:border-orange-300 hover:bg-orange-50/20 transition-all duration-300 group flex flex-col justify-between shadow-sm hover:shadow-md"
                 >
                   <div>
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-orange-100 to-orange-50 border border-orange-200 text-orange-600 inline-flex items-center justify-center mb-6 shrink-0 shadow-sm group-hover:scale-105 group-hover:bg-orange-600 group-hover:text-white group-hover:border-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-orange-100 to-orange-50 border border-orange-200 text-orange-600 inline-flex items-center justify-center mb-6 shrink-0 shadow-sm group-hover:scale-105 group-hover:bg-orange-600 group-hover:border-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300">
                       <Icon className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.8] group-hover:scale-110 transition-transform duration-300" />
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
+                    <h3 className="text-[19px] sm:text-[24px] font-bold text-slate-900 mb-3 group-hover:text-orange-600 transition-colors">
                       {t(service.titleDe, service.titleEn)}
                     </h3>
-                    <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                    <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
                       {t(service.descDe, service.descEn)}
                     </p>
                   </div>
@@ -690,7 +727,7 @@ export default function WebDevelopmentPage() {
                   <div className="pt-6 border-t border-slate-200/70">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {(lang === "de" ? service.featuresDe : service.featuresEn).map((feat, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs font-medium text-slate-700">
+                        <div key={i} className="flex items-center gap-2 text-sm sm:text-base font-medium text-slate-700">
                           <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                           <span>{feat}</span>
                         </div>
@@ -707,15 +744,15 @@ export default function WebDevelopmentPage() {
       {/* Comparison: Nexa Solutions vs. Legacy Agencies */}
       <section className="py-10 sm:py-12 lg:py-16  bg-slate-50/70">
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 bg-white text-slate-700 text-xs font-bold tracking-wider uppercase mb-3 shadow-sm">
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 bg-white text-slate-700 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Gauge className="w-3.5 h-3.5 text-orange-500" />
               <span>{t("DER UNTERSCHIED", "THE NEXA ADVANTAGE")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Warum moderne Marktführer Next.js wählen", "Why Industry Leaders Choose Next.js Over Legacy Tech")}
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Ein direkter Vergleich zwischen zukunftssicherer Full-Stack-Entwicklung und veralteten WordPress-Themes.",
                 "A direct comparison between modern edge engineering and slow, vulnerable traditional web templates."
@@ -725,25 +762,29 @@ export default function WebDevelopmentPage() {
 
           {/* Responsive Comparison Table */}
           <div className="bg-white rounded-3xl border border-slate-200/90 shadow-md overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[650px]">
+            <div
+              ref={tableScrollRef}
+              onScroll={handleTableScroll}
+              className="overflow-x-auto table-horizontal-scrollbar pb-1 sm:pb-0"
+            >
+              <table className="w-full text-left border-collapse min-w-[680px]">
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-100/60">
-                    <th className="py-4 px-6 text-sm font-bold text-slate-700 w-1/3">
+                    <th className="py-4 px-6 text-sm sm:text-base font-bold text-slate-700 w-1/3">
                       {t("Kriterium", "Feature Benchmark")}
                     </th>
-                    <th className="py-4 px-6 text-sm font-bold text-orange-600 bg-orange-50/50 w-1/3">
+                    <th className="py-4 px-6 text-sm sm:text-base font-bold text-orange-600 bg-orange-50/50 w-1/3">
                       <span className="flex items-center gap-1.5">
                         <Sparkles className="w-4 h-4 text-orange-500" />
                         Nexa Solutions (Next.js 15)
                       </span>
                     </th>
-                    <th className="py-4 px-6 text-sm font-bold text-slate-500 w-1/3">
+                    <th className="py-4 px-6 text-sm sm:text-base font-bold text-slate-500 w-1/3">
                       {t("Klassische Agenturen (WordPress)", "Legacy Agencies (WordPress / CMS)")}
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-sm">
+                <tbody className="divide-y divide-slate-100 text-sm sm:text-base">
                   {comparisonData.map((row, i) => (
                     <tr key={i} className="hover:bg-slate-50/50 transition-colors">
                       <td className="py-5 px-6 font-semibold text-slate-900">
@@ -766,6 +807,64 @@ export default function WebDevelopmentPage() {
                 </tbody>
               </table>
             </div>
+
+            {/* Mobile Bottom Scroll Bar & Controller */}
+            <div className="flex sm:hidden flex-col gap-2.5 px-4 py-3 bg-slate-50 border-t border-slate-200/80">
+              <div className="flex items-center justify-between text-xs font-semibold text-slate-600">
+                <span className="flex items-center gap-1.5 text-orange-600 font-bold">
+                  <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                  {t("Tabelle horizontal scrollen", "Swipe or scroll table")}
+                </span>
+                <span className="text-[11px] font-bold text-slate-500 bg-slate-200/80 px-2 py-0.5 rounded-full">
+                  {tableScrollPercent < 30
+                    ? t("Kriterium", "Feature Benchmark")
+                    : tableScrollPercent > 70
+                    ? t("Legacy WordPress", "Legacy CMS")
+                    : "Nexa (Next.js 15)"}
+                </span>
+              </div>
+
+              {/* Interactive Scroll Bar Track with Left/Right Buttons */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => scrollTable("left")}
+                  aria-label="Scroll left"
+                  className="w-8 h-8 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-slate-700 active:scale-95 active:bg-orange-50 active:text-orange-600 transition-all cursor-pointer shrink-0"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+
+                <div className="relative flex-1 h-3 bg-slate-200 rounded-full overflow-hidden p-0.5 flex items-center">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={tableScrollPercent}
+                    onChange={handleSliderChange}
+                    aria-label="Table horizontal scroll position"
+                    className="w-full h-full opacity-0 absolute inset-0 cursor-ew-resize z-10"
+                  />
+                  {/* Visual orange thumb */}
+                  <div
+                    className="h-full bg-gradient-to-r from-orange-500 to-amber-500 rounded-full transition-[width,transform] duration-75 pointer-events-none"
+                    style={{
+                      width: "42%",
+                      transform: `translateX(${(tableScrollPercent / 100) * 138}%)`,
+                    }}
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => scrollTable("right")}
+                  aria-label="Scroll right"
+                  className="w-8 h-8 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-slate-700 active:scale-95 active:bg-orange-50 active:text-orange-600 transition-all cursor-pointer shrink-0"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -777,14 +876,14 @@ export default function WebDevelopmentPage() {
 
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-bold tracking-wider uppercase mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Cpu className="w-3.5 h-3.5" />
               <span>{t("DER TECH STACK", "CUTTING-EDGE TECH STACK")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-white tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Ausgewählt für maximale Geschwindigkeit & Zuverlässigkeit", "Engineered for Extreme Speed & Limitless Scale")}
             </h2>
-            <p className="text-slate-400 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Kein unnötiger Ballast. Wir nutzen die führenden Industriestandards für moderne Softwareentwicklung.",
                 "Zero bloated code. We leverage modern industry frameworks favored by high-growth unicorns."
@@ -793,12 +892,12 @@ export default function WebDevelopmentPage() {
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-10">
             {techCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedTechCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm sm:text-base font-bold transition-all duration-200 cursor-pointer ${
                   selectedTechCategory === cat.id
                     ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
                     : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white"
@@ -818,7 +917,7 @@ export default function WebDevelopmentPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className={`p-4 rounded-2xl border transition-all duration-200 ${
+                className={`p-4 rounded-[5px] border transition-all duration-200 ${
                   tech.highlight
                     ? "bg-slate-900/90 border-orange-500/40 hover:border-orange-500 shadow-sm"
                     : "bg-slate-900/50 border-slate-800 hover:border-slate-700"
@@ -830,7 +929,7 @@ export default function WebDevelopmentPage() {
                     <span className="w-2 h-2 rounded-full bg-orange-400" />
                   )}
                 </div>
-                <span className="text-[11px] font-mono text-slate-400 block">{tech.tag}</span>
+                <span className="text-[11px] font-medium text-slate-400 block">{tech.tag}</span>
               </motion.div>
             ))}
           </div>
@@ -840,15 +939,15 @@ export default function WebDevelopmentPage() {
       {/* 4-Step Process Section */}
       <section id="process" className="py-10 sm:py-12 lg:py-16  bg-white border-b border-slate-100">
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Rocket className="w-3.5 h-3.5" />
               <span>{t("UNSER ABLAUF", "OUR AGILE PROCESS")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Vom Kickoff bis zum Live-Gang in 4 klaren Schritten", "From Kickoff to Go-Live in 4 Structured Steps")}
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Kein Rätselraten, keine Verzögerungen. Sie erhalten jede Woche einen klaren Zwischenstand und Staging-Zugang.",
                 "Zero guesswork, zero unexpected delays. Transparent weekly sprints with direct staging links."
@@ -864,21 +963,21 @@ export default function WebDevelopmentPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="relative rounded-3xl p-7 bg-slate-50/60 border border-slate-200/90 hover:border-orange-300 hover:bg-orange-50/20 transition-all duration-300 flex flex-col justify-between"
+                className="relative rounded-[5px] p-7 bg-slate-50/60 border border-slate-200/90 hover:border-orange-300 hover:bg-orange-50/20 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
                     <span className="w-12 h-12 rounded-2xl bg-orange-600 text-white font-black text-lg flex items-center justify-center shadow-md shadow-orange-500/20">
                       {step.step}
                     </span>
-                    <span className="text-xs font-mono font-bold text-orange-600 bg-orange-100/70 px-2.5 py-1 rounded-full">
+                    <span className="text-xs font-bold text-orange-600 bg-orange-100/70 px-2.5 py-1 rounded-full">
                       {step.phase}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2.5">
+                  <h3 className="text-[19px] sm:text-[22px] font-bold text-slate-900 mb-2.5">
                     {t(step.titleDe, step.titleEn)}
                   </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
                     {t(step.descDe, step.descEn)}
                   </p>
                 </div>
@@ -889,21 +988,21 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* Featured Projects Highlight */}
-      <section className="py-20 lg:py-28 bg-slate-50/60 border-b border-slate-100">
+      <section className="py-10 sm:py-12 lg:py-16 bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>{t("REFERENZEN", "FEATURED WORK")}</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-[#0F172A] tracking-tight">
+              <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-2">
                 {t("Erfolgreich gelaunchte Web-Projekte", "Proven Real-World Case Studies")}
               </h2>
             </div>
             <Link
               href="/#projects"
-              className="inline-flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-700 transition-colors"
+              className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-orange-600 hover:text-orange-700 transition-colors"
             >
               <span>{t("Alle Projekte ansehen", "View All Projects")}</span>
               <ArrowRight className="w-4 h-4" />
@@ -942,7 +1041,7 @@ export default function WebDevelopmentPage() {
             ].map((proj, i) => (
               <div
                 key={i}
-                className="group rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="group rounded-[5px] bg-white border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                   <Image
@@ -952,7 +1051,7 @@ export default function WebDevelopmentPage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
-                  <div className="absolute top-3 right-3 bg-slate-900/85 backdrop-blur-md text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-slate-700/60">
+                  <div className="absolute top-3 right-3 bg-slate-900/85 backdrop-blur-md text-light text-xs font-bold px-3 py-1 rounded-full border border-slate-700/60">
                     {proj.metric}
                   </div>
                 </div>
@@ -962,8 +1061,8 @@ export default function WebDevelopmentPage() {
                     <span className="text-xs font-semibold text-orange-600 uppercase tracking-wide block mb-1">
                       {proj.category}
                     </span>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">{proj.title}</h3>
-                    <p className="text-sm text-slate-600 mb-5 leading-relaxed">
+                    <h3 className="text-[19px] sm:text-[22px] font-bold text-slate-900 mb-2">{proj.title}</h3>
+                    <p className="text-base sm:text-lg text-slate-600 mb-5 leading-relaxed">
                       {t(proj.descDe, proj.descEn)}
                     </p>
                   </div>
@@ -988,15 +1087,15 @@ export default function WebDevelopmentPage() {
       {/* Pricing / Packages Section */}
       <section id="pricing" className="py-10 sm:py-12 lg:py-16  bg-white border-b border-slate-100">
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <Code2 className="w-3.5 h-3.5" />
               <span>{t("TRANSPARENTE PAKETE", "TRANSPARENT INVESTMENT")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Feste Preise, kalkulierbare Meilensteine", "Predictable Milestones, Turnkey Packages")}
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Wählen Sie das passende Modell für Ihr Vorhaben. Alle Pakete beinhalten persönliche Beratung und Code-Übergabe.",
                 "Choose the right plan for your scope. All packages include dedicated engineering and full IP ownership."
@@ -1008,14 +1107,14 @@ export default function WebDevelopmentPage() {
             {packages.map((pkg) => (
               <div
                 key={pkg.id}
-                className={`rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 relative ${
+                className={`rounded-[5px] p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 relative ${
                   pkg.popular
                     ? "bg-slate-900 text-white shadow-2xl border-2 border-orange-500 scale-[1.02] lg:-translate-y-2"
                     : "bg-slate-50/70 text-slate-900 border border-slate-200/90 shadow-sm hover:shadow-md"
                 }`}
               >
                 {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-600 text-white text-xs font-black tracking-wider uppercase px-4 py-1.5 rounded-full shadow-md">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-600 text-white text-xs font-black tracking-wider uppercase px-4 py-1.5 rounded-[5px] shadow-md">
                     {t(pkg.badgeDe, pkg.badgeEn)}
                   </div>
                 )}
@@ -1037,13 +1136,13 @@ export default function WebDevelopmentPage() {
                   </div>
 
                   <div className="mb-4">
-                    <span className="text-3xl sm:text-4xl font-black tracking-tight">
+                    <span className="text-3xl sm:text-4xl lg:text-[42px] font-[900] tracking-tight">
                       {t(pkg.priceDe, pkg.priceEn)}
                     </span>
                   </div>
 
                   <p
-                    className={`text-sm mb-8 leading-relaxed ${
+                    className={`text-base sm:text-lg mb-8 leading-relaxed ${
                       pkg.popular ? "text-slate-300" : "text-slate-600"
                     }`}
                   >
@@ -1052,7 +1151,7 @@ export default function WebDevelopmentPage() {
 
                   <div className="space-y-3 mb-8">
                     {(lang === "de" ? pkg.featuresDe : pkg.featuresEn).map((feat, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-xs font-medium">
+                      <div key={i} className="flex items-start gap-2.5 text-sm sm:text-base font-medium">
                         <Check
                           className={`w-4 h-4 shrink-0 mt-0.5 ${
                             pkg.popular ? "text-orange-400" : "text-emerald-600"
@@ -1068,7 +1167,7 @@ export default function WebDevelopmentPage() {
 
                 <button
                   onClick={() => handleOpenContactWithPackage(lang === "de" ? pkg.nameDe : pkg.nameEn)}
-                  className={`w-full py-3.5 px-6 rounded-full text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
+                  className={`w-full py-3.5 px-6 rounded-full text-sm sm:text-base font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
                     pkg.popular
                       ? "bg-orange-600 hover:bg-orange-500 text-white shadow-lg shadow-orange-600/30"
                       : "bg-slate-900 hover:bg-slate-800 text-white"
@@ -1086,15 +1185,15 @@ export default function WebDevelopmentPage() {
       {/* FAQ Section */}
       <section className="py-10 sm:py-12 lg:py-16  bg-slate-50/70 border-b border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 text-xs font-bold tracking-wider uppercase mb-3 shadow-sm">
+          <div className="text-center mb-14 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
               <ShieldCheck className="w-3.5 h-3.5 text-orange-500" />
               <span>{t("HÄUFIG GESTELLTE FRAGEN", "FAQ")}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#0F172A] tracking-tight mb-4">
+            <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
               {t("Alles, was Sie vor dem Projektstart wissen müssen", "Everything You Need to Know Before Starting")}
             </h2>
-            <p className="text-slate-600 text-base">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Transparente Antworten auf die wichtigsten technischen und organisatorischen Fragen.",
                 "Transparent answers to key technical, delivery, and contractual inquiries."
@@ -1112,7 +1211,7 @@ export default function WebDevelopmentPage() {
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full flex items-center justify-between p-6 text-left cursor-pointer gap-4"
                 >
-                  <span className="text-base font-bold text-slate-900">
+                  <span className="text-[16px] sm:text-[18px] font-bold text-slate-900">
                     {t(faq.qDe, faq.qEn)}
                   </span>
                   <ChevronDown
@@ -1122,7 +1221,7 @@ export default function WebDevelopmentPage() {
                   />
                 </button>
                 {openFaq === idx && (
-                  <div className="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                  <div className="px-6 pb-6 text-[14px] sm:text-[16px] text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                     {t(faq.aDe, faq.aEn)}
                   </div>
                 )}
@@ -1138,16 +1237,16 @@ export default function WebDevelopmentPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-orange-600/20 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-bold tracking-wider uppercase mb-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
             <CheckCircle2 className="w-3.5 h-3.5" />
             <span>{t("BEREIT FÜR DEN NÄCHSTEN SCHRITT?", "READY TO ELEVATE YOUR WEB PRESENCE?")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-6">
+          <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-white tracking-tight leading-[1.10] sm:leading-[1.09] mb-5 text-center">
             {t("Lassen Sie uns Ihre neue Website planen.", "Let's build something extraordinary together.")}
           </h2>
 
-          <p className="text-slate-300 text-base sm:text-lg mb-9 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8 font-normal text-center">
             {t(
               "Buchen Sie ein unverbindliches 20-minütiges Strategiegespräch. Wir analysieren Ihre aktuelle Website und zeigen konkrete Hebel für mehr Ladezeit und Conversions auf.",
               "Schedule an informal 20-minute strategy call. We'll audit your current web presence and outline actionable steps for superior speed and conversion growth."
@@ -1157,16 +1256,16 @@ export default function WebDevelopmentPage() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => { setSelectedPackage("Website-Entwicklung Beratung"); setContactOpen(true); }}
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-orange-600 hover:bg-orange-500 text-white text-sm font-bold transition-all duration-300 shadow-xl shadow-orange-600/30 hover:scale-105 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
             >
               <span>{t("Kostenlose Beratung anfragen", "Book a Free Consultation")}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
             <a
               href="https://wa.me/4915213233841"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white/10 hover:bg-white/15 text-white text-sm font-semibold transition-all duration-200 border border-white/15"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-sm sm:text-base font-bold transition-all duration-200 border border-white/15 cursor-pointer"
             >
               <PhoneCall className="w-4 h-4 text-emerald-400" />
               <span>WhatsApp Chat</span>

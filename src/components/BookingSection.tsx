@@ -89,11 +89,11 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
             <span>{t("TERMIN DIREKT ONLINE BUCHEN", "SCHEDULE A CONSULTATION")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#0B132B] tracking-tight leading-[1.25] my-[18px]">
+          <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.10] sm:leading-[1.09] mb-3 text-center">
             {t("Wählen Sie Ihren Wunschtermin für ein Erstgespräch", "Select Your Preferred Time for a Free Discovery Call")}
           </h2>
 
-          <p className="text-base sm:text-[17px] text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed  max-w-2xl mx-auto">
             {t(
               "Wählen Sie einen freien Slot. Das Gespräch findet bequem per Google Meet oder Microsoft Teams statt.",
               "Pick an available time slot. The consultation takes place directly via Google Meet or Microsoft Teams."
@@ -153,7 +153,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                     <span>SCHRITT 1 / STEP 1</span>
                   </div>
 
-                  <h3 className="text-lg font-black text-slate-900 mb-4">
+                  <h3 className="text-[20px] font-black text-slate-900 mb-4">
                     {t("Art der Beratung wählen", "Select Consultation Type")}
                   </h3>
 
@@ -171,7 +171,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                           }`}
                         >
                           <div className="flex items-center justify-between mb-1.5">
-                            <span className={`text-sm font-bold ${isSelected ? "text-orange-600" : "text-slate-900"}`}>
+                            <span className={`text-[18px] sm:text-[20px] font-bold ${isSelected ? "text-orange-600" : "text-slate-900"}`}>
                               {type.title}
                             </span>
                             <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
@@ -179,7 +179,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                               {type.duration}
                             </span>
                           </div>
-                          <p className="text-xs text-slate-500 leading-normal">
+                          <p className="text-[13px] sm:text-[15px] text-slate-500 leading-normal">
                             {type.description}
                           </p>
                         </div>
@@ -188,12 +188,12 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                   </div>
                 </div>
 
-                <div className="p-4 rounded-[5px] bg-white border border-slate-200 text-xs text-slate-600 space-y-2">
+                <div className="p-4 rounded-[5px] bg-white border border-slate-200 text-[18px] sm:text-[20px] text-slate-600 space-y-2">
                   <div className="flex items-center gap-2 font-bold text-slate-900">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                    <ShieldCheck className="w-6.5 h-6.5 text-emerald-600" />
                     <span>{t("100% Unverbindlich & Kostenlos", "100% Free & No Obligation")}</span>
                   </div>
-                  <p className="text-[11px] text-slate-500 leading-normal">
+                  <p className="text-[13px] sm:text-[15px] text-slate-500 leading-normal">
                     {t(
                       "Wir analysieren Ihre Projektanforderungen und geben Ihnen sofort ehrliches Feedback zur Machbarkeit und Budget.",
                       "We analyze your project requirements and offer honest immediate feedback on feasibility and realistic budget."
@@ -224,8 +224,8 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                                 : "bg-white border-slate-200 hover:border-slate-300 text-slate-700"
                             }`}
                           >
-                            <span className="block text-xs font-bold">{d.dayName}</span>
-                            <span className={`block text-[10px] mt-0.5 ${isSelected ? "text-slate-300" : "text-slate-400"}`}>
+                            <span className="block text-[12px] sm:text-[15px] font-bold">{d.dayName}</span>
+                            <span className={`block text-[11px] mt-0.5 ${isSelected ? "text-slate-500" : "text-slate-600"}`}>
                               CET
                             </span>
                           </button>
@@ -247,7 +247,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                             type="button"
                             key={time}
                             onClick={() => setSelectedTime(time)}
-                            className={`py-2 px-1 text-xs font-semibold rounded-[5px] border text-center transition-all cursor-pointer ${
+                            className={`py-2 px-1 text-[12px] sm:text-[15px] font-semibold rounded-[5px] border text-center transition-all cursor-pointer ${
                               isSelected
                                 ? "bg-orange-500 text-white border-orange-500 shadow-sm"
                                 : "bg-slate-50 border-slate-200 hover:border-slate-300 text-slate-700"
@@ -264,7 +264,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                   <div className="pt-2 border-t border-slate-100 space-y-3">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                        <label className="block text-[12px] sm:text-[15px] font-bold text-slate-700 uppercase mb-2">
                           {t("Ihr Name", "Your Name")} *
                         </label>
                         <div className="relative">
@@ -275,13 +275,13 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                             placeholder={t("z.B. Alexander Weber", "e.g. Alexander Weber")}
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full pl-9 pr-3 py-2.5 rounded-[5px] border border-slate-200 text-xs focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                            className="w-full pl-9 pr-3 py-2.5 rounded-[5px] border border-slate-300 text-[12px] sm:text-[15px] focus:outline-none focus:border-orange-500 bg-slate-50/50"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                        <label className="block text-[12px] sm:text-[15px] font-bold text-slate-700 uppercase mb-2">
                           {t("Geschäftliche E-Mail", "Work Email")} *
                         </label>
                         <div className="relative">
@@ -292,14 +292,14 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                             placeholder="name@company.de"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full pl-9 pr-3 py-2.5 rounded-[5px] border border-slate-200 text-xs focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                            className="w-full pl-9 pr-3 py-2.5 rounded-[5px] border border-slate-300 text-[12px] sm:text-[15px] focus:outline-none focus:border-orange-500 bg-slate-50/50"
                           />
                         </div>
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                      <label className="block text-[12px] sm:text-[15px] font-bold text-slate-700 uppercase mb-2 mt-1">
                         {t("Unternehmen / Projekt", "Company or Project Name")}
                       </label>
                       <div className="relative">
@@ -309,7 +309,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                           placeholder={t("z.B. Nexa Tech GmbH", "e.g. Acme Corp")}
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                          className="w-full pl-9 pr-3 py-2.5 rounded-[5px] border border-slate-200 text-xs focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                          className="w-full pl-9 pr-3 py-2.5 rounded-[5px] border border-slate-300 text-[12px] sm:text-[15px] focus:outline-none focus:border-orange-500 bg-slate-50/50"
                         />
                       </div>
                     </div>
@@ -318,7 +318,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 rounded-[5px] bg-[#EA580C] hover:bg-[#C2410C] text-white text-xs sm:text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-orange-500/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
+                    className="w-full py-3.5 rounded-[5px] bg-[#EA580C] hover:bg-[#C2410C] text-white text-[12px] sm:text-[15px] font-semibold transition-all duration-300 shadow-md hover:shadow-orange-500/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
                   >
                     {isSubmitting ? (
                       <span>{t("Termin wird gebucht...", "Booking session...")}</span>
@@ -337,7 +337,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
 
                   {onOpenContact && (
                     <div className="text-center pt-1">
-                      <p className="text-xs text-slate-500">
+                      <p className="text-[12px] sm:text-[15px] text-slate-500">
                         {t("Lieber schriftlich anfragen?", "Prefer to write a message?")}{" "}
                         <button
                           type="button"

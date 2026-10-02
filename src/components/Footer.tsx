@@ -181,7 +181,7 @@ export default function Footer() {
                 { label: t("Unsere Arbeit", "Our Work"), href: "/#work" },
                 { label: t("Partner", "Partners"), href: "/#partners" },
                 { label: "Blog", href: "/blog" },
-                { label: t("Kontakt", "Contact"), href: "/#contact" },
+                { label: t("Kontakt", "Contact"), href: "/contact" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link

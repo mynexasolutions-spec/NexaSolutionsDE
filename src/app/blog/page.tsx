@@ -196,13 +196,8 @@ export default function BlogListingPage() {
                     {/* Author & CTA Row */}
                     <div className="flex flex-wrap items-center justify-between gap-4 w-full pt-4 border-t border-slate-800/80">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-700 bg-slate-800 shrink-0 relative">
-                          <Image
-                            src={featuredPost.author.avatar}
-                            alt={featuredPost.author.name}
-                            fill
-                            className="object-cover"
-                          />
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs border border-orange-400/30">
+                          NX
                         </div>
                         <div>
                           <div className="text-xs sm:text-sm font-bold text-white">
@@ -218,7 +213,7 @@ export default function BlogListingPage() {
 
                       <Link
                         href={`/blog/${featuredPost.slug}`}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-orange-600/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm sm:text-base font-bold shadow-lg shadow-orange-600/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
                       >
                         <span>{t("Artikel lesen", "Read Article")}</span>
                         <ArrowRight className="w-4 h-4" />
@@ -345,33 +340,28 @@ export default function BlogListingPage() {
                           </Link>
 
                           {/* Excerpt */}
-                          <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4">
+                          <p className="text-sm sm:text-base text-slate-600 line-clamp-3 leading-relaxed mb-4">
                             {excerpt}
                           </p>
                         </div>
 
                         {/* Bottom Author & Read Link */}
                         <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-7 h-7 rounded-full overflow-hidden border border-slate-200 relative shrink-0">
-                              <Image
-                                src={post.author.avatar}
-                                alt={post.author.name}
-                                fill
-                                className="object-cover"
-                              />
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-[10px] shrink-0">
+                              NX
                             </div>
-                            <span className="text-xs font-semibold text-slate-700">
+                            <span className="text-xs sm:text-sm font-semibold text-slate-700">
                               {post.author.name}
                             </span>
                           </div>
 
                           <Link
                             href={`/blog/${post.slug}`}
-                            className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-600 hover:text-orange-700 group/link"
+                            className="inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-orange-600 hover:text-orange-700 group/link"
                           >
                             <span>{t("Lesen", "Read")}</span>
-                            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
+                            <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                           </Link>
                         </div>
                       </div>

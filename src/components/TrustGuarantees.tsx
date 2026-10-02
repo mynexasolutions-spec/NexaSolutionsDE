@@ -96,7 +96,7 @@ export default function TrustGuarantees({ onOpenContact }: TrustGuaranteesProps)
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-7 sm:mb-8 font-normal  text-center">
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-7 sm:mb-8 text-center">
             {t(
               "Wir arbeiten nach höchsten Qualitätskriterien für verlässliche, rechtssichere und zukunftsfähige Softwarelösungen.",
               "We adhere to the highest engineering standards to deliver reliable, legally compliant, and future-proof software."

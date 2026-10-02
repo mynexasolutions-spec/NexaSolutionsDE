@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
+import FloatingWidgets from "@/components/FloatingWidgets";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -23,7 +24,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${dmSans.variable} h-full antialiased font-sans`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <FloatingWidgets />
+        </LanguageProvider>
       </body>
     </html>
   );

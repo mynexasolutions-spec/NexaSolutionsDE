@@ -69,10 +69,10 @@ export const blogPosts: BlogPost[] = [
     featured: true,
     views: "2.8k",
     author: {
-      name: "Imran Khan",
-      roleDe: "Head of AI Architecture & Automation",
-      roleEn: "Head of AI Architecture & Automation",
-      avatar: "/images/avatar-imran-exact.png",
+      name: "Nexa Solutions Team",
+      roleDe: "Software-Architektur & KI-Entwicklung",
+      roleEn: "Software Architecture & AI Engineering",
+      avatar: "/favicon.ico",
     },
     keyTakeawaysDe: [
       "Bis zu 70% Zeitersparnis bei wiederkehrenden Routineaufgaben wie Datenübertragungen und Belegerfassung.",
@@ -197,10 +197,10 @@ export const blogPosts: BlogPost[] = [
     featured: false,
     views: "3.4k",
     author: {
-      name: "Imran Khan",
-      roleDe: "Head of AI Architecture & Automation",
-      roleEn: "Head of AI Architecture & Automation",
-      avatar: "/images/avatar-imran-exact.png",
+      name: "Nexa Solutions Team",
+      roleDe: "Software-Architektur & KI-Entwicklung",
+      roleEn: "Software Architecture & AI Engineering",
+      avatar: "/favicon.ico",
     },
     keyTakeawaysDe: [
       "Next.js Websites erreichen Ladezeiten unter 0.5 Sekunden – WordPress benötigt oft 2.5 bis 4 Sekunden.",
@@ -294,10 +294,10 @@ export const blogPosts: BlogPost[] = [
     featured: false,
     views: "2.1k",
     author: {
-      name: "Imran Khan",
-      roleDe: "Head of AI Architecture & Automation",
-      roleEn: "Head of AI Architecture & Automation",
-      avatar: "/images/avatar-imran-exact.png",
+      name: "Nexa Solutions Team",
+      roleDe: "Software-Architektur & KI-Entwicklung",
+      roleEn: "Software Architecture & AI Engineering",
+      avatar: "/favicon.ico",
     },
     keyTakeawaysDe: [
       "Über 85% Code-Wiederverwendbarkeit zwischen iOS und Android halbiert Entwicklungs- und Wartungskosten.",
@@ -381,10 +381,10 @@ export const blogPosts: BlogPost[] = [
     featured: false,
     views: "1.9k",
     author: {
-      name: "Imran Khan",
-      roleDe: "Head of AI Architecture & Automation",
-      roleEn: "Head of AI Architecture & Automation",
-      avatar: "/images/avatar-imran-exact.png",
+      name: "Nexa Solutions Team",
+      roleDe: "Software-Architektur & KI-Entwicklung",
+      roleEn: "Software Architecture & AI Engineering",
+      avatar: "/favicon.ico",
     },
     keyTakeawaysDe: [
       "Zero-Data-Retention Agreements (ZDR) verhindern das Training externer KI-Modelle mit Ihren Unternehmensdaten.",
@@ -454,10 +454,10 @@ export const blogPosts: BlogPost[] = [
     featured: false,
     views: "2.4k",
     author: {
-      name: "Imran Khan",
-      roleDe: "Head of AI Architecture & Automation",
-      roleEn: "Head of AI Architecture & Automation",
-      avatar: "/images/avatar-imran-exact.png",
+      name: "Nexa Solutions Team",
+      roleDe: "Software-Architektur & KI-Entwicklung",
+      roleEn: "Software Architecture & AI Engineering",
+      avatar: "/favicon.ico",
     },
     keyTakeawaysDe: [
       "Fokus auf das 'One Killer Feature': Reduktion des ersten Releases auf den zentralen Mehrwert.",
@@ -529,10 +529,10 @@ export const blogPosts: BlogPost[] = [
     featured: false,
     views: "1.7k",
     author: {
-      name: "Imran Khan",
-      roleDe: "Head of AI Architecture & Automation",
-      roleEn: "Head of AI Architecture & Automation",
-      avatar: "/images/avatar-imran-exact.png",
+      name: "Nexa Solutions Team",
+      roleDe: "Software-Architektur & KI-Entwicklung",
+      roleEn: "Software Architecture & AI Engineering",
+      avatar: "/favicon.ico",
     },
     keyTakeawaysDe: [
       "Geschwindigkeit gewinnt Deals: Wer innerhalb von 5 Minuten auf einen Lead reagiert, hat eine 8-fach höhere Abschlusschance.",

@@ -205,4 +205,43 @@ textarea {
   background: #C2410C;
 }
 
+/* Modern Continuous Pulse & Radar Ripple Animations for Floating WhatsApp Widget */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.28);
+    opacity: 0.75;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.6s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.animate-pulse-ring-delayed {
+  animation: pulse-ring 2.6s cubic-bezier(0.215, 0.61, 0.355, 1) 1.3s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.8s ease-in-out infinite;
+}
+
 

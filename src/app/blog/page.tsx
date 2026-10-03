@@ -29,10 +29,57 @@ export default function BlogListingPage() {
   const [contactOpen, setContactOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [allPosts, setAllPosts] = useState<BlogPost[]>(blogPosts);
+
+  // Fetch blogs from DB/API
+  React.useEffect(() => {
+    async function loadDbBlogs() {
+      try {
+        const res = await fetch("/api/blogs");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.blogs && data.blogs.length > 0) {
+            const mapped: BlogPost[] = data.blogs.map((b: any) => ({
+              slug: b.slug,
+              titleDe: b.title_de || b.titleDe,
+              titleEn: b.title_en || b.titleEn,
+              excerptDe: b.excerpt_de || b.excerptDe,
+              excerptEn: b.excerpt_en || b.excerptEn,
+              category: b.category,
+              categoryLabelDe: b.category_label_de || b.categoryLabelDe || "KI & Automatisierung",
+              categoryLabelEn: b.category_label_en || b.categoryLabelEn || "AI & Automation",
+              categoryBadgeClass: b.category_badge_class || b.categoryBadgeClass || "bg-amber-50 text-amber-700 border-amber-200/80",
+              date: b.date,
+              readTimeDe: b.read_time_de || b.readTimeDe,
+              readTimeEn: b.read_time_en || b.readTimeEn,
+              coverImage: b.cover_image || b.coverImage,
+              featured: !!b.featured,
+              views: b.views || "1.0k",
+              author: b.author || {
+                name: "Nexa Solutions Team",
+                roleDe: "Software-Architektur & KI-Entwicklung",
+                roleEn: "Software Architecture & AI Engineering",
+                avatar: "/favicon.ico",
+              },
+              keyTakeawaysDe: b.key_takeaways_de || b.keyTakeawaysDe || [],
+              keyTakeawaysEn: b.key_takeaways_en || b.keyTakeawaysEn || [],
+              sections: b.sections || [],
+              tags: b.tags || [],
+              relatedSlugs: b.related_slugs || b.relatedSlugs || [],
+            }));
+            setAllPosts(mapped);
+          }
+        }
+      } catch (err) {
+        console.warn("Using local blog list fallback:", err);
+      }
+    }
+    loadDbBlogs();
+  }, []);
 
   // Filter posts based on category and search query
   const filteredPosts = useMemo(() => {
-    return blogPosts.filter((post) => {
+    return allPosts.filter((post) => {
       const matchesCategory =
         selectedCategory === "all" || post.category === selectedCategory;
       const title = lang === "de" ? post.titleDe : post.titleEn;
@@ -47,12 +94,12 @@ export default function BlogListingPage() {
 
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchQuery, lang]);
+  }, [allPosts, selectedCategory, searchQuery, lang]);
 
   // Main featured article (default or first in list)
   const featuredPost = useMemo(() => {
-    return blogPosts.find((p) => p.featured) || blogPosts[0];
-  }, []);
+    return allPosts.find((p) => p.featured) || allPosts[0];
+  }, [allPosts]);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FDFDFE] text-[#0F172A] selection:bg-[#EA580C] selection:text-white">

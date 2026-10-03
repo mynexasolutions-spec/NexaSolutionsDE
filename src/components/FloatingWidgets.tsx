@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { ChevronUp, X } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function FloatingWidgets() {
+  const pathname = usePathname();
   const { t } = useLanguage();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showPopup, setShowPopup] = useState(true);
@@ -24,6 +26,10 @@ export default function FloatingWidgets() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -32,7 +38,7 @@ export default function FloatingWidgets() {
   };
 
   const whatsappUrl =
-    "https://wa.me/4915213233841?text=Hello%20Nexa%20Solutions%2C%20I%20would%20like%20to%20discuss%20a%20project.";
+    "https://wa.me/918077313241?text=Hello%20Nexa%20Solutions%2C%20I%20would%20like%20to%20discuss%20a%20project.";
 
   return (
     <div className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3 pointer-events-none select-none">

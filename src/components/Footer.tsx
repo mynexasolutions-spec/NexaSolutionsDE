@@ -280,27 +280,27 @@ export default function Footer() {
             <div className="space-y-2.5">
               {/* Email Pill */}
               <a
-                href="mailto:info@nexa-solutions.io"
+                href="mailto:contact@nexa-solutions.de"
                 className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:shadow-sm hover:border-blue-300 transition-all group"
               >
                 <div className="w-7 h-7 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <Mail className="w-3.5 h-3.5 stroke-[2.2]" />
                 </div>
                 <span className="text-[13.5px] xl:text-[14px] font-medium text-slate-800 group-hover:text-blue-600 truncate transition-colors">
-                  info@nexa-solutions.io
+                  contact@nexa-solutions.de
                 </span>
               </a>
 
               {/* Phone Pill */}
               <a
-                href="tel:+919910543210"
+                href="tel:+918077313241"
                 className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:shadow-sm hover:border-sky-300 transition-all group"
               >
                 <div className="w-7 h-7 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <Phone className="w-3.5 h-3.5 stroke-[2.2]" />
                 </div>
                 <span className="text-[13.5px] xl:text-[14px] font-medium text-slate-800 group-hover:text-sky-600 truncate transition-colors">
-                  +91 99105 43210
+                  +91 8077 313 241
                 </span>
               </a>
 

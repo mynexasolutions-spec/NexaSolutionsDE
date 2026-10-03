@@ -20,7 +20,7 @@ interface BookingSectionProps {
 }
 
 export default function BookingSection({ onOpenContact }: BookingSectionProps = {}) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const [selectedCallType, setSelectedCallType] = useState<string>("discovery");
   const [selectedDay, setSelectedDay] = useState<number>(0);
@@ -68,13 +68,34 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
 
   const timeSlots = ["09:30", "11:00", "13:30", "15:00", "16:30"];
 
-  const handleBookingSubmit = (e: React.FormEvent) => {
+  const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+    try {
+      const selectedDayObj = days[selectedDay];
+      const dateStr = lang === "de" ? selectedDayObj.dateStr : selectedDayObj.enDateStr;
+      const activeCallObj = callTypes.find((c) => c.id === selectedCallType) || callTypes[0];
+
+      await fetch("/api/forms/consultation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          topic: formData.topic,
+          callType: activeCallObj.title,
+          callDuration: activeCallObj.duration,
+          dateSlot: dateStr,
+          timeSlot: selectedTime,
+        }),
+      });
+    } catch (err) {
+      console.error("Failed to submit consultation booking:", err);
+    } finally {
       setIsSubmitting(false);
       setBookingSubmitted(true);
-    }, 700);
+    }
   };
 
   const activeCall = callTypes.find((c) => c.id === selectedCallType) || callTypes[0];
@@ -187,8 +208,9 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                     })}
                   </div>
                 </div>
+                <div className="w-full h-[1px] bg-gray-400"></div>
 
-                <div className="p-4 rounded-[5px] bg-white border border-slate-200 text-[18px] sm:text-[20px] text-slate-600 space-y-2">
+                <div className="p-4 rounded-[5px] text-[18px] sm:text-[20px] text-slate-600 space-y-2">
                   <div className="flex items-center gap-2 font-bold text-slate-900">
                     <ShieldCheck className="w-6.5 h-6.5 text-emerald-600" />
                     <span>{t("100% Unverbindlich & Kostenlos", "100% Free & No Obligation")}</span>

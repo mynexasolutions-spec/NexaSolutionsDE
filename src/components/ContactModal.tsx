@@ -39,13 +39,27 @@ export default function ContactModal({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    try {
+      await fetch("/api/forms/project", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
+          budget: formData.budget,
+          message: formData.message,
+        }),
+      });
+    } catch (err) {
+      console.error("Failed to submit project request:", err);
+    } finally {
       setLoading(false);
       setSubmitted(true);
-    }, 800);
+    }
   };
 
   const services = [
@@ -261,14 +275,14 @@ export default function ContactModal({
                 <MapPin className="w-3 h-3 text-orange-500" />
                 <span>Frankfurt am Main</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <a href="mailto:contact@nexa-solutions.de" className="flex items-center gap-1.5 hover:text-orange-600 transition-colors">
                 <Mail className="w-3 h-3 text-orange-500" />
                 <span>contact@nexa-solutions.de</span>
-              </div>
-              <div className="flex items-center gap-1.5">
+              </a>
+              <a href="tel:+918077313241" className="flex items-center gap-1.5 hover:text-orange-600 transition-colors">
                 <Phone className="w-3 h-3 text-orange-500" />
-                <span>+49 176 12345678</span>
-              </div>
+                <span>+91 8077 313 241</span>
+              </a>
             </div>
           </div>
         )}

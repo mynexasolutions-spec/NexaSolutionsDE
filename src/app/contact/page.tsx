@@ -57,14 +57,14 @@ export default function ContactPage() {
       "5 min from Frankfurt Central Station | 15 min from Airport (FRA)",
     ),
     hours: "Mo - Fr: 08:30 – 19:00 Uhr (MEZ)",
-    phone: "+49 69 9451 8920",
+    phone: "+91 8077 313 241",
     mapQuery: "Mainzer+Landstraße+180,+60327+Frankfurt+am+Main,+Germany",
     mapSrc:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.749742618956!2d8.653429377045142!3d50.10972411166304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0bdeb02da0ab%3A0x63eb371cf707f152!2sMainzer%20Landstra%C3%9Fe%20180%2C%2060327%20Frankfurt%20am%20Main%2C%20Germany!5e0!3m2!1sen!2sde!4v1709472000000!5m2!1sen!2sde",
   };
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("info@nexa-solutions.io");
+    navigator.clipboard.writeText("contact@nexa-solutions.de");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
@@ -75,13 +75,28 @@ export default function ContactPage() {
     setTimeout(() => setCopiedAddress(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+    try {
+      await fetch("/api/forms/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          service: formData.service,
+          message: formData.message,
+        }),
+      });
+    } catch (err) {
+      console.error("Failed to submit contact form:", err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 1100);
+    }
   };
 
   const faqs = [
@@ -371,7 +386,7 @@ export default function ContactPage() {
                               phone: e.target.value,
                             })
                           }
-                          placeholder="+49 170 1234567"
+                          placeholder="+91 8077 313 241"
                           className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50/70 border border-slate-200 text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
                         />
                       </div>
@@ -537,10 +552,10 @@ export default function ContactPage() {
                           E-Mail
                         </div>
                         <a
-                          href="mailto:info@nexa-solutions.io"
+                          href="mailto:contact@nexa-solutions.de"
                           className="text-[13.5px] xl:text-[14px] font-medium text-slate-900 hover:text-orange-600 transition-colors truncate block"
                         >
-                          info@nexa-solutions.io
+                          contact@nexa-solutions.de
                         </a>
                       </div>
                     </div>
@@ -559,7 +574,7 @@ export default function ContactPage() {
 
                   {/* Phone Box */}
                   <a
-                    href="tel:+919910543210"
+                    href="tel:+918077313241"
                     className="flex items-center justify-between p-3.5 rounded-[5px] bg-slate-50 border border-slate-200/80 hover:border-sky-300 hover:bg-sky-50/40 transition-all group"
                   >
                     <div className="flex items-center gap-3 min-w-0">
@@ -571,7 +586,7 @@ export default function ContactPage() {
                           {t("Zentrale Hotline", "Direct Line")}
                         </div>
                         <div className="text-[13.5px] xl:text-[14px] font-medium text-slate-900 group-hover:text-sky-600 transition-colors truncate">
-                          +91 99105 43210
+                          +91 8077 313 241
                         </div>
                       </div>
                     </div>
@@ -580,7 +595,7 @@ export default function ContactPage() {
 
                   {/* WhatsApp Quick Chat */}
                   <a
-                    href="https://wa.me/919910543210?text=Hello%20Nexa%20Solutions%2C%20I%20would%20like%20to%20discuss%20a%20project."
+                    href="https://wa.me/918077313241?text=Hello%20Nexa%20Solutions%2C%20I%20would%20like%20to%20discuss%20a%20project."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between p-3.5 rounded-[5px] bg-emerald-50/70 border border-emerald-200/80 hover:border-emerald-300 hover:bg-emerald-50 transition-all group"

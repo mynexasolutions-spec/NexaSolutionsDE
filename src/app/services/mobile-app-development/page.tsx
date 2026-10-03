@@ -1235,7 +1235,7 @@ export default function MobileAppPage() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
             <a
-              href="https://wa.me/4915213233841"
+              href="https://wa.me/918077313241"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-sm sm:text-base font-bold transition-all duration-200 border border-white/15 cursor-pointer"

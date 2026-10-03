@@ -175,10 +175,10 @@ export default function Footer() {
 
             <ul className="space-y-3.5 text-xs sm:text-[13px] text-slate-600 font-medium">
               {[
-                { label: t("Startseite", "Home"), href: "/#home" },
+                { label: t("Startseite", "Home"), href: "/" },
                 { label: t("Über uns", "About Us"), href: "/#process" },
                 { label: t("Leistungen", "Services"), href: "/#services" },
-                { label: t("Unsere Arbeit", "Our Work"), href: "/#work" },
+                { label: t("Unsere Arbeit", "Our Work"), href: "/projects" },
                 { label: t("Partner", "Partners"), href: "/#partners" },
                 { label: "Blog", href: "/blog" },
                 { label: t("Kontakt", "Contact"), href: "/contact" },

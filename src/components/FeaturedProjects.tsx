@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ShoppingCart, BarChart3, GraduationCap } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -136,13 +137,13 @@ export default function FeaturedProjects({
 
           {/* View All Projects Pill Button */}
           <div className="flex justify-center sm:justify-end shrink-0">
-            <button
-              onClick={onViewAllProjects}
+            <Link
+              href="/projects"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-blue-500 text-blue-600 hover:bg-blue-50 hover:border-blue-600 text-xs sm:text-sm font-semibold shadow-xs transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer group"
             >
               <span>{t("Alle Projekte ansehen", "View All Projects")}</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </div>
         </div>
 

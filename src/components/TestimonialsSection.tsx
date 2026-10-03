@@ -19,8 +19,9 @@ export default function TestimonialsSection() {
       ),
       name: "Ahmed Khan",
       role: "Aura Masale",
-      avatar: "/images/avatar-crop.png",
+      avatar: null,
       initials: "AK",
+      initialsBg: "bg-amber-100 text-amber-800 border-amber-200",
       accentGlow: "from-orange-100/40 via-amber-50/20 to-transparent",
       rating: 5,
     },
@@ -189,6 +190,9 @@ export default function TestimonialsSection() {
             <div className="bg-white/95 backdrop-blur-md rounded-[5px] border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.04)] px-3.5 py-2 inline-flex items-center gap-3">
               {/* 3 Overlapping Avatars */}
               <div className="flex items-center -space-x-2">
+                <div className="relative w-7 h-7 rounded-full overflow-hidden border-2 border-white bg-amber-100 flex items-center justify-center text-[10px] font-bold text-amber-800 shadow-2xs">
+                  AK
+                </div>
                 <div className="relative w-7 h-7 rounded-full overflow-hidden border-2 border-white bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-700 shadow-2xs">
                   PS
                 </div>

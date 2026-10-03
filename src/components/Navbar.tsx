@@ -78,6 +78,11 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
         return;
       }
 
+      if (pathname.startsWith("/projects") || pathname.startsWith("/our-work")) {
+        setActiveNav("work");
+        return;
+      }
+
       if (pathname.startsWith("/contact")) {
         setActiveNav("");
         return;
@@ -135,7 +140,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
     {
       id: "home",
       name: t("Startseite", "Home"),
-      href: isHomePage ? "#home" : "/#home",
+      href: isHomePage ? "/" : "/",
     },
     {
       id: "services",
@@ -146,7 +151,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
     {
       id: "work",
       name: t("Projekte", "Projects"),
-      href: isHomePage ? "#work" : "/#work",
+      href: "/projects",
     },
     {
       id: "blog",
@@ -238,25 +243,25 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
       className="fixed top-0 inset-x-0 z-50 pointer-events-none w-full"
     >
       {/* Full-width navbar-bg: blur from top down to below the header */}
-      <div className="navbar-bg absolute top-0 inset-x-0 w-full h-[76px] sm:h-[86px] md:h-[92px] bg-white/75 backdrop-blur-md shadow-xs transition-all duration-300 -z-10" />
+      <div className="navbar-bg absolute top-0 inset-x-0 w-full h-[76px] sm:h-[86px] md:h-[92px] bg-white/80 backdrop-blur-md shadow-xs transition-all duration-300 -z-10" />
 
       {/* Centered container for max-w-[1460px] floating pill */}
-      <div className="w-full px-2.5 sm:px-5 lg:px-7 pt-2.5 sm:pt-3.5 md:pt-4 flex justify-center items-center">
+      <div className="w-full px-2.5 sm:px-5 lg:px-6 xl:px-8 pt-2.5 sm:pt-3.5 md:pt-4 flex justify-center items-center">
         <div
           className={`pointer-events-auto mx-auto w-full max-w-[1460px] rounded-full transition-all duration-300 ${
             isScrolled
-              ? "bg-white shadow-[0_14px_40px_-8px_rgba(15,23,42,0.12),0_4px_12px_-2px_rgba(15,23,42,0.06)] border border-slate-200/90 py-2 sm:py-2.5 px-4 sm:px-6"
-              : "bg-white/95 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.06),0_1px_3px_rgb(0,0,0,0.04)] border border-slate-200/80 py-2.5 sm:py-3.5 px-4 sm:px-6 lg:px-7"
+              ? "bg-white shadow-[0_14px_40px_-8px_rgba(15,23,42,0.14),0_4px_12px_-2px_rgba(15,23,42,0.06)] border border-slate-200/95 py-2 sm:py-2.5 px-3.5 sm:px-5 lg:px-6"
+              : "bg-white/98 backdrop-blur-xl shadow-[0_10px_35px_-4px_rgba(15,23,42,0.10),0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200/90 py-2.5 sm:py-3.5 px-4 sm:px-5 lg:px-6 xl:px-7"
           }`}
         >
-          <div className="flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center justify-between gap-2 sm:gap-3 xl:gap-4">
             {/* Left: Brand Logo */}
             <div className="shrink-0 flex items-center">
-              <BrandLogo href={isHomePage ? "#home" : "/#home"} />
+              <BrandLogo href={isHomePage ? "/" : "/"} />
             </div>
 
             {/* Center: Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-2">
+            <nav className="hidden lg:flex items-center justify-center gap-0.5 xl:gap-2">
               {navLinks.map((link) => {
                 const isActive = activeNav === link.id;
 
@@ -271,16 +276,16 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                     >
                       <button
                         onClick={() => setServicesDropdown((prev) => !prev)}
-                        className={`group relative inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-[13.5px] xl:text-[14px] font-medium transition-all duration-200 cursor-pointer ${
+                        className={`group relative inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-[14px] xl:text-[15px] font-semibold tracking-[-0.01em] transition-all duration-200 cursor-pointer ${
                           isActive
-                            ? "text-[#EA580C] font-semibold bg-orange-50/90"
-                            : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
+                            ? "text-[#EA580C] font-bold bg-orange-50/95 ring-0.5 ring-orange-500/20"
+                            : "text-slate-800 hover:text-[#EA580C] hover:bg-orange-50/60"
                         }`}
                       >
                         {isActive && (
                           <motion.span
                             layoutId="activeNavBackground"
-                            className="absolute inset-0 rounded-full bg-orange-50/90 -z-10"
+                            className="absolute inset-0 rounded-full bg-orange-50/95 ring-1 ring-orange-500/20 -z-10"
                             transition={{
                               type: "spring",
                               stiffness: 380,
@@ -290,15 +295,15 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                         )}
                         <span>{link.name}</span>
                         <ChevronDown
-                          className={`w-3.5 h-3.5 text-slate-400 group-hover:text-slate-700 transition-transform duration-200 ${
-                            servicesDropdown ? "rotate-180" : ""
+                          className={`w-3.5 h-3.5 xl:w-4 xl:h-4 text-slate-500 group-hover:text-[#EA580C] transition-all duration-200 stroke-[2.2] ${
+                            servicesDropdown ? "rotate-180 text-[#EA580C]" : ""
                           }`}
                         />
                         {/* Dot underneath active pill */}
                         {isActive && (
                           <motion.span
                             layoutId="activeNavDot"
-                            className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#EA580C] shadow-[0_0_6px_rgba(234,88,12,0.6)]"
+                            className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#EA580C] shadow-[0_0_8px_rgba(234,88,12,0.8)]"
                             transition={{
                               type: "spring",
                               stiffness: 380,
@@ -316,9 +321,9 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 8, scale: 0.96 }}
                             transition={{ duration: 0.18, ease: "easeOut" }}
-                            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-96 rounded-2xl bg-white border border-slate-200/90 shadow-[0_20px_45px_-10px_rgba(15,23,42,0.18)] p-2.5 z-50 backdrop-blur-xl"
+                            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-96 rounded-2xl bg-white border border-slate-200 shadow-[0_20px_45px_-10px_rgba(15,23,42,0.2)] p-2.5 z-50 backdrop-blur-xl"
                           >
-                            <div className="text-[11px] font-bold text-slate-400 tracking-wider uppercase px-3 py-1.5">
+                            <div className="text-[11px] font-bold text-slate-500 tracking-wider uppercase px-3 py-1.5">
                               {t(
                                 "Unsere Kernkompetenzen",
                                 "Our Core Services",
@@ -332,7 +337,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                                     key={service.href}
                                     href={service.href}
                                     onClick={() => setServicesDropdown(false)}
-                                    className="group flex items-start gap-3.5 p-3 rounded-xl hover:bg-slate-50 transition-all duration-200"
+                                    className="group flex items-start gap-3.5 p-3 rounded-xl hover:bg-orange-50/50 transition-all duration-200"
                                   >
                                     <div
                                       className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${service.accent} transition-transform duration-200 group-hover:scale-105`}
@@ -341,14 +346,14 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                                     </div>
                                     <div className="flex-1 min-w-0">
                                       <div className="flex items-center gap-2">
-                                        <span className="text-[13.5px] font-semibold text-slate-900 group-hover:text-orange-600 transition-colors">
+                                        <span className="text-[14px] font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
                                           {service.title}
                                         </span>
-                                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-orange-100/70 text-orange-700">
+                                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-orange-100 text-orange-700">
                                           {service.badge}
                                         </span>
                                       </div>
-                                      <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">
+                                      <p className="text-xs text-slate-600 line-clamp-1 mt-0.5 font-medium">
                                         {service.desc}
                                       </p>
                                     </div>
@@ -358,7 +363,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                             </div>
 
                             <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between px-3 py-1 text-xs">
-                              <span className="text-slate-400 font-medium">
+                              <span className="text-slate-500 font-semibold">
                                 {t(
                                   "Brauchen Sie eine Beratung?",
                                   "Need custom advice?",
@@ -385,16 +390,16 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                     key={link.id}
                     href={link.href}
                     onClick={() => handleLinkClick(link.id, link.href)}
-                    className={`relative inline-flex items-center px-3.5 py-1.5 rounded-full text-[13.5px] xl:text-[14px] font-medium transition-all duration-200 ${
+                    className={`relative inline-flex items-center px-3 xl:px-4 py-1.5 rounded-full text-[14px] xl:text-[15px] font-semibold tracking-[-0.01em] transition-all duration-200 ${
                       isActive
-                        ? "text-[#EA580C] font-semibold bg-orange-50/90"
-                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
+                        ? "text-[#EA580C] font-bold bg-orange-50/95 ring-1 ring-orange-500/20"
+                        : "text-slate-800 hover:text-[#EA580C] hover:bg-orange-50/60"
                     }`}
                   >
                     {isActive && (
                       <motion.span
                         layoutId="activeNavBackground"
-                        className="absolute inset-0 rounded-full bg-orange-50/90 -z-10"
+                        className="absolute inset-0 rounded-full bg-orange-50/95 ring-1 ring-orange-500/20 -z-10"
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -407,7 +412,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                     {isActive && (
                       <motion.span
                         layoutId="activeNavDot"
-                        className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#EA580C] shadow-[0_0_6px_rgba(234,88,12,0.6)]"
+                        className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#EA580C] shadow-[0_0_8px_rgba(234,88,12,0.8)]"
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -426,15 +431,15 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
               <div ref={langRef} className="relative">
                 <button
                   onClick={() => setLangDropdownOpen((prev) => !prev)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-colors cursor-pointer select-none border border-slate-200/80 bg-slate-50/60"
+                  className="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 xl:py-2 rounded-full hover:bg-slate-100 text-slate-800 text-xs xl:text-[13px] font-bold transition-all duration-200 cursor-pointer select-none border border-slate-200 bg-slate-50/90 shadow-2xs"
                   aria-label="Select language"
                 >
                   <CurrentFlag className="w-5 h-3.5" />
-                  <span className="font-bold text-slate-800 tracking-tight">
+                  <span className="font-extrabold text-slate-900 tracking-tight">
                     {currentLangObj.display}
                   </span>
                   <ChevronDown
-                    className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${
+                    className={`w-3.5 h-3.5 text-slate-500 transition-transform duration-200 ${
                       langDropdownOpen ? "rotate-180" : ""
                     }`}
                   />
@@ -447,7 +452,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.95 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute top-full right-0 mt-2 w-40 rounded-2xl bg-white border border-slate-200/90 shadow-xl p-1.5 z-50 backdrop-blur-xl"
+                      className="absolute top-full right-0 mt-2 w-40 rounded-2xl bg-white border border-slate-200 shadow-xl p-1.5 z-50 backdrop-blur-xl"
                     >
                       {languages.map((item) => {
                         const ItemFlag = item.Flag;
@@ -458,17 +463,17 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                               setLang(item.code);
                               setLangDropdownOpen(false);
                             }}
-                            className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
+                            className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
                               lang === item.code
-                                ? "bg-orange-50 text-orange-600 font-bold"
-                                : "text-slate-700 hover:bg-slate-50"
+                                ? "bg-orange-50 text-orange-600 font-extrabold"
+                                : "text-slate-800 hover:bg-slate-100"
                             }`}
                           >
                             <div className="flex items-center gap-2">
                               <ItemFlag className="w-5 h-3.5" />
                               <span>{item.label}</span>
                             </div>
-                            <span className="text-[11px] font-mono text-slate-400">
+                            <span className="text-[11px] font-mono text-slate-500 font-semibold">
                               {item.display}
                             </span>
                           </button>
@@ -482,14 +487,14 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
               {/* CTA Consultation Button with Right Circle Arrow */}
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center pl-5 pr-1.5 py-1.5 sm:py-1.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white shadow-[0_4px_16px_rgba(234,88,12,0.32)] hover:shadow-[0_6px_22px_rgba(234,88,12,0.45)] transition-all duration-300 cursor-pointer select-none"
+                className="group relative inline-flex items-center pl-4 pr-1.5 xl:pl-5 xl:pr-1.5 py-1.5 xl:py-2 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white shadow-[0_4px_16px_rgba(234,88,12,0.32)] hover:shadow-[0_6px_22px_rgba(234,88,12,0.45)] transition-all duration-300 cursor-pointer select-none"
               >
-                <span className="text-[13px] xl:text-[13.5px] font-bold tracking-tight">
+                <span className="text-[12.5px] xl:text-[14px] font-bold tracking-tight whitespace-nowrap">
                   {t("Kostenlose Beratung", "Get a Free Consultation")}
                 </span>
                 {/* White Circle Disc with Orange Arrow */}
-                <div className="w-7 h-7 rounded-full bg-white text-[#EA580C] flex items-center justify-center ml-2.5 shrink-0 shadow-xs group-hover:translate-x-0.5 transition-transform duration-200">
-                  <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                <div className="w-6 h-6 xl:w-7 xl:h-7 rounded-full bg-white text-[#EA580C] flex items-center justify-center ml-2 xl:ml-2.5 shrink-0 shadow-xs group-hover:translate-x-0.5 transition-transform duration-200">
+                  <ArrowRight className="w-3 xl:w-3.5 h-3 xl:h-3.5 stroke-[2.5]" />
                 </div>
               </Link>
             </div>

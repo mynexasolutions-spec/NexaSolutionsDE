@@ -12,7 +12,7 @@ interface BrandLogoProps {
 export default function BrandLogo({
   className = "",
   isDark = false,
-  href = "/#home",
+  href = "/",
 }: BrandLogoProps) {
   return (
     <Link

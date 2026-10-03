@@ -15,6 +15,7 @@ export interface BlogSection {
 export interface BlogPost {
   slug: string;
   titleDe: string;
+  seoTitleDe: string;
   titleEn: string;
   excerptDe: string;
   excerptEn: string;
@@ -53,6 +54,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "ki-automatisierung-unternehmen-2026",
     titleDe: "Wie deutsche Unternehmen mit n8n & KI-Agenten 15+ Stunden pro Woche sparen",
+    seoTitleDe: "KI-Agenten & n8n: 15+ Stunden pro Woche sparen",
     titleEn: "How European Businesses Save 15+ Hours Weekly with n8n & Autonomous AI Agents",
     excerptDe:
       "Erfahren Sie, wie mittelständische Unternehmen repetitive Workflows wie Rechnungsverarbeitung, CRM-Pflege und Kundenanfragen mit intelligenten n8n-Pipelines DSGVO-konform automatisieren.",
@@ -181,6 +183,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "nextjs-vs-wordpress-2026",
     titleDe: "Next.js vs. WordPress 2026: Warum Ladezeiten direkt über Ihren Unternehmensumsatz entscheiden",
+    seoTitleDe: "Next.js vs. WordPress 2026: Ladezeit & Umsatz",
     titleEn: "Next.js vs. WordPress in 2026: Why Website Speed Directly Drives Revenue",
     excerptDe:
       "Warum moderne Tech-Unternehmen veraltete CMS-Systeme hinter sich lassen: Ein detaillierter Blick auf Core Web Vitals, Google SEO-Rankings, Sicherheit und Konversionsraten.",
@@ -278,6 +281,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "react-native-cross-platform-apps",
     titleDe: "Native iOS & Android Apps mit React Native: 50% geringere Kosten ohne Performance-Einbußen",
+    seoTitleDe: "React Native: iOS & Android mit einem Code",
     titleEn: "Cross-Platform Mobile Apps with React Native: 50% Lower Cost, Zero Compromise",
     excerptDe:
       "Warum Unternehmen heute nicht mehr zwei separate Codebases für Apple iOS und Google Android pflegen müssen: Architektur, Code-Sharing und 60 FPS Performance.",
@@ -365,6 +369,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "dsgvo-konforme-ki-infrastruktur",
     titleDe: "DSGVO-konforme KI & Cloud-Architektur: So nutzen Sie LLMs rechtssicher in der EU",
+    seoTitleDe: "DSGVO-konforme KI & Cloud-Architektur",
     titleEn: "GDPR-Compliant AI & Cloud: How to Safely Deploy LLMs in the EU",
     excerptDe:
       "Praxisleitfaden für Unternehmen: Wie Sie moderne Sprachmodelle und Cloud-Dienste nutzen, ohne gegen europäische Datenschutzgesetze und den neuen EU AI Act zu verstoßen.",
@@ -438,6 +443,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "mvp-development-strategy-startups",
     titleDe: "Vom Konzept zum validierten MVP in 4 Wochen: Der Leitfaden für B2B-Tech-Gründer",
+    seoTitleDe: "MVP in 4 Wochen: Leitfaden für Gründer",
     titleEn: "From Concept to Production MVP in 4 Weeks: A Practical Founder's Guide",
     excerptDe:
       "Wie Sie mit einem pragmatischen Tech-Stack und klarem Scope-Management Ihr Softwareprodukt in Rekordzeit an echte zahlende Kunden bringen.",
@@ -513,6 +519,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "crm-lead-automation-n8n",
     titleDe: "Automatisierte Lead-Qualifizierung: Von der Anfrage zum Kalendertermin in unter 60 Sekunden",
+    seoTitleDe: "Lead-Qualifizierung automatisieren mit n8n",
     titleEn: "Automated Lead Qualification: From Form Submit to Booked Call in under 60 Seconds",
     excerptDe:
       "Wie moderne B2B-Unternehmen manuelle Vertriebsverzögerungen eliminieren und ihre Abschlussquote durch automatisierte Datenanreicherung und KI-Scoring verdoppeln.",

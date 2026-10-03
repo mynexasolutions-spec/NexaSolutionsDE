@@ -646,7 +646,7 @@ export default function ServicesSection({
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal max-w-2xl text-center">
+          <p className="text-[17px] sm:text-[19px] text-slate-600 leading-relaxed font-normal max-w-2xl text-center">
             {t(
               "Von der Idee bis zur Umsetzung bieten wir End-to-End-Lösungen für Aufbau, Automatisierung und Skalierung Ihres Unternehmens.",
               "From idea to implementation, we provide end-to-end solutions to help you build, automate and scale your business."
@@ -697,7 +697,7 @@ export default function ServicesSection({
                       {service.points.map((point, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center gap-2 text-sm sm:text-base text-slate-700 font-medium"
+                          className="flex items-center gap-2 text-base sm:text-lg text-slate-700 font-medium"
                         >
                           <div
                             className={`w-3.5 h-3.5 rounded-full ${service.checkBg} text-white flex items-center justify-center shrink-0 shadow-2xs`}
@@ -751,7 +751,7 @@ export default function ServicesSection({
               </span>
             </h3>
 
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal max-w-2xl text-center">
+            <p className="text-[17px] sm:text-[19px] text-slate-600 leading-relaxed font-normal max-w-2xl text-center">
               {t(
                 "Von Website-Ideen bis hin zu vollständigen digitalen Systemen bieten wir End-to-End-Lösungen, die genau auf Ihre Geschäftsanforderungen zugeschnitten sind.",
                 "From website ideas to full-scale digital systems, we provide end-to-end solutions tailored to your business needs."

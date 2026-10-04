@@ -22,6 +22,20 @@ export interface QueryRecord {
   updated_at: string;
 }
 
+export interface ConsultationRecord {
+  id: string;
+  name: string;
+  email: string;
+  company?: string | null;
+  call_type?: string | null;
+  call_duration?: string | null;
+  date_slot?: string | null;
+  time_slot?: string | null;
+  status: "pending" | "in_progress" | "resolved";
+  created_at: string;
+  updated_at: string;
+}
+
 export interface BlogRecord {
   id: string;
   slug: string;
@@ -52,6 +66,7 @@ export interface BlogRecord {
 interface LocalDB {
   queries: QueryRecord[];
   blogs: BlogRecord[];
+  consultations?: ConsultationRecord[];
 }
 
 const DATA_DIR = path.join(process.cwd(), ".data");
@@ -128,24 +143,30 @@ export async function checkSupabaseStatus() {
     const supabase = getSupabaseAdmin();
     const { error: qErr } = await supabase.from("queries").select("id").limit(1);
     const { error: bErr } = await supabase.from("blogs").select("id").limit(1);
+    const { error: cErr } = await supabase.from("consultations").select("id").limit(1);
 
     const queriesReady = !qErr;
     const blogsReady = !bErr;
+    const consultationsReady = !cErr;
 
     return {
       connected: true,
       queriesReady,
       blogsReady,
+      consultationsReady,
       queriesError: qErr ? qErr.message : null,
       blogsError: bErr ? bErr.message : null,
+      consultationsError: cErr ? cErr.message : null,
     };
   } catch (err: any) {
     return {
       connected: false,
       queriesReady: false,
       blogsReady: false,
+      consultationsReady: false,
       queriesError: err?.message || "Failed to connect to Supabase",
       blogsError: err?.message || "Failed to connect to Supabase",
+      consultationsError: err?.message || "Failed to connect to Supabase",
     };
   }
 }
@@ -163,36 +184,92 @@ export async function getQueriesList(params?: {
 
   try {
     const supabase = getSupabaseAdmin();
-    let query = supabase.from("queries").select("*").order("created_at", { ascending: false });
 
-    if (params?.status && params.status !== "all") {
-      query = query.eq("status", params.status);
-    }
-    if (params?.type && params.type !== "all") {
-      query = query.eq("type", params.type);
-    }
+    const fetchQueries = (params?.type && (params.type === "consultation" || params.type === "contact"))
+      ? Promise.resolve({ data: [] as any[], error: null })
+      : supabase.from("queries").select("*").order("created_at", { ascending: false });
 
-    const { data, error } = await query;
+    const fetchConsultations = (params?.type && params.type !== "consultation" && params.type !== "all")
+      ? Promise.resolve({ data: [] as any[], error: null })
+      : supabase.from("consultations").select("*").order("created_at", { ascending: false });
 
-    if (!error && data) {
-      queries = data as QueryRecord[];
+    const fetchContacts = (params?.type && params.type !== "contact" && params.type !== "all")
+      ? Promise.resolve({ data: [] as any[], error: null })
+      : supabase.from("contacts").select("*").order("created_at", { ascending: false });
+
+    const [qRes, cRes, ctRes] = await Promise.all([fetchQueries, fetchConsultations, fetchContacts]);
+
+    let qData: QueryRecord[] = [];
+    if (!qRes.error && qRes.data) {
+      qData = qRes.data as QueryRecord[];
       isFromSupabase = true;
-    } else {
-      throw error;
     }
+
+    let cData: QueryRecord[] = [];
+    if (!cRes.error && cRes.data) {
+      cData = (cRes.data as any[]).map((c) => ({
+        id: c.id,
+        type: "consultation" as const,
+        name: c.name,
+        email: c.email,
+        company: c.company || null,
+        topic: null,
+        call_type: c.call_type || null,
+        date_slot: c.date_slot || null,
+        time_slot: c.time_slot || null,
+        message: "",
+        status: c.status || "pending",
+        created_at: c.created_at,
+        updated_at: c.updated_at,
+      }));
+      isFromSupabase = true;
+    }
+
+    let ctData: QueryRecord[] = [];
+    if (!ctRes.error && ctRes.data) {
+      ctData = (ctRes.data as any[]).map((ct) => ({
+        id: ct.id,
+        type: "contact" as const,
+        name: ct.name,
+        email: ct.email,
+        phone: ct.phone || null,
+        company: ct.company || null,
+        service: ct.service || null,
+        budget: null,
+        topic: null,
+        call_type: null,
+        date_slot: null,
+        time_slot: null,
+        message: ct.message || "",
+        status: ct.status || "pending",
+        created_at: ct.created_at,
+        updated_at: ct.updated_at,
+      }));
+      isFromSupabase = true;
+    }
+
+    if (qRes.error && cRes.error && ctRes.error) {
+      throw new Error(qRes.error.message || cRes.error.message || ctRes.error.message || "Failed to query Supabase");
+    }
+
+    queries = [...qData, ...cData, ...ctData].sort(
+      (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    );
   } catch (err) {
-    // Fallback to local storage
+    // Fallback to local storage only if Supabase call failed
     const local = ensureLocalDB();
     queries = [...local.queries].sort(
       (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
     );
+  }
 
-    if (params?.status && params.status !== "all") {
-      queries = queries.filter((q) => q.status === params.status);
-    }
-    if (params?.type && params.type !== "all") {
-      queries = queries.filter((q) => q.type === params.type);
-    }
+  // Apply status filter
+  if (params?.status && params.status !== "all") {
+    queries = queries.filter((q) => q.status === params.status);
+  }
+  // Apply type filter
+  if (params?.type && params.type !== "all") {
+    queries = queries.filter((q) => q.type === params.type);
   }
 
   // Filter by search string if given
@@ -210,12 +287,20 @@ export async function getQueriesList(params?: {
   }
 
   // Compute stats across all queries (unfiltered)
-  let allForStats: QueryRecord[] = [];
+  let allForStats: { status: string }[] = [];
   try {
     const supabase = getSupabaseAdmin();
-    const { data } = await supabase.from("queries").select("status");
-    if (data) {
-      allForStats = data as any;
+    const [qStats, cStats, ctStats] = await Promise.all([
+      supabase.from("queries").select("status"),
+      supabase.from("consultations").select("status"),
+      supabase.from("contacts").select("status"),
+    ]);
+    if (qStats.data || cStats.data || ctStats.data) {
+      allForStats = [
+        ...((qStats.data || []) as any[]),
+        ...((cStats.data || []) as any[]),
+        ...((ctStats.data || []) as any[]),
+      ];
     } else {
       allForStats = ensureLocalDB().queries;
     }
@@ -274,6 +359,20 @@ export async function createQueryRecord(item: {
   // Attempt insert into Supabase
   try {
     const supabase = getSupabaseAdmin();
+    
+    // Preserve extra form metadata into message so nothing is lost
+    let fullMessage = newRecord.message;
+    const metadataParts: string[] = [];
+    if (newRecord.phone) metadataParts.push(`Phone: ${newRecord.phone}`);
+    if (newRecord.company) metadataParts.push(`Company: ${newRecord.company}`);
+    if (newRecord.call_type) metadataParts.push(`Call: ${newRecord.call_type}`);
+    if (newRecord.date_slot || newRecord.time_slot) {
+      metadataParts.push(`Slot: ${newRecord.date_slot || ""} ${newRecord.time_slot || ""}`.trim());
+    }
+    if (metadataParts.length > 0 && !fullMessage.includes(metadataParts[0])) {
+      fullMessage = `[${metadataParts.join(" | ")}]\n\n${fullMessage}`;
+    }
+
     const { data, error } = await supabase
       .from("queries")
       .insert([
@@ -281,15 +380,9 @@ export async function createQueryRecord(item: {
           type: newRecord.type,
           name: newRecord.name,
           email: newRecord.email,
-          phone: newRecord.phone,
-          company: newRecord.company,
           service: newRecord.service,
           budget: newRecord.budget,
-          topic: newRecord.topic,
-          call_type: newRecord.call_type,
-          date_slot: newRecord.date_slot,
-          time_slot: newRecord.time_slot,
-          message: newRecord.message,
+          message: fullMessage,
           status: newRecord.status,
           created_at: newRecord.created_at,
           updated_at: newRecord.updated_at,
@@ -312,6 +405,147 @@ export async function createQueryRecord(item: {
   return { success: true, record: newRecord, supabase: false };
 }
 
+export async function createConsultationRecord(item: {
+  name: string;
+  email: string;
+  company?: string | null;
+  call_type?: string | null;
+  call_duration?: string | null;
+  date_slot?: string | null;
+  time_slot?: string | null;
+}) {
+  const newRecord: ConsultationRecord = {
+    id: `cs_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`,
+    name: item.name,
+    email: item.email,
+    company: item.company || null,
+    call_type: item.call_type || null,
+    call_duration: item.call_duration || null,
+    date_slot: item.date_slot || null,
+    time_slot: item.time_slot || null,
+    status: "pending",
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+
+  // Local backup
+  const local = ensureLocalDB();
+  local.queries.unshift({
+    id: newRecord.id,
+    type: "consultation",
+    name: newRecord.name,
+    email: newRecord.email,
+    company: newRecord.company,
+    call_type: newRecord.call_type,
+    date_slot: newRecord.date_slot,
+    time_slot: newRecord.time_slot,
+    message: "",
+    status: "pending",
+    created_at: newRecord.created_at,
+    updated_at: newRecord.updated_at,
+  });
+  saveLocalDB(local);
+
+  // Attempt insert into Supabase consultations table
+  try {
+    const supabase = getSupabaseAdmin();
+    const { data, error } = await supabase
+      .from("consultations")
+      .insert([
+        {
+          name: newRecord.name,
+          email: newRecord.email,
+          company: newRecord.company,
+          call_type: newRecord.call_type,
+          call_duration: newRecord.call_duration,
+          date_slot: newRecord.date_slot,
+          time_slot: newRecord.time_slot,
+          status: newRecord.status,
+          created_at: newRecord.created_at,
+          updated_at: newRecord.updated_at,
+        },
+      ])
+      .select()
+      .single();
+
+    if (!error && data) {
+      newRecord.id = data.id;
+      local.queries[0].id = data.id;
+      saveLocalDB(local);
+      return { success: true, record: data, supabase: true };
+    } else if (error) {
+      console.warn("Supabase consultations insert error:", error);
+    }
+  } catch (err) {
+    console.warn("Supabase consultations insert failed, stored in local cache:", err);
+  }
+
+  return { success: true, record: newRecord, supabase: false };
+}
+
+export async function createContactRecord(item: {
+  name: string;
+  email: string;
+  phone?: string | null;
+  company?: string | null;
+  service?: string | null;
+  message: string;
+}) {
+  const newRecord: QueryRecord = {
+    id: `ct_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`,
+    type: "contact",
+    name: item.name,
+    email: item.email,
+    phone: item.phone || null,
+    company: item.company || null,
+    service: item.service || null,
+    message: item.message,
+    status: "pending",
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+
+  // Local backup
+  const local = ensureLocalDB();
+  local.queries.unshift(newRecord);
+  saveLocalDB(local);
+
+  // Attempt insert into Supabase contacts table
+  try {
+    const supabase = getSupabaseAdmin();
+    const { data, error } = await supabase
+      .from("contacts")
+      .insert([
+        {
+          name: newRecord.name,
+          email: newRecord.email,
+          phone: newRecord.phone,
+          company: newRecord.company,
+          service: newRecord.service,
+          message: newRecord.message,
+          status: newRecord.status,
+          created_at: newRecord.created_at,
+          updated_at: newRecord.updated_at,
+        },
+      ])
+      .select()
+      .single();
+
+    if (!error && data) {
+      newRecord.id = data.id;
+      local.queries[0].id = data.id;
+      saveLocalDB(local);
+      return { success: true, record: data, supabase: true };
+    } else if (error) {
+      console.warn("Supabase contacts insert error:", error);
+    }
+  } catch (err) {
+    console.warn("Supabase contacts insert failed, stored in local cache:", err);
+  }
+
+  return { success: true, record: newRecord, supabase: false };
+}
+
 export async function updateQueryStatusRecord(id: string, status: "pending" | "in_progress" | "resolved") {
   const local = ensureLocalDB();
   const idx = local.queries.findIndex((q) => q.id === id);
@@ -323,15 +557,37 @@ export async function updateQueryStatusRecord(id: string, status: "pending" | "i
 
   try {
     const supabase = getSupabaseAdmin();
-    const { data, error } = await supabase
+    // Try updating queries
+    const { data: qData, error: qErr } = await supabase
       .from("queries")
       .update({ status, updated_at: new Date().toISOString() })
       .eq("id", id)
-      .select()
-      .single();
+      .select();
 
-    if (!error) {
-      return { success: true, data, supabase: true };
+    if (!qErr && qData && qData.length > 0) {
+      return { success: true, data: qData[0], supabase: true };
+    }
+
+    // Try updating consultations
+    const { data: cData, error: cErr } = await supabase
+      .from("consultations")
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq("id", id)
+      .select();
+
+    if (!cErr && cData && cData.length > 0) {
+      return { success: true, data: cData[0], supabase: true };
+    }
+
+    // Try updating contacts
+    const { data: ctData, error: ctErr } = await supabase
+      .from("contacts")
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq("id", id)
+      .select();
+
+    if (!ctErr && ctData && ctData.length > 0) {
+      return { success: true, data: ctData[0], supabase: true };
     }
   } catch (err) {
     console.warn("Supabase query update error:", err);
@@ -347,10 +603,12 @@ export async function deleteQueryRecord(id: string) {
 
   try {
     const supabase = getSupabaseAdmin();
-    const { error } = await supabase.from("queries").delete().eq("id", id);
-    if (!error) {
-      return { success: true, supabase: true };
-    }
+    await Promise.allSettled([
+      supabase.from("queries").delete().eq("id", id),
+      supabase.from("consultations").delete().eq("id", id),
+      supabase.from("contacts").delete().eq("id", id),
+    ]);
+    return { success: true, supabase: true };
   } catch (err) {
     console.warn("Supabase query delete error:", err);
   }

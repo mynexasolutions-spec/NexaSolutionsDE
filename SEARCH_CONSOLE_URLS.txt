@@ -1,0 +1,64 @@
+================================================================================
+GOOGLE SEARCH CONSOLE - URL INDEXING LIST
+Domain: https://nexa-solutions.de
+Generated for: Nexa Solutions
+================================================================================
+
+--------------------------------------------------------------------------------
+1. SITEMAP SUBMISSION (Google Search Console -> "Sitemaps")
+--------------------------------------------------------------------------------
+sitemap.xml
+(Full URL: https://nexa-solutions.de/sitemap.xml)
+
+
+--------------------------------------------------------------------------------
+2. ALL ACTIVE URLS FOR MANUAL INDEXING (Copy & Paste into URL Inspection)
+--------------------------------------------------------------------------------
+
+--- TIER 1: HIGH PRIORITY (Core Business & Lead Pages) ---
+https://nexa-solutions.de/
+https://nexa-solutions.de/services/web-development
+https://nexa-solutions.de/services/mobile-app-development
+https://nexa-solutions.de/services/ai-automation
+https://nexa-solutions.de/contact
+
+--- TIER 2: PORTFOLIO & SOCIAL PROOF PAGES ---
+https://nexa-solutions.de/projects
+https://nexa-solutions.de/our-work
+https://nexa-solutions.de/blog
+
+--- TIER 3: BLOG ARTICLES (Organic SEO & Google Traffic) ---
+https://nexa-solutions.de/blog/ki-automatisierung-unternehmen-2026
+https://nexa-solutions.de/blog/nextjs-vs-wordpress-2026
+https://nexa-solutions.de/blog/react-native-cross-platform-apps
+https://nexa-solutions.de/blog/dsgvo-konforme-ki-infrastruktur
+https://nexa-solutions.de/blog/mvp-development-strategy-startups
+https://nexa-solutions.de/blog/crm-lead-automation-n8n
+
+
+--------------------------------------------------------------------------------
+3. RAW CLEAN LIST (One URL per line - Easy Copy/Paste)
+--------------------------------------------------------------------------------
+https://nexa-solutions.de/
+https://nexa-solutions.de/services/web-development
+https://nexa-solutions.de/services/mobile-app-development
+https://nexa-solutions.de/services/ai-automation
+https://nexa-solutions.de/projects
+https://nexa-solutions.de/our-work
+https://nexa-solutions.de/blog
+https://nexa-solutions.de/contact
+https://nexa-solutions.de/blog/ki-automatisierung-unternehmen-2026
+https://nexa-solutions.de/blog/nextjs-vs-wordpress-2026
+https://nexa-solutions.de/blog/react-native-cross-platform-apps
+https://nexa-solutions.de/blog/dsgvo-konforme-ki-infrastruktur
+https://nexa-solutions.de/blog/mvp-development-strategy-startups
+https://nexa-solutions.de/blog/crm-lead-automation-n8n
+
+
+--------------------------------------------------------------------------------
+4. DO NOT INDEX (Blocked in robots.txt)
+--------------------------------------------------------------------------------
+https://nexa-solutions.de/admin
+https://nexa-solutions.de/admin/*
+https://nexa-solutions.de/api/*
+================================================================================

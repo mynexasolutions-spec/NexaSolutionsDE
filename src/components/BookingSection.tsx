@@ -32,7 +32,6 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
     name: "",
     email: "",
     company: "",
-    topic: "",
   });
 
   // Call Types
@@ -73,7 +72,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
     setIsSubmitting(true);
     try {
       const selectedDayObj = days[selectedDay];
-      const dateStr = lang === "de" ? selectedDayObj.dateStr : selectedDayObj.enDateStr;
+      const dayOnly = (lang === "de" ? selectedDayObj.dateStr : selectedDayObj.enDateStr).split(",")[0].trim();
       const activeCallObj = callTypes.find((c) => c.id === selectedCallType) || callTypes[0];
 
       await fetch("/api/forms/consultation", {
@@ -83,10 +82,9 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
           name: formData.name,
           email: formData.email,
           company: formData.company,
-          topic: formData.topic,
           callType: activeCallObj.title,
           callDuration: activeCallObj.duration,
-          dateSlot: dateStr,
+          dateSlot: dayOnly,
           timeSlot: selectedTime,
         }),
       });
@@ -158,7 +156,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
               <button
                 onClick={() => {
                   setBookingSubmitted(false);
-                  setFormData({ name: "", email: "", company: "", topic: "" });
+                  setFormData({ name: "", email: "", company: "" });
                 }}
                 className="px-6 py-2.5 rounded-full bg-slate-900 hover:bg-orange-600 text-white text-xs font-semibold transition-colors cursor-pointer"
               >

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { GERMAN_COUNTRIES, SITE_METADATA } from "@/lib/metadata";
 
 export type Language = "de" | "en";
 
@@ -15,9 +16,6 @@ const LanguageContext = createContext<LanguageContextValue>({
   setLang: () => {},
   t: <T,>(de: T, _en: T): T => de,
 });
-
-// German-speaking regions (DACH region + neighboring German speaking territories)
-const GERMAN_COUNTRIES = new Set(["DE", "AT", "CH", "LI", "LU"]);
 
 const GERMAN_TIMEZONES = [
   "europe/berlin",
@@ -63,8 +61,14 @@ function detectLocalRegionLanguage(): Language {
   }
 }
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Language>("de");
+export function LanguageProvider({
+  children,
+  initialLang = "de",
+}: {
+  children: React.ReactNode;
+  initialLang?: Language;
+}) {
+  const [lang, setLangState] = useState<Language>(initialLang);
 
   useEffect(() => {
     try {
@@ -74,18 +78,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
       if (isManual && (stored === "de" || stored === "en")) {
         setLangState(stored);
-        if (typeof document !== "undefined") {
-          document.documentElement.lang = stored;
-        }
         return;
       }
 
       // 2. Instant client-side region detection (0ms delay)
       const instantDetected = detectLocalRegionLanguage();
       setLangState(instantDetected);
-      if (typeof document !== "undefined") {
-        document.documentElement.lang = instantDetected;
-      }
 
       // 3. Precise IP-based region check in background (validates physical country)
       let isSubscribed = true;
@@ -137,10 +135,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
             try {
               localStorage.setItem("site:lang", regionLang);
             } catch {}
-
-            if (typeof document !== "undefined") {
-              document.documentElement.lang = regionLang;
-            }
           }
         }
       };
@@ -154,10 +148,32 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     } catch {}
   }, []);
 
-  // Update HTML lang attribute whenever language changes
+  // Update HTML lang attribute, document title, and meta description whenever language changes
   useEffect(() => {
     if (typeof document !== "undefined") {
       document.documentElement.lang = lang;
+
+      const meta = SITE_METADATA[lang];
+      document.title = meta.title;
+
+      let descTag = document.querySelector('meta[name="description"]');
+      if (descTag) {
+        descTag.setAttribute("content", meta.description);
+      } else {
+        descTag = document.createElement("meta");
+        descTag.setAttribute("name", "description");
+        descTag.setAttribute("content", meta.description);
+        document.head.appendChild(descTag);
+      }
+
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute("content", meta.title);
+
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute("content", meta.description);
+
+      // Save cookie so subsequent server-rendered requests immediately know the region/language
+      document.cookie = `site_lang=${lang}; path=/; max-age=31536000; SameSite=Lax`;
     }
   }, [lang]);
 
@@ -167,6 +183,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem("site:lang", newLang);
       localStorage.setItem("site:lang_manual", "true");
+      document.cookie = `site_lang=${newLang}; path=/; max-age=31536000; SameSite=Lax`;
     } catch (_) {}
   };
 

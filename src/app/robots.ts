@@ -1,13 +1,18 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nexa-solutions.de";
+  const baseUrl = (
+    process.env.NEXT_PUBLIC_SITE_URL || "https://nexa-solutions.de"
+  ).replace(/\/$/, "");
 
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
+<<<<<<< HEAD
+        disallow: ["/admin", "/api/", "/private/"],
+=======
         disallow: [
           "/admin",
           "/admin/*",
@@ -25,9 +30,9 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           "/api/*",
         ],
+>>>>>>> main
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
   };
 }

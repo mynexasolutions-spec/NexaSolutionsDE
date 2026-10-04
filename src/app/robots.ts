@@ -10,7 +10,27 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+<<<<<<< HEAD
         disallow: ["/admin", "/api/", "/private/"],
+=======
+        disallow: [
+          "/admin",
+          "/admin/*",
+          "/api/",
+          "/api/*",
+          "/private/",
+        ],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: [
+          "/admin",
+          "/admin/*",
+          "/api/",
+          "/api/*",
+        ],
+>>>>>>> main
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

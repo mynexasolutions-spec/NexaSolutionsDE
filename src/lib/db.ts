@@ -668,7 +668,7 @@ export async function saveBlogRecord(blog: Partial<BlogRecord>) {
       date: blog.date || new Date().toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" }),
       read_time_de: blog.read_time_de || "5 Min. Lesezeit",
       read_time_en: blog.read_time_en || "5 min read",
-      cover_image: blog.cover_image || "/images/ai-robot.png",
+      cover_image: blog.cover_image || "",
       featured: !!blog.featured,
       views: blog.views || "1.0k",
       author: blog.author || {

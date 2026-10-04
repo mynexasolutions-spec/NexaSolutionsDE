@@ -186,6 +186,7 @@ export default function Footer() {
                 <li key={idx}>
                   <Link
                     href={link.href}
+                    prefetch={link.href.startsWith("/") && !link.href.includes("#") ? true : undefined}
                     className="group inline-flex items-center gap-1.5 hover:text-orange-600 transition-colors"
                   >
                     <span className="truncate group-hover:text-orange-500 font-bold text-[13.5px] xl:text-[14px] transition-colors">
@@ -251,6 +252,7 @@ export default function Footer() {
                   <li key={idx}>
                     <Link
                       href={svc.href}
+                      prefetch={svc.href.startsWith("/") && !svc.href.includes("#") ? true : undefined}
                       className="group flex items-center gap-3 hover:text-orange-600 transition-colors"
                     >
                       <div

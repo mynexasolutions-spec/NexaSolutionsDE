@@ -244,4 +244,77 @@ textarea {
   animation: pulse-glow 2.8s ease-in-out infinite;
 }
 
+/* Orbit Loader & Route Transition Keyframes */
+@keyframes spinOrbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulseBrand {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.4), 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px 6px rgba(234, 88, 12, 0.28), 0 14px 30px -4px rgba(15, 23, 42, 0.12);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceDot {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  40% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+.animate-spin-orbit {
+  animation: spinOrbit 3s linear infinite;
+}
+
+.animate-spin-reverse {
+  animation: spinReverse 4.5s linear infinite;
+}
+
+.animate-pulse-brand {
+  animation: pulseBrand 2.2s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-bounce-dot {
+  animation: bounceDot 1.4s ease-in-out infinite;
+}
+
+
 

@@ -34,6 +34,9 @@ import {
   LayoutDashboard,
   Filter,
   Eye,
+  EyeOff,
+  Lock,
+  ArrowRight,
 } from "lucide-react";
 import { QueryRecord, BlogRecord } from "@/lib/db";
 
@@ -72,10 +75,12 @@ export default function AdminDashboardPage() {
 
   // Auth State
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const [loginEmail, setLoginEmail] = useState("contact@nexa-solutions.de");
-  const [loginPassword, setLoginPassword] = useState("Nexa_Solution@2026Sadiq");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
 
   // Navigation & View
   const [activeTab, setActiveTab] = useState<"queries" | "blogs" | "consultations" | "contacts">("queries");
@@ -699,122 +704,261 @@ export default function AdminDashboardPage() {
   // Login Screen
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#0F172A] flex items-center justify-center p-4 selection:bg-orange-500 selection:text-white">
-        <div className="w-full max-w-[440px] bg-white rounded-3xl shadow-2xl p-7 sm:p-9 border border-slate-100">
-          <div className="flex justify-end mb-1">
-            {/* Language Switcher in Login Screen */}
-            <div className="inline-flex rounded-xl border border-slate-200 p-0.5 bg-slate-50 text-xs font-bold shadow-2xs">
-              <button
-                type="button"
-                onClick={() => changeAdminLang("en")}
-                className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                  adminLang === "en" ? "bg-white text-orange-600 shadow-2xs font-extrabold" : "text-slate-500 hover:text-slate-900"
-                }`}
-              >
-                EN
-              </button>
-              <button
-                type="button"
-                onClick={() => changeAdminLang("de")}
-                className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                  adminLang === "de" ? "bg-white text-orange-600 shadow-2xs font-extrabold" : "text-slate-500 hover:text-slate-900"
-                }`}
-              >
-                DE
-              </button>
-            </div>
-          </div>
-
-          <div className="text-center mb-7">
-            {/* Nexa_logo.svg in Login */}
-            <div className="flex items-center justify-center mb-4">
-              <img
-                src="/Nexa_logo.svg"
-                alt="Nexa Solutions"
-                className="h-10 sm:h-12 w-auto object-contain"
+      <div className="min-h-screen bg-[#FAFBFD] relative flex items-center justify-center p-4 sm:p-6 overflow-hidden selection:bg-orange-500 selection:text-white font-sans">
+        {/* ================= BACKGROUND ORGANIC CURVED RIBBONS ================= */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden select-none -z-10">
+          {/* Top-Right Warm Peach / Orange Curved Arcs (Exactly as in reference image) */}
+          <div className="absolute top-0 right-0 w-[75vw] sm:w-[55vw] max-w-[850px] aspect-square translate-x-[20%] -translate-y-[22%] pointer-events-none">
+            {/* Ambient soft glow */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-orange-200/35 via-amber-100/25 to-transparent blur-3xl" />
+            <svg
+              className="w-full h-full"
+              viewBox="0 0 800 800"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="peachGradientBand" x1="150" y1="0" x2="800" y2="650" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#FB923C" stopOpacity="0.22" />
+                  <stop offset="50%" stopColor="#FED7AA" stopOpacity="0.12" />
+                  <stop offset="100%" stopColor="#FFF7ED" stopOpacity="0.02" />
+                </linearGradient>
+              </defs>
+              {/* Outer soft peach gradient wave band */}
+              <path
+                d="M 80 0 C 220 280, 460 520, 800 660 L 800 0 Z"
+                fill="url(#peachGradientBand)"
               />
-            </div>
-            <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+              {/* Inner concentric thin stroke arch */}
+              <path
+                d="M 220 0 C 330 240, 520 430, 800 540"
+                stroke="#FDBA74"
+                strokeWidth="1.8"
+                strokeOpacity="0.45"
+                fill="none"
+              />
+              {/* Secondary outer thin stroke arch */}
+              <path
+                d="M 360 0 C 440 180, 590 330, 800 420"
+                stroke="#FB923C"
+                strokeWidth="1.4"
+                strokeOpacity="0.30"
+                fill="none"
+              />
+              {/* Wide ambient outer circle arch */}
+              <circle
+                cx="640"
+                cy="160"
+                r="380"
+                stroke="#FED7AA"
+                strokeWidth="1.5"
+                strokeOpacity="0.35"
+                fill="none"
+              />
+            </svg>
+          </div>
+
+          {/* Bottom-Left Cool Sky-Blue Curved Arcs (Exactly as in reference image) */}
+          <div className="absolute bottom-0 left-0 w-[75vw] sm:w-[55vw] max-w-[850px] aspect-square -translate-x-[20%] translate-y-[22%] pointer-events-none">
+            {/* Ambient soft glow */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-200/35 via-blue-100/25 to-transparent blur-3xl" />
+            <svg
+              className="w-full h-full"
+              viewBox="0 0 800 800"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="blueGradientBand" x1="0" y1="200" x2="650" y2="800" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.18" />
+                  <stop offset="50%" stopColor="#BAE6FD" stopOpacity="0.10" />
+                  <stop offset="100%" stopColor="#F0F9FF" stopOpacity="0.02" />
+                </linearGradient>
+              </defs>
+              {/* Outer soft blue gradient wave band */}
+              <path
+                d="M 0 140 C 280 220, 520 460, 660 800 L 0 800 Z"
+                fill="url(#blueGradientBand)"
+              />
+              {/* Inner concentric thin stroke arch */}
+              <path
+                d="M 0 260 C 240 330, 430 520, 540 800"
+                stroke="#7DD3FC"
+                strokeWidth="1.8"
+                strokeOpacity="0.45"
+                fill="none"
+              />
+              {/* Secondary outer thin stroke arch */}
+              <path
+                d="M 0 400 C 180 440, 330 590, 420 800"
+                stroke="#38BDF8"
+                strokeWidth="1.4"
+                strokeOpacity="0.30"
+                fill="none"
+              />
+              {/* Wide ambient outer circle arch */}
+              <circle
+                cx="160"
+                cy="640"
+                r="380"
+                stroke="#BAE6FD"
+                strokeWidth="1.5"
+                strokeOpacity="0.35"
+                fill="none"
+              />
+            </svg>
+          </div>
+        </div>
+
+        {/* ================= FLOATING LOGIN CARD ================= */}
+        <div className="w-full max-w-[440px] sm:max-w-[460px] bg-white rounded-[5px] p-7 sm:p-10 md:p-11 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.06),0_4px_16px_rgba(0,0,0,0.02)] border border-slate-100/90 relative z-10 transition-all">
+          {/* Top Brand Logo & Name (Centered Row matching image) */}
+          <div className="flex items-center justify-center gap-2.5 mb-4 sm:mb-2">
+            <img
+              src="/Nexa_logo.svg"
+              alt="Nexa Solutions Logo"
+              className="w-10 h-10 sm:w-16 sm:h-16 object-contain shrink-0"
+            />
+            <span className="text-xl sm:text-[22px] font-bold text-slate-900 tracking-tight">
               Nexa Solutions
+            </span>
+          </div>
+
+          {/* Heading & Subtitle */}
+          <div className="text-center mb-4 sm:mb-6">
+            <h1 className="text-2xl sm:text-[28px] font-bold text-slate-900 tracking-tight">
+              Admin Login
             </h1>
-            <p className="text-xs font-bold uppercase tracking-wider text-orange-600 mt-1">
-              {tr("Admin Dashboard Portal", "Admin Dashboard Portal")}
-            </p>
-            <p className="text-slate-500 text-xs sm:text-sm mt-2 leading-relaxed">
-              {tr(
-                "Sign in with your administrative credentials.",
-                "Melden Sie sich mit Ihren Administrator-Zugangsdaten an."
-              )}
+            <p className="text-sm text-slate-500 font-normal mt-2">
+              Sign in to access your dashboard.
             </p>
           </div>
 
+          {/* Error Message */}
           {loginError && (
-            <div className="mb-5 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+            <div className="mb-5 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm flex items-center gap-2 animate-in fade-in">
               <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
               <span>{loginError}</span>
             </div>
           )}
 
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                {tr("Email Address", "E-Mail-Adresse")}
-              </label>
-              <div className="relative">
-                <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                <input
-                  type="email"
-                  required
-                  value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
-                  className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15 text-sm text-slate-900 transition-all"
-                  placeholder="contact@nexa-solutions.de"
-                />
-              </div>
+          {/* Login Form */}
+          <form onSubmit={handleLogin} className="space-y-4 sm:space-y-4.5">
+            {/* Email Address */}
+            <div className="relative rounded-[5px] border border-slate-200/90 bg-white hover:border-slate-300 focus-within:border-[#EA580C] focus-within:ring-4 focus-within:ring-[#EA580C]/10 transition-all">
+              <Mail className="w-[18px] h-[18px] text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 stroke-[1.8] pointer-events-none" />
+              <input
+                type="email"
+                required
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+                placeholder="Email address"
+                className="w-full pl-11 pr-4 py-3 sm:py-3.5 text-sm sm:text-[15px] text-slate-900 placeholder:text-slate-400 bg-transparent outline-none rounded-xl"
+              />
             </div>
 
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                {tr("Password", "Passwort")}
-              </label>
-              <div className="relative">
-                <input
-                  type="password"
-                  required
-                  value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15 text-sm text-slate-900 transition-all"
-                  placeholder="••••••••••••"
-                />
-              </div>
+            {/* Password */}
+            <div className="relative rounded-[5px] border border-slate-200/90 bg-white hover:border-slate-300 focus-within:border-[#EA580C] focus-within:ring-4 focus-within:ring-[#EA580C]/10 transition-all">
+              <Lock className="w-[18px] h-[18px] text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 stroke-[1.8] pointer-events-none" />
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
+                placeholder="Password"
+                className="w-full pl-11 pr-11 py-3 sm:py-3.5 text-sm sm:text-[15px] text-slate-900 placeholder:text-slate-400 bg-transparent outline-none rounded-xl"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer transition-colors"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? (
+                  <Eye className="w-[18px] h-[18px] stroke-[1.8]" />
+                ) : (
+                  <EyeOff className="w-[18px] h-[18px] stroke-[1.8]" />
+                )}
+              </button>
             </div>
 
+            {/* Remember Me & Forgot Password Row */}
+            <div className="flex items-center justify-between text-xs sm:text-sm pt-1 select-none">
+              <label className="inline-flex items-center gap-2 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="w-4 h-4 rounded-[4px] border-slate-300 text-[#EA580C] focus:ring-[#EA580C]/20 accent-[#EA580C] cursor-pointer"
+                />
+                <span className="text-slate-600 font-normal">Remember me</span>
+              </label>
+
+              <button
+                type="button"
+                onClick={() => {
+                  showToast(
+                    adminLang === "en"
+                      ? "Please contact the system administrator to reset your credentials."
+                      : "Bitte kontaktieren Sie den Administrator zum Zurücksetzen Ihrer Zugangsdaten."
+                  );
+                }}
+                className="font-medium text-[#EA580C] hover:text-[#C2410C] transition-colors cursor-pointer"
+              >
+                Forgot password?
+              </button>
+            </div>
+
+            {/* Sign In Button */}
             <button
               type="submit"
               disabled={loginLoading}
-              className="w-full py-3 mt-2 rounded-xl bg-[#0F172A] hover:bg-orange-600 text-white font-bold text-sm transition-all duration-200 cursor-pointer shadow-md disabled:opacity-75 flex items-center justify-center gap-2"
+              className="w-full py-2 sm:py-3 px-6 rounded-[5px] bg-gradient-to-r from-[#EA580C] to-[#E05006] hover:from-[#DD4F05] hover:to-[#C2410C] text-white font-semibold text-sm sm:text-base shadow-[0_8px_22px_rgba(234,88,12,0.28)] hover:shadow-[0_12px_28px_rgba(234,88,12,0.38)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer disabled:opacity-75 disabled:pointer-events-none flex items-center justify-center gap-2 mt-6"
             >
               {loginLoading ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>{tr("Authorizing...", "Wird autorisiert...")}</span>
+                  <span>{tr("Signing in...", "Wird angemeldet...")}</span>
                 </>
               ) : (
                 <>
-                  <span>{tr("Sign in to Dashboard", "Zum Dashboard anmelden")}</span>
-                  <ChevronRight className="w-4 h-4" />
+                  <span>Sign In</span>
+                  <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                 </>
               )}
             </button>
           </form>
 
-          <div className="mt-6 pt-5 border-t border-slate-100 text-center">
+          {/* Footer with Back to Website and Language Switcher */}
+          <div className="mt-7 sm:mt-8 pt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
             <Link
               href="/"
-              className="text-xs font-semibold text-slate-500 hover:text-orange-600 transition-colors inline-flex items-center gap-1"
+              className="inline-flex items-center gap-1.5 font-medium hover:text-[#EA580C] transition-colors"
             >
               ← {tr("Back to Website", "Zurück zur Website")}
             </Link>
+
+            <div className="inline-flex items-center gap-1 font-bold">
+              <button
+                type="button"
+                onClick={() => changeAdminLang("en")}
+                className={`px-1.5 py-0.5 rounded cursor-pointer transition-colors ${
+                  adminLang === "en" ? "text-[#EA580C] underline underline-offset-2" : "hover:text-slate-800"
+                }`}
+              >
+                EN
+              </button>
+              <span>/</span>
+              <button
+                type="button"
+                onClick={() => changeAdminLang("de")}
+                className={`px-1.5 py-0.5 rounded cursor-pointer transition-colors ${
+                  adminLang === "de" ? "text-[#EA580C] underline underline-offset-2" : "hover:text-slate-800"
+                }`}
+              >
+                DE
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1358,7 +1502,7 @@ export default function AdminDashboardPage() {
                 <Menu className="w-5 h-5" />
               </button>
 
-              <div className="flex flex-col">
+              <div className="hidden lg:flex flex-col">
                 <span className="text-[10px] font-extrabold text-orange-600 uppercase tracking-widest">
                   Admin Dashboard
                 </span>
@@ -2398,7 +2542,7 @@ export default function AdminDashboardPage() {
                           excerpt_de: "",
                           excerpt_en: "",
                           category: "ai-automation",
-                          cover_image: "/images/ai-robot.png",
+                          cover_image: "",
                           date: new Date().toLocaleDateString(adminLang === "en" ? "en-US" : "de-DE", {
                             day: "numeric",
                             month: "long",
@@ -2436,13 +2580,18 @@ export default function AdminDashboardPage() {
                         className="bg-white rounded-[5px] border border-slate-200/80 shadow-2xs overflow-hidden flex flex-col hover:shadow-md transition-all group"
                       >
                         {/* Cover Image */}
-                        <div className="relative h-44 w-full bg-slate-100 overflow-hidden">
-                          {post.cover_image && (
+                        <div className="relative h-44 w-full bg-slate-100 overflow-hidden flex items-center justify-center">
+                          {post.cover_image ? (
                             <img
                               src={post.cover_image}
                               alt={post.title_en || post.title_de}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
+                          ) : (
+                            <div className="w-full h-full flex flex-col items-center justify-center bg-slate-50 text-slate-300">
+                              <FileText className="w-8 h-8 stroke-[1.5]" />
+                              <span className="text-[10px] font-semibold text-slate-400 mt-1">No Cover Image</span>
+                            </div>
                           )}
                           <div className="absolute top-3 left-3">
                             <span className="px-2.5 py-1 rounded-[5px] text-[10px] font-bold bg-white/90 backdrop-blur-xs text-slate-800 shadow-xs uppercase">
@@ -2628,14 +2777,28 @@ export default function AdminDashboardPage() {
                   </button>
                 </div>
 
-                {editingBlog.cover_image && (
-                  <div className="mt-2.5 relative h-28 w-44 rounded-[5px] overflow-hidden border border-slate-200 shadow-2xs">
-                    <img
-                      src={editingBlog.cover_image}
-                      alt="Preview"
-                      className="w-full h-full object-cover"
-                    />
+                {editingBlog.cover_image ? (
+                  <div className="mt-2.5 relative inline-block rounded-[5px] overflow-hidden border border-slate-200 shadow-2xs group">
+                    <div className="h-28 w-44">
+                      <img
+                        src={editingBlog.cover_image}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setEditingBlog({ ...editingBlog, cover_image: "" })}
+                      className="absolute top-1.5 right-1.5 p-1 bg-black/70 hover:bg-red-600 text-white rounded-full transition-colors cursor-pointer"
+                      title={tr("Remove image", "Bild entfernen")}
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
                   </div>
+                ) : (
+                  <p className="mt-2 text-[11px] text-slate-400">
+                    {tr("No image selected yet. Upload an image to ImageKit or paste an image URL.", "Noch kein Bild ausgewählt. Laden Sie ein Bild auf ImageKit hoch oder fügen Sie eine Bild-URL ein.")}
+                  </p>
                 )}
               </div>
 

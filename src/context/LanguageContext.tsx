@@ -14,7 +14,7 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue>({
   lang: "de",
   setLang: () => {},
-  t: <T,>(de: T, _en: T): T => de,
+  t: <T,>(de: T): T => de,
 });
 
 const GERMAN_TIMEZONES = [
@@ -71,26 +71,35 @@ export function LanguageProvider({
   const [lang, setLangState] = useState<Language>(initialLang);
 
   useEffect(() => {
+    let isSubscribed = true;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+
     try {
       // 1. If user previously made a manual selection, prioritize and respect it
       const isManual = localStorage.getItem("site:lang_manual") === "true";
       const stored = localStorage.getItem("site:lang") as Language | null;
 
-      if (isManual && (stored === "de" || stored === "en")) {
-        setLangState(stored);
-        return;
-      }
+      // Asynchronously schedule initial state synchronization to prevent cascading render warnings
+      queueMicrotask(() => {
+        if (!isSubscribed) return;
 
-      // 2. Instant client-side region detection (0ms delay)
-      const instantDetected = detectLocalRegionLanguage();
-      setLangState(instantDetected);
+        if (isManual && (stored === "de" || stored === "en")) {
+          setLangState(stored);
+          return;
+        }
 
-      // 3. Precise IP-based region check in background (validates physical country)
-      let isSubscribed = true;
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 2500);
+        // 2. Instant client-side region detection (0ms delay)
+        const instantDetected = detectLocalRegionLanguage();
+        setLangState(instantDetected);
+      });
 
+      // 3. Precise IP-based region check in background (validates physical country once per session)
       const checkGeoIP = async () => {
+        if (typeof window !== "undefined" && sessionStorage.getItem("site:geo_done")) {
+          return;
+        }
+
         let detectedCountry: string | null = null;
 
         try {
@@ -119,6 +128,9 @@ export function LanguageProvider({
           } catch {}
         } finally {
           clearTimeout(timeoutId);
+          try {
+            sessionStorage.setItem("site:geo_done", "true");
+          } catch {}
         }
 
         if (isSubscribed && detectedCountry) {
@@ -143,6 +155,7 @@ export function LanguageProvider({
 
       return () => {
         isSubscribed = false;
+        clearTimeout(timeoutId);
         controller.abort();
       };
     } catch {}
@@ -184,7 +197,7 @@ export function LanguageProvider({
       localStorage.setItem("site:lang", newLang);
       localStorage.setItem("site:lang_manual", "true");
       document.cookie = `site_lang=${newLang}; path=/; max-age=31536000; SameSite=Lax`;
-    } catch (_) {}
+    } catch {}
   };
 
   // Helper: returns German or English content depending on active lang

@@ -17,6 +17,7 @@ export default function BrandLogo({
   return (
     <Link
       href={href}
+      prefetch={true}
       className={`inline-flex items-center justify-center gap-2 sm:gap-2.5 md:gap-3 group select-none shrink-0 ${className}`}
     >
       {/* Official Nexa Logo SVG */}

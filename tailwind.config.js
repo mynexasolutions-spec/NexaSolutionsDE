@@ -66,6 +66,41 @@ module.exports = {
         dm: ["var(--font-dm-sans)", "sans-serif"],
         mono: ["var(--font-dm-sans)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
       },
+      animation: {
+        "spin-orbit": "spinOrbit 3s linear infinite",
+        "spin-reverse": "spinReverse 4.5s linear infinite",
+        "pulse-brand": "pulseBrand 2.2s ease-in-out infinite",
+        "fade-in": "fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "bounce-dot": "bounceDot 1.4s ease-in-out infinite",
+      },
+      keyframes: {
+        spinOrbit: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        spinReverse: {
+          "0%": { transform: "rotate(360deg)" },
+          "100%": { transform: "rotate(0deg)" },
+        },
+        pulseBrand: {
+          "0%, 100%": {
+            transform: "scale(1)",
+            boxShadow: "0 0 0 0 rgba(234, 88, 12, 0.4), 0 10px 25px -5px rgba(15, 23, 42, 0.08)",
+          },
+          "50%": {
+            transform: "scale(1.04)",
+            boxShadow: "0 0 25px 6px rgba(234, 88, 12, 0.28), 0 14px 30px -4px rgba(15, 23, 42, 0.12)",
+          },
+        },
+        fadeIn: {
+          "0%": { opacity: "0", transform: "scale(0.98)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        bounceDot: {
+          "0%, 80%, 100%": { transform: "translateY(0)", opacity: "0.3" },
+          "40%": { transform: "translateY(-6px)", opacity: "1" },
+        },
+      },
     },
   },
   plugins: [],

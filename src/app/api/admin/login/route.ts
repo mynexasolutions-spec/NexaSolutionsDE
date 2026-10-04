@@ -5,8 +5,8 @@ export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
 
-    const expectedEmail = process.env.ADMIN_EMAIL || "contact@nexa-solutions.de";
-    const expectedPassword = process.env.ADMIN_PASSWORD || "Nexa_Solution@2026Sadiq";
+    const expectedEmail = process.env.ADMIN_EMAIL || "";
+    const expectedPassword = process.env.ADMIN_PASSWORD || "";
 
     if (
       email?.trim().toLowerCase() === expectedEmail.toLowerCase() &&

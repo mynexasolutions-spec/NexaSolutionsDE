@@ -135,6 +135,20 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Handle smooth scroll when navigating to hash from another page (e.g. /projects -> /#about)
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash) {
+      const targetId = window.location.hash.replace("#", "");
+      const timer = setTimeout(() => {
+        const elem = document.getElementById(targetId);
+        if (elem) {
+          elem.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 120);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
+
   // Navigation Links definition (only Home, Services, Projects, Blog, About)
   const navLinks = [
     {
@@ -220,28 +234,29 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
   const currentLangObj = languages.find((l) => l.code === lang) || languages[0];
   const CurrentFlag = currentLangObj.Flag;
 
-  const handleLinkClick = (id: string, href: string) => {
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+    href: string
+  ) => {
     setActiveNav(id);
     setMobileMenuOpen(false);
     setMobileServicesOpen(false);
     setServicesDropdown(false);
 
     if (isHomePage && href.startsWith("#")) {
+      e.preventDefault();
       const targetId = href.replace("#", "");
       const elem = document.getElementById(targetId);
       if (elem) {
         elem.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", href);
       }
     }
   };
 
   return (
-    <motion.header
-      initial={{ y: -28, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 inset-x-0 z-50 pointer-events-none w-full"
-    >
+    <header className="fixed top-0 inset-x-0 z-50 pointer-events-none w-full">
       {/* Full-width navbar-bg: blur from top down to below the header */}
       <div className="navbar-bg absolute top-0 inset-x-0 w-full h-[76px] sm:h-[86px] md:h-[92px] bg-white/80 backdrop-blur-md shadow-xs transition-all duration-300 -z-10" />
 
@@ -251,7 +266,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
           className={`pointer-events-auto mx-auto w-full max-w-[1460px] rounded-full transition-all duration-300 ${
             isScrolled
               ? "bg-white shadow-[0_14px_40px_-8px_rgba(15,23,42,0.14),0_4px_12px_-2px_rgba(15,23,42,0.06)] border border-slate-200/95 py-2 sm:py-2.5 px-3.5 sm:px-5 lg:px-6"
-              : "bg-white/98 backdrop-blur-xl shadow-[0_10px_35px_-4px_rgba(15,23,42,0.10),0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200/90 py-2.5 sm:py-3.5 px-4 sm:px-5 lg:px-6 xl:px-7"
+              : "bg-white/98 backdrop-blur-xl shadow-[0_10px_35px_-4px_rgba(15,23,42,0.10),0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200/90 py-2 sm:py-2.5 px-3.5 sm:px-5 lg:px-6"
           }`}
         >
           <div className="flex items-center justify-between gap-2 sm:gap-3 xl:gap-4">
@@ -336,6 +351,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                                   <Link
                                     key={service.href}
                                     href={service.href}
+                                    prefetch={true}
                                     onClick={() => setServicesDropdown(false)}
                                     className="group flex items-start gap-3.5 p-3 rounded-xl hover:bg-orange-50/50 transition-all duration-200"
                                   >
@@ -371,6 +387,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                               </span>
                               <Link
                                 href="/contact"
+                                prefetch={true}
                                 onClick={() => setServicesDropdown(false)}
                                 className="text-orange-600 font-bold hover:text-orange-700 inline-flex items-center gap-1 cursor-pointer"
                               >
@@ -389,7 +406,8 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                   <Link
                     key={link.id}
                     href={link.href}
-                    onClick={() => handleLinkClick(link.id, link.href)}
+                    prefetch={link.href.startsWith("/") && !link.href.includes("#") ? true : undefined}
+                    onClick={(e) => handleLinkClick(e, link.id, link.href)}
                     className={`relative inline-flex items-center px-3 xl:px-4 py-1.5 rounded-full text-[14px] xl:text-[15px] font-semibold tracking-[-0.01em] transition-all duration-200 ${
                       isActive
                         ? "text-[#EA580C] font-bold bg-orange-50/95 ring-1 ring-orange-500/20"
@@ -487,6 +505,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
               {/* CTA Consultation Button with Right Circle Arrow */}
               <Link
                 href="/contact"
+                prefetch={true}
                 className="group relative inline-flex items-center pl-4 pr-1.5 xl:pl-5 xl:pr-1.5 py-1.5 xl:py-2 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white shadow-[0_4px_16px_rgba(234,88,12,0.32)] hover:shadow-[0_6px_22px_rgba(234,88,12,0.45)] transition-all duration-300 cursor-pointer select-none"
               >
                 <span className="text-[12.5px] xl:text-[14px] font-bold tracking-tight whitespace-nowrap">
@@ -630,6 +649,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                                   <Link
                                     key={service.href}
                                     href={service.href}
+                                    prefetch={true}
                                     onClick={() => {
                                       setMobileMenuOpen(false);
                                       setMobileServicesOpen(false);
@@ -668,9 +688,10 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                     <Link
                       key={link.id}
                       href={link.href}
-                      onClick={() => {
+                      prefetch={link.href.startsWith("/") && !link.href.includes("#") ? true : undefined}
+                      onClick={(e) => {
                         setMobileServicesOpen(false);
-                        handleLinkClick(link.id, link.href);
+                        handleLinkClick(e, link.id, link.href);
                       }}
                       className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
                         isActive
@@ -716,6 +737,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
               {/* Mobile CTA Consultation Button */}
               <Link
                 href="/contact"
+                prefetch={true}
                 onClick={() => {
                   setMobileMenuOpen(false);
                   setMobileServicesOpen(false);
@@ -736,6 +758,6 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
           </div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

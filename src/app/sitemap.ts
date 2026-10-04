@@ -2,82 +2,85 @@ import type { MetadataRoute } from "next";
 import { blogPosts } from "@/data/blogData";
 import { getBlogsList } from "@/lib/db";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://nexa-solutions.de";
-  const currentDate = new Date();
+const baseUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://nexa-solutions.de"
+).replace(/\/$/, "");
 
-  // Core Static Routes
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}`,
-      lastModified: currentDate,
+      url: `${baseUrl}/`,
       changeFrequency: "daily",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/services/web-development`,
-      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/services/mobile-app-development`,
-      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/services/ai-automation`,
-      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/projects`,
-      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.85,
     },
     {
       url: `${baseUrl}/our-work`,
-      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.85,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: currentDate,
       changeFrequency: "daily",
       priority: 0.85,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
   ];
 
-  // Dynamic Blog Posts (from database or static data)
-  let postRoutes: MetadataRoute.Sitemap = [];
+  let posts: any[] = [];
+
   try {
     const dbResult = await getBlogsList();
-    const posts = dbResult?.blogs && dbResult.blogs.length > 0 ? dbResult.blogs : blogPosts;
 
-    postRoutes = posts.map((post: any) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: post.updated_at ? new Date(post.updated_at) : currentDate,
-      changeFrequency: "weekly" as const,
-      priority: 0.75,
-    }));
+    posts =
+      dbResult?.blogs &&
+      Array.isArray(dbResult.blogs) &&
+      dbResult.blogs.length > 0
+        ? dbResult.blogs
+        : blogPosts;
   } catch {
-    postRoutes = blogPosts.map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: currentDate,
-      changeFrequency: "weekly" as const,
-      priority: 0.75,
-    }));
+    posts = blogPosts;
   }
 
-  return [...staticRoutes, ...postRoutes];
+  const postRoutes: MetadataRoute.Sitemap = posts
+    .filter((post) => post?.slug)
+    .map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      ...(post.updated_at
+        ? {
+            lastModified: new Date(post.updated_at),
+          }
+        : {}),
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    }));
+
+  const allRoutes = [...staticRoutes, ...postRoutes];
+
+  return Array.from(
+    new Map(allRoutes.map((route) => [route.url, route])).values()
+  );
 }

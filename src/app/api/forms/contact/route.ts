@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createQueryRecord } from "@/lib/db";
+import { createContactRecord } from "@/lib/db";
 
 export async function POST(req: Request) {
   try {
@@ -13,8 +13,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const result = await createQueryRecord({
-      type: "contact",
+    const result = await createContactRecord({
       name,
       email,
       phone: phone || null,

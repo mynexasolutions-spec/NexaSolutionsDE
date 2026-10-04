@@ -33,6 +33,7 @@ import {
   ChevronLeft,
   LayoutDashboard,
   Filter,
+  Eye,
 } from "lucide-react";
 import { QueryRecord, BlogRecord } from "@/lib/db";
 
@@ -57,6 +58,11 @@ function getAvatarColor(name: string = "") {
   return AVATAR_BG_COLORS[index];
 }
 
+function cleanBookingDay(slot?: string | null): string {
+  if (!slot) return "";
+  return slot.split(",")[0].trim();
+}
+
 export default function AdminDashboardPage() {
   // Language State: Defaults to English ("en"), switchable to "de"
   const [adminLang, setAdminLang] = useState<"en" | "de">("en");
@@ -72,7 +78,7 @@ export default function AdminDashboardPage() {
   const [loginLoading, setLoginLoading] = useState(false);
 
   // Navigation & View
-  const [activeTab, setActiveTab] = useState<"queries" | "blogs" | "consultations">("queries");
+  const [activeTab, setActiveTab] = useState<"queries" | "blogs" | "consultations" | "contacts">("queries");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [headerProfileOpen, setHeaderProfileOpen] = useState(false);
@@ -154,6 +160,25 @@ export default function AdminDashboardPage() {
     localStorage.setItem("nexa_admin_lang", newLang);
   };
 
+  // Close details modal on Escape key and lock body scroll
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedQueryId(null);
+      }
+    };
+    if (selectedQueryId) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedQueryId]);
+
   // Check auth on mount
   useEffect(() => {
     async function checkAuth() {
@@ -178,21 +203,11 @@ export default function AdminDashboardPage() {
   const fetchQueries = async () => {
     setLoadingQueries(true);
     try {
-      const params = new URLSearchParams();
-      if (searchQuery.trim()) params.set("search", searchQuery.trim());
-      if (statusFilter !== "all") params.set("status", statusFilter);
-      if (formTypeFilter !== "all") params.set("type", formTypeFilter);
-
-      const res = await fetch(`/api/queries?${params.toString()}`);
+      const res = await fetch("/api/queries");
       if (res.ok) {
         const data = await res.json();
         setQueries(data.queries || []);
         if (data.stats) setStats(data.stats);
-
-        // Auto select first query if none selected
-        if (data.queries?.length > 0 && !selectedQueryId) {
-          setSelectedQueryId(data.queries[0].id);
-        }
       }
     } catch (err) {
       console.error("Failed to fetch queries:", err);
@@ -222,7 +237,7 @@ export default function AdminDashboardPage() {
       fetchQueries();
       fetchBlogs();
     }
-  }, [isAuthenticated, statusFilter, formTypeFilter]);
+  }, [isAuthenticated]);
 
   // Handle Login
   const handleLogin = async (e: React.FormEvent) => {
@@ -305,64 +320,179 @@ export default function AdminDashboardPage() {
     }
   };
 
-  // Export to CSV
+  // Export to CSV (Strictly separated for Queries, Consultations, and Contacts with exact columns)
   const handleExportCSV = () => {
-    if (queries.length === 0) {
-      showToast(tr("No data available to export", "Keine Daten zum Exportieren"));
+    const isConsultation = activeTab === "consultations";
+    const isContact = activeTab === "contacts";
+    const dataToExport = queries.filter((q) => {
+      if (isConsultation) return q.type === "consultation";
+      if (isContact) return q.type === "contact";
+      return q.type !== "consultation" && q.type !== "contact";
+    });
+
+    if (dataToExport.length === 0) {
+      showToast(
+        tr(
+          `No ${isConsultation ? "consultations" : isContact ? "contact messages" : "queries"} available to export`,
+          `Keine ${isConsultation ? "Beratungen" : isContact ? "Kontaktnachrichten" : "Anfragen"} zum Exportieren`
+        )
+      );
       return;
     }
 
-    const headers = [
-      "ID",
-      "Type",
-      "Name",
-      "Email",
-      "Phone",
-      "Company",
-      "Service",
-      "Budget",
-      "Topic",
-      "Call Type",
-      "Date Slot",
-      "Time Slot",
-      "Status",
-      "Date",
-      "Message",
-    ];
+    let headers: string[] = [];
+    let rows: (string | number)[][] = [];
 
-    const rows = queries.map((q) => [
-      q.id,
-      q.type,
-      `"${q.name.replace(/"/g, '""')}"`,
-      `"${q.email.replace(/"/g, '""')}"`,
-      `"${q.phone || ""}"`,
-      `"${q.company || ""}"`,
-      `"${q.service || ""}"`,
-      `"${q.budget || ""}"`,
-      `"${q.topic || ""}"`,
-      `"${q.call_type || ""}"`,
-      `"${q.date_slot || ""}"`,
-      `"${q.time_slot || ""}"`,
-      q.status,
-      new Date(q.created_at).toLocaleString("en-US"),
-      `"${(q.message || "").replace(/"/g, '""')}"`,
-    ]);
+    if (isConsultation) {
+      // Exactly only Consultations data & columns (no extra columns)
+      headers = [
+        "ID",
+        "Name",
+        "Email",
+        "Company",
+        "Call Type",
+        "Selected Day",
+        "Time Slot",
+        "Status",
+        "Booking Date",
+        "Booking Time",
+      ];
+
+      rows = dataToExport.map((c) => {
+        const d = new Date(c.created_at);
+        const dateStr = d.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        });
+        const timeStr = d.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        });
+
+        return [
+          c.id,
+          `"${(c.name || "").replace(/"/g, '""')}"`,
+          `"${(c.email || "").replace(/"/g, '""')}"`,
+          `"${(c.company || "").replace(/"/g, '""')}"`,
+          `"${(c.call_type || "Discovery Call").replace(/"/g, '""')}"`,
+          `"${cleanBookingDay(c.date_slot).replace(/"/g, '""')}"`,
+          `"${(c.time_slot || "").replace(/"/g, '""')}"`,
+          c.status,
+          `"${dateStr}"`,
+          `"${timeStr}"`,
+        ];
+      });
+    } else if (isContact) {
+      // Exactly only Contact Form data & columns (Name, Email, Phone, Company, Service, Message, Status, Date, Time)
+      headers = [
+        "ID",
+        "Name",
+        "Email",
+        "Phone",
+        "Company",
+        "Service",
+        "Message",
+        "Status",
+        "Date",
+        "Time",
+      ];
+
+      rows = dataToExport.map((ct) => {
+        const d = new Date(ct.created_at);
+        const dateStr = d.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        });
+        const timeStr = d.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        });
+
+        return [
+          ct.id,
+          `"${(ct.name || "").replace(/"/g, '""')}"`,
+          `"${(ct.email || "").replace(/"/g, '""')}"`,
+          `"${(ct.phone || "").replace(/"/g, '""')}"`,
+          `"${(ct.company || "").replace(/"/g, '""')}"`,
+          `"${(ct.service || "").replace(/"/g, '""')}"`,
+          `"${(ct.message || "").replace(/"/g, '""')}"`,
+          ct.status,
+          `"${dateStr}"`,
+          `"${timeStr}"`,
+        ];
+      });
+    } else {
+      // Exactly only Queries data & columns (Company removed, Date + Time separated)
+      headers = [
+        "ID",
+        "Form Type",
+        "Name",
+        "Email",
+        "Phone",
+        "Service",
+        "Budget",
+        "Message",
+        "Status",
+        "Date",
+        "Time",
+      ];
+
+      rows = dataToExport.map((q) => {
+        const d = new Date(q.created_at);
+        const dateStr = d.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        });
+        const timeStr = d.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        });
+
+        return [
+          q.id,
+          q.type === "project" ? "Start Project" : "Contact",
+          `"${(q.name || "").replace(/"/g, '""')}"`,
+          `"${(q.email || "").replace(/"/g, '""')}"`,
+          `"${(q.phone || "").replace(/"/g, '""')}"`,
+          `"${(q.service || "").replace(/"/g, '""')}"`,
+          `"${(q.budget || "").replace(/"/g, '""')}"`,
+          `"${(q.message || "").replace(/"/g, '""')}"`,
+          q.status,
+          `"${dateStr}"`,
+          `"${timeStr}"`,
+        ];
+      });
+    }
 
     const csvContent =
-      "data:text/csv;charset=utf-8," +
+      "data:text/csv;charset=utf-8,\uFEFF" +
       [headers.join(","), ...rows.map((e) => e.join(","))].join("\n");
 
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute(
-      "download",
-      `nexa_queries_export_${new Date().toISOString().slice(0, 10)}.csv`
-    );
+    const filename = isConsultation
+      ? `nexa_consultations_${new Date().toISOString().slice(0, 10)}.csv`
+      : isContact
+      ? `nexa_contacts_${new Date().toISOString().slice(0, 10)}.csv`
+      : `nexa_queries_${new Date().toISOString().slice(0, 10)}.csv`;
+    link.setAttribute("download", filename);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    showToast(tr("CSV export downloaded successfully", "CSV-Export heruntergeladen"));
+
+    showToast(
+      tr(
+        `${isConsultation ? "Consultations" : isContact ? "Contact messages" : "Queries"} CSV exported successfully`,
+        `${isConsultation ? "Beratungen" : isContact ? "Kontaktnachrichten" : "Anfragen"} CSV erfolgreich exportiert`
+      )
+    );
   };
 
   // Sync Blogs to Supabase
@@ -458,13 +588,70 @@ export default function AdminDashboardPage() {
     }
   };
 
-  // Filtered queries for active view
+  // Filtered queries for active view (strictly separated by tab and filters)
   const filteredQueries = useMemo(() => {
     let list = [...queries];
+
+    // 1. Strict separation by tab
     if (activeTab === "consultations") {
       list = list.filter((q) => q.type === "consultation");
+    } else if (activeTab === "contacts") {
+      list = list.filter((q) => q.type === "contact");
+    } else if (activeTab === "queries") {
+      list = list.filter((q) => q.type !== "consultation" && q.type !== "contact");
     }
+
+    // 2. Status filter
+    if (statusFilter !== "all") {
+      list = list.filter((q) => q.status === statusFilter);
+    }
+
+    // 3. Form type / category filter
+    if (formTypeFilter !== "all") {
+      if (activeTab === "queries") {
+        list = list.filter((q) => q.type === formTypeFilter);
+      } else if (activeTab === "contacts") {
+        const f = formTypeFilter.toLowerCase();
+        list = list.filter((q) => q.service?.toLowerCase().includes(f));
+      } else if (activeTab === "consultations") {
+        const f = formTypeFilter.toLowerCase();
+        list = list.filter((q) => q.call_type?.toLowerCase().includes(f));
+      }
+    }
+
+    // 4. Search query filter
+    if (searchQuery.trim()) {
+      const s = searchQuery.toLowerCase().trim();
+      list = list.filter(
+        (q) =>
+          q.name?.toLowerCase().includes(s) ||
+          q.email?.toLowerCase().includes(s) ||
+          q.phone?.toLowerCase().includes(s) ||
+          q.message?.toLowerCase().includes(s) ||
+          q.company?.toLowerCase().includes(s) ||
+          q.service?.toLowerCase().includes(s) ||
+          q.call_type?.toLowerCase().includes(s) ||
+          q.date_slot?.toLowerCase().includes(s) ||
+          q.time_slot?.toLowerCase().includes(s)
+      );
+    }
+
     return list;
+  }, [queries, activeTab, statusFilter, formTypeFilter, searchQuery]);
+
+  // Dynamic stats strictly for the active tab (Queries vs Consultations vs Contacts)
+  const activeStats = useMemo(() => {
+    const list = queries.filter((q) => {
+      if (activeTab === "consultations") return q.type === "consultation";
+      if (activeTab === "contacts") return q.type === "contact";
+      return q.type !== "consultation" && q.type !== "contact";
+    });
+    return {
+      total: list.length,
+      pending: list.filter((q) => q.status === "pending").length,
+      in_progress: list.filter((q) => q.status === "in_progress").length,
+      resolved: list.filter((q) => q.status === "resolved").length,
+    };
   }, [queries, activeTab]);
 
   // Paginated items
@@ -475,10 +662,11 @@ export default function AdminDashboardPage() {
 
   const totalPages = Math.ceil(filteredQueries.length / pageSize) || 1;
 
-  // Selected item object
+  // Selected item object - only active when an item is explicitly selected
   const selectedQuery = useMemo(() => {
-    return queries.find((q) => q.id === selectedQueryId) || null;
-  }, [queries, selectedQueryId]);
+    if (!selectedQueryId || filteredQueries.length === 0) return null;
+    return filteredQueries.find((q) => q.id === selectedQueryId) || null;
+  }, [filteredQueries, selectedQueryId]);
 
   // Select all checkbox handler
   const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -634,7 +822,7 @@ export default function AdminDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col font-sans selection:bg-orange-500 selection:text-white">
+    <div className="h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col font-sans selection:bg-orange-500 selection:text-white overflow-hidden">
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed top-5 right-5 z-50 bg-[#0F172A] text-white px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2.5 animate-in fade-in slide-in-from-top-3 border border-slate-700/60">
@@ -644,10 +832,10 @@ export default function AdminDashboardPage() {
       )}
 
       {/* Main App Layout */}
-      <div className="flex flex-1 min-h-0 relative">
+      <div className="flex flex-1 min-h-0 h-full overflow-hidden relative">
         {/* ===================== FIXED ULTRA-MODERN EXECUTIVE SIDEBAR ===================== */}
         <aside
-          className={`sticky top-0 h-screen bg-white/95 backdrop-blur-2xl border-r border-slate-200/80 flex flex-col transition-all duration-300 z-30 shadow-[4px_0_24px_rgba(15,23,42,0.03)] shrink-0 ${
+          className={`sticky top-0 h-screen bg-white/95 backdrop-blur-2xl border-r border-slate-200/80 flex flex-col transition-all duration-300 z-40 shadow-[4px_0_24px_rgba(15,23,42,0.03)] shrink-0 ${
             sidebarCollapsed ? "w-[80px]" : "w-60"
           } hidden lg:flex`}
         >
@@ -681,7 +869,7 @@ export default function AdminDashboardPage() {
             {/* Absolute Positioned Collapse/Expand Toggle Button on Right */}
             <button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-[5px] border border-slate-200/90 bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all cursor-pointer shadow-sm group hover:scale-110 shrink-0 z-50"
+              className="absolute -right-3.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-slate-200/90 bg-white hover:bg-slate-50 text-slate-600 hover:text-orange-600 hover:border-orange-300 flex items-center justify-center transition-all cursor-pointer shadow-md shrink-0 z-50"
               title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
             >
               <ChevronLeft className={`w-3.5 h-3.5 transition-transform duration-300 ${sidebarCollapsed ? "rotate-180 text-orange-600" : ""}`} />
@@ -700,7 +888,14 @@ export default function AdminDashboardPage() {
 
               {/* Queries Tab */}
               <button
-                onClick={() => setActiveTab("queries")}
+                onClick={() => {
+                  setActiveTab("queries");
+                  setFormTypeFilter("all");
+                  setStatusFilter("all");
+                  setSearchQuery("");
+                  setCurrentPage(1);
+                  setSelectedCheckboxIds([]);
+                }}
                 className={`w-full flex items-center ${
                   sidebarCollapsed ? "justify-center px-2 py-2.5" : "justify-between px-3 py-2.5"
                 } rounded-[5px] text-xs font-semibold transition-all duration-200 cursor-pointer relative group ${
@@ -722,14 +917,21 @@ export default function AdminDashboardPage() {
                         : "bg-slate-100 text-slate-700 border border-slate-200/70"
                     }`}
                   >
-                    {stats.total}
+                    {queries.filter((q) => q.type !== "consultation" && q.type !== "contact").length}
                   </span>
                 )}
               </button>
 
               {/* Consultations Tab */}
               <button
-                onClick={() => setActiveTab("consultations")}
+                onClick={() => {
+                  setActiveTab("consultations");
+                  setFormTypeFilter("all");
+                  setStatusFilter("all");
+                  setSearchQuery("");
+                  setCurrentPage(1);
+                  setSelectedCheckboxIds([]);
+                }}
                 className={`w-full flex items-center ${
                   sidebarCollapsed ? "justify-center px-2 py-2.5" : "justify-between px-3 py-2.5"
                 } rounded-[5px] text-xs font-semibold transition-all duration-200 cursor-pointer relative group ${
@@ -757,11 +959,11 @@ export default function AdminDashboardPage() {
               </button>
             </div>
 
-            {/* Group 2: CONTENT */}
+            {/* Group 2: CONTENT & MESSAGES */}
             <div className="space-y-1.5">
               {!sidebarCollapsed && (
                 <div className="px-3 pb-1 text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
-                  {tr("Content Management", "Inhaltsverwaltung")}
+                  {tr("Content & Outreach", "Inhalte & Nachrichten")}
                 </div>
               )}
 
@@ -790,6 +992,42 @@ export default function AdminDashboardPage() {
                     }`}
                   >
                     {blogs.length}
+                  </span>
+                )}
+              </button>
+
+              {/* Contact Messages Tab (Right below Blog Articles) */}
+              <button
+                onClick={() => {
+                  setActiveTab("contacts");
+                  setFormTypeFilter("all");
+                  setStatusFilter("all");
+                  setSearchQuery("");
+                  setCurrentPage(1);
+                  setSelectedCheckboxIds([]);
+                }}
+                className={`w-full flex items-center ${
+                  sidebarCollapsed ? "justify-center px-2 py-2.5" : "justify-between px-3 py-2.5"
+                } rounded-[5px] text-xs font-semibold transition-all duration-200 cursor-pointer relative group ${
+                  activeTab === "contacts"
+                    ? "bg-slate-900 text-white font-bold shadow-sm"
+                    : "text-slate-600 hover:bg-slate-100/80 hover:text-slate-900"
+                }`}
+                title={sidebarCollapsed ? tr("Contact Messages", "Kontaktnachrichten") : undefined}
+              >
+                <div className={`flex items-center ${sidebarCollapsed ? "justify-center" : "gap-2.5"}`}>
+                  <Mail className={`w-4 h-4 shrink-0 transition-transform group-hover:scale-110 ${activeTab === "contacts" ? "text-orange-400" : "text-slate-400"}`} />
+                  {!sidebarCollapsed && <span>{tr("Contact Messages", "Kontaktnachrichten")}</span>}
+                </div>
+                {!sidebarCollapsed && (
+                  <span
+                    className={`text-[10px] px-2 py-0.5 rounded-[5px] font-bold transition-all ${
+                      activeTab === "contacts"
+                        ? "bg-orange-600 text-white shadow-2xs"
+                        : "bg-slate-100 text-slate-700 border border-slate-200/70"
+                    }`}
+                  >
+                    {queries.filter((q) => q.type === "contact").length}
                   </span>
                 )}
               </button>
@@ -983,6 +1221,11 @@ export default function AdminDashboardPage() {
                 <button
                   onClick={() => {
                     setActiveTab("queries");
+                    setFormTypeFilter("all");
+                    setStatusFilter("all");
+                    setSearchQuery("");
+                    setCurrentPage(1);
+                    setSelectedCheckboxIds([]);
                     setMobileMenuOpen(false);
                   }}
                   className={`w-full flex items-center justify-between px-3.5 py-3 rounded-[5px] text-xs font-bold transition-all ${
@@ -996,13 +1239,18 @@ export default function AdminDashboardPage() {
                     <span>{tr("Queries", "Anfragen")}</span>
                   </div>
                   <span className={`text-xs px-2 py-0.5 rounded-[5px] font-extrabold ${activeTab === "queries" ? "bg-orange-600 text-white" : "bg-slate-100 text-slate-600"}`}>
-                    {stats.total}
+                    {queries.filter((q) => q.type !== "consultation" && q.type !== "contact").length}
                   </span>
                 </button>
 
                 <button
                   onClick={() => {
                     setActiveTab("consultations");
+                    setFormTypeFilter("all");
+                    setStatusFilter("all");
+                    setSearchQuery("");
+                    setCurrentPage(1);
+                    setSelectedCheckboxIds([]);
                     setMobileMenuOpen(false);
                   }}
                   className={`w-full flex items-center justify-between px-3.5 py-3 rounded-[5px] text-xs font-bold transition-all ${
@@ -1039,6 +1287,32 @@ export default function AdminDashboardPage() {
                     {blogs.length}
                   </span>
                 </button>
+
+                {/* Contact Messages (Directly below Blog Articles) */}
+                <button
+                  onClick={() => {
+                    setActiveTab("contacts");
+                    setFormTypeFilter("all");
+                    setStatusFilter("all");
+                    setSearchQuery("");
+                    setCurrentPage(1);
+                    setSelectedCheckboxIds([]);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3.5 py-3 rounded-[5px] text-xs font-bold transition-all ${
+                    activeTab === "contacts"
+                      ? "bg-slate-900 text-white shadow-sm"
+                      : "text-slate-700 hover:bg-slate-100"
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Mail className={`w-4 h-4 ${activeTab === "contacts" ? "text-orange-400" : "text-slate-500"}`} />
+                    <span>{tr("Contact Messages", "Kontaktnachrichten")}</span>
+                  </div>
+                  <span className={`text-xs px-2 py-0.5 rounded-[5px] font-extrabold ${activeTab === "contacts" ? "bg-orange-600 text-white" : "bg-slate-100 text-slate-600"}`}>
+                    {queries.filter((q) => q.type === "contact").length}
+                  </span>
+                </button>
               </div>
 
               {/* Mobile User Bottom */}
@@ -1071,9 +1345,9 @@ export default function AdminDashboardPage() {
         )}
 
         {/* ===================== MAIN CONTENT WRAPPER ===================== */}
-        <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-          {/* ===================== ULTRA-MODERN STICKY TOP HEADER ===================== */}
-          <header className="h-20 bg-white/85 backdrop-blur-2xl border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-1 shadow-[0_1px_3px_0_rgba(15,23,42,0.02)]">
+        <div className="flex-1 flex flex-col min-w-0 h-full overflow-y-auto">
+          {/* ===================== ULTRA-MODERN FIXED TOP HEADER ===================== */}
+          <header className="h-20 bg-white/95 backdrop-blur-2xl border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-30 shadow-[0_1px_3px_0_rgba(15,23,42,0.02)] shrink-0">
             {/* Left: Mobile Toggle & Page Title */}
             <div className="flex items-center gap-3">
               <button
@@ -1093,6 +1367,8 @@ export default function AdminDashboardPage() {
                     ? tr("Customer Queries", "Kundenanfragen")
                     : activeTab === "consultations"
                     ? tr("Consultation Requests", "Beratungsanfragen")
+                    : activeTab === "contacts"
+                    ? tr("Contact Messages", "Kontaktnachrichten")
                     : tr("Blog Management", "Blogverwaltung")}
                 </span>
               </div>
@@ -1250,8 +1526,8 @@ export default function AdminDashboardPage() {
 
           {/* ===================== PAGE CONTENT BODY ===================== */}
           <main className="p-4 sm:p-7 space-y-6 flex-1">
-            {/* TAB: QUERIES OR CONSULTATIONS */}
-            {(activeTab === "queries" || activeTab === "consultations") && (
+            {/* TAB: QUERIES OR CONSULTATIONS OR CONTACTS */}
+            {(activeTab === "queries" || activeTab === "consultations" || activeTab === "contacts") && (
               <>
                 {/* Header Title & Export Button */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -1260,7 +1536,9 @@ export default function AdminDashboardPage() {
                       <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                         {activeTab === "queries"
                           ? tr("Queries", "Anfragen")
-                          : tr("Consultations", "Beratungstermine")}
+                          : activeTab === "consultations"
+                          ? tr("Consultations", "Beratungstermine")
+                          : tr("Contact Messages", "Kontaktnachrichten")}
                       </h1>
                       <span className="px-2.5 py-0.5 rounded-[5px] bg-orange-100 text-orange-700 text-xs font-bold">
                         {filteredQueries.length}
@@ -1272,9 +1550,14 @@ export default function AdminDashboardPage() {
                             "Manage and respond to queries submitted from website forms.",
                             "Verwalten und beantworten Sie Anfragen aus den Website-Formularen."
                           )
-                        : tr(
+                        : activeTab === "consultations"
+                        ? tr(
                             "Review and organize scheduled discovery and strategy consultation calls.",
                             "Überprüfen und organisieren Sie vereinbarte Erstgespräche und Scoping-Termine."
+                          )
+                        : tr(
+                            "Manage and respond to messages submitted from the contact page.",
+                            "Verwalten und beantworten Sie Nachrichten aus dem Kontaktformular."
                           )}
                     </p>
                   </div>
@@ -1292,17 +1575,27 @@ export default function AdminDashboardPage() {
 
                 {/* 4 STATS METRIC CARDS */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
-                  {/* Total Queries */}
+                  {/* Total Queries / Consultations */}
                   <div className="bg-white p-4 sm:p-5 rounded-[5px] border border-slate-200/80 shadow-2xs flex items-center gap-4 hover:shadow-sm transition-shadow">
                     <div className="w-11 h-11 rounded-[5px] bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 border border-amber-100 shadow-2xs">
-                      <MessageSquare className="w-5 h-5 text-amber-500" />
+                      {activeTab === "consultations" ? (
+                        <Calendar className="w-5 h-5 text-amber-500" />
+                      ) : activeTab === "contacts" ? (
+                        <Mail className="w-5 h-5 text-amber-500" />
+                      ) : (
+                        <MessageSquare className="w-5 h-5 text-amber-500" />
+                      )}
                     </div>
                     <div>
                       <div className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
-                        {stats.total}
+                        {activeStats.total}
                       </div>
                       <div className="text-xs font-medium text-slate-500 mt-0.5">
-                        {tr("Total Queries", "Gesamte Anfragen")}
+                        {activeTab === "consultations"
+                          ? tr("Total Consultations", "Gesamte Termine")
+                          : activeTab === "contacts"
+                          ? tr("Total Contacts", "Gesamte Nachrichten")
+                          : tr("Total Queries", "Gesamte Anfragen")}
                       </div>
                     </div>
                   </div>
@@ -1314,7 +1607,7 @@ export default function AdminDashboardPage() {
                     </div>
                     <div>
                       <div className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
-                        {stats.pending}
+                        {activeStats.pending}
                       </div>
                       <div className="text-xs font-medium text-slate-500 mt-0.5">
                         {tr("Pending", "Ausstehend")}
@@ -1329,7 +1622,7 @@ export default function AdminDashboardPage() {
                     </div>
                     <div>
                       <div className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
-                        {stats.in_progress}
+                        {activeStats.in_progress}
                       </div>
                       <div className="text-xs font-medium text-slate-500 mt-0.5">
                         {tr("In Progress", "In Bearbeitung")}
@@ -1344,7 +1637,7 @@ export default function AdminDashboardPage() {
                     </div>
                     <div>
                       <div className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
-                        {stats.resolved}
+                        {activeStats.resolved}
                       </div>
                       <div className="text-xs font-medium text-slate-500 mt-0.5">
                         {tr("Resolved", "Gelöst")}
@@ -1361,7 +1654,13 @@ export default function AdminDashboardPage() {
                       <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                       <input
                         type="text"
-                        placeholder={tr("Search queries...", "Anfragen suchen...")}
+                        placeholder={
+                          activeTab === "consultations"
+                            ? tr("Search consultations by name, email, slot...", "Termine durchsuchen...")
+                            : activeTab === "contacts"
+                            ? tr("Search contacts by name, email, phone, message...", "Kontakte durchsuchen...")
+                            : tr("Search queries by name, email, message...", "Anfragen suchen...")
+                        }
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200/90 rounded-[5px] text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-orange-500"
@@ -1383,18 +1682,43 @@ export default function AdminDashboardPage() {
                       <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                     </div>
 
-                    {/* Form type filter */}
+                    {/* Form type / service category filter */}
                     <div className="relative min-w-[140px]">
-                      <select
-                        value={formTypeFilter}
-                        onChange={(e) => setFormTypeFilter(e.target.value)}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200/90 rounded-[5px] text-xs font-semibold text-slate-700 appearance-none focus:outline-none focus:bg-white cursor-pointer pr-8"
-                      >
-                        <option value="all">{tr("All Forms", "Alle Formulare")}</option>
-                        <option value="consultation">{tr("Consultations", "Beratungen")}</option>
-                        <option value="project">{tr("Start Your Project", "Projekt starten")}</option>
-                        <option value="contact">{tr("Contact Page", "Kontaktseite")}</option>
-                      </select>
+                      {activeTab === "queries" ? (
+                        <select
+                          value={formTypeFilter}
+                          onChange={(e) => setFormTypeFilter(e.target.value)}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200/90 rounded-[5px] text-xs font-semibold text-slate-700 appearance-none focus:outline-none focus:bg-white cursor-pointer pr-8"
+                        >
+                          <option value="all">{tr("All Queries", "Alle Anfragen")}</option>
+                          <option value="project">{tr("Project Requests", "Projektanfragen")}</option>
+                          <option value="contact">{tr("Contact Page", "Kontaktseite")}</option>
+                        </select>
+                      ) : activeTab === "contacts" ? (
+                        <select
+                          value={formTypeFilter}
+                          onChange={(e) => setFormTypeFilter(e.target.value)}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200/90 rounded-[5px] text-xs font-semibold text-slate-700 appearance-none focus:outline-none focus:bg-white cursor-pointer pr-8"
+                        >
+                          <option value="all">{tr("All Services", "Alle Leistungen")}</option>
+                          <option value="Website-Entwicklung">Website-Entwicklung</option>
+                          <option value="App-Entwicklung">App-Entwicklung</option>
+                          <option value="AI Integration">AI Integration</option>
+                          <option value="Cloud Solutions">Cloud Solutions</option>
+                          <option value="Consulting">Consulting</option>
+                        </select>
+                      ) : (
+                        <select
+                          value={formTypeFilter}
+                          onChange={(e) => setFormTypeFilter(e.target.value)}
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200/90 rounded-[5px] text-xs font-semibold text-slate-700 appearance-none focus:outline-none focus:bg-white cursor-pointer pr-8"
+                        >
+                          <option value="all">{tr("All Call Types", "Alle Arten")}</option>
+                          <option value="discovery">{tr("Discovery Calls", "Erstgespräche")}</option>
+                          <option value="audit">{tr("Tech & AI Audits", "Tech & KI-Audits")}</option>
+                          <option value="architecture">{tr("Deep-Dive Sessions", "Architektur-Sessions")}</option>
+                        </select>
+                      )}
                       <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                     </div>
                   </div>
@@ -1431,14 +1755,10 @@ export default function AdminDashboardPage() {
                   )}
                 </div>
 
-                {/* DATA TABLE + DETAIL DRAWER CONTAINER */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-                  {/* LEFT TABLE: 7 or 8 COLUMNS */}
-                  <div
-                    className={`${
-                      selectedQuery ? "lg:col-span-8" : "lg:col-span-12"
-                    } bg-white rounded-[5px] border border-slate-200/80 shadow-2xs overflow-hidden transition-all duration-300`}
-                  >
+                {/* DATA TABLE CONTAINER */}
+                <div className="w-full">
+                  {/* TABLE */}
+                  <div className="w-full bg-white rounded-[5px] border border-slate-200/80 shadow-2xs overflow-hidden">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse">
                         <thead>
@@ -1456,7 +1776,24 @@ export default function AdminDashboardPage() {
                             </th>
                             <th className="py-3.5 px-3">{tr("Name", "Name")}</th>
                             <th className="py-3.5 px-3">{tr("Email", "E-Mail")}</th>
-                            <th className="py-3.5 px-3">{tr("Message", "Nachricht")}</th>
+                            {activeTab === "consultations" ? (
+                              <>
+                                <th className="py-3.5 px-3">{tr("Booking Slot", "Terminslot")}</th>
+                                <th className="py-3.5 px-3">{tr("Call Type", "Art der Beratung")}</th>
+                              </>
+                            ) : activeTab === "contacts" ? (
+                              <>
+                                <th className="py-3.5 px-3">{tr("Phone", "Telefon")}</th>
+                                <th className="py-3.5 px-3">{tr("Company", "Unternehmen")}</th>
+                                <th className="py-3.5 px-3">{tr("Service", "Leistung")}</th>
+                                <th className="py-3.5 px-3">{tr("Message", "Nachricht")}</th>
+                              </>
+                            ) : (
+                              <>
+                                <th className="py-3.5 px-3">{tr("Service", "Leistung")}</th>
+                                <th className="py-3.5 px-3">{tr("Message", "Nachricht")}</th>
+                              </>
+                            )}
                             <th className="py-3.5 px-3">{tr("Date", "Datum")}</th>
                             <th className="py-3.5 px-3">{tr("Status", "Status")}</th>
                             <th className="py-3.5 pr-4 pl-2 text-right">{tr("Actions", "Aktionen")}</th>
@@ -1466,25 +1803,55 @@ export default function AdminDashboardPage() {
                         <tbody className="divide-y divide-slate-100 text-xs">
                           {loadingQueries ? (
                             <tr>
-                              <td colSpan={7} className="py-12 text-center text-slate-500">
+                              <td colSpan={activeTab === "contacts" ? 10 : 7} className="py-12 text-center text-slate-500">
                                 <div className="flex items-center justify-center gap-2">
                                   <div className="w-4 h-4 border-2 border-orange-600 border-t-transparent rounded-full animate-spin" />
-                                  <span>{tr("Loading queries...", "Lade Anfragen...")}</span>
+                                  <span>
+                                    {activeTab === "consultations"
+                                      ? tr("Loading consultations...", "Lade Termine...")
+                                      : tr("Loading queries...", "Lade Anfragen...")}
+                                  </span>
                                 </div>
                               </td>
                             </tr>
                           ) : paginatedQueries.length === 0 ? (
                             <tr>
-                              <td colSpan={7} className="py-14 text-center text-slate-400">
+                              <td colSpan={activeTab === "contacts" ? 10 : 7} className="py-14 text-center text-slate-400">
                                 <div className="flex flex-col items-center gap-2">
-                                  <MessageSquare className="w-8 h-8 text-slate-300" />
-                                  <p className="font-semibold text-slate-600">{tr("No queries found", "Keine Anfragen gefunden")}</p>
-                                  <p className="text-[11px] text-slate-400">
-                                    {tr(
-                                      "As soon as someone submits a form on the website, it will show up here in real time.",
-                                      "Sobald jemand ein Formular auf der Website absendet, erscheint es hier in Echtzeit."
-                                    )}
-                                  </p>
+                                  {activeTab === "consultations" ? (
+                                    <>
+                                      <Calendar className="w-8 h-8 text-slate-300" />
+                                      <p className="font-semibold text-slate-600">{tr("No consultations found", "Keine Termine gefunden")}</p>
+                                      <p className="text-[11px] text-slate-400">
+                                        {tr(
+                                          "As soon as someone schedules a consultation, it will show up here.",
+                                          "Sobald jemand einen Termin über den Kalender bucht, erscheint er hier."
+                                        )}
+                                      </p>
+                                    </>
+                                  ) : activeTab === "contacts" ? (
+                                    <>
+                                      <Mail className="w-8 h-8 text-slate-300" />
+                                      <p className="font-semibold text-slate-600">{tr("No contact messages found", "Keine Kontaktnachrichten gefunden")}</p>
+                                      <p className="text-[11px] text-slate-400">
+                                        {tr(
+                                          "As soon as someone submits the contact form on the website, it will show up here.",
+                                          "Sobald jemand das Kontaktformular auf der Website absendet, erscheint es hier in Echtzeit."
+                                        )}
+                                      </p>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <MessageSquare className="w-8 h-8 text-slate-300" />
+                                      <p className="font-semibold text-slate-600">{tr("No queries found", "Keine Anfragen gefunden")}</p>
+                                      <p className="text-[11px] text-slate-400">
+                                        {tr(
+                                          "As soon as someone submits a project inquiry on the website, it will show up here.",
+                                          "Sobald jemand eine Projektanfrage absendet, erscheint sie hier in Echtzeit."
+                                        )}
+                                      </p>
+                                    </>
+                                  )}
                                 </div>
                               </td>
                             </tr>
@@ -1535,10 +1902,55 @@ export default function AdminDashboardPage() {
                                     {item.email}
                                   </td>
 
-                                  {/* Message snippet */}
-                                  <td className="py-3.5 px-3 text-slate-600 truncate max-w-[150px] sm:max-w-[200px]">
-                                    {item.message}
-                                  </td>
+                                  {/* Tab-specific middle columns */}
+                                  {activeTab === "consultations" ? (
+                                    <>
+                                      <td className="py-3.5 px-3">
+                                        <div className="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                                          <Calendar className="w-3.5 h-3.5 text-orange-500 shrink-0" />
+                                          <span className="truncate max-w-[140px]">{cleanBookingDay(item.date_slot) || tr("Slot pending", "Slot offen")}</span>
+                                        </div>
+                                        {item.time_slot && (
+                                          <div className="text-[11px] text-slate-500 font-semibold pl-5">
+                                            {item.time_slot}
+                                          </div>
+                                        )}
+                                      </td>
+                                      <td className="py-3.5 px-3">
+                                        <span className="inline-flex items-center px-2 py-0.5 rounded-[5px] text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200/80">
+                                          {item.call_type || tr("Discovery Call", "Erstgespräch")}
+                                        </span>
+                                      </td>
+                                    </>
+                                  ) : activeTab === "contacts" ? (
+                                    <>
+                                      <td className="py-3.5 px-3 text-slate-700 font-medium whitespace-nowrap">
+                                        {item.phone || "—"}
+                                      </td>
+                                      <td className="py-3.5 px-3 text-slate-700 font-medium truncate max-w-[120px]">
+                                        {item.company || "—"}
+                                      </td>
+                                      <td className="py-3.5 px-3">
+                                        <span className="inline-flex items-center px-2 py-0.5 rounded-[5px] text-[10px] font-bold bg-orange-50 text-orange-700 border border-orange-200/70">
+                                          {item.service || tr("General Contact", "Allgemeiner Kontakt")}
+                                        </span>
+                                      </td>
+                                      <td className="py-3.5 px-3 text-slate-600 truncate max-w-[160px] sm:max-w-[220px]" title={item.message}>
+                                        {item.message || "—"}
+                                      </td>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <td className="py-3.5 px-3">
+                                        <span className="inline-flex items-center px-2 py-0.5 rounded-[5px] text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200/70">
+                                          {item.service || (item.type === "project" ? tr("Project", "Projekt") : tr("Contact", "Kontakt"))}
+                                        </span>
+                                      </td>
+                                      <td className="py-3.5 px-3 text-slate-600 truncate max-w-[150px] sm:max-w-[200px]">
+                                        {item.message}
+                                      </td>
+                                    </>
+                                  )}
 
                                   {/* Date */}
                                   <td className="py-3.5 px-3 text-slate-500 whitespace-nowrap text-[11px]">
@@ -1577,13 +1989,27 @@ export default function AdminDashboardPage() {
                                     className="py-3.5 pr-4 pl-2 text-right"
                                     onClick={(e) => e.stopPropagation()}
                                   >
-                                    <button
-                                      onClick={() => handleDeleteQuery(item.id)}
-                                      className="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-[5px] transition-colors cursor-pointer"
-                                      title={tr("Delete", "Löschen")}
-                                    >
-                                      <Trash2 className="w-3.5 h-3.5" />
-                                    </button>
+                                    <div className="flex items-center justify-end gap-1.5">
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          setSelectedQueryId(item.id);
+                                        }}
+                                        className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-bold text-slate-700 bg-slate-100 hover:bg-orange-50 hover:text-orange-600 rounded-[5px] transition-colors cursor-pointer border border-slate-200/80 hover:border-orange-200"
+                                        title={tr("View Details", "Details anzeigen")}
+                                      >
+                                        <Eye className="w-3.5 h-3.5 text-slate-500" />
+                                        <span>{tr("View", "Ansehen")}</span>
+                                      </button>
+
+                                      <button
+                                        onClick={() => handleDeleteQuery(item.id)}
+                                        className="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-[5px] transition-colors cursor-pointer"
+                                        title={tr("Delete", "Löschen")}
+                                      >
+                                        <Trash2 className="w-3.5 h-3.5" />
+                                      </button>
+                                    </div>
                                   </td>
                                 </tr>
                               );
@@ -1635,283 +2061,296 @@ export default function AdminDashboardPage() {
                     </div>
                   </div>
 
-                  {/* RIGHT DETAIL PANEL (DRAWER) */}
+                  {/* CENTERED DETAIL MODAL POPUP */}
                   {selectedQuery && (
-                    <div className="lg:col-span-4 bg-white rounded-[5px] border border-slate-200/80 shadow-sm p-5 sm:p-6 space-y-5 sticky top-24">
-                      {/* Top Header with Avatar, Name, Email, Status & Close Button */}
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-3">
-                          <div
-                            className={`w-11 h-11 rounded-[5px] flex items-center justify-center text-base font-extrabold border ${getAvatarColor(
-                              selectedQuery.name
-                            )}`}
-                          >
-                            {selectedQuery.name ? selectedQuery.name.charAt(0).toUpperCase() : "U"}
+                    <div
+                      className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3.5 sm:p-4 md:p-6 animate-in fade-in duration-200 overflow-y-auto"
+                      onClick={() => setSelectedQueryId(null)}
+                    >
+                      <div
+                        className="relative w-full max-w-lg bg-white rounded-[5px] shadow-2xl border border-slate-100 p-5 sm:p-6 space-y-4 max-h-[90vh] overflow-y-auto custom-scrollbar animate-in zoom-in-95 duration-200 my-auto"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {/* Top Header with Avatar, Name, Email, Status & Close Button */}
+                        <div className="flex items-start justify-between gap-3 pb-1 border-b border-slate-100">
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div
+                              className={`w-11 h-11 rounded-xl flex items-center justify-center text-base font-extrabold border shrink-0 ${getAvatarColor(
+                                selectedQuery.name
+                              )}`}
+                            >
+                              {selectedQuery.name ? selectedQuery.name.charAt(0).toUpperCase() : "U"}
+                            </div>
+                            <div className="min-w-0">
+                              <h3 className="text-base font-extrabold text-slate-900 leading-snug truncate">
+                                {selectedQuery.name}
+                              </h3>
+                              <p className="text-xs text-slate-500 truncate">{selectedQuery.email}</p>
+                            </div>
                           </div>
-                          <div>
-                            <h3 className="text-base font-extrabold text-slate-900 leading-snug">
-                              {selectedQuery.name}
-                            </h3>
-                            <p className="text-xs text-slate-500">{selectedQuery.email}</p>
+
+                          <div className="flex items-center gap-2 shrink-0">
+                            <span
+                              className={`px-2.5 py-0.5 rounded-[5px] text-[11px] font-bold ${
+                                selectedQuery.status === "pending"
+                                  ? "bg-amber-100 text-amber-700"
+                                  : selectedQuery.status === "in_progress"
+                                  ? "bg-blue-100 text-blue-700"
+                                  : "bg-emerald-100 text-emerald-700"
+                              }`}
+                            >
+                              {selectedQuery.status === "pending"
+                                ? tr("Pending", "Ausstehend")
+                                : selectedQuery.status === "in_progress"
+                                ? tr("In Progress", "In Bearbeitung")
+                                : tr("Resolved", "Gelöst")}
+                            </span>
+
+                            <button
+                              onClick={() => setSelectedQueryId(null)}
+                              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
+                              title={tr("Close", "Schließen")}
+                            >
+                              <X className="w-5 h-5" />
+                            </button>
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2">
-                          <span
-                            className={`px-2.5 py-0.5 rounded-[5px] text-[11px] font-bold ${
-                              selectedQuery.status === "pending"
-                                ? "bg-amber-100 text-amber-700"
-                                : selectedQuery.status === "in_progress"
-                                ? "bg-blue-100 text-blue-700"
-                                : "bg-emerald-100 text-emerald-700"
+                        {/* Detail / Reply Tabs */}
+                        <div className="flex border-b border-slate-100 gap-4 text-xs font-bold pt-1">
+                          <button
+                            onClick={() => setDetailTab("details")}
+                            className={`pb-2.5 cursor-pointer flex items-center gap-1.5 ${
+                              detailTab === "details"
+                                ? "text-orange-600 border-b-2 border-orange-600 font-extrabold"
+                                : "text-slate-400 hover:text-slate-600"
                             }`}
                           >
-                            {selectedQuery.status === "pending"
-                              ? tr("Pending", "Ausstehend")
-                              : selectedQuery.status === "in_progress"
-                              ? tr("In Progress", "In Bearbeitung")
-                              : tr("Resolved", "Gelöst")}
-                          </span>
-
+                            <User className="w-3.5 h-3.5" />
+                            <span>{tr("Details", "Details")}</span>
+                          </button>
                           <button
-                            onClick={() => setSelectedQueryId(null)}
-                            className="p-1 rounded-[5px] text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
+                            onClick={() => setDetailTab("reply")}
+                            className={`pb-2.5 cursor-pointer flex items-center gap-1.5 ${
+                              detailTab === "reply"
+                                ? "text-orange-600 border-b-2 border-orange-600 font-extrabold"
+                                : "text-slate-400 hover:text-slate-600"
+                            }`}
                           >
-                            <X className="w-4 h-4" />
+                            <Mail className="w-3.5 h-3.5" />
+                            <span>{tr("Reply", "Antworten")}</span>
                           </button>
                         </div>
-                      </div>
 
-                      {/* Detail / Reply Tabs */}
-                      <div className="flex border-b border-slate-100 gap-4 text-xs font-bold">
-                        <button
-                          onClick={() => setDetailTab("details")}
-                          className={`pb-2.5 cursor-pointer flex items-center gap-1.5 ${
-                            detailTab === "details"
-                              ? "text-orange-600 border-b-2 border-orange-600 font-extrabold"
-                              : "text-slate-400 hover:text-slate-600"
-                          }`}
-                        >
-                          <User className="w-3.5 h-3.5" />
-                          <span>{tr("Details", "Details")}</span>
-                        </button>
-                        <button
-                          onClick={() => setDetailTab("reply")}
-                          className={`pb-2.5 cursor-pointer flex items-center gap-1.5 ${
-                            detailTab === "reply"
-                              ? "text-orange-600 border-b-2 border-orange-600 font-extrabold"
-                              : "text-slate-400 hover:text-slate-600"
-                          }`}
-                        >
-                          <Mail className="w-3.5 h-3.5" />
-                          <span>{tr("Reply", "Antworten")}</span>
-                        </button>
-                      </div>
+                        {detailTab === "details" ? (
+                          <>
+                            {/* Info Rows */}
+                            <div className="space-y-3 text-xs">
+                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                <span className="text-slate-400 flex items-center gap-2">
+                                  <User className="w-3.5 h-3.5" /> {tr("Name", "Name")}
+                                </span>
+                                <span className="font-semibold text-slate-800">
+                                  {selectedQuery.name}
+                                </span>
+                              </div>
 
-                      {detailTab === "details" ? (
-                        <>
-                          {/* Info Rows */}
+                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                <span className="text-slate-400 flex items-center gap-2">
+                                  <Mail className="w-3.5 h-3.5" /> {tr("Email", "E-Mail")}
+                                </span>
+                                <a
+                                  href={`mailto:${selectedQuery.email}`}
+                                  className="font-semibold text-orange-600 hover:underline"
+                                >
+                                  {selectedQuery.email}
+                                </a>
+                              </div>
+
+                              {selectedQuery.phone && (
+                                <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                  <span className="text-slate-400 flex items-center gap-2">
+                                    <Phone className="w-3.5 h-3.5" /> {tr("Phone", "Telefon")}
+                                  </span>
+                                  <span className="font-semibold text-slate-800">
+                                    {selectedQuery.phone}
+                                  </span>
+                                </div>
+                              )}
+
+                              {selectedQuery.company && (
+                                <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                  <span className="text-slate-400 flex items-center gap-2">
+                                    <Building className="w-3.5 h-3.5" /> {tr("Company", "Unternehmen")}
+                                  </span>
+                                  <span className="font-semibold text-slate-800">
+                                    {selectedQuery.company}
+                                  </span>
+                                </div>
+                              )}
+
+                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                <span className="text-slate-400 flex items-center gap-2">
+                                  <Tag className="w-3.5 h-3.5" /> {tr("Form Type", "Formular-Typ")}
+                                </span>
+                                <span className="font-bold uppercase text-[10px] px-2 py-0.5 rounded-[5px] bg-slate-100 text-slate-700">
+                                  {selectedQuery.type === "consultation"
+                                    ? tr("Schedule Consultation", "Beratung buchen")
+                                    : selectedQuery.type === "contact"
+                                    ? tr("Contact Form", "Kontaktformular")
+                                    : selectedQuery.type === "project"
+                                    ? tr("Start Your Project", "Projekt starten")
+                                    : tr("Contact Page", "Kontaktseite")}
+                                </span>
+                              </div>
+
+                              {selectedQuery.service && (
+                                <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                  <span className="text-slate-400">{tr("Service", "Leistung")}</span>
+                                  <span className="font-semibold text-slate-800">
+                                    {selectedQuery.service}
+                                  </span>
+                                </div>
+                              )}
+
+                              {selectedQuery.budget && (
+                                <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                  <span className="text-slate-400">{tr("Budget", "Budget")}</span>
+                                  <span className="font-semibold text-slate-800">
+                                    {selectedQuery.budget}
+                                  </span>
+                                </div>
+                              )}
+
+                              {selectedQuery.call_type && (
+                                <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                  <span className="text-slate-400">{tr("Call Type", "Art der Beratung")}</span>
+                                  <span className="font-semibold text-slate-800">
+                                    {selectedQuery.call_type}
+                                  </span>
+                                </div>
+                              )}
+
+                              {selectedQuery.date_slot && (
+                                <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                  <span className="text-slate-400">{tr("Selected Day", "Gewählter Tag")}</span>
+                                  <span className="font-semibold text-slate-800">
+                                    {cleanBookingDay(selectedQuery.date_slot)}
+                                  </span>
+                                </div>
+                              )}
+
+                              {selectedQuery.time_slot && (
+                                <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                  <span className="text-slate-400">{tr("Time Slot", "Uhrzeit")}</span>
+                                  <span className="font-semibold text-slate-800">
+                                    {selectedQuery.time_slot}
+                                  </span>
+                                </div>
+                              )}
+
+                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
+                                <span className="text-slate-400 flex items-center gap-2">
+                                  <Calendar className="w-3.5 h-3.5" /> {tr("Date", "Datum")}
+                                </span>
+                                <span className="font-semibold text-slate-800">
+                                  {new Date(selectedQuery.created_at).toLocaleString(adminLang === "en" ? "en-US" : "de-DE", {
+                                    month: "short",
+                                    day: "numeric",
+                                    year: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                  })}
+                                </span>
+                              </div>
+
+                              {/* Status Selector */}
+                              <div className="flex items-center justify-between py-1">
+                                <span className="text-slate-400 flex items-center gap-2">
+                                  <Clock className="w-3.5 h-3.5" /> {tr("Status", "Status")}
+                                </span>
+                                <select
+                                  value={selectedQuery.status}
+                                  onChange={(e) =>
+                                    handleStatusChange(
+                                      selectedQuery.id,
+                                      e.target.value as any
+                                    )
+                                  }
+                                  className="px-3 py-1 bg-slate-50 border border-slate-200 rounded-[5px] font-bold text-xs cursor-pointer focus:outline-none"
+                                >
+                                  <option value="pending">🟠 {tr("Pending", "Ausstehend")}</option>
+                                  <option value="in_progress">🔵 {tr("In Progress", "In Bearbeitung")}</option>
+                                  <option value="resolved">🟢 {tr("Resolved", "Gelöst")}</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            {/* Message Box (Only for Queries / Project / Contact) */}
+                            {selectedQuery.type !== "consultation" && (
+                              <div className="space-y-1.5">
+                                <span className="text-xs font-bold text-slate-900">{tr("Message", "Nachricht")}</span>
+                                <div className="p-3.5 rounded-[5px] bg-slate-50 border border-slate-100 text-xs text-slate-700 leading-relaxed max-h-48 overflow-y-auto">
+                                  {selectedQuery.message || tr("No message provided.", "Keine Nachricht hinterlegt.")}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Quick Actions Buttons */}
+                            <div className="space-y-2 pt-2 border-t border-slate-100">
+                              <span className="text-xs font-bold text-slate-900 block">
+                                {tr("Quick Actions", "Schnellaktionen")}
+                              </span>
+                              <div className="flex flex-wrap items-center gap-2">
+                                <button
+                                  onClick={() =>
+                                    handleStatusChange(selectedQuery.id, "resolved")
+                                  }
+                                  className="flex-1 min-w-[120px] py-2 px-3 rounded-[5px] bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                                >
+                                  <CheckCircle2 className="w-3.5 h-3.5" />
+                                  <span>{tr("Mark as Resolved", "Als gelöst markieren")}</span>
+                                </button>
+
+                                <button
+                                  onClick={() =>
+                                    handleStatusChange(selectedQuery.id, "in_progress")
+                                  }
+                                  className="flex-1 min-w-[120px] py-2 px-3 rounded-[5px] bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                                >
+                                  <Clock className="w-3.5 h-3.5" />
+                                  <span>{tr("Mark as In Progress", "In Bearbeitung")}</span>
+                                </button>
+
+                                <button
+                                  onClick={() => handleDeleteQuery(selectedQuery.id)}
+                                  className="py-2 px-3 rounded-[5px] bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                                  title={tr("Delete query", "Anfrage löschen")}
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                  <span>{tr("Delete", "Löschen")}</span>
+                                </button>
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          /* Reply tab composer */
                           <div className="space-y-3 text-xs">
-                            <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                              <span className="text-slate-400 flex items-center gap-2">
-                                <User className="w-3.5 h-3.5" /> {tr("Name", "Name")}
-                              </span>
-                              <span className="font-semibold text-slate-800">
-                                {selectedQuery.name}
-                              </span>
-                            </div>
-
-                            <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                              <span className="text-slate-400 flex items-center gap-2">
-                                <Mail className="w-3.5 h-3.5" /> {tr("Email", "E-Mail")}
-                              </span>
-                              <a
-                                href={`mailto:${selectedQuery.email}`}
-                                className="font-semibold text-orange-600 hover:underline"
-                              >
-                                {selectedQuery.email}
-                              </a>
-                            </div>
-
-                            {selectedQuery.phone && (
-                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                                <span className="text-slate-400 flex items-center gap-2">
-                                  <Phone className="w-3.5 h-3.5" /> {tr("Phone", "Telefon")}
-                                </span>
-                                <span className="font-semibold text-slate-800">
-                                  {selectedQuery.phone}
-                                </span>
-                              </div>
-                            )}
-
-                            {selectedQuery.company && (
-                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                                <span className="text-slate-400 flex items-center gap-2">
-                                  <Building className="w-3.5 h-3.5" /> {tr("Company", "Unternehmen")}
-                                </span>
-                                <span className="font-semibold text-slate-800">
-                                  {selectedQuery.company}
-                                </span>
-                              </div>
-                            )}
-
-                            <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                              <span className="text-slate-400 flex items-center gap-2">
-                                <Tag className="w-3.5 h-3.5" /> {tr("Form Type", "Formular-Typ")}
-                              </span>
-                              <span className="font-bold uppercase text-[10px] px-2 py-0.5 rounded-[5px] bg-slate-100 text-slate-700">
-                                {selectedQuery.type === "consultation"
-                                  ? tr("Schedule Consultation", "Beratung buchen")
-                                  : selectedQuery.type === "project"
-                                  ? tr("Start Your Project", "Projekt starten")
-                                  : tr("Contact Page", "Kontaktseite")}
-                              </span>
-                            </div>
-
-                            {selectedQuery.service && (
-                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                                <span className="text-slate-400">{tr("Service", "Leistung")}</span>
-                                <span className="font-semibold text-slate-800">
-                                  {selectedQuery.service}
-                                </span>
-                              </div>
-                            )}
-
-                            {selectedQuery.budget && (
-                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                                <span className="text-slate-400">{tr("Budget", "Budget")}</span>
-                                <span className="font-semibold text-slate-800">
-                                  {selectedQuery.budget}
-                                </span>
-                              </div>
-                            )}
-
-                            {selectedQuery.call_type && (
-                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                                <span className="text-slate-400">{tr("Call Type", "Art der Beratung")}</span>
-                                <span className="font-semibold text-slate-800">
-                                  {selectedQuery.call_type}
-                                </span>
-                              </div>
-                            )}
-
-                            {selectedQuery.date_slot && (
-                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                                <span className="text-slate-400">{tr("Date Slot", "Termin-Tag")}</span>
-                                <span className="font-semibold text-slate-800">
-                                  {selectedQuery.date_slot}
-                                </span>
-                              </div>
-                            )}
-
-                            {selectedQuery.time_slot && (
-                              <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                                <span className="text-slate-400">{tr("Time Slot", "Uhrzeit")}</span>
-                                <span className="font-semibold text-slate-800">
-                                  {selectedQuery.time_slot} CET
-                                </span>
-                              </div>
-                            )}
-
-                            <div className="flex items-center justify-between py-1 border-b border-slate-50">
-                              <span className="text-slate-400 flex items-center gap-2">
-                                <Calendar className="w-3.5 h-3.5" /> {tr("Date", "Datum")}
-                              </span>
-                              <span className="font-semibold text-slate-800">
-                                {new Date(selectedQuery.created_at).toLocaleString(adminLang === "en" ? "en-US" : "de-DE", {
-                                  month: "short",
-                                  day: "numeric",
-                                  year: "numeric",
-                                  hour: "2-digit",
-                                  minute: "2-digit",
-                                })}
-                              </span>
-                            </div>
-
-                            {/* Status Selector */}
-                            <div className="flex items-center justify-between py-1">
-                              <span className="text-slate-400 flex items-center gap-2">
-                                <Clock className="w-3.5 h-3.5" /> {tr("Status", "Status")}
-                              </span>
-                              <select
-                                value={selectedQuery.status}
-                                onChange={(e) =>
-                                  handleStatusChange(
-                                    selectedQuery.id,
-                                    e.target.value as any
-                                  )
-                                }
-                                className="px-3 py-1 bg-slate-50 border border-slate-200 rounded-[5px] font-bold text-xs cursor-pointer focus:outline-none"
-                              >
-                                <option value="pending">🟠 {tr("Pending", "Ausstehend")}</option>
-                                <option value="in_progress">🔵 {tr("In Progress", "In Bearbeitung")}</option>
-                                <option value="resolved">🟢 {tr("Resolved", "Gelöst")}</option>
-                              </select>
-                            </div>
+                            <p className="text-slate-500">
+                              {tr(
+                                `Reply directly via email to ${selectedQuery.email}.`,
+                                `Antworten Sie direkt per E-Mail an ${selectedQuery.email}.`
+                              )}
+                            </p>
+                            <a
+                              href={`mailto:${selectedQuery.email}?subject=Nexa%20Solutions%20-%20Your%20Inquiry`}
+                              className="w-full py-2.5 rounded-[5px] bg-slate-900 hover:bg-orange-600 text-white font-bold text-center block transition-colors cursor-pointer shadow-sm"
+                            >
+                              {tr("Open in Mail App ↗", "Im E-Mail-Programm öffnen ↗")}
+                            </a>
                           </div>
-
-                          {/* Message Box */}
-                          <div className="space-y-1.5">
-                            <span className="text-xs font-bold text-slate-900">{tr("Message", "Nachricht")}</span>
-                            <div className="p-3.5 rounded-[5px] bg-slate-50 border border-slate-100 text-xs text-slate-700 leading-relaxed max-h-48 overflow-y-auto">
-                              {selectedQuery.message || tr("No message provided.", "Keine Nachricht hinterlegt.")}
-                            </div>
-                          </div>
-
-                          {/* Quick Actions Buttons */}
-                          <div className="space-y-2 pt-2 border-t border-slate-100">
-                            <span className="text-xs font-bold text-slate-900 block">
-                              {tr("Quick Actions", "Schnellaktionen")}
-                            </span>
-                            <div className="flex flex-wrap items-center gap-2">
-                              <button
-                                onClick={() =>
-                                  handleStatusChange(selectedQuery.id, "resolved")
-                                }
-                                className="flex-1 min-w-[120px] py-2 px-3 rounded-[5px] bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                              >
-                                <CheckCircle2 className="w-3.5 h-3.5" />
-                                <span>{tr("Mark as Resolved", "Als gelöst markieren")}</span>
-                              </button>
-
-                              <button
-                                onClick={() =>
-                                  handleStatusChange(selectedQuery.id, "in_progress")
-                                }
-                                className="flex-1 min-w-[120px] py-2 px-3 rounded-[5px] bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                              >
-                                <Clock className="w-3.5 h-3.5" />
-                                <span>{tr("Mark as In Progress", "In Bearbeitung")}</span>
-                              </button>
-
-                              <button
-                                onClick={() => handleDeleteQuery(selectedQuery.id)}
-                                className="py-2 px-3 rounded-[5px] bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-                                title={tr("Delete query", "Anfrage löschen")}
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                                <span>{tr("Delete", "Löschen")}</span>
-                              </button>
-                            </div>
-                          </div>
-                        </>
-                      ) : (
-                        /* Reply tab composer */
-                        <div className="space-y-3 text-xs">
-                          <p className="text-slate-500">
-                            {tr(
-                              `Reply directly via email to ${selectedQuery.email}.`,
-                              `Antworten Sie direkt per E-Mail an ${selectedQuery.email}.`
-                            )}
-                          </p>
-                          <a
-                            href={`mailto:${selectedQuery.email}?subject=Nexa%20Solutions%20-%20Your%20Inquiry`}
-                            className="w-full py-2.5 rounded-[5px] bg-slate-900 hover:bg-orange-600 text-white font-bold text-center block transition-colors cursor-pointer shadow-sm"
-                          >
-                            {tr("Open in Mail App ↗", "Im E-Mail-Programm öffnen ↗")}
-                          </a>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>

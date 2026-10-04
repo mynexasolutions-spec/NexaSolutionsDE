@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { createQueryRecord } from "@/lib/db";
+import { createConsultationRecord } from "@/lib/db";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, company, topic, callType, callDuration, dateSlot, timeSlot } = body;
+    const { name, email, company, callType, callDuration, dateSlot, timeSlot } = body;
 
     if (!name || !email) {
       return NextResponse.json(
@@ -13,18 +13,14 @@ export async function POST(req: Request) {
       );
     }
 
-    const message = topic || `Erstgespräch (${callType || "Discovery"}, ${callDuration || "15 Min"}) gebucht für ${dateSlot || "Slot"} um ${timeSlot || "10:00"} CET.`;
-
-    const result = await createQueryRecord({
-      type: "consultation",
+    const result = await createConsultationRecord({
       name,
       email,
       company: company || null,
-      topic: topic || null,
       call_type: `${callType || "Discovery"} (${callDuration || "15 Min"})`,
+      call_duration: callDuration || "15 Min",
       date_slot: dateSlot || null,
       time_slot: timeSlot || null,
-      message,
     });
 
     return NextResponse.json({

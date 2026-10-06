@@ -312,7 +312,7 @@ export default function Footer() {
                   <MapPin className="w-3.5 h-3.5 stroke-[2.2]" />
                 </div>
                 <span className="text-[13.5px] xl:text-[14px] font-medium text-slate-800 truncate">
-                  Hyderabad, India
+                  Delhi, India
                 </span>
               </div>
             </div>
@@ -417,6 +417,18 @@ export default function Footer() {
             <Link href="#terms" className="hover:text-slate-800 transition-colors">
               {t("AGB", "Terms & Conditions")}
             </Link>
+            <span className="text-slate-300">|</span>
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new Event("openCookieConsent"));
+                }
+              }}
+              className="hover:text-slate-800 transition-colors cursor-pointer"
+            >
+              {t("Cookies", "Cookies")}
+            </button>
 
             {/* Back to top circular button */}
             <button

@@ -167,23 +167,27 @@ export function LanguageProvider({
       document.documentElement.lang = lang;
 
       const meta = SITE_METADATA[lang];
-      document.title = meta.title;
+      const isHome =
+        window.location.pathname === "/" || window.location.pathname === "";
+      if (isHome) {
+        document.title = meta.title;
 
-      let descTag = document.querySelector('meta[name="description"]');
-      if (descTag) {
-        descTag.setAttribute("content", meta.description);
-      } else {
-        descTag = document.createElement("meta");
-        descTag.setAttribute("name", "description");
-        descTag.setAttribute("content", meta.description);
-        document.head.appendChild(descTag);
+        let descTag = document.querySelector('meta[name="description"]');
+        if (descTag) {
+          descTag.setAttribute("content", meta.description);
+        } else {
+          descTag = document.createElement("meta");
+          descTag.setAttribute("name", "description");
+          descTag.setAttribute("content", meta.description);
+          document.head.appendChild(descTag);
+        }
+
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute("content", meta.title);
+
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute("content", meta.description);
       }
-
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute("content", meta.title);
-
-      const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute("content", meta.description);
 
       // Save cookie so subsequent server-rendered requests immediately know the region/language
       document.cookie = `site_lang=${lang}; path=/; max-age=31536000; SameSite=Lax`;

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   Zap,
@@ -214,15 +215,15 @@ export default function AutomationShowcase({ onExploreAutomation }: AutomationSh
 
             {/* CTA Button */}
             <div className="mb-8 mt-8 lg:mt-0">
-              <button
-                onClick={onExploreAutomation}
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group"
               >
                 <span>{t("KI-Automatisierung entdecken", "Explore AI Automation")}</span>
                 <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </span>
-              </button>
+              </Link>
             </div>
 
             {/* 3 Bottom Feature Badges */}

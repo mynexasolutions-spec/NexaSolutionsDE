@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { X, ArrowRight, CheckCircle, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -266,16 +267,14 @@ export default function ProjectModal({
                 "Need a similar platform built for your business?"
               )}
             </span>
-            <button
-              onClick={() => {
-                onClose();
-                onRequestSimilar();
-              }}
+            <Link
+              href="/contact"
+              onClick={onClose}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#EA580C] hover:bg-[#C2410C] text-white text-sm font-semibold transition-colors shadow-sm cursor-pointer"
             >
               <span>{t("Kostenlose Beratung", "Get a Free Consultation")}</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

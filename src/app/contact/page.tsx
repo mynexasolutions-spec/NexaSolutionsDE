@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   Mail,
   Phone,
-  MapPin,
   Clock,
   CheckCircle2,
   ShieldCheck,
@@ -16,7 +15,6 @@ import {
   MessageCircle,
   HelpCircle,
   ChevronDown,
-  Navigation,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -72,39 +70,12 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedAddress, setCopiedAddress] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-
-  const germanyLocation = {
-    title: t(
-      "Europäische Zentrale & Kundenberatung",
-      "European HQ & Client Strategy",
-    ),
-    city: "Frankfurt am Main, Deutschland",
-    address: "Mainzer Landstraße 180, 60327 Frankfurt am Main",
-    country: "Deutschland",
-    postal: "60327",
-    transit: t(
-      "5 Min. vom Hauptbahnhof Frankfurt | 15 Min. vom Flughafen (FRA)",
-      "5 min from Frankfurt Central Station | 15 min from Airport (FRA)",
-    ),
-    hours: "Mo - Fr: 08:30 – 19:00 Uhr (MEZ)",
-    phone: "+91 8077 313 241",
-    mapQuery: "Mainzer+Landstraße+180,+60327+Frankfurt+am+Main,+Germany",
-    mapSrc:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.749742618956!2d8.653429377045142!3d50.10972411166304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0bdeb02da0ab%3A0x63eb371cf707f152!2sMainzer%20Landstra%C3%9Fe%20180%2C%2060327%20Frankfurt%20am%20Main%2C%20Germany!5e0!3m2!1sen!2sde!4v1709472000000!5m2!1sen!2sde",
-  };
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("contact@nexa-solutions.de");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
-  };
-
-  const handleCopyAddress = () => {
-    navigator.clipboard.writeText(germanyLocation.address);
-    setCopiedAddress(true);
-    setTimeout(() => setCopiedAddress(false), 2000);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -726,93 +697,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Modern Map Section ("modern map add karo please") */}
-          <div className="mb-20">
-            <div className="bg-white rounded-[5px] sm:rounded-[10px] border border-slate-200/80 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.06)] hover:shadow-xl hover:border-slate-300 transition-all duration-300 p-6 sm:p-9 overflow-hidden">
-              {/* Map Header */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-100">
-                <div>
-                  <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-orange-200/80 bg-orange-50/80 text-orange-600 text-xs font-bold tracking-wider uppercase mb-3 shadow-2xs">
-                    <span className="font-mono text-orange-500 font-semibold">[&rarr;</span>
-                    <span>{t("STANDORT & ZENTRALE", "HEADQUARTERS & OFFICE")}</span>
-                  </div>
-                  <h3 className="text-[19px] sm:text-[22px] font-bold text-slate-900 leading-snug">
-                    {germanyLocation.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 mt-1">
-                    {germanyLocation.city}
-                  </p>
-                </div>
-
-                <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[5px] bg-slate-100/90 border border-slate-200 text-xs sm:text-[13px] font-bold text-slate-800 self-start md:self-auto">
-                  <span>🇩🇪</span>
-                  <span>Frankfurt am Main, Deutschland</span>
-                </div>
-              </div>
-
-              {/* Map Embed Container with Floating Interactive Glass Card */}
-              <div className="relative rounded-[5px] overflow-hidden border border-slate-200/80 shadow-inner h-[380px] sm:h-[440px] md:h-[480px]">
-                {/* Modern Styled Google Map Iframe */}
-                <iframe
-                  title="Nexa Solutions Office Map"
-                  src={germanyLocation.mapSrc}
-                  className="w-full h-full border-0 grayscale-[25%] contrast-[1.05] hover:grayscale-0 transition-all duration-500"
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-
-                {/* Floating Glassmorphism Information Overlay */}
-                <div className="absolute bottom-3 inset-x-3 sm:bottom-auto sm:inset-x-auto sm:top-5 sm:left-5 max-w-sm w-full bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-[5px] p-4 sm:p-5 shadow-[0_15px_35px_-5px_rgba(15,23,42,0.18)] z-10">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-100/80 text-emerald-800 text-[10px] font-bold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-                      {t("Büro geöffnet", "Office Open")}
-                    </span>
-                    <span className="text-[11px] font-mono font-medium text-slate-500">
-                      {germanyLocation.hours}
-                    </span>
-                  </div>
-
-                  <div className="text-[15px] sm:text-[16px] font-bold text-slate-900 mb-1">
-                    Nexa Solutions GmbH & Co.
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
-                    {germanyLocation.address}
-                  </p>
-
-                  <div className="text-xs sm:text-sm text-slate-500 mb-3.5 flex items-center gap-1.5 bg-slate-50 p-2.5 rounded-[5px] border border-slate-100">
-                    <Navigation className="w-3.5 h-3.5 text-orange-600 shrink-0" />
-                    <span>{germanyLocation.transit}</span>
-                  </div>
-
-                  {/* Actions inside Map Card */}
-                  <div className="flex items-center gap-2">
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${germanyLocation.mapQuery}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-[5px] bg-[#EA580C] hover:bg-[#C2410C] text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow transition-all"
-                    >
-                      <span>{t("In Google Maps öffnen", "Open Google Maps")}</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                    <button
-                      onClick={handleCopyAddress}
-                      className="px-3 py-2 rounded-[5px] bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
-                      title={t("Adresse kopieren", "Copy address")}
-                    >
-                      {copiedAddress ? (
-                        <Check className="w-3.5 h-3.5 text-emerald-600" />
-                      ) : (
-                        <Copy className="w-3.5 h-3.5" />
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* 3-Step Process Flow: "Was passiert nach Ihrer Anfrage?" */}
           <div className="mb-20">

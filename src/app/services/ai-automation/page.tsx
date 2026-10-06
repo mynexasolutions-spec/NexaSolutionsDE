@@ -540,13 +540,13 @@ export default function AIAutomationPage() {
 
               {/* Buttons */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
-                <button
-                  onClick={() => { setSelectedPackage("KI-Automatisierung Beratung"); setContactOpen(true); }}
+                <Link
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
                 >
                   <span>{t("Automatisierungs-Potenzial prüfen", "Evaluate Automation Potential")}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </Link>
 
                 <Link
                   href="#calculator"
@@ -1184,13 +1184,13 @@ export default function AIAutomationPage() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={() => { setSelectedPackage("KI-Automatisierung Beratung"); setContactOpen(true); }}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-white text-purple-900 hover:bg-purple-50 text-sm sm:text-base font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <span>{t("Kostenloses Gespräch buchen", "Book a Free Consultation")}</span>
               <ArrowRight className="w-4 h-4 text-purple-900" />
-            </button>
+            </Link>
             <a
               href="https://wa.me/918077313241"
               target="_blank"

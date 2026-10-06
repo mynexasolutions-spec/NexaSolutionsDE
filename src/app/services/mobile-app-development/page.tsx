@@ -496,13 +496,13 @@ export default function MobileAppPage() {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
-                <button
-                  onClick={() => { setSelectedPackage("Mobile App Beratung"); setContactOpen(true); }}
+                <Link
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
                 >
                   <span>{t("App-Projekt unverbindlich anfragen", "Request App Consultation")}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </Link>
 
                 <Link
                   href="#pricing"
@@ -1259,13 +1259,13 @@ export default function MobileAppPage() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={() => { setSelectedPackage("Mobile App Beratung"); setContactOpen(true); }}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
             >
               <span>{t("Kostenloses Gespräch buchen", "Book a Free Consultation")}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
             <a
               href="https://wa.me/918077313241"
               target="_blank"

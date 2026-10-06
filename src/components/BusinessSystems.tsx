@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import {
   Users,
   Receipt,
@@ -369,13 +370,13 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
                     ))}
                   </div>
 
-                  <button
-                    onClick={() => onOpenContact(currentSystem.navTitle)}
+                  <Link
+                    href="/contact"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group"
                   >
                     <span>{t("Individuelles System anfragen", "Inquire About This System")}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Right Column: Visual Metrics & Engineering Architecture Box */}

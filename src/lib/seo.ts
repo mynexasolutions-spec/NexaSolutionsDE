@@ -7,11 +7,13 @@ export function pageMetadata({
   title,
   description,
   path,
+  keywords,
   image = DEFAULT_OG_IMAGE,
 }: {
   title: string | { absolute: string };
   description: string;
   path: string;
+  keywords?: string[] | string;
   image?: string;
 }): Metadata {
   const plainTitle = typeof title === "string" ? title : title.absolute;
@@ -25,6 +27,7 @@ export function pageMetadata({
   return {
     title: metadataTitle,
     description,
+    keywords,
     alternates: {
       canonical: absoluteUrl,
       languages: {
@@ -32,6 +35,17 @@ export function pageMetadata({
         "de-DE": absoluteUrl,
         "en": absoluteUrl,
         "x-default": absoluteUrl,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
     openGraph: {

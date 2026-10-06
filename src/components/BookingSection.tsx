@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   Calendar as CalendarIcon,
   Clock,
@@ -355,20 +356,17 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
                     )}
                   </button>
 
-                  {onOpenContact && (
-                    <div className="text-center pt-1">
-                      <p className="text-[12px] sm:text-[15px] text-slate-500">
-                        {t("Lieber schriftlich anfragen?", "Prefer to write a message?")}{" "}
-                        <button
-                          type="button"
-                          onClick={onOpenContact}
-                          className="text-orange-600 font-semibold hover:underline cursor-pointer ml-1"
-                        >
-                          {t("Nachricht senden", "Send an inquiry")}
-                        </button>
-                      </p>
-                    </div>
-                  )}
+                  <div className="text-center pt-1">
+                    <p className="text-[12px] sm:text-[15px] text-slate-500">
+                      {t("Lieber schriftlich anfragen?", "Prefer to write a message?")}{" "}
+                      <Link
+                        href="/contact"
+                        className="text-orange-600 font-semibold hover:underline cursor-pointer ml-1"
+                      >
+                        {t("Nachricht senden", "Send an inquiry")}
+                      </Link>
+                    </p>
+                  </div>
                 </form>
               </div>
             </div>

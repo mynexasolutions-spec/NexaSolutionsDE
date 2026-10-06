@@ -58,6 +58,10 @@ export default function ServicesSection({
         "Modern, fast and SEO-friendly websites that help you grow your brand and convert visitors into customers."
       ),
       image: "/images/web-dev.png",
+      imageAlt: t(
+        "Website Development Services - Business Website erstellen lassen mit Next.js",
+        "Website Development Services - Custom coded business websites with Next.js"
+      ),
       points: [
         t("Business-Websites", "Business Websites"),
         t("E-Commerce-Websites", "Ecommerce Websites"),
@@ -80,6 +84,10 @@ export default function ServicesSection({
         "Scalable and user-friendly mobile apps for Android and iOS to bring your ideas to life."
       ),
       image: "/images/app-dev.png",
+      imageAlt: t(
+        "Mobile Application Development - Custom iOS & Android App entwickeln lassen",
+        "Mobile Application Development - Custom iOS and Android apps with React Native"
+      ),
       points: [
         t("Android & iOS Apps", "Android & iOS Apps"),
         t("Cross-Platform-Entwicklung", "Cross-platform Development"),
@@ -102,6 +110,10 @@ export default function ServicesSection({
         "Automate your business processes with AI agents and custom workflows to save time and reduce manual work."
       ),
       image: "/images/ai-robot.png",
+      imageAlt: t(
+        "KI Automatisierung & n8n Workflows für Unternehmen - Prozessautomatisierung",
+        "AI Automation & n8n Workflows for Businesses - Process Automation"
+      ),
       points: [
         t("n8n Workflow-Automatisierung", "n8n Workflow Automation"),
         t("KI-Agenten & Chatbots", "AI Agents & Chatbots"),
@@ -667,7 +679,7 @@ export default function ServicesSection({
                 <div className="relative aspect-[16.5/10] w-full overflow-hidden bg-slate-100">
                   <Image
                     src={service.image}
-                    alt={service.title}
+                    alt={service.imageAlt || service.title}
                     fill
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -710,21 +722,14 @@ export default function ServicesSection({
                     </div>
                   </div>
 
-                  {/* Actions: Button + View Page Link */}
-                  <div className="flex items-center justify-between gap-2.5 pt-3.5 border-t border-slate-100">
-                    <button
-                      onClick={() => onSelectService?.(service.id)}
-                      className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r ${service.buttonGradient} text-white text-xs sm:text-[13px] font-bold shadow-sm transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer`}
-                    >
-                      <span>{t("Mehr erfahren", "Learn More")}</span>
-                    </button>
-
+                  {/* Action: Full-Width Modern Button */}
+                  <div className="pt-4 border-t border-slate-100">
                     <Link
                       href={service.href}
-                      className={`inline-flex items-center gap-1 text-xs sm:text-[13px] font-semibold text-slate-700 ${service.hoverColor} transition-colors group/link`}
+                      className={`w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[5px] bg-gradient-to-r ${service.buttonGradient} text-white text-sm sm:text-[15px] font-bold shadow-md hover:shadow-lg active:scale-[0.99] transition-all duration-300 group/link`}
                     >
-                      <span>{t("Seite ansehen", "View Page")}</span>
-                      <ArrowRight className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
+                      <span>{t("Mehr lesen", "Read More")}</span>
+                      <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1.5 transition-transform duration-200" />
                     </Link>
                   </div>
                 </div>

@@ -77,21 +77,19 @@ export default function ContactModal({
       onClick={onClose}
     >
 
-      {/* Sleek Close Button Inside Modal Card */}
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-5 sm:top-5 sm:right-[30%] w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
-          aria-label="Close"
-        >
-          <X className="w-4 h-4 stroke-[2.2]" />
-        </button>
-
-
       {/* Modal Card Container: Modern & Reduced Width */}
       <div
         className="relative w-full max-w-[480px] bg-white rounded-[10px] shadow-2xl border border-slate-100 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Sleek Close Button Inside Modal Card */}
+        <button
+          onClick={onClose}
+          className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-all z-20 cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
+          aria-label="Close"
+        >
+          <X className="w-4 h-4 stroke-[2.2]" />
+        </button>
         
 
         {submitted ? (

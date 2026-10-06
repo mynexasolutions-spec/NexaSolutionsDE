@@ -31,6 +31,8 @@ const heroSlides = [
     titleEn: "All-in-One Digital Solutions",
     descriptionDe: "Moderne Websites, mobile Apps und smarte KI-Automatisierung.",
     descriptionEn: "Modern websites, mobile apps, and smart AI automation.",
+    altDe: "Website Development Services & Mobile Application Development - Nexa Solutions",
+    altEn: "Website Development Services & Custom Mobile Application Development - Nexa Solutions",
     image: "/images/hero-devices.jpg",
     icon: Layers,
   },
@@ -42,6 +44,8 @@ const heroSlides = [
     titleEn: "High-Performance Websites",
     descriptionDe: "SEO-optimiert, ultraschnell und auf Konversion ausgerichtet.",
     descriptionEn: "SEO-friendly, ultra-fast & conversion-focused web apps.",
+    altDe: "Website Development Services - Business Website erstellen lassen mit Next.js",
+    altEn: "Custom Website Development Services & Business Websites - Next.js Agency",
     image: "/images/web-dev.png",
     icon: Globe,
   },
@@ -53,6 +57,8 @@ const heroSlides = [
     titleEn: "Custom Mobile Applications",
     descriptionDe: "Nahtlose plattformübergreifende Apps für iOS und Android.",
     descriptionEn: "Seamless cross-platform apps for iOS and Android.",
+    altDe: "Mobile Application Development - Custom iOS & Android App entwickeln lassen",
+    altEn: "Mobile Application Development - Custom iOS and Android Apps Development",
     image: "/images/app-dev.png",
     icon: Smartphone,
   },
@@ -64,6 +70,8 @@ const heroSlides = [
     titleEn: "AI Workflows & n8n Automation",
     descriptionDe: "Autonome Agenten und intelligente Prozess-Pipelines.",
     descriptionEn: "Autonomous agents and intelligent process pipelines.",
+    altDe: "KI Automatisierung & n8n Workflows für Unternehmen - Prozessautomatisierung",
+    altEn: "AI Automation & n8n Workflows for Businesses - Process Automation",
     image: "/images/ai-robot.png",
     icon: Bot,
   },
@@ -75,6 +83,8 @@ const heroSlides = [
     titleEn: "Scalable Tech Engineering",
     descriptionDe: "End-to-End-Entwicklung für nachhaltiges Unternehmenswachstum.",
     descriptionEn: "End-to-end development crafted for business growth.",
+    altDe: "Full Service Software & Application Development Deutschland - Nexa Solutions",
+    altEn: "Full Service Software & Application Development Agency",
     image: "/images/hero-workspace.jpg",
     icon: Sparkles,
   },
@@ -175,13 +185,13 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 mb-8 sm:mb-9 w-full sm:w-auto">
-              <button
-                onClick={onOpenContact}
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group"
               >
                 <span>{t("Kostenlose Beratung anfragen", "Get a Free Consultation")}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
 
               <Link
                 href="#work"
@@ -243,7 +253,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
                   >
                     <Image
                       src={activeSlide.image}
-                      alt={t(activeSlide.titleDe, activeSlide.titleEn)}
+                      alt={t(activeSlide.altDe || activeSlide.titleDe, activeSlide.altEn || activeSlide.titleEn)}
                       fill
                       priority={currentSlide === 0}
                       className="object-cover object-center"

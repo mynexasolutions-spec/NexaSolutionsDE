@@ -792,13 +792,13 @@ export default function ProjectsPage() {
                   </p>
 
                   {/* CTA Button (rounded-[5px] matching Home page style) */}
-                  <button
-                    onClick={() => setContactOpen(true)}
+                  <Link
+                    href="/contact"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-[5px] bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold shadow-lg shadow-orange-500/25 hover:shadow-orange-500/35 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer group"
                   >
                     <span>{t("Projekt anfragen", "Get in Touch")}</span>
                     <ArrowRight className="w-4 h-4 stroke-[2.5] group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Right Column: 3 Stat Cards in a Responsive Grid with rounded-[5px] */}

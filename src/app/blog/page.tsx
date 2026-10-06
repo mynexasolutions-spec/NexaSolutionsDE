@@ -407,7 +407,7 @@ export default function BlogListingPage() {
                             href={`/blog/${post.slug}`}
                             className="inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-orange-600 hover:text-orange-700 group/link"
                           >
-                            <span>{t("Lesen", "Read")}</span>
+                            <span>{t("Mehr lesen", "Read More")}</span>
                             <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                           </Link>
                         </div>

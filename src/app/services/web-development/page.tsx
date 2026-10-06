@@ -63,7 +63,7 @@ function renderWithLinks(text: string) {
         className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors"
       >
         {label}
-      </Link>
+      </Link>,
     );
     lastIndex = match.index + match[0].length;
   }
@@ -97,21 +97,96 @@ const techCategories = [
 ];
 
 const technologies = [
-  { name: "Next.js 15", category: "frontend", tag: "App Router / SSR", highlight: true },
-  { name: "React 19", category: "frontend", tag: "Concurrent Mode", highlight: true },
-  { name: "TypeScript", category: "frontend", tag: "Type-Safe", highlight: false },
-  { name: "Tailwind CSS", category: "frontend", tag: "Modern Styling", highlight: false },
-  { name: "Framer Motion", category: "frontend", tag: "Micro-Interactions", highlight: false },
-  { name: "Node.js", category: "backend", tag: "High Throughput", highlight: false },
-  { name: "PostgreSQL", category: "backend", tag: "Relational DB", highlight: true },
-  { name: "Supabase", category: "backend", tag: "Auth & Realtime", highlight: true },
-  { name: "Prisma ORM", category: "backend", tag: "Schema Migrations", highlight: false },
-  { name: "Redis", category: "backend", tag: "In-Memory Cache", highlight: false },
-  { name: "AWS", category: "cloud", tag: "Scalable Infrastructure", highlight: true },
-  { name: "Vercel Edge", category: "cloud", tag: "Global CDN", highlight: true },
-  { name: "Cloudflare", category: "cloud", tag: "DDoS Protection & SSL", highlight: false },
-  { name: "Stripe", category: "backend", tag: "Secure Payments", highlight: true },
-  { name: "Sanity CMS", category: "frontend", tag: "Headless Content", highlight: false },
+  {
+    name: "Next.js 15",
+    category: "frontend",
+    tag: "App Router / SSR",
+    highlight: true,
+  },
+  {
+    name: "React 19",
+    category: "frontend",
+    tag: "Concurrent Mode",
+    highlight: true,
+  },
+  {
+    name: "TypeScript",
+    category: "frontend",
+    tag: "Type-Safe",
+    highlight: false,
+  },
+  {
+    name: "Tailwind CSS",
+    category: "frontend",
+    tag: "Modern Styling",
+    highlight: false,
+  },
+  {
+    name: "Framer Motion",
+    category: "frontend",
+    tag: "Micro-Interactions",
+    highlight: false,
+  },
+  {
+    name: "Node.js",
+    category: "backend",
+    tag: "High Throughput",
+    highlight: false,
+  },
+  {
+    name: "PostgreSQL",
+    category: "backend",
+    tag: "Relational DB",
+    highlight: true,
+  },
+  {
+    name: "Supabase",
+    category: "backend",
+    tag: "Auth & Realtime",
+    highlight: true,
+  },
+  {
+    name: "Prisma ORM",
+    category: "backend",
+    tag: "Schema Migrations",
+    highlight: false,
+  },
+  {
+    name: "Redis",
+    category: "backend",
+    tag: "In-Memory Cache",
+    highlight: false,
+  },
+  {
+    name: "AWS",
+    category: "cloud",
+    tag: "Scalable Infrastructure",
+    highlight: true,
+  },
+  {
+    name: "Vercel Edge",
+    category: "cloud",
+    tag: "Global CDN",
+    highlight: true,
+  },
+  {
+    name: "Cloudflare",
+    category: "cloud",
+    tag: "DDoS Protection & SSL",
+    highlight: false,
+  },
+  {
+    name: "Stripe",
+    category: "backend",
+    tag: "Secure Payments",
+    highlight: true,
+  },
+  {
+    name: "Sanity CMS",
+    category: "frontend",
+    tag: "Headless Content",
+    highlight: false,
+  },
 ];
 
 const coreServices = [
@@ -123,8 +198,18 @@ const coreServices = [
       "Modernste Unternehmens-Websites mit interaktiver Marken-Story, unwiderstehlichem UX-Design und klarem Conversion-Fokus. Entwickelt für messbar mehr qualifizierte Kundenanfragen.",
     descEn:
       "State-of-the-art enterprise websites with interactive brand storytelling, irresistible UX design, and sharp conversion focus. Built to drive measurably more qualified client inquiries.",
-    featuresDe: ["Sub-Sekunden Ladezeit (<0.5s)", "Figma UI/UX Design System", "SEO & Meta-Tags ab Werk", "Mehrsprachig (i18n)"],
-    featuresEn: ["Sub-second load times (<0.5s)", "Figma UI/UX Design System", "Turnkey SEO & OpenGraph", "Multilingual ready (i18n)"],
+    featuresDe: [
+      "Sub-Sekunden Ladezeit (<0.5s)",
+      "Figma UI/UX Design System",
+      "SEO & Meta-Tags ab Werk",
+      "Mehrsprachig (i18n)",
+    ],
+    featuresEn: [
+      "Sub-second load times (<0.5s)",
+      "Figma UI/UX Design System",
+      "Turnkey SEO & OpenGraph",
+      "Multilingual ready (i18n)",
+    ],
   },
   {
     icon: Layout,
@@ -134,8 +219,18 @@ const coreServices = [
       "Skalierbare Cloud-Softwarelösungen und Portale. Ideal kombinierbar mit [mobiler App Entwicklung](/services/mobile-app-development) und intelligenter [KI-Automatisierung](/services/ai-automation) für nahtlose Betriebsabläufe.",
     descEn:
       "Scalable cloud software solutions and client portals. Seamlessly integrated with [mobile app development](/services/mobile-app-development) and [AI automation](/services/ai-automation) pipelines.",
-    featuresDe: ["Multi-Tenant Architektur", "Sichere User-Authentifizierung", "Stripe / PayPal Billing Integration", "Echtzeit-WebSockets & APIs"],
-    featuresEn: ["Multi-tenant architecture", "Secure user authentication", "Stripe / PayPal subscription billing", "Real-time WebSockets & APIs"],
+    featuresDe: [
+      "Multi-Tenant Architektur",
+      "Sichere User-Authentifizierung",
+      "Stripe / PayPal Billing Integration",
+      "Echtzeit-WebSockets & APIs",
+    ],
+    featuresEn: [
+      "Multi-tenant architecture",
+      "Secure user authentication",
+      "Stripe / PayPal subscription billing",
+      "Real-time WebSockets & APIs",
+    ],
   },
   {
     icon: ShoppingCart,
@@ -145,8 +240,18 @@ const coreServices = [
       "High-Conversion Onlineshops ohne die Trägheit gewöhnlicher Templates. Ultraschnelle Produktkataloge, One-Click Checkout und nahtlose Anbindung an Ihr ERP- und Warenwirtschaftssystem.",
     descEn:
       "High-conversion online stores without template bloat. Blazing-fast product catalogs, one-click checkout, and seamless sync with your ERP and inventory systems.",
-    featuresDe: ["Sub-Sekunden Checkout", "Shopify / MedusaJS / Stripe", "Automatisierte Rechnungsstellung", "DSGVO-konforme Cookie-Lösung"],
-    featuresEn: ["Sub-second frictionless checkout", "Shopify / MedusaJS / Stripe", "Automated invoicing & tax handling", "100% GDPR-compliant checkout"],
+    featuresDe: [
+      "Sub-Sekunden Checkout",
+      "Shopify / MedusaJS / Stripe",
+      "Automatisierte Rechnungsstellung",
+      "DSGVO-konforme Cookie-Lösung",
+    ],
+    featuresEn: [
+      "Sub-second frictionless checkout",
+      "Shopify / MedusaJS / Stripe",
+      "Automated invoicing & tax handling",
+      "100% GDPR-compliant checkout",
+    ],
   },
   {
     icon: Database,
@@ -156,8 +261,18 @@ const coreServices = [
       "Geben Sie Ihrem Marketing- und Content-Team die volle Freiheit. Maßgeschneiderte Editoren ohne Programmieraufwand – bei maximaler Code-Sicherheit und Ladezeit.",
     descEn:
       "Give your marketing and content team total editorial freedom. Custom drag-and-drop editors without coding hassles — maintaining rock-solid code security and speed.",
-    featuresDe: ["Sanity, Strapi oder Contentful", "Echtzeit-Vorschau aller Inhalte", "Granulares Rollen-Management", "Keine fehleranfälligen Plugins"],
-    featuresEn: ["Sanity, Strapi, or Contentful", "Live real-time preview", "Granular role management", "Zero vulnerability-prone plugins"],
+    featuresDe: [
+      "Sanity, Strapi oder Contentful",
+      "Echtzeit-Vorschau aller Inhalte",
+      "Granulares Rollen-Management",
+      "Keine fehleranfälligen Plugins",
+    ],
+    featuresEn: [
+      "Sanity, Strapi, or Contentful",
+      "Live real-time preview",
+      "Granular role management",
+      "Zero vulnerability-prone plugins",
+    ],
   },
 ];
 
@@ -254,10 +369,12 @@ const packages = [
     nameEn: "Starter Web Presence",
     badgeDe: "Schneller Markteintritt",
     badgeEn: "Fast Market Entry",
-    priceDe: "ab 1.490 €",
-    priceEn: "from €1,490",
-    descDe: "Ideal für Startups & Dienstleister, die eine erstklassige, konvertierende Online-Präsenz benötigen.",
-    descEn: "Perfect for startups & professional services needing a high-converting, premium online presence.",
+    priceDe: "ab 990 €",
+    priceEn: "from €990",
+    descDe:
+      "Ideal für Startups & Dienstleister, die eine erstklassige, konvertierende Online-Präsenz benötigen.",
+    descEn:
+      "Perfect for startups & professional services needing a high-converting, premium online presence.",
     featuresDe: [
       "Individuelles Responsive Design (bis 5 Unterseiten)",
       "Next.js 15 & Tailwind CSS",
@@ -284,10 +401,12 @@ const packages = [
     nameEn: "Growth Business Platform",
     badgeDe: "Am beliebtesten",
     badgeEn: "Most Popular",
-    priceDe: "ab 2.990 €",
-    priceEn: "from €2,990",
-    descDe: "Für wachsende Unternehmen, die maximale Flexibilität mit Headless CMS und Lead-Automatisierung fordern.",
-    descEn: "For scaling businesses requiring total editorial flexibility with headless CMS and automated lead pipelines.",
+    priceDe: "ab 1.590 €",
+    priceEn: "from €1,590",
+    descDe:
+      "Für wachsende Unternehmen, die maximale Flexibilität mit Headless CMS und Lead-Automatisierung fordern.",
+    descEn:
+      "For scaling businesses requiring total editorial flexibility with headless CMS and automated lead pipelines.",
     featuresDe: [
       "Bis zu 12 maßgeschneiderte Unterseiten & Templates",
       "Headless CMS (Sanity / Contentful) zur Selbstverwaltung",
@@ -318,8 +437,10 @@ const packages = [
     badgeEn: "Enterprise Scale",
     priceDe: "Individuelles Angebot",
     priceEn: "Custom Quote",
-    descDe: "Vollwertige Web-Plattformen, SaaS-Lösungen, Kundenportale oder E-Commerce mit komplexen Backend-Workflows.",
-    descEn: "Full-scale web applications, SaaS dashboards, customer portals, or headless e-commerce platforms.",
+    descDe:
+      "Vollwertige Web-Plattformen, SaaS-Lösungen, Kundenportale oder E-Commerce mit komplexen Backend-Workflows.",
+    descEn:
+      "Full-scale web applications, SaaS dashboards, customer portals, or headless e-commerce platforms.",
     featuresDe: [
       "Maßgeschneiderte Web-Applikation & SaaS Dashboard",
       "PostgreSQL / Supabase Datenbank-Architektur",
@@ -391,9 +512,13 @@ const faqs = [
 
 export default function WebDevelopmentPage() {
   const [contactOpen, setContactOpen] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState<string>("Website-Entwicklung");
+  const [selectedPackage, setSelectedPackage] = useState<string>(
+    "Website-Entwicklung",
+  );
   const [selectedTechCategory, setSelectedTechCategory] = useState("all");
-  const [heroTab, setHeroTab] = useState<"preview" | "architecture" | "performance">("preview");
+  const [heroTab, setHeroTab] = useState<
+    "preview" | "architecture" | "performance"
+  >("preview");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const tableScrollRef = useRef<HTMLDivElement>(null);
@@ -404,7 +529,9 @@ export default function WebDevelopmentPage() {
       const { scrollLeft, scrollWidth, clientWidth } = tableScrollRef.current;
       const maxScroll = scrollWidth - clientWidth;
       if (maxScroll > 0) {
-        setTableScrollPercent(Math.min(100, Math.max(0, (scrollLeft / maxScroll) * 100)));
+        setTableScrollPercent(
+          Math.min(100, Math.max(0, (scrollLeft / maxScroll) * 100)),
+        );
       }
     }
   };
@@ -431,9 +558,10 @@ export default function WebDevelopmentPage() {
 
   const { t, lang } = useLanguage();
 
-  const filteredTech = selectedTechCategory === "all"
-    ? technologies
-    : technologies.filter((t) => t.category === selectedTechCategory);
+  const filteredTech =
+    selectedTechCategory === "all"
+      ? technologies
+      : technologies.filter((t) => t.category === selectedTechCategory);
 
   const handleOpenContactWithPackage = (packageName: string) => {
     setSelectedPackage(`Web-Entwicklung: ${packageName}`);
@@ -443,7 +571,12 @@ export default function WebDevelopmentPage() {
   return (
     <div className="min-h-screen bg-[#FDFDFE] text-[#0F172A] selection:bg-[#EA580C] selection:text-white">
       {/* Top Navbar */}
-      <Navbar onOpenContact={() => { setSelectedPackage("Website-Entwicklung"); setContactOpen(true); }} />
+      <Navbar
+        onOpenContact={() => {
+          setSelectedPackage("Website-Entwicklung");
+          setContactOpen(true);
+        }}
+      />
 
       {/* Hero Section */}
       <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-28 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50">
@@ -467,7 +600,9 @@ export default function WebDevelopmentPage() {
             <span className="text-slate-300">/</span>
             <span className="text-slate-500">{t("Services", "Services")}</span>
             <span className="text-slate-300">/</span>
-            <span className="text-orange-600 font-semibold">{t("Website-Entwicklung", "Web Development")}</span>
+            <span className="text-orange-600 font-semibold">
+              {t("Website-Entwicklung", "Web Development")}
+            </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
@@ -485,7 +620,12 @@ export default function WebDevelopmentPage() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
                   </span>
-                  <span>{t("Next-Gen Web Architecture • German Engineering", "Next-Gen Web Architecture • German Engineering")}</span>
+                  <span>
+                    {t(
+                      "Next-Gen Web Architecture • German Engineering",
+                      "Next-Gen Web Architecture • German Engineering",
+                    )}
+                  </span>
                 </div>
               </div>
 
@@ -502,17 +642,33 @@ export default function WebDevelopmentPage() {
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {t(
                   "Wir entwickeln maßgeschneiderte, ultra-schnelle Web-Plattformen mit Next.js 15, React und TypeScript. Perfekte Core Web Vitals, überragende SEO-Sichtbarkeit und modernste UX für maximales Unternehmenswachstum.",
-                  "We engineer custom, ultra-fast web platforms with Next.js 15, React, and TypeScript. Flawless Core Web Vitals, unmatched Google rankings, and intuitive UX built for measurable business growth."
+                  "We engineer custom, ultra-fast web platforms with Next.js 15, React, and TypeScript. Flawless Core Web Vitals, unmatched Google rankings, and intuitive UX built for measurable business growth.",
                 )}
               </p>
 
               {/* Key Trust Signals Chips */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-9">
                 {[
-                  { icon: Zap, label: t("0.4s Ladezeit", "0.4s Fast Load"), sub: "Lighthouse 98+" },
-                  { icon: ShieldCheck, label: t("100% DSGVO", "100% GDPR"), sub: t("Server in Frankfurt", "EU Hosted") },
-                  { icon: BarChart3, label: t("2-4x Conversion", "2-4x Conversion"), sub: t("Messbarer ROI", "Measurable ROI") },
-                  { icon: Clock, label: t("2–4 Wochen", "2–4 Weeks"), sub: t("Bis zum Launch", "Turnkey Launch") },
+                  {
+                    icon: Zap,
+                    label: t("0.4s Ladezeit", "0.4s Fast Load"),
+                    sub: "Lighthouse 98+",
+                  },
+                  {
+                    icon: ShieldCheck,
+                    label: t("100% DSGVO", "100% GDPR"),
+                    sub: t("Server in Frankfurt", "EU Hosted"),
+                  },
+                  {
+                    icon: BarChart3,
+                    label: t("2-4x Conversion", "2-4x Conversion"),
+                    sub: t("Messbarer ROI", "Measurable ROI"),
+                  },
+                  {
+                    icon: Clock,
+                    label: t("2–4 Wochen", "2–4 Weeks"),
+                    sub: t("Bis zum Launch", "Turnkey Launch"),
+                  },
                 ].map(({ icon: Icon, label, sub }) => (
                   <div
                     key={label}
@@ -520,29 +676,37 @@ export default function WebDevelopmentPage() {
                   >
                     <div className="flex items-center gap-1.5 text-orange-600 mb-1">
                       <Icon className="w-4 h-4 shrink-0" />
-                      <span className="text-xs font-bold text-slate-900">{label}</span>
+                      <span className="text-xs font-bold text-slate-900">
+                        {label}
+                      </span>
                     </div>
-                    <span className="text-[11px] text-slate-500 font-medium">{sub}</span>
+                    <span className="text-[11px] text-slate-500 font-medium">
+                      {sub}
+                    </span>
                   </div>
                 ))}
               </div>
 
               {/* Call-to-actions */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
-                <button
-                  onClick={() => { setSelectedPackage("Website-Entwicklung Beratung"); setContactOpen(true); }}
+                <Link
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
                 >
-                  <span>{t("Kostenloses Angebot anfragen", "Request a Free Quote")}</span>
+                  <span>
+                    {t("Kostenloses Angebot anfragen", "Request a Free Quote")}
+                  </span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </Link>
 
                 <Link
                   href="#pricing"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-slate-300/80 bg-white/90 backdrop-blur-xs text-slate-800 text-sm sm:text-base font-bold hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                 >
                   <Sliders className="w-4 h-4 text-slate-500" />
-                  <span>{t("Pakete & Preise ansehen", "View Packages & Pricing")}</span>
+                  <span>
+                    {t("Pakete & Preise ansehen", "View Packages & Pricing")}
+                  </span>
                 </Link>
               </div>
             </motion.div>
@@ -551,7 +715,11 @@ export default function WebDevelopmentPage() {
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.75,
+                delay: 0.15,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="lg:col-span-5"
             >
               <div className="relative rounded-3xl bg-slate-950 p-2 sm:p-3 shadow-2xl border border-slate-800/80">
@@ -614,16 +782,20 @@ export default function WebDevelopmentPage() {
                           Next.js 15 App Router
                         </span>
                         <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-medium">
-                          <CheckCircle2 className="w-3.5 h-3.5" /> 100% Validated
+                          <CheckCircle2 className="w-3.5 h-3.5" /> 100%
+                          Validated
                         </span>
                       </div>
                       <h4 className="text-lg font-bold leading-snug">
-                        {t("Enterprise B2B Web-Portal mit Echtzeit-Dashboard", "Enterprise B2B Web Portal with Real-Time Dashboard")}
+                        {t(
+                          "Enterprise B2B Web-Portal mit Echtzeit-Dashboard",
+                          "Enterprise B2B Web Portal with Real-Time Dashboard",
+                        )}
                       </h4>
                       <p className="text-xs text-slate-400 leading-relaxed">
                         {t(
                           "Auslieferung über globale Edge-Server in unter 0.4s mit automatischem SEO Structured Data.",
-                          "Delivered via global edge nodes under 0.4s with automatic rich snippet SEO data."
+                          "Delivered via global edge nodes under 0.4s with automatic rich snippet SEO data.",
                         )}
                       </p>
                     </div>
@@ -631,16 +803,28 @@ export default function WebDevelopmentPage() {
                     {/* Interactive metric highlight */}
                     <div className="grid grid-cols-3 gap-2 pt-4 border-t border-slate-800/80">
                       <div className="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/50">
-                        <div className="text-lg font-black text-orange-400">0.38s</div>
-                        <div className="text-[10px] text-slate-400">First Contentful Paint</div>
+                        <div className="text-lg font-black text-orange-400">
+                          0.38s
+                        </div>
+                        <div className="text-[10px] text-slate-400">
+                          First Contentful Paint
+                        </div>
                       </div>
                       <div className="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/50">
-                        <div className="text-lg font-black text-emerald-400">100/100</div>
-                        <div className="text-[10px] text-slate-400">SEO & Core Vitals</div>
+                        <div className="text-lg font-black text-emerald-400">
+                          100/100
+                        </div>
+                        <div className="text-[10px] text-slate-400">
+                          SEO & Core Vitals
+                        </div>
                       </div>
                       <div className="bg-slate-800/70 p-2.5 rounded-xl border border-slate-700/50">
-                        <div className="text-lg font-black text-sky-400">+280%</div>
-                        <div className="text-[10px] text-slate-400">Conversion Uplift</div>
+                        <div className="text-lg font-black text-sky-400">
+                          +280%
+                        </div>
+                        <div className="text-[10px] text-slate-400">
+                          Conversion Uplift
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -654,27 +838,61 @@ export default function WebDevelopmentPage() {
                         Google Lighthouse 10.0 Verification
                       </span>
                       <h4 className="text-sm sm:text-base font-bold text-white mt-1">
-                        {t("Offizielle Performance-Bewertung", "Official Performance Benchmark")}
+                        {t(
+                          "Offizielle Performance-Bewertung",
+                          "Official Performance Benchmark",
+                        )}
                       </h4>
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center">
                       {[
-                        { score: "100%", label: "Performance", color: "text-emerald-400", border: "border-emerald-500/30" },
-                        { score: "100%", label: "Accessibility", color: "text-emerald-400", border: "border-emerald-500/30" },
-                        { score: "100%", label: "Best Practices", color: "text-emerald-400", border: "border-emerald-500/30" },
-                        { score: "100%", label: "SEO", color: "text-emerald-400", border: "border-emerald-500/30" },
+                        {
+                          score: "100%",
+                          label: "Performance",
+                          color: "text-emerald-400",
+                          border: "border-emerald-500/30",
+                        },
+                        {
+                          score: "100%",
+                          label: "Accessibility",
+                          color: "text-emerald-400",
+                          border: "border-emerald-500/30",
+                        },
+                        {
+                          score: "100%",
+                          label: "Best Practices",
+                          color: "text-emerald-400",
+                          border: "border-emerald-500/30",
+                        },
+                        {
+                          score: "100%",
+                          label: "SEO",
+                          color: "text-emerald-400",
+                          border: "border-emerald-500/30",
+                        },
                       ].map((item) => (
-                        <div key={item.label} className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-800/60 border ${item.border}`}>
-                          <div className={`text-xl sm:text-2xl font-black ${item.color}`}>{item.score}</div>
-                          <div className="text-[11px] sm:text-xs text-slate-300 font-medium mt-1 leading-tight">{item.label}</div>
+                        <div
+                          key={item.label}
+                          className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-800/60 border ${item.border}`}
+                        >
+                          <div
+                            className={`text-xl sm:text-2xl font-black ${item.color}`}
+                          >
+                            {item.score}
+                          </div>
+                          <div className="text-[11px] sm:text-xs text-slate-300 font-medium mt-1 leading-tight">
+                            {item.label}
+                          </div>
                         </div>
                       ))}
                     </div>
 
                     <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-0 text-xs sm:text-sm text-slate-400 bg-slate-800/40 p-2.5 sm:p-3 rounded-xl border border-slate-700/40 text-center sm:text-left">
                       <span>Server-Side Rendered (SSR)</span>
-                      <span className="text-emerald-400 font-medium">0 Cumulative Layout Shift</span>
+                      <span className="text-emerald-400 font-medium">
+                        0 Cumulative Layout Shift
+                      </span>
                     </div>
                   </div>
                 )}
@@ -683,32 +901,51 @@ export default function WebDevelopmentPage() {
                 {heroTab === "architecture" && (
                   <div className="rounded-2xl bg-slate-900 border border-slate-800 min-h-[300px] sm:aspect-[4/3] flex flex-col justify-between p-4 sm:p-5 text-white">
                     <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider">
-                      {t("Enterprise Full-Stack Pipeline", "Enterprise Full-Stack Pipeline")}
+                      {t(
+                        "Enterprise Full-Stack Pipeline",
+                        "Enterprise Full-Stack Pipeline",
+                      )}
                     </span>
 
                     <div className="space-y-2 text-xs">
                       <div className="flex items-center justify-between p-2 rounded-lg bg-slate-800/80 border border-slate-700/60">
-                        <span className="font-semibold text-slate-200">1. Edge Layer</span>
-                        <span className="text-orange-400 font-medium">Vercel Global CDN + SSL</span>
+                        <span className="font-semibold text-slate-200">
+                          1. Edge Layer
+                        </span>
+                        <span className="text-orange-400 font-medium">
+                          Vercel Global CDN + SSL
+                        </span>
                       </div>
                       <div className="flex items-center justify-between p-2 rounded-lg bg-slate-800/80 border border-slate-700/60">
-                        <span className="font-semibold text-slate-200">2. App Framework</span>
-                        <span className="text-sky-400 font-medium">Next.js 15 React Server Comps</span>
+                        <span className="font-semibold text-slate-200">
+                          2. App Framework
+                        </span>
+                        <span className="text-sky-400 font-medium">
+                          Next.js 15 React Server Comps
+                        </span>
                       </div>
                       <div className="flex items-center justify-between p-2 rounded-lg bg-slate-800/80 border border-slate-700/60">
-                        <span className="font-semibold text-slate-200">3. Data & Auth</span>
-                        <span className="text-emerald-400 font-medium">PostgreSQL / Supabase / Prisma</span>
+                        <span className="font-semibold text-slate-200">
+                          3. Data & Auth
+                        </span>
+                        <span className="text-emerald-400 font-medium">
+                          PostgreSQL / Supabase / Prisma
+                        </span>
                       </div>
                       <div className="flex items-center justify-between p-2 rounded-lg bg-slate-800/80 border border-slate-700/60">
-                        <span className="font-semibold text-slate-200">4. Headless CMS</span>
-                        <span className="text-purple-400 font-medium">Sanity / Contentful i18n</span>
+                        <span className="font-semibold text-slate-200">
+                          4. Headless CMS
+                        </span>
+                        <span className="text-purple-400 font-medium">
+                          Sanity / Contentful i18n
+                        </span>
                       </div>
                     </div>
 
                     <p className="text-[11px] text-slate-400">
                       {t(
                         "Skalierbar von 100 bis 10.000.000 monatlichen Seitenaufrufen ohne Serverabsturz.",
-                        "Scales from 100 to 10,000,000 monthly hits without server degradation."
+                        "Scales from 100 to 10,000,000 monthly hits without server degradation.",
                       )}
                     </p>
                   </div>
@@ -728,12 +965,15 @@ export default function WebDevelopmentPage() {
               <span>{t("LEISTUNGEN IM DETAIL", "OUR CORE CAPABILITIES")}</span>
             </div>
             <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
-              {t("Maßgeschneiderte Web-Lösungen für jedes Wachstumsziel", "Tailored Web Solutions for Every Business Stage")}
+              {t(
+                "Maßgeschneiderte Web-Lösungen für jedes Wachstumsziel",
+                "Tailored Web Solutions for Every Business Stage",
+              )}
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Kein generisches Baukastensystem. Jede Zeile Code wird exakt auf Ihre geschäftlichen Workflows und Conversion-Ziele abgestimmt.",
-                "Zero generic templates. Every line of code is tailored to your exact business workflows and conversion metrics."
+                "Zero generic templates. Every line of code is tailored to your exact business workflows and conversion metrics.",
               )}
             </p>
           </div>
@@ -764,8 +1004,14 @@ export default function WebDevelopmentPage() {
 
                   <div className="pt-6 border-t border-slate-200/70">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {(lang === "de" ? service.featuresDe : service.featuresEn).map((feat, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm sm:text-base font-medium text-slate-700">
+                      {(lang === "de"
+                        ? service.featuresDe
+                        : service.featuresEn
+                      ).map((feat, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-2 text-sm sm:text-base font-medium text-slate-700"
+                        >
                           <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                           <span>{feat}</span>
                         </div>
@@ -788,12 +1034,15 @@ export default function WebDevelopmentPage() {
               <span>{t("DER UNTERSCHIED", "THE NEXA ADVANTAGE")}</span>
             </div>
             <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
-              {t("Warum moderne Marktführer Next.js wählen", "Why Industry Leaders Choose Next.js Over Legacy Tech")}
+              {t(
+                "Warum moderne Marktführer Next.js wählen",
+                "Why Industry Leaders Choose Next.js Over Legacy Tech",
+              )}
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Ein direkter Vergleich zwischen zukunftssicherer Full-Stack-Entwicklung und veralteten WordPress-Themes.",
-                "A direct comparison between modern edge engineering and slow, vulnerable traditional web templates."
+                "A direct comparison between modern edge engineering and slow, vulnerable traditional web templates.",
               )}
             </p>
           </div>
@@ -818,13 +1067,19 @@ export default function WebDevelopmentPage() {
                       </span>
                     </th>
                     <th className="py-4 px-6 text-sm sm:text-base font-bold text-slate-500 w-1/3">
-                      {t("Klassische Agenturen (WordPress)", "Legacy Agencies (WordPress / CMS)")}
+                      {t(
+                        "Klassische Agenturen (WordPress)",
+                        "Legacy Agencies (WordPress / CMS)",
+                      )}
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-sm sm:text-base">
                   {comparisonData.map((row, i) => (
-                    <tr key={i} className="hover:bg-slate-50/50 transition-colors">
+                    <tr
+                      key={i}
+                      className="hover:bg-slate-50/50 transition-colors"
+                    >
                       <td className="py-5 px-6 font-semibold text-slate-900">
                         {t(row.featureDe, row.featureEn)}
                       </td>
@@ -857,8 +1112,8 @@ export default function WebDevelopmentPage() {
                   {tableScrollPercent < 30
                     ? t("Kriterium", "Feature Benchmark")
                     : tableScrollPercent > 70
-                    ? t("Legacy WordPress", "Legacy CMS")
-                    : "Nexa (Next.js 15)"}
+                      ? t("Legacy WordPress", "Legacy CMS")
+                      : "Nexa (Next.js 15)"}
                 </span>
               </div>
 
@@ -919,12 +1174,15 @@ export default function WebDevelopmentPage() {
               <span>{t("DER TECH STACK", "CUTTING-EDGE TECH STACK")}</span>
             </div>
             <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-white tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
-              {t("Ausgewählt für maximale Geschwindigkeit & Zuverlässigkeit", "Engineered for Extreme Speed & Limitless Scale")}
+              {t(
+                "Ausgewählt für maximale Geschwindigkeit & Zuverlässigkeit",
+                "Engineered for Extreme Speed & Limitless Scale",
+              )}
             </h2>
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Kein unnötiger Ballast. Wir nutzen die führenden Industriestandards für moderne Softwareentwicklung.",
-                "Zero bloated code. We leverage modern industry frameworks favored by high-growth unicorns."
+                "Zero bloated code. We leverage modern industry frameworks favored by high-growth unicorns.",
               )}
             </p>
           </div>
@@ -962,12 +1220,16 @@ export default function WebDevelopmentPage() {
                 }`}
               >
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-bold text-sm text-white">{tech.name}</span>
+                  <span className="font-bold text-sm text-white">
+                    {tech.name}
+                  </span>
                   {tech.highlight && (
                     <span className="w-2 h-2 rounded-full bg-orange-400" />
                   )}
                 </div>
-                <span className="text-[11px] font-medium text-slate-400 block">{tech.tag}</span>
+                <span className="text-[11px] font-medium text-slate-400 block">
+                  {tech.tag}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -975,7 +1237,10 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* 4-Step Process Section */}
-      <section id="process" className="py-10 sm:py-12 lg:py-16  bg-white border-b border-slate-100">
+      <section
+        id="process"
+        className="py-10 sm:py-12 lg:py-16  bg-white border-b border-slate-100"
+      >
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
@@ -983,12 +1248,15 @@ export default function WebDevelopmentPage() {
               <span>{t("UNSER ABLAUF", "OUR AGILE PROCESS")}</span>
             </div>
             <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
-              {t("Vom Kickoff bis zum Live-Gang in 4 klaren Schritten", "From Kickoff to Go-Live in 4 Structured Steps")}
+              {t(
+                "Vom Kickoff bis zum Live-Gang in 4 klaren Schritten",
+                "From Kickoff to Go-Live in 4 Structured Steps",
+              )}
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Kein Rätselraten, keine Verzögerungen. Sie erhalten jede Woche einen klaren Zwischenstand und Staging-Zugang.",
-                "Zero guesswork, zero unexpected delays. Transparent weekly sprints with direct staging links."
+                "Zero guesswork, zero unexpected delays. Transparent weekly sprints with direct staging links.",
               )}
             </p>
           </div>
@@ -1035,7 +1303,10 @@ export default function WebDevelopmentPage() {
                 <span>{t("REFERENZEN", "FEATURED WORK")}</span>
               </div>
               <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-2">
-                {t("Erfolgreich gelaunchte Web-Projekte", "Proven Real-World Case Studies")}
+                {t(
+                  "Erfolgreich gelaunchte Web-Projekte",
+                  "Proven Real-World Case Studies",
+                )}
               </h2>
             </div>
             <Link
@@ -1051,10 +1322,15 @@ export default function WebDevelopmentPage() {
             {[
               {
                 title: "Aura Masale",
-                category: t("E-Commerce & Brand Platform", "E-Commerce & Brand Platform"),
+                category: t(
+                  "E-Commerce & Brand Platform",
+                  "E-Commerce & Brand Platform",
+                ),
                 metric: "+320% Online-Umsatz",
-                descDe: "Headless E-Commerce Plattform mit Sub-Sekunden Produktkatalog und dynamischem Warenkorb.",
-                descEn: "Headless e-commerce platform with sub-second browsing and lightning-fast checkout.",
+                descDe:
+                  "Headless E-Commerce Plattform mit Sub-Sekunden Produktkatalog und dynamischem Warenkorb.",
+                descEn:
+                  "Headless e-commerce platform with sub-second browsing and lightning-fast checkout.",
                 image: "/images/aura-masale.jpg",
                 tags: ["Next.js", "Stripe", "Tailwind"],
               },
@@ -1062,17 +1338,24 @@ export default function WebDevelopmentPage() {
                 title: "Meagle B2B Portal",
                 category: t("SaaS & Kundenportal", "SaaS & Client Portal"),
                 metric: "0.4s Ladezeit",
-                descDe: "Cloud-Portal für B2B-Kunden mit Rollenverwaltung und automatisierter PDF-Rechnungserstellung.",
-                descEn: "Cloud client dashboard with role permissions and automated invoicing pipeline.",
+                descDe:
+                  "Cloud-Portal für B2B-Kunden mit Rollenverwaltung und automatisierter PDF-Rechnungserstellung.",
+                descEn:
+                  "Cloud client dashboard with role permissions and automated invoicing pipeline.",
                 image: "/images/meagle-laptop.jpg",
                 tags: ["React", "PostgreSQL", "Supabase"],
               },
               {
                 title: "EasyWay Germany",
-                category: t("Corporate Service Portal", "Corporate Service Portal"),
+                category: t(
+                  "Corporate Service Portal",
+                  "Corporate Service Portal",
+                ),
                 metric: "99+ Lighthouse Score",
-                descDe: "Mehrsprachiges Serviceportal für internationale Fachkräfte mit Dokumenten-Upload.",
-                descEn: "Multilingual service portal for skilled professionals with automated document routing.",
+                descDe:
+                  "Mehrsprachiges Serviceportal für internationale Fachkräfte mit Dokumenten-Upload.",
+                descEn:
+                  "Multilingual service portal for skilled professionals with automated document routing.",
                 image: "/images/easyway-germany.jpg",
                 tags: ["Next.js", "i18n", "Framer Motion"],
               },
@@ -1099,7 +1382,9 @@ export default function WebDevelopmentPage() {
                     <span className="text-xs font-semibold text-orange-600 uppercase tracking-wide block mb-1">
                       {proj.category}
                     </span>
-                    <h3 className="text-[19px] sm:text-[22px] font-bold text-slate-900 mb-2">{proj.title}</h3>
+                    <h3 className="text-[19px] sm:text-[22px] font-bold text-slate-900 mb-2">
+                      {proj.title}
+                    </h3>
                     <p className="text-base sm:text-lg text-slate-600 mb-5 leading-relaxed">
                       {t(proj.descDe, proj.descEn)}
                     </p>
@@ -1123,7 +1408,10 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* Pricing / Packages Section */}
-      <section id="pricing" className="py-10 sm:py-12 lg:py-16  bg-white border-b border-slate-100">
+      <section
+        id="pricing"
+        className="py-10 sm:py-12 lg:py-16  bg-white border-b border-slate-100"
+      >
         <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-orange-600 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
@@ -1131,12 +1419,15 @@ export default function WebDevelopmentPage() {
               <span>{t("TRANSPARENTE PAKETE", "TRANSPARENT INVESTMENT")}</span>
             </div>
             <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
-              {t("Feste Preise, kalkulierbare Meilensteine", "Predictable Milestones, Turnkey Packages")}
+              {t(
+                "Feste Preise, kalkulierbare Meilensteine",
+                "Predictable Milestones, Turnkey Packages",
+              )}
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Wählen Sie das passende Modell für Ihr Vorhaben. Alle Pakete beinhalten persönliche Beratung und Code-Übergabe.",
-                "Choose the right plan for your scope. All packages include dedicated engineering and full IP ownership."
+                "Choose the right plan for your scope. All packages include dedicated engineering and full IP ownership.",
               )}
             </p>
           </div>
@@ -1188,30 +1479,47 @@ export default function WebDevelopmentPage() {
                   </p>
 
                   <div className="space-y-3 mb-8">
-                    {(lang === "de" ? pkg.featuresDe : pkg.featuresEn).map((feat, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-sm sm:text-base font-medium">
-                        <Check
-                          className={`w-4 h-4 shrink-0 mt-0.5 ${
-                            pkg.popular ? "text-orange-400" : "text-emerald-600"
-                          }`}
-                        />
-                        <span className={pkg.popular ? "text-slate-200" : "text-slate-700"}>
-                          {feat}
-                        </span>
-                      </div>
-                    ))}
+                    {(lang === "de" ? pkg.featuresDe : pkg.featuresEn).map(
+                      (feat, i) => (
+                        <div
+                          key={i}
+                          className="flex items-start gap-2.5 text-sm sm:text-base font-medium"
+                        >
+                          <Check
+                            className={`w-4 h-4 shrink-0 mt-0.5 ${
+                              pkg.popular
+                                ? "text-orange-400"
+                                : "text-emerald-600"
+                            }`}
+                          />
+                          <span
+                            className={
+                              pkg.popular ? "text-slate-200" : "text-slate-700"
+                            }
+                          >
+                            {feat}
+                          </span>
+                        </div>
+                      ),
+                    )}
                   </div>
                 </div>
 
                 <button
-                  onClick={() => handleOpenContactWithPackage(lang === "de" ? pkg.nameDe : pkg.nameEn)}
+                  onClick={() =>
+                    handleOpenContactWithPackage(
+                      lang === "de" ? pkg.nameDe : pkg.nameEn,
+                    )
+                  }
                   className={`w-full py-3.5 px-6 rounded-full text-sm sm:text-base font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
                     pkg.popular
                       ? "bg-orange-600 hover:bg-orange-500 text-white shadow-lg shadow-orange-600/30"
                       : "bg-slate-900 hover:bg-slate-800 text-white"
                   }`}
                 >
-                  <span>{t("Dieses Paket anfragen", "Select This Package")}</span>
+                  <span>
+                    {t("Dieses Paket anfragen", "Select This Package")}
+                  </span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -1229,12 +1537,15 @@ export default function WebDevelopmentPage() {
               <span>{t("HÄUFIG GESTELLTE FRAGEN", "FAQ")}</span>
             </div>
             <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
-              {t("Alles, was Sie vor dem Projektstart wissen müssen", "Everything You Need to Know Before Starting")}
+              {t(
+                "Alles, was Sie vor dem Projektstart wissen müssen",
+                "Everything You Need to Know Before Starting",
+              )}
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
                 "Transparente Antworten auf die wichtigsten technischen und organisatorischen Fragen.",
-                "Transparent answers to key technical, delivery, and contractual inquiries."
+                "Transparent answers to key technical, delivery, and contractual inquiries.",
               )}
             </p>
           </div>
@@ -1277,28 +1588,38 @@ export default function WebDevelopmentPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
             <CheckCircle2 className="w-3.5 h-3.5" />
-            <span>{t("BEREIT FÜR DEN NÄCHSTEN SCHRITT?", "READY TO ELEVATE YOUR WEB PRESENCE?")}</span>
+            <span>
+              {t(
+                "BEREIT FÜR DEN NÄCHSTEN SCHRITT?",
+                "READY TO ELEVATE YOUR WEB PRESENCE?",
+              )}
+            </span>
           </div>
 
           <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-white tracking-tight leading-[1.10] sm:leading-[1.09] mb-5 text-center">
-            {t("Lassen Sie uns Ihre neue Website planen.", "Let's build something extraordinary together.")}
+            {t(
+              "Lassen Sie uns Ihre neue Website planen.",
+              "Let's build something extraordinary together.",
+            )}
           </h2>
 
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8 font-normal text-center">
             {t(
               "Buchen Sie ein unverbindliches 20-minütiges Strategiegespräch. Wir analysieren Ihre aktuelle Website und zeigen konkrete Hebel für mehr Ladezeit und Conversions auf.",
-              "Schedule an informal 20-minute strategy call. We'll audit your current web presence and outline actionable steps for superior speed and conversion growth."
+              "Schedule an informal 20-minute strategy call. We'll audit your current web presence and outline actionable steps for superior speed and conversion growth.",
             )}
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              onClick={() => { setSelectedPackage("Website-Entwicklung Beratung"); setContactOpen(true); }}
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
             >
-              <span>{t("Kostenlose Beratung anfragen", "Book a Free Consultation")}</span>
+              <span>
+                {t("Kostenlose Beratung anfragen", "Book a Free Consultation")}
+              </span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
             <a
               href="https://wa.me/918077313241"
               target="_blank"

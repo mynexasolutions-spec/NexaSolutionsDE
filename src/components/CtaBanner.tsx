@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowRight,
   Send,
@@ -111,22 +112,22 @@ export default function CtaBanner({ onOpenContact }: CtaBannerProps) {
               {/* CTA Action Buttons */}
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-3.5 mb-8 w-full sm:w-auto">
                 {/* 1. Get Free Consultation Button */}
-                <button
-                  onClick={onOpenContact}
+                <Link
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group"
                 >
                   <span>{t("Kostenlose Beratung anfragen", "Get a Free Consultation")}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </Link>
 
                 {/* 2. Contact Us Button */}
-                <button
-                  onClick={onOpenContact}
+                <Link
+                  href="/contact"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 text-sm sm:text-base font-bold transition-all duration-300 shadow-2xs hover:scale-105 active:scale-95 cursor-pointer group"
                 >
                   <span>{t("Kontakt aufnehmen", "Contact Us")}</span>
                   <Send className="w-3.5 h-3.5 text-slate-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </button>
+                </Link>
               </div>
 
               {/* 500+ Happy Clients Social Proof */}

@@ -39,6 +39,38 @@ import Footer from "@/components/Footer";
 import ContactModal from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 
+function renderWithLinks(text: string) {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  if (!linkRegex.test(text)) return text;
+
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  linkRegex.lastIndex = 0;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    const label = match[1];
+    const url = match[2];
+    parts.push(
+      <Link
+        key={match.index}
+        href={url}
+        className="text-blue-600 hover:text-blue-700 underline font-semibold transition-colors"
+      >
+        {label}
+      </Link>
+    );
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  return parts;
+}
+
 const techStack = [
   { name: "React Native", category: "Cross-Platform", note: "Meta Ecosystem", highlight: true },
   { name: "Flutter", category: "Cross-Platform", note: "Google Dart Engine", highlight: true },
@@ -60,7 +92,7 @@ const mobileCapabilities = [
     titleDe: "Cross-Platform mit React Native & Flutter",
     titleEn: "Cross-Platform React Native & Flutter",
     descDe:
-      "Eine gemeinsame Codebasis für iOS und Android bei nativer 60 FPS Performance. Sparen Sie bis zu 50% der Entwicklungs- und Wartungskosten ohne Kompromisse bei der User Experience.",
+      "Eine gemeinsame Codebasis für iOS und Android bei nativer 60 FPS Performance. Lesen Sie unsere Analyse zu [React Native App Entwicklung](/blog/react-native-cross-platform-apps) oder sparen Sie bis zu 50% der Entwicklungs- und Wartungskosten ohne Kompromisse bei der User Experience.",
     descEn:
       "A unified codebase powering iOS and Android at buttery-smooth 60 FPS. Save up to 50% in development and ongoing maintenance without sacrificing native fidelity.",
     tagsDe: ["50% geringere Kosten", "Schnellere Time-to-Market", "Gemeinsame UI-Komponenten"],
@@ -306,7 +338,7 @@ const faqs = [
   {
     qDe: "Was passiert, wenn Apple oder Google die App im Store ablehnen?",
     qEn: "What happens if Apple or Google rejects our app during review?",
-    aDe: "Wir geben Ihnen eine 100%ige Zulassungsgarantie. Sollte das Review-Team von Apple oder Google Rückfragen oder Beanstandungen haben, beheben wir diese sofort auf unsere Kosten, bis die App im Store freigeschaltet ist.",
+    aDe: "Wir geben Ihnen eine 100%ige Zulassungsgarantie. Sollte das Review-Team von Apple oder Google Rückfragen oder Beanstandungen haben, beheben wir diese sofort auf unsere Kosten. Sie können jederzeit unverbindlich [Kontakt aufnehmen](/contact), um Ihr App-Projekt vorab durchzusprechen.",
     aEn: "We back our work with a 100% App Store approval guarantee. If Apple or Google reviewers request modifications, our team resolves them immediately at no additional cost until your app is live.",
   },
   {
@@ -318,7 +350,7 @@ const faqs = [
   {
     qDe: "Können wir die App mit unserer bestehenden Website oder unserem CRM verbinden?",
     qEn: "Can the app connect with our existing website or internal CRM?",
-    aDe: "Ja. Wir bauen standardisierte REST- oder GraphQL-APIs, über die Ihre mobile App in Echtzeit mit Ihrer Website, Ihrem Onlineshop oder Ihrem CRM (z.B. HubSpot, Salesforce oder n8n-Workflows) kommuniziert.",
+    aDe: "Ja. Wir bauen standardisierte REST- oder GraphQL-APIs, über die Ihre mobile App in Echtzeit mit Ihrer [individuellen Webentwicklung](/services/web-development), Ihrem Onlineshop oder mit [KI-Automatisierung für Unternehmen](/services/ai-automation) (z.B. n8n-Workflows) kommuniziert.",
     aEn: "Yes. We engineer robust REST or GraphQL APIs enabling your mobile app to synchronize in real time with your website, e-commerce catalog, or CRM infrastructure (such as HubSpot, Salesforce, or custom n8n pipelines).",
   },
   {
@@ -717,7 +749,7 @@ export default function MobileAppPage() {
                       {t(cap.titleDe, cap.titleEn)}
                     </h3>
                     <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
-                      {t(cap.descDe, cap.descEn)}
+                      {renderWithLinks(t(cap.descDe, cap.descEn))}
                     </p>
                   </div>
 
@@ -975,7 +1007,7 @@ export default function MobileAppPage() {
               </h2>
             </div>
             <Link
-              href="/#projects"
+              href="/projects"
               className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-blue-600 hover:text-blue-700 transition-colors"
             >
               <span>{t("Alle Projekte ansehen", "View All Projects")}</span>
@@ -1196,7 +1228,7 @@ export default function MobileAppPage() {
                 </button>
                 {openFaq === idx && (
                   <div className="px-6 pb-6 text-[14px] sm:text-[16px] text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                    {t(faq.aDe, faq.aEn)}
+                    {renderWithLinks(t(faq.aDe, faq.aEn))}
                   </div>
                 )}
               </div>

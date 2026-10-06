@@ -271,9 +271,27 @@ export default function ProjectsPage() {
 
               {/* Subtitle (Exact Blog Typography & Size) */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal text-center max-w-2xl">
-                {t(
-                  "Entdecken Sie eine Auswahl unserer neuesten Kundenprojekte aus verschiedenen Branchen. Von hochkonvertierenden E-Commerce-Stores bis hin zu modernen Unternehmenswebsites entwickeln wir digitale Lösungen, die Marken wachsen lassen.",
-                  "Explore a selection of our recent work across different industries. From e-commerce stores to business websites, we build digital solutions that help brands grow."
+                {lang === "de" ? (
+                  <>
+                    Entdecken Sie eine Auswahl unserer neuesten Referenzen. Von performanter{" "}
+                    <Link href="/services/web-development" className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors">
+                      Webentwicklung für Unternehmen
+                    </Link>{" "}
+                    über native{" "}
+                    <Link href="/services/mobile-app-development" className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors">
+                      iOS &amp; Android App Entwicklung
+                    </Link>{" "}
+                    bis hin zu automatisierter{" "}
+                    <Link href="/services/ai-automation" className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors">
+                      KI-Prozessautomatisierung
+                    </Link>{" "}
+                    schaffen wir digitale Lösungen mit messbarem Mehrwert.
+                  </>
+                ) : (
+                  t(
+                    "Entdecken Sie eine Auswahl unserer neuesten Kundenprojekte aus verschiedenen Branchen. Von hochkonvertierenden E-Commerce-Stores bis hin zu modernen Unternehmenswebsites entwickeln wir digitale Lösungen, die Marken wachsen lassen.",
+                    "Explore a selection of our recent work across different industries. From e-commerce stores to business websites, we build digital solutions that help brands grow."
+                  )
                 )}
               </p>
             </div>
@@ -757,9 +775,19 @@ export default function ProjectsPage() {
 
                   {/* Subtitle (Home page matching font size: text-sm sm:text-base) */}
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-xl font-normal">
-                    {t(
-                      "Wir freuen uns darauf, von Ihren Zielen zu hören und gemeinsam maßgeschneiderte, hochkonvertierende digitale Lösungen zu entwickeln.",
-                      "We'd love to hear about your goals and create high-performing, custom digital solutions together."
+                    {lang === "de" ? (
+                      <>
+                        Wir freuen uns darauf, von Ihren Zielen zu hören. Gerne können Sie unverbindlich{" "}
+                        <Link href="/contact" className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors">
+                          Kontakt aufnehmen
+                        </Link>{" "}
+                        und gemeinsam maßgeschneiderte, hochkonvertierende digitale Lösungen entwickeln.
+                      </>
+                    ) : (
+                      t(
+                        "Wir freuen uns darauf, von Ihren Zielen zu hören und gemeinsam maßgeschneiderte, hochkonvertierende digitale Lösungen zu entwickeln.",
+                        "We'd love to hear about your goals and create high-performing, custom digital solutions together."
+                      )
                     )}
                   </p>
 

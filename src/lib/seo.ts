@@ -9,27 +9,44 @@ export function pageMetadata({
   path,
   image = DEFAULT_OG_IMAGE,
 }: {
-  title: string;
+  title: string | { absolute: string };
   description: string;
   path: string;
   image?: string;
 }): Metadata {
+  const plainTitle = typeof title === "string" ? title : title.absolute;
+  const metadataTitle =
+    typeof title === "string" && title.includes("Nexa Solutions")
+      ? { absolute: title }
+      : title;
+
+  const absoluteUrl = `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+
   return {
-    title,
+    title: metadataTitle,
     description,
-    alternates: { canonical: path },
+    alternates: {
+      canonical: absoluteUrl,
+      languages: {
+        "de": absoluteUrl,
+        "de-DE": absoluteUrl,
+        "en": absoluteUrl,
+        "x-default": absoluteUrl,
+      },
+    },
     openGraph: {
-      title,
+      title: plainTitle,
       description,
-      url: path,
+      url: absoluteUrl,
       siteName: "Nexa Solutions",
       locale: "de_DE",
+      alternateLocale: ["en_US"],
       type: "website",
       images: [image],
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: plainTitle,
       description,
       images: [image],
     },

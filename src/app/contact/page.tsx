@@ -23,8 +23,40 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/context/LanguageContext";
 
+function renderWithLinks(text: string) {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  if (!linkRegex.test(text)) return text;
+
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  linkRegex.lastIndex = 0;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    const label = match[1];
+    const url = match[2];
+    parts.push(
+      <Link
+        key={match.index}
+        href={url}
+        className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors"
+      >
+        {label}
+      </Link>
+    );
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  return parts;
+}
+
 export default function ContactPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Form State
   const [formData, setFormData] = useState({
@@ -136,7 +168,7 @@ export default function ContactPage() {
         "What engagement models do you offer?",
       ),
       a: t(
-        "Wir bieten transparente Festpreisprojekte (Fixed Price) mit Meilensteingarantie, dedizierte Entwickler-Teams (Time & Material) sowie monatliche Wartungs- & Weiterentwicklungspakete.",
+        "Wir bieten transparente Festpreisprojekte (Fixed Price) mit Meilensteingarantie, dedizierte Entwickler-Teams sowie monatliche Wartungspakete. Werfen Sie gerne vorab einen Blick auf [unsere Projekte](/projects), um Arbeitsbeispiele zu sehen.",
         "We offer transparent fixed-price milestones with delivery guarantees, dedicated agile engineering pods, and ongoing monthly maintenance & AI scaling retainers.",
       ),
     },
@@ -202,9 +234,36 @@ export default function ContactPage() {
 
             {/* Paragraph matching HomePage */}
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-7 sm:mb-8 font-normal text-center">
-              {t(
-                "Egal ob Sie eine moderne Website, skalierbare Mobile App oder autonome KI-Automatisierung benötigen – wir analysieren Ihr Vorhaben unverbindlich und liefern einen konkreten technischen Fahrplan.",
-                "Whether you need a high-converting web platform, cross-platform mobile app, or smart AI automation – get a free 30-min strategy session and custom roadmap.",
+              {lang === "de" ? (
+                <>
+                  Egal ob Sie eine moderne{" "}
+                  <Link
+                    href="/services/web-development"
+                    className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors"
+                  >
+                    Website erstellen lassen
+                  </Link>
+                  , eine skalierbare{" "}
+                  <Link
+                    href="/services/mobile-app-development"
+                    className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors"
+                  >
+                    App entwickeln lassen
+                  </Link>{" "}
+                  oder autonome{" "}
+                  <Link
+                    href="/services/ai-automation"
+                    className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors"
+                  >
+                    KI-Automatisierung für Unternehmen
+                  </Link>{" "}
+                  benötigen – wir analysieren Ihr Vorhaben unverbindlich und liefern einen konkreten technischen Fahrplan.
+                </>
+              ) : (
+                t(
+                  "Egal ob Sie eine moderne Website, skalierbare Mobile App oder autonome KI-Automatisierung benötigen – wir analysieren Ihr Vorhaben unverbindlich und liefern einen konkreten technischen Fahrplan.",
+                  "Whether you need a high-converting web platform, cross-platform mobile app, or smart AI automation – get a free 30-min strategy session and custom roadmap.",
+                )
               )}
             </p>
 
@@ -894,7 +953,7 @@ export default function ContactPage() {
                           className="overflow-hidden"
                         >
                           <div className="px-5 pb-5 pt-1 text-base sm:text-lg text-slate-600 leading-relaxed border-t border-slate-100">
-                            {faq.a}
+                            {renderWithLinks(faq.a)}
                           </div>
                         </motion.div>
                       )}

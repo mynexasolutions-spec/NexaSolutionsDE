@@ -40,6 +40,38 @@ import Footer from "@/components/Footer";
 import ContactModal from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 
+function renderWithLinks(text: string) {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  if (!linkRegex.test(text)) return text;
+
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  linkRegex.lastIndex = 0;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    const label = match[1];
+    const url = match[2];
+    parts.push(
+      <Link
+        key={match.index}
+        href={url}
+        className="text-purple-600 hover:text-purple-700 underline font-semibold transition-colors"
+      >
+        {label}
+      </Link>
+    );
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  return parts;
+}
+
 const techStack = [
   { name: "n8n", category: "Orchestration", note: "Self-Hosted & Scalable", highlight: true },
   { name: "OpenAI GPT-4o", category: "LLM", note: "Reasoning & Extraction", highlight: true },
@@ -61,7 +93,7 @@ const automationSolutions = [
     titleDe: "24/7 Autonome KI-Kundensupport-Agenten",
     titleEn: "24/7 Autonomous AI Customer Support",
     descDe:
-      "Intelligente Support-Bots, die auf Basis Ihrer echten Wissensdatenbank, FAQs und Handbücher präzise antworten. Löst über 75% aller Standard-Tickets sofort – bei komplexen Fällen erfolgt die nahtlose Übergabe an Ihr Team.",
+      "Intelligente Support-Bots, die auf Basis Ihrer echten Wissensdatenbank präzise antworten. Löst über 75% aller Standard-Tickets sofort – nahtlos integrierbar in Ihre [Webentwicklung für Unternehmen](/services/web-development) oder [mobile Apps](/services/mobile-app-development).",
     descEn:
       "Intelligent support agents answering inquiries using your proprietary knowledge base, FAQs, and manuals. Resolves over 75% of incoming tickets instantly with seamless human escalation.",
     featuresDe: [
@@ -103,7 +135,7 @@ const automationSolutions = [
     titleDe: "Lead-Qualifizierung & CRM-Automatisierung",
     titleEn: "Lead Qualification & Automated CRM Routing",
     descDe:
-      "Sobald ein neuer Interessent Ihre Website oder Social Ads besucht, reichert die KI den Lead mit Unternehmensdaten an, berechnet einen Lead-Score und terminiert automatisch das Erstgespräch im Kalender.",
+      "Sobald ein Interessent anfragt, reichert die KI den Kontakt mit Unternehmensdaten an und berechnet einen Lead-Score. Erfahren Sie mehr über [CRM Lead-Automatisierung mit n8n](/blog/crm-lead-automation-n8n) für automatisierte Erstgespräche.",
     descEn:
       "When a prospect submits an inquiry, AI enriches the contact with firmographic data, calculates a qualification score, and routes them to the ideal calendar slot.",
     featuresDe: [
@@ -124,7 +156,7 @@ const automationSolutions = [
     titleDe: "End-to-End Workflow-Orchestrierung mit n8n",
     titleEn: "End-to-End Workflow Orchestration (n8n)",
     descDe:
-      "Verbinden Sie all Ihre Insellösungen (E-Mail, Google Drive, ERP, Slack, CRM) zu reibungslosen automatisierten Ketten. Open-Source, selbst gehostet und ohne teure pro-Task-Gebühren wie bei Zapier.",
+      "Verbinden Sie Insellösungen zu stabilen Prozessen ohne Task-Gebühren. Mehr dazu in unserem Guide zu [KI-Automatisierung für Unternehmen](/blog/ki-automatisierung-unternehmen-2026).",
     descEn:
       "Connect isolated SaaS tools (email, Google Workspace, ERP, Slack, CRM) into self-healing workflows. Self-hosted on your cloud to eliminate bloated SaaS task fees.",
     featuresDe: [
@@ -351,7 +383,7 @@ const faqs = [
   {
     qDe: "Wie sicher sind unsere vertraulichen Kundendaten bei KI-Automatisierungen?",
     qEn: "How secure is our proprietary business data when using AI automations?",
-    aDe: "Sicherheit steht bei uns an erster Stelle. Wir nutzen ausschließlich Enterprise-API-Schnittstellen mit verbindlicher 'Zero Data Retention'-Garantie: Ihre Daten werden niemals zum Trainieren öffentlicher Modelle gespeichert. Zudem hosten wir n8n-Workflows auf deutschen ISO-zertifizierten Servern und bieten für sensible Daten On-Premise-Modelle an.",
+    aDe: "Sicherheit steht bei uns an erster Stelle. Wir nutzen ausschließlich Schnittstellen mit verbindlicher Zero-Data-Retention und hosten auf ISO-zertifizierten deutschen Servern. Lesen Sie dazu unseren Leitfaden für [DSGVO-konforme KI-Infrastruktur](/blog/dsgvo-konforme-ki-infrastruktur).",
     aEn: "Security is non-negotiable. We exclusively employ enterprise commercial API endpoints with legally binding Zero Data Retention commitments: your inputs are never stored or used to train public models. Furthermore, we host n8n engines on German ISO-certified data centers and offer on-premise air-gapped LLMs.",
   },
   {
@@ -375,7 +407,7 @@ const faqs = [
   {
     qDe: "Können bestehende Systeme wie DATEV, SAP oder eigene SQL-Datenbanken angebunden werden?",
     qEn: "Can our existing legacy systems like DATEV, SAP, or on-premise SQL databases connect?",
-    aDe: "Ja. n8n unterstützt über 400 native Integrationen und universelle Webhooks/REST-APIs. Wir können Daten aus alten ERPs via SFTP, CSV, SQL-Datenbanken oder direkten Webhooks anbinden und in moderne KI-Pipelines einspeisen.",
+    aDe: "Ja. n8n unterstützt über 400 native Integrationen und universelle Webhooks/REST-APIs. Sie können in [unseren Projekten](/projects) sehen, wie wir Systeme vernetzen, oder direkt mit uns [Kontakt aufnehmen](/contact).",
     aEn: "Yes. n8n provides over 400 native connectors alongside universal Webhooks and REST/GraphQL capabilities. We easily bridge legacy ERPs via SFTP, CSV exports, direct SQL queries, and sync them effortlessly into modern AI pipelines.",
   },
 ];
@@ -838,7 +870,7 @@ export default function AIAutomationPage() {
                       {t(sol.titleDe, sol.titleEn)}
                     </h3>
                     <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
-                      {t(sol.descDe, sol.descEn)}
+                      {renderWithLinks(t(sol.descDe, sol.descEn))}
                     </p>
                   </div>
 
@@ -1121,7 +1153,7 @@ export default function AIAutomationPage() {
                 </button>
                 {openFaq === idx && (
                   <div className="px-6 pb-6 text-[14px] sm:text-[16px] text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                    {t(faq.aDe, faq.aEn)}
+                    {renderWithLinks(t(faq.aDe, faq.aEn))}
                   </div>
                 )}
               </div>

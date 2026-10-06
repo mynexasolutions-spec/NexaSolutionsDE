@@ -14,9 +14,9 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const siteTitle = "Nexa Solutions | Digitale Lösungen für ein smarteres Morgen";
+const siteTitle = "Nexa Solutions | Softwareentwicklung & KI-Automatisierung";
 const siteDescription =
-  "Wir helfen Unternehmen, moderne Websites, mobile Apps und KI-gestützte Automatisierung zu entwickeln, um Zeit zu sparen, Kosten zu senken und schneller zu wachsen.";
+  "Individuelle Softwareentwicklung & KI-Automatisierung für Unternehmen: Moderne Webanwendungen, Apps und n8n-Workflows für messbares Wachstum. Jetzt anfragen!";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

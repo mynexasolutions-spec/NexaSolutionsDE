@@ -50,33 +50,58 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  let posts: any[] = [];
+  // Dynamic blog routes: Merge static blogPosts with published database blogs
+  const blogMap = new Map<string, any>();
 
-  try {
-    const dbResult = await getBlogsList();
-
-    posts =
-      dbResult?.blogs &&
-      Array.isArray(dbResult.blogs) &&
-      dbResult.blogs.length > 0
-        ? dbResult.blogs
-        : blogPosts;
-  } catch {
-    posts = blogPosts;
+  // 1. Seed with curated static blog posts
+  for (const post of blogPosts) {
+    if (post?.slug) {
+      blogMap.set(post.slug, {
+        slug: post.slug,
+        date: post.date,
+        updated_at: undefined,
+      });
+    }
   }
 
-  const postRoutes: MetadataRoute.Sitemap = posts
-    .filter((post) => post?.slug)
-    .map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      ...(post.updated_at
-        ? {
-            lastModified: new Date(post.updated_at),
-          }
-        : {}),
-      changeFrequency: "weekly" as const,
-      priority: 0.75,
-    }));
+  // 2. Fetch newly added or updated blogs from database / CMS
+  try {
+    const dbResult = await getBlogsList();
+    if (dbResult?.blogs && Array.isArray(dbResult.blogs)) {
+      for (const blog of dbResult.blogs) {
+        if (!blog?.slug) continue;
+        // Exclude unpublished / draft / non-indexable posts
+        const blogAny = blog as any;
+        if (blogAny.status && blogAny.status !== "published") continue;
+
+        blogMap.set(blog.slug, {
+          slug: blog.slug,
+          date: blog.date,
+          updated_at: blog.updated_at,
+        });
+      }
+    }
+  } catch (err) {
+    console.warn("Sitemap: Failed to load database blogs, falling back to static posts:", err);
+  }
+
+  const postRoutes: MetadataRoute.Sitemap = Array.from(blogMap.values()).map(
+    (post) => {
+      let lastModified: Date | undefined;
+      if (post.updated_at) {
+        lastModified = new Date(post.updated_at);
+      } else if (post.date && !isNaN(Date.parse(post.date))) {
+        lastModified = new Date(post.date);
+      }
+
+      return {
+        url: `${baseUrl}/blog/${post.slug}`,
+        ...(lastModified ? { lastModified } : {}),
+        changeFrequency: "weekly" as const,
+        priority: 0.75,
+      };
+    }
+  );
 
   const allRoutes = [...staticRoutes, ...postRoutes];
 

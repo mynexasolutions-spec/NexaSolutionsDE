@@ -1,10 +1,11 @@
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Kontakt",
+  title: "Softwareprojekt anfragen | Erstberatung | Nexa Solutions",
   description:
-    "Kostenlose Erstberatung anfordern – wir melden uns zeitnah mit einem Lösungsvorschlag für Ihr Projekt.",
-  path: "/contact",});
+    "Softwareprojekt anfragen bei Nexa Solutions: Kostenlose Erstberatung für Webentwicklung, Apps und KI-Automatisierung. Erhalten Sie Ihr unverbindliches Konzept!",
+  path: "/contact",
+});
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

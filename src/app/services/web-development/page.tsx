@@ -41,6 +41,38 @@ import ContactModal from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 
 // Tech stack with categories
+function renderWithLinks(text: string) {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  if (!linkRegex.test(text)) return text;
+
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  linkRegex.lastIndex = 0;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    const label = match[1];
+    const url = match[2];
+    parts.push(
+      <Link
+        key={match.index}
+        href={url}
+        className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors"
+      >
+        {label}
+      </Link>
+    );
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  return parts;
+}
+
 const techCategories = [
   {
     id: "all",
@@ -99,9 +131,9 @@ const coreServices = [
     titleDe: "Individuelle SaaS & Web-Applikationen",
     titleEn: "Custom SaaS & Web Applications",
     descDe:
-      "Skalierbare Cloud-Softwarelösungen und Portale. Von Multi-Tenant Kundenbereichen über Buchungssysteme bis hin zu komplexen Workflow-Dashboards mit Rollen- und Rechtemanagement.",
+      "Skalierbare Cloud-Softwarelösungen und Portale. Ideal kombinierbar mit [mobiler App Entwicklung](/services/mobile-app-development) und intelligenter [KI-Automatisierung](/services/ai-automation) für nahtlose Betriebsabläufe.",
     descEn:
-      "Scalable cloud software solutions and client portals. From multi-tenant SaaS dashboards to booking systems and complex role-based workflow suites.",
+      "Scalable cloud software solutions and client portals. Seamlessly integrated with [mobile app development](/services/mobile-app-development) and [AI automation](/services/ai-automation) pipelines.",
     featuresDe: ["Multi-Tenant Architektur", "Sichere User-Authentifizierung", "Stripe / PayPal Billing Integration", "Echtzeit-WebSockets & APIs"],
     featuresEn: ["Multi-tenant architecture", "Secure user authentication", "Stripe / PayPal subscription billing", "Real-time WebSockets & APIs"],
   },
@@ -316,14 +348,20 @@ const faqs = [
   {
     qDe: "Warum setzt Nexa Solutions auf Next.js statt herkömmlichem WordPress?",
     qEn: "Why does Nexa Solutions use Next.js instead of legacy WordPress?",
-    aDe: "Next.js bietet überlegene Ladezeiten (oft unter 0.5 Sekunden), unschlagbare Sicherheit (keine fehleranfälligen PHP-Plugins) und makellose Google-Rankings durch Server-Side-Rendering. Ihre Website bleibt wartungsarm, zukunftssicher und stürzt auch bei hohen Besucherzahlen niemals ab.",
-    aEn: "Next.js delivers unmatched loading speeds (often sub-0.5s), impenetrable security (no vulnerable PHP plugins), and flawless Google search indexing via server-side rendering. Your website stays low-maintenance, bulletproof, and handles massive traffic surges without breaking a sweat.",
+    aDe: "Next.js bietet überlegene Ladezeiten (oft unter 0.5 Sekunden), unschlagbare Sicherheit (keine fehleranfälligen PHP-Plugins) und makellose Google-Rankings durch Server-Side-Rendering. Ihre Website bleibt wartungsarm und zukunftssicher. Lesen Sie dazu unseren Leitfaden [Next.js vs. WordPress](/blog/nextjs-vs-wordpress-2026).",
+    aEn: "Next.js delivers unmatched loading speeds (often sub-0.5s), impenetrable security (no vulnerable PHP plugins), and flawless Google search indexing via server-side rendering. For detailed benchmarks, see our comparison [Next.js vs. WordPress](/blog/nextjs-vs-wordpress-2026).",
   },
   {
     qDe: "Kann ich Texte und Bilder nach dem Launch selbstständig bearbeiten?",
     qEn: "Can I edit content and images myself after the launch?",
     aDe: "Ja, absolut. Wir integrieren ein intuitives, visuelles Headless-CMS (wie Sanity oder Contentful). Damit können Sie Texte, Bilder, Blogbeiträge und Preise in Sekunden ändern – ganz ohne Programmierkenntnisse und ohne Gefahr zu laufen, das Design zu zerstören.",
     aEn: "Yes, 100%. We integrate an intuitive, visual headless CMS (such as Sanity or Contentful). You and your team can update copy, images, case studies, and pricing in seconds — with zero coding knowledge and zero risk of breaking the layout.",
+  },
+  {
+    qDe: "Entwickeln Sie neben Websites auch mobile Apps und KI-Workflows?",
+    qEn: "Do you also build mobile apps and automated AI workflows?",
+    aDe: "Ja, genau das ist unser Vorteil: Wir kombinieren Ihre Website nahtlos mit unserer [mobilen App Entwicklung](/services/mobile-app-development) für iOS & Android sowie intelligenter [KI-Automatisierung](/services/ai-automation) mit n8n.",
+    aEn: "Yes, exactly: We seamlessly connect your web presence with our [mobile app development](/services/mobile-app-development) for iOS & Android as well as smart [AI automation](/services/ai-automation) via n8n.",
   },
   {
     qDe: "Wie lange dauert ein typisches Web-Projekt von Beginn bis zum Go-Live?",
@@ -346,8 +384,8 @@ const faqs = [
   {
     qDe: "Wie läuft die Zusammenarbeit ab, wenn wir starten möchten?",
     qEn: "What is the process to get started on our web project?",
-    aDe: "Sehr unkompliziert: Klicken Sie auf 'Kostenloses Angebot anfragen' oder schreiben Sie uns. In einem 20-minütigen unverbindlichen Erstgespräch klären wir Ihre Anforderungen und Sie erhalten innerhalb von 24 Stunden einen verbindlichen Festpreis-Kostenvoranschlag und Zeitplan.",
-    aEn: "Extremely straightforward: Click 'Get a Free Quote' or reach out to us. In an informal 20-minute strategy call, we clarify your requirements and deliver a transparent fixed-price estimate and roadmap within 24 hours.",
+    aDe: "Sehr unkompliziert: Klicken Sie auf Angebot anfragen oder direkt [Kontakt aufnehmen](/contact). In einem 20-minütigen unverbindlichen Erstgespräch klären wir Ihre Anforderungen und Sie erhalten innerhalb von 24 Stunden einen verbindlichen Festpreis-Kostenvoranschlag und Zeitplan.",
+    aEn: "Extremely straightforward: Click 'Request a Quote' or directly [contact us](/contact). In an informal 20-minute strategy call, we clarify your requirements and deliver a transparent fixed-price roadmap within 24 hours.",
   },
 ];
 
@@ -720,7 +758,7 @@ export default function WebDevelopmentPage() {
                       {t(service.titleDe, service.titleEn)}
                     </h3>
                     <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
-                      {t(service.descDe, service.descEn)}
+                      {renderWithLinks(t(service.descDe, service.descEn))}
                     </p>
                   </div>
 
@@ -1001,7 +1039,7 @@ export default function WebDevelopmentPage() {
               </h2>
             </div>
             <Link
-              href="/#projects"
+              href="/projects"
               className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-orange-600 hover:text-orange-700 transition-colors"
             >
               <span>{t("Alle Projekte ansehen", "View All Projects")}</span>
@@ -1222,7 +1260,7 @@ export default function WebDevelopmentPage() {
                 </button>
                 {openFaq === idx && (
                   <div className="px-6 pb-6 text-[14px] sm:text-[16px] text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                    {t(faq.aDe, faq.aEn)}
+                    {renderWithLinks(t(faq.aDe, faq.aEn))}
                   </div>
                 )}
               </div>

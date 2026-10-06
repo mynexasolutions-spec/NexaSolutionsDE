@@ -1,10 +1,11 @@
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "KI-Automatisierung & n8n Workflows",
+  title: "KI Automatisierung für Unternehmen | n8n | Nexa Solutions",
   description:
-    "Prozesse mit KI und n8n automatisieren: Zeit sparen, Kosten senken und DSGVO-konform wachsen.",
-  path: "/services/ai-automation",});
+    "KI Automatisierung für Unternehmen: Zeit sparen mit maßgeschneiderten n8n-Workflows und smarten KI-Agenten. DSGVO-konform gehostet. Jetzt Beratung anfordern!",
+  path: "/services/ai-automation",
+});
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

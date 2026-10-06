@@ -54,10 +54,10 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "ki-automatisierung-unternehmen-2026",
     titleDe: "Wie deutsche Unternehmen mit n8n & KI-Agenten 15+ Stunden pro Woche sparen",
-    seoTitleDe: "KI-Agenten & n8n: 15+ Stunden pro Woche sparen",
+    seoTitleDe: "n8n KI-Agenten Automatisierung",
     titleEn: "How European Businesses Save 15+ Hours Weekly with n8n & Autonomous AI Agents",
     excerptDe:
-      "Erfahren Sie, wie mittelständische Unternehmen repetitive Workflows wie Rechnungsverarbeitung, CRM-Pflege und Kundenanfragen mit intelligenten n8n-Pipelines DSGVO-konform automatisieren.",
+      "n8n KI-Agenten Automatisierung: Wie Unternehmen 15+ Stunden wöchentlich sparen und Prozesse mit n8n DSGVO-konform automatisieren. Leitfaden lesen!",
     excerptEn:
       "Discover how modern companies automate repetitive workflows like invoice processing, CRM updates, and customer inquiries with smart n8n pipelines and full GDPR compliance.",
     category: "ai-automation",
@@ -168,8 +168,8 @@ export const blogPosts: BlogPost[] = [
         headingDe: "4. Fazit & Nächste Schritte",
         headingEn: "4. Key Takeaways & Action Plan",
         paragraphsDe: [
-          "KI-Automatisierung ist längst kein Zukunftsthema mehr, sondern ein messbarer Wettbewerbsvorteil. Unternehmen, die heute repetitive Prozesse digitalisieren, sparen nicht nur tausende Euro monatlich, sondern begeistern Kunden durch blitzschnelle Reaktionszeiten.",
-          "Nexa Solutions unterstützt Sie von der ersten Prozessanalyse über das DSGVO-konforme Hosting bis zur schlüsselfertigen Einrichtung Ihrer individuellen Automatisierungs-Pipelines.",
+          "KI-Automatisierung ist längst kein Zukunftsthema mehr, sondern ein messbarer Wettbewerbsvorteil. Unternehmen, die heute repetitive Prozesse digitalisieren, sparen nicht nur wertvolle Arbeitszeit, sondern begeistern Kunden durch blitzschnelle Reaktionszeiten.",
+          "Nexa Solutions unterstützt Sie von der ersten Prozessanalyse über das DSGVO-konforme Hosting bis zur schlüsselfertigen Einrichtung Ihrer individuellen [KI-Automatisierung für Unternehmen](/services/ai-automation). Ergänzend erfahren Sie in unserem Leitfaden, wie Sie eine [DSGVO-konforme KI-Infrastruktur](/blog/dsgvo-konforme-ki-infrastruktur) aufbauen. Jetzt unverbindlich [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
           "AI workflow automation is no longer an experiment — it is a decisive competitive edge. Companies embracing automation today reduce operating expenses drastically while providing seamless customer experiences.",
@@ -183,10 +183,10 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "nextjs-vs-wordpress-2026",
     titleDe: "Next.js vs. WordPress 2026: Warum Ladezeiten direkt über Ihren Unternehmensumsatz entscheiden",
-    seoTitleDe: "Next.js vs. WordPress 2026: Ladezeit & Umsatz",
+    seoTitleDe: "Next.js vs WordPress Vergleich 2026",
     titleEn: "Next.js vs. WordPress in 2026: Why Website Speed Directly Drives Revenue",
     excerptDe:
-      "Warum moderne Tech-Unternehmen veraltete CMS-Systeme hinter sich lassen: Ein detaillierter Blick auf Core Web Vitals, Google SEO-Rankings, Sicherheit und Konversionsraten.",
+      "Next.js vs WordPress Vergleich 2026: Warum Ladezeiten über den Umsatz entscheiden. Core Web Vitals, Konversionsraten & Sicherheit im Praxis-Check.",
     excerptEn:
       "Why forward-thinking enterprises are replacing legacy CMS solutions: An in-depth benchmark on Core Web Vitals, Google search rankings, zero-vulnerability security, and conversion rate optimization.",
     category: "web-development",
@@ -243,7 +243,7 @@ export const blogPosts: BlogPost[] = [
         headingEn: "2. Next.js 15: The Enterprise Benchmark for Digital Products",
         paragraphsDe: [
           "Mit Next.js (App Router, Server Components und Edge Caching) wird HTML bereits auf Servern in unmittelbarer Nähe des Nutzers bereitgestellt. JavaScript wird nur dort geladen, wo echte Interaktion erforderlich ist.",
-          "Das Ergebnis ist eine Website, die sich so reaktionsschnell wie eine native Desktop-App anfühlt: Seitenwechsel erfolgen augenblicklich, Bilder sind automatisch im modernen WebP/AVIF-Format optimiert, und Sicherheitsrisiken durch veraltete Plugins gehören der Vergangenheit an.",
+          "Das Ergebnis ist eine Website, die sich so reaktionsschnell wie eine native Desktop-App anfühlt: Seitenwechsel erfolgen augenblicklich, Bilder sind automatisch im modernen WebP/AVIF-Format optimiert, und Sicherheitsrisiken durch veraltete Plugins gehören der Vergangenheit an. Erfahren Sie mehr über unsere [Webentwicklung für Unternehmen](/services/web-development) und die [MVP-Entwicklung in 4 Wochen](/blog/mvp-development-strategy-startups). Bereit für den Wechsel? Jetzt [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
           "Next.js (leveraging React Server Components, App Router, and global Edge CDN distribution) renders page markup instantly at nodes closest to the user. Minimal client-side JavaScript is sent over the wire.",
@@ -281,10 +281,10 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "react-native-cross-platform-apps",
     titleDe: "Native iOS & Android Apps mit React Native: 50% geringere Kosten ohne Performance-Einbußen",
-    seoTitleDe: "React Native: iOS & Android mit einem Code",
+    seoTitleDe: "React Native Cross-Platform Entwicklung",
     titleEn: "Cross-Platform Mobile Apps with React Native: 50% Lower Cost, Zero Compromise",
     excerptDe:
-      "Warum Unternehmen heute nicht mehr zwei separate Codebases für Apple iOS und Google Android pflegen müssen: Architektur, Code-Sharing und 60 FPS Performance.",
+      "React Native Cross-Platform Entwicklung: Echte native iOS & Android Apps mit einem Code. Bis zu 50% Kostenersparnis bei 60 FPS Performance. Jetzt informieren!",
     excerptEn:
       "Why modern engineering teams no longer maintain dual Swift and Kotlin codebases: Deep dive into React Native architecture, code reuse, and buttery 60 FPS performance.",
     category: "mobile-apps",
@@ -357,6 +357,7 @@ export const blogPosts: BlogPost[] = [
         headingEn: "3. Conclusion: The Smart Strategy for Mobile Products",
         paragraphsDe: [
           "Wer heute eine mobile App plant, sollte eine Cross-Platform-Architektur als Standard in Betracht ziehen. Sie sparen bares Geld, verkürzen Ihre Markteinführungszeit drastisch und behalten die Flexibilität, später bei Bedarf native Module einzubinden.",
+          "Entdecken Sie unsere spezialisierte [mobile App Entwicklung](/services/mobile-app-development) für iOS und Android. Falls Sie parallel ein Web-Portal oder SaaS benötigen, verbinden wir dieses nahtlos über unsere [Webentwicklung für Unternehmen](/services/web-development). Lassen Sie uns Ihr Vorhaben besprechen: Jetzt [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
           "For almost all modern consumer and B2B products, cross-platform architecture is the indisputable best practice. You save significant capital, cut delivery timelines in half, and maintain full agility.",
@@ -369,10 +370,10 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "dsgvo-konforme-ki-infrastruktur",
     titleDe: "DSGVO-konforme KI & Cloud-Architektur: So nutzen Sie LLMs rechtssicher in der EU",
-    seoTitleDe: "DSGVO-konforme KI & Cloud-Architektur",
+    seoTitleDe: "DSGVO-konforme KI Infrastruktur in der EU",
     titleEn: "GDPR-Compliant AI & Cloud: How to Safely Deploy LLMs in the EU",
     excerptDe:
-      "Praxisleitfaden für Unternehmen: Wie Sie moderne Sprachmodelle und Cloud-Dienste nutzen, ohne gegen europäische Datenschutzgesetze und den neuen EU AI Act zu verstoßen.",
+      "DSGVO-konforme KI Infrastruktur für Unternehmen: Große Sprachmodelle und Cloud-Dienste rechtssicher in der EU betreiben. Zero-Data-Retention & Best Practices.",
     excerptEn:
       "A hands-on guide for European leadership: How to safely deploy LLMs and private cloud workflows without infringing GDPR standards or the EU AI Act.",
     category: "cloud-tech",
@@ -420,7 +421,8 @@ export const blogPosts: BlogPost[] = [
         headingDe: "2. Die drei Säulen einer DSGVO-konformen KI-Pipeline",
         headingEn: "2. The Three Pillars of a GDPR-Compliant AI Architecture",
         paragraphsDe: [
-          "Bei Nexa Solutions implementieren wir KI-Systeme nach dem 'Privacy by Design'-Prinzip. Dieses stützt sich auf drei zentrale Sicherheitsstufen:",
+          "Bei Nexa Solutions implementieren wir [DSGVO-konforme KI-Automatisierung](/services/ai-automation) nach dem 'Privacy by Design'-Prinzip. Dieses stützt sich auf drei zentrale Sicherheitsstufen:",
+          "Wie mittelständische Firmen davon konkret im Alltag profitieren, lesen Sie in unserem Praxisbericht über [n8n KI-Agenten im Unternehmen](/blog/ki-automatisierung-unternehmen-2026). Möchten Sie Ihre Systeme auditieren lassen? Jetzt unverbindlich [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
           "At Nexa Solutions, we engineer enterprise AI workflows grounded in 'Privacy by Design'. This rests upon three rigorous security tiers:",
@@ -443,10 +445,10 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "mvp-development-strategy-startups",
     titleDe: "Vom Konzept zum validierten MVP in 4 Wochen: Der Leitfaden für B2B-Tech-Gründer",
-    seoTitleDe: "MVP in 4 Wochen: Leitfaden für Gründer",
+    seoTitleDe: "MVP Entwicklung in 4 Wochen für Gründer",
     titleEn: "From Concept to Production MVP in 4 Weeks: A Practical Founder's Guide",
     excerptDe:
-      "Wie Sie mit einem pragmatischen Tech-Stack und klarem Scope-Management Ihr Softwareprodukt in Rekordzeit an echte zahlende Kunden bringen.",
+      "MVP Entwicklung in 4 Wochen: Leitfaden für B2B-Tech-Gründer. Schnelle Markteinführung und echter Kunden-Mehrwert ohne Feature-Bloat. Jetzt Blueprint ansehen!",
     excerptEn:
       "How to rapidly build and validate a high-converting software MVP using a pragmatic tech stack and disciplined scope prioritization.",
     category: "web-development",
@@ -494,7 +496,7 @@ export const blogPosts: BlogPost[] = [
         headingDe: "2. Der 4-Wochen Blueprint von Nexa Solutions",
         headingEn: "2. The Nexa Solutions 4-Week Rapid Sprint Roadmap",
         paragraphsDe: [
-          "Mit unserem agilen 4-Wochen-Sprint-Modell bringen wir Ihr Produkt von der Konzeption bis zur Live-Schaltung:",
+          "Mit unserem agilen 4-Wochen-Sprint-Modell bringen wir Ihr Produkt von der Konzeption bis zur Live-Schaltung – abgestimmt auf moderne [Webentwicklung für Unternehmen](/services/web-development) und bei Bedarf zeitgleiche [mobile App Entwicklung](/services/mobile-app-development). Erfahren Sie auch im Vergleich [Next.js vs. WordPress](/blog/nextjs-vs-wordpress-2026), warum moderne Stacks skalieren, oder direkt [Kontakt aufnehmen](/contact):",
         ],
         paragraphsEn: [
           "With our disciplined 4-week sprint execution methodology, we guide founders from whiteboard sketches to a live product:",
@@ -519,10 +521,10 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "crm-lead-automation-n8n",
     titleDe: "Automatisierte Lead-Qualifizierung: Von der Anfrage zum Kalendertermin in unter 60 Sekunden",
-    seoTitleDe: "Lead-Qualifizierung automatisieren mit n8n",
+    seoTitleDe: "Automatisierte Lead-Qualifizierung mit n8n",
     titleEn: "Automated Lead Qualification: From Form Submit to Booked Call in under 60 Seconds",
     excerptDe:
-      "Wie moderne B2B-Unternehmen manuelle Vertriebsverzögerungen eliminieren und ihre Abschlussquote durch automatisierte Datenanreicherung und KI-Scoring verdoppeln.",
+      "Automatisierte Lead-Qualifizierung mit n8n: In unter 60 Sekunden vom Kontaktformular zum Kalendertermin. Datenanreicherung & smartes Routing im B2B-Vertrieb.",
     excerptEn:
       "How modern B2B organizations eliminate sales lag and double deal closing rates with automated enrichment and instant AI qualification pipelines.",
     category: "ai-automation",
@@ -559,7 +561,7 @@ export const blogPosts: BlogPost[] = [
         headingEn: "1. The Speed Imperative in High-Value Sales",
         paragraphsDe: [
           "Studien von Harvard Business Review zeigen ein klares Bild: Die Wahrscheinlichkeit, einen Interessenten zu erreichen und zu konvertieren, sinkt nach den ersten 5 Minuten um das Achtfache. Trotzdem vergehen bei den meisten Unternehmen Stunden oder Tage bis zur ersten Kontaktaufnahme.",
-          "Mit intelligenter Workflow-Automatisierung über n8n wird jede neue Anfrage binnen Sekunden analysiert, mit externen Firmendaten angereichert und dem passenden Berater zugeordnet.",
+          "Mit intelligenter Workflow-Automatisierung über n8n und unserer maßgeschneiderten [KI-Automatisierung für Unternehmen](/services/ai-automation) wird jede neue Anfrage binnen Sekunden analysiert, mit Firmendaten angereichert und dem passenden Berater zugeordnet. Lesen Sie auch, wie Sie mit [n8n & KI-Agenten 15+ Stunden sparen](/blog/ki-automatisierung-unternehmen-2026). Möchten Sie Ihre Lead-Prozesse beschleunigen? Jetzt [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
           "Studies published in Harvard Business Review reveal an undeniable trend: The odds of connecting with and qualifying a prospective buyer drop 8x after the first 5 minutes. Yet, most companies take hours or days to initiate contact.",

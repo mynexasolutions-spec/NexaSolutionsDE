@@ -1,10 +1,11 @@
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Unsere Arbeit",
+  title: "Digitale Projekte & Case Studies | Nexa Solutions",
   description:
-    "Ausgewählte Web-, App- und KI-Projekte von Nexa Solutions für Unternehmen und Gründer.",
-  path: "/our-work",});
+    "Digitale Projekte & Case Studies: Sehen Sie, wie wir individuelle Webanwendungen, Apps und KI-Pipelines für Unternehmen umsetzen. Portfolio ansehen!",
+  path: "/our-work",
+});
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

@@ -33,6 +33,38 @@ import {
   BlogPost,
 } from "@/data/blogData";
 
+function renderWithLinks(text: string) {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  if (!linkRegex.test(text)) return text;
+
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  linkRegex.lastIndex = 0;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    const label = match[1];
+    const url = match[2];
+    parts.push(
+      <Link
+        key={match.index}
+        href={url}
+        className="text-orange-600 hover:text-orange-700 underline font-semibold transition-colors"
+      >
+        {label}
+      </Link>
+    );
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  return parts;
+}
+
 export default function SingleBlogPage() {
   const params = useParams();
   const router = useRouter();
@@ -43,8 +75,62 @@ export default function SingleBlogPage() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedCodeIdx, setCopiedCodeIdx] = useState<number | null>(null);
 
-  const post = getBlogPostBySlug(slug);
-  const relatedPosts = getRelatedPosts(slug, 2);
+  const initialPost = getBlogPostBySlug(slug);
+  const [post, setPost] = useState<BlogPost | null>(initialPost || null);
+  const [isFetchingDb, setIsFetchingDb] = useState(!initialPost);
+
+  React.useEffect(() => {
+    if (!post) {
+      async function loadDbBlog() {
+        try {
+          const res = await fetch("/api/blogs");
+          if (res.ok) {
+            const data = await res.json();
+            const found = data.blogs?.find((b: any) => b.slug === slug);
+            if (found) {
+              const mapped: BlogPost = {
+                slug: found.slug,
+                titleDe: found.title_de || found.titleDe || "Blog",
+                seoTitleDe: found.seo_title_de || found.title_de || found.titleDe || "Blog",
+                titleEn: found.title_en || found.titleEn || "Blog",
+                excerptDe: found.excerpt_de || found.excerptDe || "",
+                excerptEn: found.excerpt_en || found.excerptEn || "",
+                category: found.category || "ai-automation",
+                categoryLabelDe: found.category_label_de || found.categoryLabelDe || "KI & Automatisierung",
+                categoryLabelEn: found.category_label_en || found.categoryLabelEn || "AI & Automation",
+                categoryBadgeClass: found.category_badge_class || found.categoryBadgeClass || "bg-amber-50 text-amber-700 border-amber-200/80",
+                date: found.date || "2026-03-15",
+                readTimeDe: found.read_time_de || found.readTimeDe || "5 Min.",
+                readTimeEn: found.read_time_en || found.readTimeEn || "5 min read",
+                coverImage: found.cover_image || found.coverImage || "/blog/default.jpg",
+                featured: !!found.featured,
+                views: found.views || "1.0k",
+                author: found.author || {
+                  name: "Nexa Solutions Team",
+                  roleDe: "Software-Architektur & KI-Entwicklung",
+                  roleEn: "Software Architecture & AI Engineering",
+                  avatar: "/favicon.ico",
+                },
+                keyTakeawaysDe: found.key_takeaways_de || found.keyTakeawaysDe || [],
+                keyTakeawaysEn: found.key_takeaways_en || found.keyTakeawaysEn || [],
+                sections: found.sections || [],
+                tags: found.tags || [],
+                relatedSlugs: found.related_slugs || found.relatedSlugs || [],
+              };
+              setPost(mapped);
+            }
+          }
+        } catch (err) {
+          console.warn("Could not load dynamic blog from API:", err);
+        } finally {
+          setIsFetchingDb(false);
+        }
+      }
+      loadDbBlog();
+    }
+  }, [slug, post]);
+
+  const relatedPosts = post ? getRelatedPosts(slug, 2) : [];
 
   const handleCopyLink = () => {
     if (typeof window !== "undefined") {
@@ -62,8 +148,8 @@ export default function SingleBlogPage() {
     }
   };
 
-  // If blog post not found
-  if (!post) {
+  // If blog post not found and finished checking
+  if (!post && !isFetchingDb) {
     return (
       <div className="min-h-screen flex flex-col bg-[#FDFDFE] text-[#0F172A]">
         <Navbar onOpenContact={() => setContactOpen(true)} />
@@ -92,6 +178,14 @@ export default function SingleBlogPage() {
     );
   }
 
+  if (!post) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#FDFDFE] text-[#0F172A] items-center justify-center">
+        <div className="w-8 h-8 border-2 border-orange-600 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   const title = lang === "de" ? post.titleDe : post.titleEn;
   const excerpt = lang === "de" ? post.excerptDe : post.excerptEn;
   const categoryLabel =
@@ -100,8 +194,49 @@ export default function SingleBlogPage() {
   const keyTakeaways =
     lang === "de" ? post.keyTakeawaysDe : post.keyTakeawaysEn;
 
+  // Real data BlogPosting Schema.org JSON-LD
+  const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: excerpt,
+    image: post.coverImage?.startsWith("http")
+      ? post.coverImage
+      : `https://nexa-solutions.de${post.coverImage?.startsWith("/") ? post.coverImage : `/${post.coverImage}`}`,
+    author: {
+      "@type": "Person",
+      name: post.author?.name || "Nexa Solutions Team",
+      jobTitle: lang === "de" ? post.author?.roleDe : post.author?.roleEn,
+      url: "https://nexa-solutions.de",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Nexa Solutions",
+      url: "https://nexa-solutions.de",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://nexa-solutions.de/favicon.ico",
+      },
+    },
+    datePublished:
+      post.date && !isNaN(Date.parse(post.date))
+        ? new Date(post.date).toISOString()
+        : "2026-03-15T08:00:00.000Z",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://nexa-solutions.de/blog/${post.slug}`,
+    },
+    inLanguage: lang === "de" ? "de-DE" : "en-US",
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FDFDFE] text-[#0F172A] selection:bg-[#EA580C] selection:text-white">
+      {/* BlogPosting Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
+
       {/* Top Navbar */}
       <Navbar onOpenContact={() => setContactOpen(true)} />
 
@@ -285,7 +420,7 @@ export default function SingleBlogPage() {
               {keyTakeaways.map((point, i) => (
                 <li key={i} className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
-                  <span className="leading-snug">{point}</span>
+                  <span className="leading-snug">{renderWithLinks(point)}</span>
                 </li>
               ))}
             </ul>
@@ -312,7 +447,7 @@ export default function SingleBlogPage() {
                   {/* Paragraphs */}
                   <div className="space-y-3.5 text-xs sm:text-sm md:text-[15px] leading-relaxed text-slate-700">
                     {paragraphs.map((p, pIdx) => (
-                      <p key={pIdx}>{p}</p>
+                      <p key={pIdx}>{renderWithLinks(p)}</p>
                     ))}
                   </div>
 
@@ -335,7 +470,7 @@ export default function SingleBlogPage() {
                         {bullets.map((b, bIdx) => (
                           <li key={bIdx} className="flex items-start gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-orange-600 mt-2 shrink-0" />
-                            <span>{b}</span>
+                            <span>{renderWithLinks(b)}</span>
                           </li>
                         ))}
                       </ul>
@@ -436,9 +571,13 @@ export default function SingleBlogPage() {
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-md">
                   {t(
-                    "Buchen Sie ein kostenloses 20-minütiges Fachgespräch mit unseren leitenden Ingenieuren.",
-                    "Schedule a free 20-minute strategy session with our senior engineering team."
+                    "Buchen Sie ein kostenloses 20-minütiges Fachgespräch mit unseren Ingenieuren oder nutzen Sie unsere ",
+                    "Schedule a free 20-minute strategy session with our senior engineering team or reach out via our "
                   )}
+                  <Link href="/contact" className="text-orange-400 hover:text-orange-300 underline font-semibold transition-colors">
+                    {t("Kontaktseite", "contact page")}
+                  </Link>
+                  .
                 </p>
               </div>
 

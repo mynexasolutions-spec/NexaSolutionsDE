@@ -1,23 +1,13 @@
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title:
-    "Softwareprojekt anfragen | Erstberatung & Angebot | Nexa Solutions",
+  title: "Kontakt & Kostenlose Erstberatung | Nexa Solutions",
   description:
-    "Kostenlose Erstberatung für Ihr Projekt: Unverbindliche Einschätzung zu Website erstellen lassen, App-Entwicklung & KI-Automatisierung. Antwort innerhalb von 24 Stunden.",
+    "Starten Sie Ihr Softwareprojekt: Kostenlose Erstberatung zu Webentwicklung, Apps und KI-Workflows. Antwort in unter 24h erhalten!",
   path: "/contact",
-  keywords: [
-    "softwareprojekt anfragen",
-    "website erstellen lassen kosten",
-    "was kostet eine website",
-    "app entwickeln lassen kosten",
-    "webentwicklung angebot anfordern",
-    "homepage erstellen lassen preis",
-    "it beratung kmu",
-    "erstberatung softwareentwicklung",
-  ],
 });
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;
 }
+

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 
-export const SITE_URL = "https://nexa-solutions.de";
+export { SITE_URL };
 export const DEFAULT_OG_IMAGE = "/opengraph-image";
 
 export function pageMetadata({
   title,
   description,
   path,
-  keywords,
   image = DEFAULT_OG_IMAGE,
 }: {
   title: string | { absolute: string };
@@ -22,20 +22,14 @@ export function pageMetadata({
       ? { absolute: title }
       : title;
 
-  const absoluteUrl = `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const absoluteUrl = `${SITE_URL}${normalizedPath === "/" ? "" : normalizedPath}`;
 
   return {
     title: metadataTitle,
     description,
-    keywords,
     alternates: {
-      canonical: absoluteUrl,
-      languages: {
-        "de": absoluteUrl,
-        "de-DE": absoluteUrl,
-        "en": absoluteUrl,
-        "x-default": absoluteUrl,
-      },
+      canonical: normalizedPath,
     },
     robots: {
       index: true,

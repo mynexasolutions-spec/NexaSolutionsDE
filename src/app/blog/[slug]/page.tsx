@@ -26,7 +26,9 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactModal from "@/components/ContactModal";
+import JsonLd from "@/components/JsonLd";
 import { useLanguage } from "@/context/LanguageContext";
+import { SITE_URL } from "@/lib/site";
 import {
   getBlogPostBySlug,
   getRelatedPosts,
@@ -194,48 +196,77 @@ export default function SingleBlogPage() {
   const keyTakeaways =
     lang === "de" ? post.keyTakeawaysDe : post.keyTakeawaysEn;
 
-  // Real data BlogPosting Schema.org JSON-LD
-  const blogJsonLd = {
+  // Article Schema.org JSON-LD
+  const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "Article",
     headline: title,
     description: excerpt,
     image: post.coverImage?.startsWith("http")
       ? post.coverImage
-      : `https://nexa-solutions.de${post.coverImage?.startsWith("/") ? post.coverImage : `/${post.coverImage}`}`,
+      : `${SITE_URL}${post.coverImage?.startsWith("/") ? post.coverImage : `/${post.coverImage}`}`,
     author: {
       "@type": "Person",
       name: post.author?.name || "Nexa Solutions Team",
       jobTitle: lang === "de" ? post.author?.roleDe : post.author?.roleEn,
-      url: "https://nexa-solutions.de",
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
       name: "Nexa Solutions",
-      url: "https://nexa-solutions.de",
+      url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: "https://nexa-solutions.de/favicon.ico",
+        url: `${SITE_URL}/favicon_logo.png`,
       },
     },
     datePublished:
-      post.date && !isNaN(Date.parse(post.date))
+      post.publishedAt ||
+      (post.date && !isNaN(Date.parse(post.date))
         ? new Date(post.date).toISOString()
-        : "2026-03-15T08:00:00.000Z",
+        : "2026-10-06T09:00:00.000Z"),
+    dateModified:
+      post.updatedAt ||
+      post.publishedAt ||
+      (post.date && !isNaN(Date.parse(post.date))
+        ? new Date(post.date).toISOString()
+        : "2026-10-06T09:00:00.000Z"),
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://nexa-solutions.de/blog/${post.slug}`,
+      "@id": `${SITE_URL}/blog/${post.slug}`,
     },
     inLanguage: lang === "de" ? "de-DE" : "en-US",
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${SITE_URL}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: title,
+        item: `${SITE_URL}/blog/${post.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FDFDFE] text-[#0F172A] selection:bg-[#EA580C] selection:text-white">
-      {/* BlogPosting Schema.org JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
-      />
+      {/* Article + Breadcrumbs Schema.org JSON-LD */}
+      <JsonLd data={[articleJsonLd, breadcrumbJsonLd]} />
 
       {/* Top Navbar */}
       <Navbar onOpenContact={() => setContactOpen(true)} />
@@ -402,6 +433,7 @@ export default function SingleBlogPage() {
               src={post.coverImage}
               alt={title}
               fill
+              sizes="(max-width: 896px) 100vw, 896px"
               priority
               className="object-cover object-center"
             />
@@ -629,6 +661,7 @@ export default function SingleBlogPage() {
                           src={rel.coverImage}
                           alt={relTitle}
                           fill
+                          sizes="(max-width: 640px) 96px, 112px"
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>

@@ -7,7 +7,9 @@ import FloatingWidgets from "@/components/FloatingWidgets";
 import CookieConsent from "@/components/CookieConsent";
 import PageTransitionLoader from "@/components/PageTransitionLoader";
 import AutoContactPopup from "@/components/AutoContactPopup";
-import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -17,74 +19,17 @@ const dmSans = DM_Sans({
 });
 
 export const siteTitleEn =
-  "Nexa Solutions | Web Development, App Development & AI Automation for Businesses";
+  "Web Development, Mobile Apps & AI Automation | Nexa Solutions";
 export const siteDescriptionEn =
-  "Full-service web & app development agency in Germany: Get modern websites built with Next.js, develop iOS & Android apps, create custom business portals, and automate workflows with AI and n8n. Request your free initial consultation today!";
+  "Full-service agency in Germany: Next.js websites, iOS & Android apps, and custom n8n AI workflow automation. Request a free consultation!";
 
 export const siteTitleDe =
-  "Nexa Solutions | Webentwicklung, App-Entwicklung & KI-Automatisierung für Unternehmen";
+  "Webentwicklung, Mobile Apps & KI-Automatisierung | Nexa Solutions";
 export const siteDescriptionDe =
-  "Full-Service Web- & App-Entwicklungsagentur in Deutschland: Moderne Websites mit Next.js erstellen lassen, iOS & Android Apps entwickeln, individuelle Business-Portale und Workflows mit KI & n8n automatisieren. Fordern Sie noch heute Ihre kostenlose Erstberatung an!";
+  "Agentur für Next.js Websites, iOS & Android Apps und n8n KI-Automatisierung. Skalierbare Software aus Deutschland. Jetzt anfragen!";
 
 const siteTitle = siteTitleDe;
 const siteDescription = siteDescriptionDe;
-
-export const siteKeywords = [
-  // Commercial & High-Value terms from keyword research:
-  "website development services",
-  "service website development",
-  "website design and development services",
-  "website design & development services",
-  "custom website development services",
-  "ecommerce website development services",
-  "wordpress website development services",
-  "webflow website development services",
-  "website development services company",
-  "affordable website development services",
-  "full service website development",
-  "custom coded website",
-  "custom coding website",
-  "custom website coding services",
-  "startup business websites",
-  "small business website design services",
-  "business website design",
-  "business websites",
-  "website for business",
-  // German target keywords:
-  "website erstellen lassen",
-  "business website erstellen",
-  "business website erstellen lassen",
-  "webentwicklung agentur",
-  "homepage erstellen lassen",
-  "online shop erstellen lassen",
-  "webentwicklung deutschland",
-  "firmenwebsite erstellen lassen",
-  "next.js agentur",
-  "individuelle website erstellen lassen",
-  "was kostet eine website",
-  "website kosten",
-  // Application Development (user specified):
-  "app entwickeln lassen",
-  "mobile application development",
-  "application development",
-  "web app entwickeln lassen",
-  "ios und android app entwicklung",
-  "react native agentur",
-  "custom mobile app development",
-  "cross platform app entwicklung",
-  "app entwickeln lassen kosten",
-  "saas entwickeln lassen",
-  "kundenportal entwickeln lassen",
-  "mvp entwicklung agentur",
-  "enterprise application development",
-  // AI & Process Automation:
-  "ki automatisierung unternehmen",
-  "n8n agentur",
-  "ki agenten unternehmen",
-  "prozessautomatisierung unternehmen",
-  "n8n automatisierung",
-  "dsgvo ki unternehmen",
-];
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -93,7 +38,6 @@ export const metadata: Metadata = {
     template: "%s | Nexa Solutions",
   },
   description: siteDescription,
-  keywords: siteKeywords,
   applicationName: "Nexa Solutions",
   alternates: { canonical: "/" },
   icons: { icon: "/favicon_logo.png", apple: "/favicon_logo.png" },
@@ -137,13 +81,6 @@ const organizationJsonLd = {
       url: SITE_URL,
       logo: `${SITE_URL}/favicon_logo.png`,
       description: siteDescription,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Mainzer Landstraße 180",
-        addressLocality: "Frankfurt am Main",
-        postalCode: "60327",
-        addressCountry: "DE",
-      },
       areaServed: [
         { "@type": "Country", name: "Germany" },
         { "@type": "Country", name: "Austria" },
@@ -160,7 +97,7 @@ const organizationJsonLd = {
               "@type": "Service",
               name: "Website Development Services",
               description:
-                "Custom website development, Business Websites erstellen lassen mit Next.js, Headless CMS und DSGVO-Konformität.",
+                "Custom Website Development, Business Websites mit Next.js, Headless CMS und DSGVO-Konformität.",
             },
           },
           {
@@ -169,7 +106,7 @@ const organizationJsonLd = {
               "@type": "Service",
               name: "Mobile Application Development",
               description:
-                "Cross-platform App Entwicklung für iOS und Android mit React Native, MVP-Entwicklung und Backend-Architektur.",
+                "Cross-Platform App Entwicklung für iOS und Android mit React Native, MVP-Entwicklung und Backend-Architektur.",
             },
           },
           {
@@ -178,7 +115,7 @@ const organizationJsonLd = {
               "@type": "Service",
               name: "KI Automatisierung & n8n Workflows",
               description:
-                "Prozessautomatisierung für Unternehmen, KI-Agenten, Chatbots und n8n Workflow-Automatisierung.",
+                "Prozessautomatisierung für Unternehmen, KI-Agenten und n8n Workflow-Automatisierung.",
             },
           },
           {
@@ -210,12 +147,7 @@ export default function RootLayout({
       className={`${dmSans.variable} h-full antialiased font-sans`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
-          }}
-        />
+        <JsonLd data={organizationJsonLd} />
         <LanguageProvider initialLang={lang}>
           <Suspense fallback={null}>
             <PageTransitionLoader />

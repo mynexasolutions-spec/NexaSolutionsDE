@@ -1,9 +1,9 @@
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Digitale Projekte & Case Studies | Nexa Solutions",
+  title: "Digitale Projekte & Referenzen | Nexa Solutions",
   description:
-    "Digitale Projekte & Case Studies: Sehen Sie, wie wir individuelle Webanwendungen, Apps und KI-Pipelines für Unternehmen umsetzen. Portfolio ansehen!",
+    "Erfolgreiche digitale Projekte und Softwarelösungen: Webentwicklung, mobile Apps und smarte KI-Pipelines. Portfolio entdecken!",
   path: "/our-work",
 });
 

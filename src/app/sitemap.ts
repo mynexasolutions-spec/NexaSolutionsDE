@@ -1,57 +1,71 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 import { blogPosts } from "@/data/blogData";
+import { solutionsData } from "@/data/solutions";
 import { getBlogsList } from "@/lib/db";
 
-const baseUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://nexa-solutions.de"
-).replace(/\/$/, "");
+export const revalidate = 3600;
+
+function toValidDate(val: unknown): Date | undefined {
+  if (!val) return undefined;
+  if (val instanceof Date) {
+    return isNaN(val.getTime()) ? undefined : val;
+  }
+  if (typeof val === "string" || typeof val === "number") {
+    const d = new Date(val);
+    return isNaN(d.getTime()) ? undefined : d;
+  }
+  return undefined;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}/`,
-      changeFrequency: "daily",
-      priority: 1.0,
+      url: SITE_URL,
     },
     {
-      url: `${baseUrl}/services/web-development`,
-      changeFrequency: "weekly",
-      priority: 0.9,
+      url: `${SITE_URL}/services/web-development`,
     },
     {
-      url: `${baseUrl}/services/mobile-app-development`,
-      changeFrequency: "weekly",
-      priority: 0.9,
+      url: `${SITE_URL}/services/mobile-app-development`,
     },
     {
-      url: `${baseUrl}/services/ai-automation`,
-      changeFrequency: "weekly",
-      priority: 0.9,
+      url: `${SITE_URL}/services/ai-automation`,
     },
     {
-      url: `${baseUrl}/projects`,
-      changeFrequency: "weekly",
-      priority: 0.85,
+      url: `${SITE_URL}/projects`,
     },
     {
-      url: `${baseUrl}/our-work`,
-      changeFrequency: "weekly",
-      priority: 0.85,
+      url: `${SITE_URL}/blog`,
     },
     {
-      url: `${baseUrl}/blog`,
-      changeFrequency: "daily",
-      priority: 0.85,
+      url: `${SITE_URL}/contact`,
     },
     {
-      url: `${baseUrl}/contact`,
-      changeFrequency: "monthly",
-      priority: 0.8,
+      url: `${SITE_URL}/loesungen`,
+    },
+    {
+      url: `${SITE_URL}/website-kosten`,
+    },
+    {
+      url: `${SITE_URL}/app-entwickeln-lassen-kosten`,
     },
   ];
 
+  // Solution routes from Phase 2
+  const solutionRoutes: MetadataRoute.Sitemap = solutionsData.map((solution) => {
+    const lastModified = toValidDate(solution.updatedAt);
+    return {
+      url: `${SITE_URL}/loesungen/${solution.slug}`,
+      ...(lastModified ? { lastModified } : {}),
+    };
+  });
+
   // Dynamic blog routes: Merge static blogPosts with published database blogs
-  const blogMap = new Map<string, any>();
+  const blogMap = new Map<
+    string,
+    { slug: string; date?: string; publishedAt?: string; updated_at?: string }
+  >();
 
   // 1. Seed with curated static blog posts
   for (const post of blogPosts) {
@@ -59,7 +73,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       blogMap.set(post.slug, {
         slug: post.slug,
         date: post.date,
-        updated_at: undefined,
+        publishedAt: post.publishedAt,
+        updated_at: post.updatedAt,
       });
     }
   }
@@ -74,10 +89,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const blogAny = blog as any;
         if (blogAny.status && blogAny.status !== "published") continue;
 
+        const existing = blogMap.get(blog.slug);
         blogMap.set(blog.slug, {
           slug: blog.slug,
-          date: blog.date,
-          updated_at: blog.updated_at,
+          date: blog.date || existing?.date,
+          publishedAt: existing?.publishedAt,
+          updated_at: blog.updated_at || existing?.updated_at,
         });
       }
     }
@@ -87,23 +104,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postRoutes: MetadataRoute.Sitemap = Array.from(blogMap.values()).map(
     (post) => {
-      let lastModified: Date | undefined;
-      if (post.updated_at) {
-        lastModified = new Date(post.updated_at);
-      } else if (post.date && !isNaN(Date.parse(post.date))) {
-        lastModified = new Date(post.date);
-      }
+      const lastModified =
+        toValidDate(post.updated_at) ||
+        toValidDate(post.publishedAt) ||
+        toValidDate(post.date);
 
       return {
-        url: `${baseUrl}/blog/${post.slug}`,
+        url: `${SITE_URL}/blog/${post.slug}`,
         ...(lastModified ? { lastModified } : {}),
-        changeFrequency: "weekly" as const,
-        priority: 0.75,
       };
     }
   );
 
-  const allRoutes = [...staticRoutes, ...postRoutes];
+  const allRoutes = [...staticRoutes, ...solutionRoutes, ...postRoutes];
 
   return Array.from(
     new Map(allRoutes.map((route) => [route.url, route])).values()

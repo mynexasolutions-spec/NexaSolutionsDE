@@ -24,7 +24,7 @@ export const siteDescriptionEn =
   "Full-service agency in Germany: Next.js websites, iOS & Android apps, and custom n8n AI workflow automation. Request a free consultation!";
 
 export const siteTitleDe =
-  "Webentwicklung, Apps & KI-Automatisierung | Nexa Solutions";
+  "Webentwicklung, Mobile Apps & KI-Automatisierung | Nexa Solutions";
 export const siteDescriptionDe =
   "Agentur für Next.js Websites, iOS & Android Apps und n8n KI-Automatisierung. Skalierbare Software aus Deutschland. Jetzt anfragen!";
 

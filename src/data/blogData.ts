@@ -649,6 +649,12 @@ export const blogPosts: BlogPost[] = [
           "Container-Laufzeit: Docker Engine mit Docker Compose v2 für reproduzierbare Deployments",
           "Rechtliches: Digitaler AVV-Vertrag mit dem Rechenzentrumsbetreiber hinterlegt",
         ],
+        bulletsEn: [
+          "Operating system: Ubuntu 24.04 LTS with active UFW firewall and SSH-key authentication",
+          "Database: Dedicated PostgreSQL 16 instance with automated encrypted daily backups",
+          "Container runtime: Docker Engine with Docker Compose v2 for reproducible deployments",
+          "Compliance: Digital Data Processing Agreement (DPA) signed with the EU data center",
+        ],
       },
       {
         headingDe: "3. Docker Compose Setup & Traefik Reverse-Proxy",
@@ -766,6 +772,12 @@ export const blogPosts: BlogPost[] = [
           "Sichere Vorauszahlung & Rechnungsversand per Stripe oder PayPal",
           "Mehrsprachige Benutzeroberfläche und Zeitzonen-Erkennung für internationale Kunden",
         ],
+        bulletsEn: [
+          "Real-time bi-directional calendar sync with Microsoft 365, Google & iCloud with zero latency",
+          "Automated video meeting creation (Microsoft Teams, Zoom, Google Meet)",
+          "Secure payment gateways & instant PDF invoicing via Stripe or PayPal",
+          "Multilingual customer scheduling and automatic timezone adjustment",
+        ],
       },
       {
         headingDe: "3. Typische Projektphasen & Aufwände",
@@ -870,6 +882,11 @@ export const blogPosts: BlogPost[] = [
           "Zapier: Ideal für Einsteiger und isolierte Standard-Tools, extrem teuer im Enterprise-Bereich",
           "Make: Stark für visuelle Daten-Transformationen, US-/EU-Cloud-Hosting mit Operations-Zählung",
           "n8n: Ultimative Freiheit durch Self-Hosting in Deutschland, voller Code-Support und 0€ Task-Kosten",
+        ],
+        bulletsEn: [
+          "Zapier: Ideal for beginners and isolated standard tools, but cost-prohibitive at enterprise scale",
+          "Make: Strong for visual data transformations, US/EU cloud hosting with operations quota counting",
+          "n8n: Ultimate freedom via self-hosting in Europe, full code support, and 0€ per-task fee shocks",
         ],
       },
       {

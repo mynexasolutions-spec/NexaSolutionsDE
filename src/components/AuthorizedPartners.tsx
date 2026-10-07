@@ -58,22 +58,26 @@ export default function AuthorizedPartners() {
 
         {/* Infinite Scroll Track */}
         <div className="animate-marquee-infinite flex items-center gap-4 sm:gap-6 py-2">
-          {tickerPartners.map((partner, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-[5px] border border-slate-200/90 shadow-xs px-6 sm:px-8 py-3.5 sm:py-4 flex items-center justify-center min-w-[150px] sm:min-w-[190px] h-[66px] sm:h-[76px] shrink-0 transition-all duration-300 group cursor-default"
-            >
-              <div className="relative w-[100px] sm:w-[120px] h-[35px] sm:h-[40px] flex items-center justify-center">
-                <Image
-                  src={partner.image}
-                  alt={partner.name}
-                  fill
-                  sizes="(max-width: 640px) 120px, 150px"
-                  className="object-contain transition-transform duration-300"
-                />
+          {tickerPartners.map((partner, index) => {
+            const isDuplicate = index >= partnerLogos.length;
+            return (
+              <div
+                key={index}
+                aria-hidden={isDuplicate ? "true" : undefined}
+                className="bg-white rounded-[5px] border border-slate-200/90 shadow-xs px-6 sm:px-8 py-3.5 sm:py-4 flex items-center justify-center min-w-[150px] sm:min-w-[190px] h-[66px] sm:h-[76px] shrink-0 transition-all duration-300 group cursor-default"
+              >
+                <div className="relative w-[100px] sm:w-[120px] h-[35px] sm:h-[40px] flex items-center justify-center">
+                  <Image
+                    src={partner.image}
+                    alt={isDuplicate ? "" : `${partner.name} Partner`}
+                    fill
+                    sizes="(max-width: 640px) 120px, 150px"
+                    className="object-contain transition-transform duration-300"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

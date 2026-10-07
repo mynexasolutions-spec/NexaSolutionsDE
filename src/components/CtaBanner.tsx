@@ -187,10 +187,10 @@ export default function CtaBanner({ onOpenContact }: CtaBannerProps) {
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[350px] lg:h-[350px] rounded-full overflow-hidden border-4 border-white shadow-[0_20px_50px_rgba(249,115,22,0.18)] bg-gradient-to-b from-orange-100/90 via-amber-50/70 to-orange-100/50 shrink-0">
                 <Image
                   src="/images/cta-developer.jpg"
-                  alt="Nexa Solutions 3D Developer"
+                  alt="Nexa Solutions Softwareentwicklung und Beratung"
                   fill
+                  sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 350px"
                   className="object-cover object-center scale-105"
-                  priority
                 />
               </div>
 

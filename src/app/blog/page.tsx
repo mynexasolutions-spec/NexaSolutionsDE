@@ -276,8 +276,9 @@ export default function BlogListingPage() {
                     >
                       <Image
                         src={featuredPost.coverImage}
-                        alt={featuredPost.titleEn}
+                        alt={featuredPost.titleDe}
                         fill
+                        sizes="(max-width: 1024px) 100vw, 520px"
                         className="object-cover object-center transition-transform duration-500 group-hover/img:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
@@ -349,6 +350,7 @@ export default function BlogListingPage() {
                           src={post.coverImage}
                           alt={title}
                           fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
                           className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

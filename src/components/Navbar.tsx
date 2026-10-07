@@ -218,16 +218,16 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
 
   const languages = [
     {
-      code: "de" as const,
-      label: "Deutsch",
-      display: "DE",
-      Flag: GermanyFlag,
-    },
-    {
       code: "en" as const,
       label: "English",
       display: "EN",
       Flag: UKFlag,
+    },
+    {
+      code: "de" as const,
+      label: "Deutsch",
+      display: "DE",
+      Flag: GermanyFlag,
     },
   ];
 

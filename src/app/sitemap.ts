@@ -17,38 +17,48 @@ function toValidDate(val: unknown): Date | undefined {
   }
   return undefined;
 }
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const lastModDate = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
+      lastModified: lastModDate,
     },
     {
       url: `${SITE_URL}/services/web-development`,
+      lastModified: lastModDate,
     },
     {
       url: `${SITE_URL}/services/mobile-app-development`,
+      lastModified: lastModDate,
     },
     {
       url: `${SITE_URL}/services/ai-automation`,
+      lastModified: lastModDate,
     },
     {
       url: `${SITE_URL}/projects`,
+      lastModified: lastModDate,
     },
     {
       url: `${SITE_URL}/blog`,
+      lastModified: lastModDate,
     },
     {
       url: `${SITE_URL}/contact`,
+      lastModified: lastModDate,
     },
     {
       url: `${SITE_URL}/loesungen`,
+      lastModified: lastModDate,
     },
     {
       url: `${SITE_URL}/website-kosten`,
+      lastModified: lastModDate,
     },
     {
       url: `${SITE_URL}/app-entwickeln-lassen-kosten`,
+      lastModified: lastModDate,
     },
   ];
 

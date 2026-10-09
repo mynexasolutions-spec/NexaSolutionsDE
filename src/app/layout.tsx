@@ -18,15 +18,17 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+import { SOCIAL_PROFILES_SAMEAS } from "@/lib/config/socials";
+
 export const siteTitleEn =
   "Web Development, Mobile Apps & AI Automation | Nexa Solutions";
 export const siteDescriptionEn =
   "Full-service agency in Germany: Next.js websites, iOS & Android apps, and custom n8n AI workflow automation. Request a free consultation!";
 
 export const siteTitleDe =
-  "Webentwicklung, Mobile Apps & KI-Automatisierung | Nexa Solutions";
+  "n8n Automatisierung, Webentwicklung & Apps | Nexa Solutions";
 export const siteDescriptionDe =
-  "Agentur für Next.js Websites, iOS & Android Apps und n8n KI-Automatisierung. Skalierbare Software aus Deutschland. Jetzt anfragen!";
+  "n8n KI-Automatisierung, Next.js Websites & Mobile Apps zum Festpreis aus Deutschland. Jetzt kostenlose Beratung bei Nexa Solutions anfragen!";
 
 const siteTitle = siteTitleDe;
 const siteDescription = siteDescriptionDe;
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   applicationName: "Nexa Solutions",
-  alternates: { canonical: "/" },
+  alternates: { canonical: SITE_URL },
   icons: { icon: "/favicon_logo.png", apple: "/favicon_logo.png" },
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
   robots: {
@@ -75,12 +77,38 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Nexa Solutions",
+      description: siteDescription,
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      inLanguage: "de-DE",
+    },
+    {
       "@type": ["Organization", "ProfessionalService"],
       "@id": `${SITE_URL}/#organization`,
       name: "Nexa Solutions",
       url: SITE_URL,
       logo: `${SITE_URL}/favicon_logo.png`,
       description: siteDescription,
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+91 8077 313 241",
+          contactType: "customer service",
+          email: "contact@nexa-solutions.de",
+          availableLanguage: ["German", "English"],
+        },
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Delhi",
+        addressCountry: "IN",
+      },
+      sameAs: SOCIAL_PROFILES_SAMEAS,
       areaServed: [
         { "@type": "Country", name: "Germany" },
         { "@type": "Country", name: "Austria" },

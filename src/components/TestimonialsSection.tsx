@@ -40,20 +40,6 @@ export default function TestimonialsSection() {
       rating: 5,
     },
     {
-      id: "rohit",
-      quote: t(
-        "Professionell, pünktlich und sehr unterstützend. Sie haben unsere Anforderungen verstanden und eine hochwertige Lösung geliefert.",
-        "Professional, timely and very supportive. They understood our requirements and delivered a high quality solution."
-      ),
-      name: "Rohit Verma",
-      role: "Taibeena",
-      avatar: null,
-      initials: "RV",
-      initialsBg: "bg-orange-100 text-orange-800 border-orange-200",
-      accentGlow: "from-amber-100/40 via-orange-50/20 to-transparent",
-      rating: 5,
-    },
-    {
       id: "markus",
       quote: t(
         "Die automatisierte Bildungsplattform hat unsere Beratungsprozesse revolutioniert. Schneller, intuitiver und absolut zuverlässig.",
@@ -166,7 +152,6 @@ export default function TestimonialsSection() {
 
             {/* Main Headline */}
             <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.10] sm:leading-[1.09] mb-2 text-center">
-              <span className="text-orange-500 mr-0.5 select-none">&apos;</span>
               <span>{t("Was unsere Kunden sagen", "What Our Clients Say")}</span>
             </h2>
 

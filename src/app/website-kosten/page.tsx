@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 import WebsiteKostenClient from "./WebsiteKostenClient";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Website Kosten 2026: Was kostet eine Website? | Nexa Solutions",
+  title: "Website Kosten 2026: Leitfaden | Nexa Solutions",
   description:
     "Was kostet eine moderne Website? Alle Kostenfaktoren, Phasen, Festpreis-Kalkulation und Einsparpotenziale im transparenten Überblick. Jetzt informieren!",
   path: "/website-kosten",

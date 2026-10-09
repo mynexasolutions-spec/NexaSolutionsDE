@@ -31,8 +31,8 @@ const heroSlides = [
     titleEn: "All-in-One Digital Solutions",
     descriptionDe: "Moderne Websites, mobile Apps und smarte KI-Automatisierung.",
     descriptionEn: "Modern websites, mobile apps, and smart AI automation.",
-    altDe: "Website Development Services & Mobile Application Development - Nexa Solutions",
-    altEn: "Website Development Services & Custom Mobile Application Development - Nexa Solutions",
+    altDe: "Nexa Solutions Agentur für Webentwicklung, Apps und n8n Automatisierung",
+    altEn: "Nexa Solutions Agency for Web Development, Mobile Apps and n8n AI Automation",
     image: "/images/hero-devices.jpg",
     icon: Layers,
   },
@@ -44,8 +44,8 @@ const heroSlides = [
     titleEn: "High-Performance Websites",
     descriptionDe: "SEO-optimiert, ultraschnell und auf Konversion ausgerichtet.",
     descriptionEn: "SEO-friendly, ultra-fast & conversion-focused web apps.",
-    altDe: "Website Development Services - Business Website erstellen lassen mit Next.js",
-    altEn: "Custom Website Development Services & Business Websites - Next.js Agency",
+    altDe: "Moderne Unternehmens-Website mit Next.js erstellen lassen zum Festpreis",
+    altEn: "Custom High-Performance Next.js Business Website Development Agency",
     image: "/images/web-dev.png",
     icon: Globe,
   },
@@ -57,8 +57,8 @@ const heroSlides = [
     titleEn: "Custom Mobile Applications",
     descriptionDe: "Nahtlose plattformübergreifende Apps für iOS und Android.",
     descriptionEn: "Seamless cross-platform apps for iOS and Android.",
-    altDe: "Mobile Application Development - Custom iOS & Android App entwickeln lassen",
-    altEn: "Mobile Application Development - Custom iOS and Android Apps Development",
+    altDe: "Individuelle iOS und Android App entwickeln lassen mit React Native",
+    altEn: "Cross-Platform iOS and Android Mobile App Development with React Native",
     image: "/images/app-dev.png",
     icon: Smartphone,
   },
@@ -70,8 +70,8 @@ const heroSlides = [
     titleEn: "AI Workflows & n8n Automation",
     descriptionDe: "Autonome Agenten und intelligente Prozess-Pipelines.",
     descriptionEn: "Autonomous agents and intelligent process pipelines.",
-    altDe: "KI Automatisierung & n8n Workflows für Unternehmen - Prozessautomatisierung",
-    altEn: "AI Automation & n8n Workflows for Businesses - Process Automation",
+    altDe: "n8n Automatisierung und KI-Agenten für Unternehmen in Deutschland",
+    altEn: "Enterprise n8n Workflow Automation and Autonomous AI Agents",
     image: "/images/ai-robot.png",
     icon: Bot,
   },
@@ -83,8 +83,8 @@ const heroSlides = [
     titleEn: "Scalable Tech Engineering",
     descriptionDe: "End-to-End-Entwicklung für nachhaltiges Unternehmenswachstum.",
     descriptionEn: "End-to-end development crafted for business growth.",
-    altDe: "Full Service Software & Application Development Deutschland - Nexa Solutions",
-    altEn: "Full Service Software & Application Development Agency",
+    altDe: "Softwareentwicklung und skalierbare Cloud-Architektur aus Deutschland",
+    altEn: "Scalable Software Engineering and Cloud Architecture from Germany",
     image: "/images/hero-workspace.jpg",
     icon: Sparkles,
   },
@@ -167,12 +167,12 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
 
             {/* Main Headline */}
             <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 text-center lg:text-left">
-              {t("Digitale Lösungen", "Digital Solutions")} <br />
-              <span className="font-[900] text-slate-800">{t("für ein", "for a")}</span>{" "}
+              {t("Webentwicklung,", "Web Development,")} <br />
+              <span className="font-[900] text-slate-800">{t("Apps &", "Apps &")}</span>{" "}
               <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
-                {t("smarteres", "Smarter")}
+                {t("n8n", "n8n")}
               </span> <br />
-              {t("Morgen", "Tomorrow")}
+              {t("Automatisierung", "Automation")}
             </h1>
 
             {/* Subtext */}
@@ -256,8 +256,9 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
                       alt={t(activeSlide.altDe || activeSlide.titleDe, activeSlide.altEn || activeSlide.titleEn)}
                       fill
                       priority={currentSlide === 0}
+                      loading={currentSlide === 0 ? undefined : "lazy"}
                       className="object-cover object-center"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 650px"
                     />
 
                     {/* Gradient Overlay for legibility */}

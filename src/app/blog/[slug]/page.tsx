@@ -196,10 +196,10 @@ export default function SingleBlogPage() {
   const keyTakeaways =
     lang === "de" ? post.keyTakeawaysDe : post.keyTakeawaysEn;
 
-  // Article Schema.org JSON-LD
+  // BlogPosting Schema.org JSON-LD
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: title,
     description: excerpt,
     image: post.coverImage?.startsWith("http")

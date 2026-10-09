@@ -503,9 +503,9 @@ export default function AIAutomationPage() {
 
               {/* Headline */}
               <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
-                {t("Verwandeln Sie manuelle Arbeit in ", "Turn Repetitive Operations Into ")}
+                {t("n8n Automatisierung: ", "Autonomous AI Workflows & ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500">
-                  {t("KI-Autopilot-Systeme", "Autonomous AI Workflows")}
+                  {t("KI-Agenten für Unternehmen", "n8n Automation Systems")}
                 </span>
               </h1>
 

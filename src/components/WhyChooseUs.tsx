@@ -321,12 +321,12 @@ export default function WhyChooseUs({ onOpenContact }: WhyChooseUsProps) {
             {/* Stats Counter Row (Bottom of Left Column) */}
             <div className="flex items-center lg:items-start justify-center lg:justify-start gap-4 sm:gap-10 pt-5 border-t border-slate-200/80 w-full max-w-md lg:mx-w-2xl">
               <div>
-                <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight text-center">100+</div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight text-center">200+</div>
                 <div className="text-xs text-slate-800 font-medium mt-0.5 text-center">{t("Projekte geliefert", "Projects Delivered")}</div>
               </div>
               <div className="h-8 w-px bg-slate-200" />
               <div>
-                <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight text-center">50+</div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight text-center">500+</div>
                 <div className="text-xs text-slate-800 font-medium mt-0.5 text-center">{t("Zufriedene Kunden", "Happy Clients")}</div>
               </div>
               <div className="h-8 w-px bg-slate-200" />

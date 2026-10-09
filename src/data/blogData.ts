@@ -56,7 +56,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "ki-automatisierung-unternehmen-2026",
     titleDe: "Wie deutsche Unternehmen mit n8n & KI-Agenten 15+ Stunden pro Woche sparen",
-    seoTitleDe: "n8n KI-Agenten Automatisierung",
+    seoTitleDe: "KI Automatisierung für Unternehmen",
     titleEn: "How European Businesses Save 15+ Hours Weekly with n8n & Autonomous AI Agents",
     excerptDe:
       "n8n KI-Agenten Automatisierung: Wie Unternehmen 15+ Stunden wöchentlich sparen und Prozesse mit n8n DSGVO-konform automatisieren. Leitfaden lesen!",
@@ -704,7 +704,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "terminbuchungssystem-kosten",
     titleDe: "Was kostet ein Terminbuchungssystem? Kostenfaktoren im Überblick",
-    seoTitleDe: "Was kostet ein Terminbuchungssystem? Kostenfaktoren",
+    seoTitleDe: "Terminbuchungssystem Kosten 2026",
     titleEn: "How Much Does a Booking System Cost? Key Factors & Budget Guide",
     excerptDe:
       "Was kostet ein eigenes Terminbuchungssystem? Kostenfaktoren, SaaS vs. Individualsoftware, Kalender-Synchronisation und DSGVO im transparenten Überblick.",

@@ -458,11 +458,10 @@ export default function MobileAppPage() {
 
               {/* Main Headline */}
               <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
-                {t("Mobile Apps, die Nutzer ", "Mobile Apps Designed to ")}
+                {t("App entwickeln lassen: ", "Mobile Apps Designed to ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-400">
-                  {t("begeistern & App Stores", "Captivate Users & Dominate")}
-                </span>{" "}
-                {t("erobern.", "App Stores.")}
+                  {t("Nativ für iOS & Android", "Captivate Users & Dominate")}
+                </span>
               </h1>
 
               {/* Subheading */}
@@ -1032,7 +1031,7 @@ export default function MobileAppPage() {
                 metric: "50k+ Active Matches",
                 descDe: "Sichere Matching-Plattform mit Echtzeit-WebSockets, Bild-Verifizierung und Push-Alerts.",
                 descEn: "Verified matchmaking platform featuring real-time WebSockets, selfie validation, and push notifications.",
-                image: "/images/project-humnikah-crop.png",
+                image: "/images/project-humnikahs-img.png",
                 tags: ["Flutter", "WebSockets", "Firebase"],
               },
               {
@@ -1047,12 +1046,12 @@ export default function MobileAppPage() {
             ].map((app, i) => (
               <div
                 key={i}
-                className="group rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="group rounded-[5px] bg-white border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                   <Image
                     src={app.image}
-                    alt={app.title}
+                    alt={`${app.title} – Mobile App Entwicklungsbeispiel Nexa Solutions`}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, 33vw"
@@ -1113,14 +1112,14 @@ export default function MobileAppPage() {
             {packages.map((pkg) => (
               <div
                 key={pkg.id}
-                className={`rounded-3xl p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 relative ${
+                className={`rounded-[5px] p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 relative ${
                   pkg.popular
                     ? "bg-slate-900 text-white shadow-2xl border-2 border-blue-500 scale-[1.02] lg:-translate-y-2"
                     : "bg-slate-50/70 text-slate-900 border border-slate-200/90 shadow-sm hover:shadow-md"
                 }`}
               >
                 {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-black tracking-wider uppercase px-4 py-1.5 rounded-full shadow-md">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-black tracking-wider uppercase px-4 py-1.5 rounded-[5px] shadow-md">
                     {t(pkg.badgeDe, pkg.badgeEn)}
                   </div>
                 )}
@@ -1173,7 +1172,7 @@ export default function MobileAppPage() {
 
                 <button
                   onClick={() => handleOpenContactWithPackage(lang === "de" ? pkg.nameDe : pkg.nameEn)}
-                  className={`w-full py-3.5 px-6 rounded-full text-sm sm:text-base font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
+                  className={`w-full py-3.5 px-6 rounded-[5px] text-sm sm:text-base font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
                     pkg.popular
                       ? "bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30"
                       : "bg-slate-900 hover:bg-slate-800 text-white"

@@ -631,11 +631,10 @@ export default function WebDevelopmentPage() {
 
               {/* Main Headline */}
               <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
-                {t("Websites & Web-Apps, die ", "High-Performance Websites & ")}
+                {t("Website erstellen lassen: ", "High-Performance Websites & ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">
-                  {t("Besucher in Kunden", "Apps That Convert")}
-                </span>{" "}
-                {t("verwandeln.", "Visitors.")}
+                  {t("Next.js zum Festpreis", "Apps That Convert")}
+                </span>
               </h1>
 
               {/* Subheading */}
@@ -1367,7 +1366,7 @@ export default function WebDevelopmentPage() {
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                   <Image
                     src={proj.image}
-                    alt={proj.title}
+                    alt={`${proj.title} – Webentwicklung Referenzprojekt Nexa Solutions`}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, 33vw"

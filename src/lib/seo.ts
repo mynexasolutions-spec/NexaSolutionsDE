@@ -29,7 +29,7 @@ export function pageMetadata({
     title: metadataTitle,
     description,
     alternates: {
-      canonical: normalizedPath,
+      canonical: absoluteUrl,
     },
     robots: {
       index: true,

@@ -170,7 +170,7 @@ export default function BookingSection({ onOpenContact }: BookingSectionProps = 
               <div className="lg:col-span-5 p-6 sm:p-8 bg-slate-50/50 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                    <span>SCHRITT 1 / STEP 1</span>
+                    <span>{t("SCHRITT 1", "STEP 1")}</span>
                   </div>
 
                   <h3 className="text-[20px] font-black text-slate-900 mb-4">

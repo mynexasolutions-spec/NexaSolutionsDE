@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { blogPosts } from "@/data/blogData";
 import { solutionsData } from "@/data/solutions";
+import { servicesData } from "@/data/servicesData";
 import { getBlogsList } from "@/lib/db";
 
 export const revalidate = 3600;
@@ -23,42 +24,86 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: SITE_URL,
       lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 1.0,
     },
     {
       url: `${SITE_URL}/services/web-development`,
       lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/services/mobile-app-development`,
       lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/services/ai-automation`,
       lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/services/mvp-development`,
+      lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/services/custom-crm-systems`,
+      lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/projects`,
       lastModified: lastModDate,
-    },
-    {
-      url: `${SITE_URL}/blog`,
-      lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
     },
     {
       url: `${SITE_URL}/contact`,
       lastModified: lastModDate,
-    },
-    {
-      url: `${SITE_URL}/loesungen`,
-      lastModified: lastModDate,
+      changeFrequency: "yearly",
+      priority: 0.85,
     },
     {
       url: `${SITE_URL}/website-kosten`,
       lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
     },
     {
       url: `${SITE_URL}/app-entwickeln-lassen-kosten`,
       lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${SITE_URL}/loesungen`,
+      lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${SITE_URL}/blog`,
+      lastModified: lastModDate,
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/privacy-policy`,
+      lastModified: lastModDate,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${SITE_URL}/terms-of-service`,
+      lastModified: lastModDate,
+      changeFrequency: "monthly",
+      priority: 0.5,
     },
   ];
 
@@ -68,6 +113,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return {
       url: `${SITE_URL}/loesungen/${solution.slug}`,
       ...(lastModified ? { lastModified } : {}),
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
     };
   });
 
@@ -122,11 +169,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return {
         url: `${SITE_URL}/blog/${post.slug}`,
         ...(lastModified ? { lastModified } : {}),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
       };
     }
   );
 
-  const allRoutes = [...staticRoutes, ...solutionRoutes, ...postRoutes];
+  // All 20 Localized Service detail routes (20 German + 20 English = 40 pages)
+  const serviceRoutes: MetadataRoute.Sitemap = servicesData.flatMap((service) => [
+    {
+      url: `${SITE_URL}/de/services/${service.slugDe}`,
+      lastModified: lastModDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/en/services/${service.slugEn}`,
+      lastModified: lastModDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    },
+  ]);
+
+  const allRoutes = [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...solutionRoutes,
+    ...postRoutes,
+  ];
 
   return Array.from(
     new Map(allRoutes.map((route) => [route.url, route])).values()

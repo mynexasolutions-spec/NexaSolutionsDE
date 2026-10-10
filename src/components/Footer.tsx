@@ -229,20 +229,20 @@ export default function Footer() {
                   badgeBg: "bg-amber-100 text-amber-600",
                 },
                 {
-                  title: t("Datenanalyse", "Data Analysis"),
-                  href: "/services/ai-automation",
+                  title: t("CRM-Systeme", "Custom CRM Systems"),
+                  href: "/services/custom-crm-systems",
                   icon: Database,
                   badgeBg: "bg-emerald-100 text-emerald-600",
                 },
                 {
                   title: t("MVP-Entwicklung", "MVP Development"),
-                  href: "/services/web-development",
+                  href: "/services/mvp-development",
                   icon: BarChart2,
                   badgeBg: "bg-pink-100 text-pink-600",
                 },
                 {
                   title: t("Wartung & Support", "Maintenance & Support"),
-                  href: "/services/web-development",
+                  href: "/contact",
                   icon: Headphones,
                   badgeBg: "bg-indigo-100 text-indigo-600",
                 },
@@ -410,16 +410,12 @@ export default function Footer() {
 
           {/* Right: Legal & Back To Top */}
           <div className="flex items-center gap-3 sm:gap-5">
-            <Link href="/impressum" className="hover:text-slate-800 transition-colors">
-              Impressum
-            </Link>
-            <span className="text-slate-300">|</span>
-            <Link href="/datenschutz" className="hover:text-slate-800 transition-colors">
+            <Link href="/privacy-policy" className="hover:text-slate-800 transition-colors">
               {t("Datenschutz", "Privacy Policy")}
             </Link>
             <span className="text-slate-300">|</span>
-            <Link href="/agb" className="hover:text-slate-800 transition-colors">
-              {t("AGB", "Terms & Conditions")}
+            <Link href="/terms-of-service" className="hover:text-slate-800 transition-colors">
+              {t("AGB", "Terms of Service")}
             </Link>
             <span className="text-slate-300">|</span>
             <button

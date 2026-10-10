@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { getAlternateServiceUrl } from "@/data/servicesData";
 import {
   ArrowRight,
   ChevronDown,
@@ -14,7 +15,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import BrandLogo from "./BrandLogo";
-import { useLanguage } from "@/context/LanguageContext";
+import { useLanguage, type Language } from "@/context/LanguageContext";
 
 // Crisp SVG Flag components (guaranteed to render on all OS including Windows)
 function GermanyFlag({ className = "w-5 h-3.5" }: { className?: string }) {
@@ -55,7 +56,25 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenContact }: NavbarProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const isHomePage = pathname === "/";
+
+  const handleLanguageSwitch = (newLang: Language) => {
+    setLang(newLang);
+    setLangDropdownOpen(false);
+    const alternateUrl = getAlternateServiceUrl(pathname, newLang);
+    if (alternateUrl && alternateUrl !== pathname) {
+      router.push(alternateUrl);
+    }
+  };
+
+  const handleMobileLanguageSwitch = (newLang: Language) => {
+    setLang(newLang);
+    const alternateUrl = getAlternateServiceUrl(pathname, newLang);
+    if (alternateUrl && alternateUrl !== pathname) {
+      router.push(alternateUrl);
+    }
+  };
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -477,10 +496,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                         return (
                           <button
                             key={item.code}
-                            onClick={() => {
-                              setLang(item.code);
-                              setLangDropdownOpen(false);
-                            }}
+                            onClick={() => handleLanguageSwitch(item.code)}
                             className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
                               lang === item.code
                                 ? "bg-orange-50 text-orange-600 font-extrabold"
@@ -719,7 +735,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                     return (
                       <button
                         key={l.code}
-                        onClick={() => setLang(l.code)}
+                        onClick={() => handleMobileLanguageSwitch(l.code)}
                         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                           lang === l.code
                             ? "bg-orange-600 text-white"

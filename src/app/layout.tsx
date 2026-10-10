@@ -30,8 +30,8 @@ export const siteTitleDe =
 export const siteDescriptionDe =
   "n8n KI-Automatisierung, Next.js Websites & Mobile Apps zum Festpreis aus Deutschland. Jetzt kostenlose Beratung bei Nexa Solutions anfragen!";
 
-const siteTitle = siteTitleDe;
-const siteDescription = siteDescriptionDe;
+const siteTitle = siteTitleEn;
+const siteDescription = siteDescriptionEn;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -60,8 +60,8 @@ export const metadata: Metadata = {
     description: siteDescription,
     url: SITE_URL,
     siteName: "Nexa Solutions",
-    locale: "de_DE",
-    alternateLocale: ["en_US"],
+    locale: "en_US",
+    alternateLocale: ["de_DE"],
     type: "website",
     images: [DEFAULT_OG_IMAGE],
   },
@@ -85,7 +85,7 @@ const organizationJsonLd = {
       publisher: {
         "@id": `${SITE_URL}/#organization`,
       },
-      inLanguage: "de-DE",
+      inLanguage: ["en-US", "de-DE"],
     },
     {
       "@type": ["Organization", "ProfessionalService"],

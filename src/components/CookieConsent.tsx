@@ -152,13 +152,13 @@ export default function CookieConsent() {
               {showDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
             </button>
 
-            <a
-              href="/contact"
+            <Link
+              href="/privacy-policy"
               className="text-slate-400 hover:text-orange-400 transition-colors inline-flex items-center gap-1 text-[11.5px]"
             >
               <span>{t("Datenschutz", "Privacy")}</span>
               <ExternalLink className="w-3 h-3" />
-            </a>
+            </Link>
           </div>
 
           {/* Modern 2-Button Action Bar */}

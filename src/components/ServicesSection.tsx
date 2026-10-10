@@ -39,7 +39,7 @@ export default function ServicesSection({
   onSelectService,
   onOpenContact,
 }: ServicesSectionProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // 1. Original 3 Flagship Services with Full Showcase & Dedicated Page Links
   const mainServices = [
@@ -766,13 +766,101 @@ export default function ServicesSection({
 
           {/* 20 Services Grid (4 Columns x 5 Rows) with Home Page Sizing & Responsive Font Sizes */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            {specializedServices.map((service) => {
+            {specializedServices.map((service, idx) => {
               const Icon = service.icon;
-              return (
-                <div
-                  key={service.id}
-                  className={`group relative overflow-hidden rounded-[5px] p-6 sm:p-7 flex flex-col justify-start border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${service.cardBg} ${service.borderColor} ${service.hoverBorder} min-h-[220px] sm:min-h-[240px]`}
-                >
+              const detailRoutes: Record<string, { de: string; en: string }> = {
+                // First 8 services
+                "employee-tracking": {
+                  de: "/de/services/mitarbeiter-zeiterfassung",
+                  en: "/en/services/employee-attendance-tracking",
+                },
+                "custom-financial": {
+                  de: "/de/services/individuelle-finanzsysteme",
+                  en: "/en/services/custom-financial-systems",
+                },
+                "ecommerce-stores": {
+                  de: "/de/services/online-shop-entwicklung",
+                  en: "/en/services/ecommerce-stores",
+                },
+                "coaching-portfolio": {
+                  de: "/de/services/coaching-kuenstler-portfolios",
+                  en: "/en/services/coaching-artist-portfolios",
+                },
+                "web-dev": {
+                  de: "/de/services/professionelles-webdesign",
+                  en: "/en/services/professional-web-design",
+                },
+                "musician-websites": {
+                  de: "/de/services/websites-fuer-musiker",
+                  en: "/en/services/websites-for-musicians",
+                },
+                "marketing-campaigns": {
+                  de: "/de/services/digitale-marketing-kampagnen",
+                  en: "/en/services/digital-marketing-campaigns",
+                },
+                "performance-optimization": {
+                  de: "/de/services/performance-optimierung",
+                  en: "/en/services/performance-optimization",
+                },
+                // Next 12 services
+                "llm-integration": {
+                  de: "/de/services/llm-integration",
+                  en: "/en/services/llm-integration",
+                },
+                "ai-for-businesses": {
+                  de: "/de/services/ki-fuer-unternehmen",
+                  en: "/en/services/ai-for-businesses",
+                },
+                "restaurant-systems": {
+                  de: "/de/services/gastronomie-restaurant-systeme",
+                  en: "/en/services/restaurant-management-systems",
+                },
+                "business-mgmt": {
+                  de: "/de/services/unternehmensverwaltung-systeme",
+                  en: "/en/services/business-management-systems",
+                },
+                "automation-business": {
+                  de: "/de/services/geschaeftsprozess-automatisierung",
+                  en: "/en/services/business-workflow-automation",
+                },
+                "ai-auto": {
+                  de: "/de/services/ki-agenten-automatisierung",
+                  en: "/en/services/ai-agents-automation",
+                },
+                "crm-systems": {
+                  de: "/de/services/crm-system-entwicklung",
+                  en: "/en/services/custom-crm-systems",
+                },
+                "appointment-booking": {
+                  de: "/de/services/online-terminbuchungssysteme",
+                  en: "/en/services/appointment-booking-systems",
+                },
+                "invoicing-accounting": {
+                  de: "/de/services/rechnungswesen-buchhaltung-software",
+                  en: "/en/services/invoicing-accounting-systems",
+                },
+                "inventory-warehouse": {
+                  de: "/de/services/warenwirtschaft-lagerverwaltung",
+                  en: "/en/services/inventory-warehouse-management",
+                },
+                "smart-chatbots": {
+                  de: "/de/services/ki-chatbots-kundenservice",
+                  en: "/en/services/smart-ai-chatbots",
+                },
+                "digital-transformation": {
+                  de: "/de/services/digitale-transformation-beratung",
+                  en: "/en/services/digital-transformation-solutions",
+                },
+              };
+
+              const targetHref = detailRoutes[service.id]
+                ? lang === "de"
+                  ? detailRoutes[service.id].de
+                  : detailRoutes[service.id].en
+                : null;
+
+              const cardContent = (
+                <>
                   {/* Background Watermark Graphic in Upper Right */}
                   <div
                     className={`absolute top-2 right-2 sm:top-2 sm:right-2 w-28 h-28 sm:w-28 sm:h-28 pointer-events-none transition-all duration-500 group-hover:scale-105 group-hover:opacity-45 opacity-25 ${service.watermarkColor}`}
@@ -796,6 +884,28 @@ export default function ServicesSection({
                       {service.description}
                     </p>
                   </div>
+                </>
+              );
+
+              if (targetHref) {
+                return (
+                  <Link
+                    key={service.id}
+                    href={targetHref}
+                    aria-label={service.title}
+                    className={`group relative overflow-hidden rounded-[5px] p-6 sm:p-7 flex flex-col justify-start border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-orange-500 ${service.cardBg} ${service.borderColor} ${service.hoverBorder} min-h-[220px] sm:min-h-[240px] block cursor-pointer`}
+                  >
+                    {cardContent}
+                  </Link>
+                );
+              }
+
+              return (
+                <div
+                  key={service.id}
+                  className={`group relative overflow-hidden rounded-[5px] p-6 sm:p-7 flex flex-col justify-start border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${service.cardBg} ${service.borderColor} ${service.hoverBorder} min-h-[220px] sm:min-h-[240px]`}
+                >
+                  {cardContent}
                 </div>
               );
             })}

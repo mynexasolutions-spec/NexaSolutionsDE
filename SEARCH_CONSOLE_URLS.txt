@@ -21,7 +21,6 @@ https://nexa-solutions.de/services/web-development
 https://nexa-solutions.de/services/mobile-app-development
 https://nexa-solutions.de/services/ai-automation
 https://nexa-solutions.de/services/mvp-development
-https://nexa-solutions.de/services/custom-crm-systems
 https://nexa-solutions.de/contact
 
 --- TIER 1.5: 20 DEDICATED SERVICE PAGES (German DE & English EN) ---
@@ -66,9 +65,11 @@ https://nexa-solutions.de/en/services/smart-ai-chatbots
 https://nexa-solutions.de/de/services/digitale-transformation-beratung
 https://nexa-solutions.de/en/services/digital-transformation-solutions
 
---- TIER 2: PORTFOLIO & SOCIAL PROOF PAGES ---
+--- TIER 2: PORTFOLIO, GUIDES & HUBS ---
 https://nexa-solutions.de/projects
-https://nexa-solutions.de/our-work
+https://nexa-solutions.de/website-kosten
+https://nexa-solutions.de/app-entwickeln-lassen-kosten
+https://nexa-solutions.de/loesungen
 https://nexa-solutions.de/blog
 
 --- TIER 3: BLOG ARTICLES (Organic SEO & Google Traffic) ---
@@ -78,21 +79,33 @@ https://nexa-solutions.de/blog/react-native-cross-platform-apps
 https://nexa-solutions.de/blog/dsgvo-konforme-ki-infrastruktur
 https://nexa-solutions.de/blog/mvp-development-strategy-startups
 https://nexa-solutions.de/blog/crm-lead-automation-n8n
+https://nexa-solutions.de/blog/ki-startups-deutschland-2026
+https://nexa-solutions.de/blog/ki-startups-finanzierung-2026
+https://nexa-solutions.de/blog/generative-ki-startups-deutschland
 
---- TIER 4: LEGAL & POLICY PAGES ---
+--- TIER 4: LEGAL & COMPLIANCE PAGES ---
+https://nexa-solutions.de/impressum
 https://nexa-solutions.de/privacy-policy
 https://nexa-solutions.de/terms-of-service
 
 
 --------------------------------------------------------------------------------
-3. RAW CLEAN LIST (One URL per line - Easy Copy/Paste)
+3. RAW CLEAN LIST (One Canonical URL per line - Easy Copy/Paste for GSC)
 --------------------------------------------------------------------------------
 https://nexa-solutions.de/
 https://nexa-solutions.de/services/web-development
 https://nexa-solutions.de/services/mobile-app-development
 https://nexa-solutions.de/services/ai-automation
 https://nexa-solutions.de/services/mvp-development
-https://nexa-solutions.de/services/custom-crm-systems
+https://nexa-solutions.de/contact
+https://nexa-solutions.de/projects
+https://nexa-solutions.de/website-kosten
+https://nexa-solutions.de/app-entwickeln-lassen-kosten
+https://nexa-solutions.de/loesungen
+https://nexa-solutions.de/blog
+https://nexa-solutions.de/impressum
+https://nexa-solutions.de/privacy-policy
+https://nexa-solutions.de/terms-of-service
 https://nexa-solutions.de/de/services/mitarbeiter-zeiterfassung
 https://nexa-solutions.de/en/services/employee-attendance-tracking
 https://nexa-solutions.de/de/services/individuelle-finanzsysteme
@@ -133,18 +146,15 @@ https://nexa-solutions.de/de/services/ki-chatbots-kundenservice
 https://nexa-solutions.de/en/services/smart-ai-chatbots
 https://nexa-solutions.de/de/services/digitale-transformation-beratung
 https://nexa-solutions.de/en/services/digital-transformation-solutions
-https://nexa-solutions.de/projects
-https://nexa-solutions.de/our-work
-https://nexa-solutions.de/blog
-https://nexa-solutions.de/contact
 https://nexa-solutions.de/blog/ki-automatisierung-unternehmen-2026
 https://nexa-solutions.de/blog/nextjs-vs-wordpress-2026
 https://nexa-solutions.de/blog/react-native-cross-platform-apps
 https://nexa-solutions.de/blog/dsgvo-konforme-ki-infrastruktur
 https://nexa-solutions.de/blog/mvp-development-strategy-startups
 https://nexa-solutions.de/blog/crm-lead-automation-n8n
-https://nexa-solutions.de/privacy-policy
-https://nexa-solutions.de/terms-of-service
+https://nexa-solutions.de/blog/ki-startups-deutschland-2026
+https://nexa-solutions.de/blog/ki-startups-finanzierung-2026
+https://nexa-solutions.de/blog/generative-ki-startups-deutschland
 
 
 --------------------------------------------------------------------------------

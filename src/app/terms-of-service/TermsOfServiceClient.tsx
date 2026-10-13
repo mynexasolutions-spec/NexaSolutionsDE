@@ -278,7 +278,7 @@ export default function TermsOfServiceClient() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* Email */}
                 <a
-                  href="mailto:contact@nexa-solutions.in"
+                  href="mailto:contact@nexa-solutions.de"
                   className="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:shadow-sm hover:border-blue-300 transition-all group"
                 >
                   <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
@@ -287,7 +287,7 @@ export default function TermsOfServiceClient() {
                   <div className="min-w-0">
                     <span className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Email</span>
                     <span className="text-sm font-semibold text-slate-900 group-hover:text-blue-600 truncate block transition-colors">
-                      contact@nexa-solutions.in
+                      contact@nexa-solutions.de
                     </span>
                   </div>
                 </a>

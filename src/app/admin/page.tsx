@@ -37,6 +37,7 @@ import {
   EyeOff,
   Lock,
   ArrowRight,
+  Loader2,
 } from "lucide-react";
 import { QueryRecord, BlogRecord } from "@/lib/db";
 
@@ -116,6 +117,7 @@ export default function AdminDashboardPage() {
   const [loadingBlogs, setLoadingBlogs] = useState(false);
   const [blogModalOpen, setBlogModalOpen] = useState(false);
   const [editingBlog, setEditingBlog] = useState<Partial<BlogRecord> | null>(null);
+  const [localPreview, setLocalPreview] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [syncingBlogs, setSyncingBlogs] = useState(false);
 
@@ -225,7 +227,9 @@ export default function AdminDashboardPage() {
   const fetchBlogs = async () => {
     setLoadingBlogs(true);
     try {
-      const res = await fetch("/api/blogs");
+      const res = await fetch("/api/blogs?t=" + Date.now(), {
+        cache: "no-store",
+      });
       if (res.ok) {
         const data = await res.json();
         setBlogs(data.blogs || []);
@@ -519,12 +523,16 @@ export default function AdminDashboardPage() {
     }
   };
 
-  // Handle ImageKit upload
+  // Handle ImageKit / Local upload with instant preview
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // 1. Immediately create local object URL so the image shows INSTANTLY!
+    const objectUrl = URL.createObjectURL(file);
+    setLocalPreview(objectUrl);
     setUploadingImage(true);
+
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -536,17 +544,26 @@ export default function AdminDashboardPage() {
 
       const data = await res.json();
       if (res.ok && data.url) {
-        setEditingBlog((prev) => ({
-          ...prev,
-          cover_image: data.url,
-        }));
-        showToast(tr("Image uploaded to ImageKit CDN!", "Bild erfolgreich auf ImageKit hochgeladen!"));
+        setEditingBlog((prev) =>
+          prev
+            ? {
+                ...prev,
+                cover_image: data.url,
+                coverImage: data.url,
+              }
+            : null
+        );
+        setLocalPreview(null);
+        showToast(tr("Image uploaded successfully!", "Bild erfolgreich hochgeladen!"));
       } else {
         showToast(data.error || tr("Image upload failed", "Bild-Upload fehlgeschlagen"));
       }
     } catch (err: any) {
       showToast(err?.message || tr("Upload error", "Upload-Fehler"));
     } finally {
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
       setUploadingImage(false);
     }
   };
@@ -556,18 +573,30 @@ export default function AdminDashboardPage() {
     e.preventDefault();
     if (!editingBlog) return;
 
+    if (uploadingImage) {
+      showToast(tr("Please wait for the image upload to complete", "Bitte warten Sie, bis der Bild-Upload abgeschlossen ist"));
+      return;
+    }
+
     try {
+      const coverImg = editingBlog.cover_image || (editingBlog as any).coverImage || "/images/ai-robot.png";
+      const payloadToSave = {
+        ...editingBlog,
+        cover_image: coverImg,
+      };
+
       const res = await fetch("/api/blogs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(editingBlog),
+        body: JSON.stringify(payloadToSave),
       });
 
       const data = await res.json();
-      if (res.ok && data.success) {
+      if (res.ok && (data.success || data.record)) {
         showToast(tr("Blog article saved successfully!", "Blog erfolgreich gespeichert!"));
         setBlogModalOpen(false);
         setEditingBlog(null);
+        setLocalPreview(null);
         fetchBlogs();
       } else {
         showToast(data.error || tr("Failed to save article", "Speichern fehlgeschlagen"));
@@ -2536,6 +2565,7 @@ export default function AdminDashboardPage() {
 
                     <button
                       onClick={() => {
+                        setLocalPreview(null);
                         setEditingBlog({
                           title_de: "",
                           title_en: "",
@@ -2543,6 +2573,7 @@ export default function AdminDashboardPage() {
                           excerpt_en: "",
                           category: "ai-automation",
                           cover_image: "",
+                          coverImage: "",
                           date: new Date().toLocaleDateString(adminLang === "en" ? "en-US" : "de-DE", {
                             day: "numeric",
                             month: "long",
@@ -2581,11 +2612,15 @@ export default function AdminDashboardPage() {
                       >
                         {/* Cover Image */}
                         <div className="relative h-44 w-full bg-slate-100 overflow-hidden flex items-center justify-center">
-                          {post.cover_image ? (
+                          {(post.cover_image || (post as any).coverImage) ? (
                             <img
-                              src={post.cover_image}
+                              key={post.cover_image || (post as any).coverImage}
+                              src={post.cover_image || (post as any).coverImage}
                               alt={post.title_en || post.title_de}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src = "/images/ai-robot.png";
+                              }}
                             />
                           ) : (
                             <div className="w-full h-full flex flex-col items-center justify-center bg-slate-50 text-slate-300">
@@ -2634,7 +2669,12 @@ export default function AdminDashboardPage() {
                             <div className="flex items-center gap-1.5">
                               <button
                                 onClick={() => {
-                                  setEditingBlog(post);
+                                  setLocalPreview(null);
+                                  setEditingBlog({
+                                    ...post,
+                                    cover_image: post.cover_image || (post as any).coverImage || "",
+                                    coverImage: post.cover_image || (post as any).coverImage || "",
+                                  });
                                   setBlogModalOpen(true);
                                 }}
                                 className="p-1.5 rounded-[5px] text-slate-500 hover:text-orange-600 hover:bg-orange-50 transition-colors"
@@ -2666,7 +2706,10 @@ export default function AdminDashboardPage() {
       {blogModalOpen && editingBlog && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in"
-          onClick={() => setBlogModalOpen(false)}
+          onClick={() => {
+            setLocalPreview(null);
+            setBlogModalOpen(false);
+          }}
         >
           <div
             className="w-full max-w-2xl bg-white rounded-[5px] shadow-2xl border border-slate-200 max-h-[90vh] flex flex-col overflow-hidden"
@@ -2678,7 +2721,10 @@ export default function AdminDashboardPage() {
                 {editingBlog.id ? tr("Edit Article", "Artikel bearbeiten") : tr("New Blog Post", "Neuen Artikel verfassen")}
               </h3>
               <button
-                onClick={() => setBlogModalOpen(false)}
+                onClick={() => {
+                  setLocalPreview(null);
+                  setBlogModalOpen(false);
+                }}
                 className="p-1.5 rounded-[5px] text-slate-400 hover:text-slate-600 hover:bg-slate-100"
               >
                 <X className="w-4 h-4" />
@@ -2746,18 +2792,25 @@ export default function AdminDashboardPage() {
                 </div>
               </div>
 
-              {/* ImageKit Upload Area */}
+              {/* Cover Image Area */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  {tr("Cover Image (ImageKit CDN)", "Cover-Bild (ImageKit CDN)")}
+                  {tr("Cover Image (ImageKit CDN or Local)", "Cover-Bild (ImageKit CDN oder Lokal)")}
                 </label>
                 <div className="flex items-center gap-3">
                   <input
                     type="text"
-                    value={editingBlog.cover_image || ""}
-                    onChange={(e) => setEditingBlog({ ...editingBlog, cover_image: e.target.value })}
+                    value={localPreview ? (adminLang === "en" ? "(Uploading local image...)" : "(Lokales Bild wird hochgeladen...)") : (editingBlog.cover_image || (editingBlog as any).coverImage || "")}
+                    onChange={(e) => {
+                      setLocalPreview(null);
+                      setEditingBlog({
+                        ...editingBlog,
+                        cover_image: e.target.value,
+                        coverImage: e.target.value,
+                      } as any);
+                    }}
                     className="flex-1 px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
-                    placeholder="https://ik.imagekit.io/bvnsa8iey/..."
+                    placeholder="https://ik.imagekit.io/... oder /images/ai-robot.png"
                   />
                   <input
                     type="file"
@@ -2772,34 +2825,97 @@ export default function AdminDashboardPage() {
                     disabled={uploadingImage}
                     className="px-4 py-2.5 bg-slate-900 hover:bg-orange-600 text-white rounded-[5px] text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-60 shadow-xs shrink-0"
                   >
-                    <Upload className="w-3.5 h-3.5" />
-                    <span>{uploadingImage ? tr("Uploading...", "Lädt hoch...") : tr("Upload to ImageKit", "Auf ImageKit hochladen")}</span>
+                    {uploadingImage ? (
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    ) : (
+                      <Upload className="w-3.5 h-3.5" />
+                    )}
+                    <span>{uploadingImage ? tr("Uploading...", "Lädt hoch...") : tr("Upload Image", "Bild hochladen")}</span>
                   </button>
                 </div>
 
-                {editingBlog.cover_image ? (
-                  <div className="mt-2.5 relative inline-block rounded-[5px] overflow-hidden border border-slate-200 shadow-2xs group">
-                    <div className="h-28 w-44">
-                      <img
-                        src={editingBlog.cover_image}
-                        alt="Preview"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                {/* Presets */}
+                <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+                  <span className="text-[11px] text-slate-400 font-semibold mr-1">{tr("Presets:", "Vorlagen:")}</span>
+                  {[
+                    { label: "AI Robot", path: "/images/ai-robot.png" },
+                    { label: "Boardroom", path: "/images/boardroom-crop.png" },
+                    { label: "Workspace", path: "/images/hero-workspace.jpg" },
+                    { label: "Devices", path: "/images/hero-devices.jpg" },
+                    { label: "Web Dev", path: "/images/web-dev.png" },
+                    { label: "App Dev", path: "/images/app-dev.png" },
+                  ].map((preset) => (
                     <button
+                      key={preset.path}
                       type="button"
-                      onClick={() => setEditingBlog({ ...editingBlog, cover_image: "" })}
-                      className="absolute top-1.5 right-1.5 p-1 bg-black/70 hover:bg-red-600 text-white rounded-full transition-colors cursor-pointer"
-                      title={tr("Remove image", "Bild entfernen")}
+                      onClick={() => {
+                        setLocalPreview(null);
+                        setEditingBlog({
+                          ...editingBlog,
+                          cover_image: preset.path,
+                          coverImage: preset.path,
+                        } as any);
+                      }}
+                      className={`px-2 py-0.5 rounded text-[10px] font-semibold border transition-colors cursor-pointer ${
+                        (editingBlog.cover_image || (editingBlog as any).coverImage) === preset.path && !localPreview
+                          ? "bg-orange-50 border-orange-400 text-orange-700"
+                          : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+                      }`}
                     >
-                      <X className="w-3.5 h-3.5" />
+                      {preset.label}
                     </button>
-                  </div>
-                ) : (
-                  <p className="mt-2 text-[11px] text-slate-400">
-                    {tr("No image selected yet. Upload an image to ImageKit or paste an image URL.", "Noch kein Bild ausgewählt. Laden Sie ein Bild auf ImageKit hoch oder fügen Sie eine Bild-URL ein.")}
-                  </p>
-                )}
+                  ))}
+                </div>
+
+                {/* Preview Image Box */}
+                {(() => {
+                  const displayCoverImage = localPreview || editingBlog.cover_image || (editingBlog as any).coverImage || "";
+                  if (!displayCoverImage) {
+                    return (
+                      <p className="mt-2 text-[11px] text-slate-400">
+                        {tr("No image selected yet. Upload an image, choose a preset, or paste a URL.", "Noch kein Bild ausgewählt. Laden Sie ein Bild hoch, wählen Sie eine Vorlage oder fügen Sie eine URL ein.")}
+                      </p>
+                    );
+                  }
+
+                  return (
+                    <div className="mt-2.5 relative inline-block rounded-[5px] overflow-hidden border border-slate-200 shadow-2xs group">
+                      <div className="h-28 w-44 bg-slate-100 relative">
+                        <img
+                          key={displayCoverImage}
+                          src={displayCoverImage}
+                          alt="Preview"
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            if (!target.src.endsWith("/images/ai-robot.png")) {
+                              target.src = "/images/ai-robot.png";
+                            }
+                          }}
+                        />
+                        {uploadingImage && (
+                          <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] flex flex-col items-center justify-center text-white p-2 text-center animate-in fade-in">
+                            <Loader2 className="w-5 h-5 animate-spin text-orange-400 mb-1" />
+                            <span className="text-[10px] font-bold tracking-wide">
+                              {tr("Uploading...", "Wird hochgeladen...")}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setLocalPreview(null);
+                          setEditingBlog({ ...editingBlog, cover_image: "", coverImage: "" } as any);
+                        }}
+                        className="absolute top-1.5 right-1.5 p-1 bg-black/70 hover:bg-red-600 text-white rounded-full transition-colors cursor-pointer shadow-xs"
+                        title={tr("Remove image", "Bild entfernen")}
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  );
+                })()}
               </div>
 
               <div>
@@ -2832,16 +2948,21 @@ export default function AdminDashboardPage() {
               <div className="pt-3 border-t border-slate-100 flex items-center justify-end gap-2.5">
                 <button
                   type="button"
-                  onClick={() => setBlogModalOpen(false)}
+                  onClick={() => {
+                    setLocalPreview(null);
+                    setBlogModalOpen(false);
+                  }}
                   className="px-4 py-2.5 rounded-[5px] bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs cursor-pointer"
                 >
                   {tr("Cancel", "Abbrechen")}
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-[5px] bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs shadow-md shadow-orange-500/20 cursor-pointer"
+                  disabled={uploadingImage}
+                  className="px-5 py-2.5 rounded-[5px] bg-orange-600 hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-xs shadow-md shadow-orange-500/20 cursor-pointer flex items-center gap-1.5"
                 >
-                  {tr("Save Article", "Artikel speichern")}
+                  {uploadingImage && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+                  <span>{uploadingImage ? tr("Uploading Image...", "Bild wird hochgeladen...") : tr("Save Article", "Artikel speichern")}</span>
                 </button>
               </div>
             </form>

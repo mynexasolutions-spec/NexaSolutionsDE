@@ -6,17 +6,17 @@ export const GERMAN_COUNTRIES = new Set(["DE", "AT", "CH", "LI", "LU"]);
 export const SITE_METADATA = {
   de: {
     title:
-      "Nexa Solutions | Webentwicklung, App-Entwicklung & KI-Automatisierung für Unternehmen",
+      "Webentwicklung, Apps & n8n Automatisierung | Nexa Solutions",
     description:
-      "Full-Service Web- & App-Entwicklungsagentur in Deutschland: Moderne Websites mit Next.js erstellen lassen, iOS & Android Apps entwickeln, individuelle Business-Portale und Workflows mit KI & n8n automatisieren. Fordern Sie noch heute Ihre kostenlose Erstberatung an!",
+      "Maßgeschneiderte Webentwicklung, mobile Apps & n8n-Workflow-Automatisierung für Unternehmen in Deutschland, Österreich und der Schweiz. Jetzt beraten lassen!",
     locale: "de_DE",
     alternateLocale: "en_US",
   },
   en: {
     title:
-      "Nexa Solutions | Web Development, App Development & AI Automation for Businesses",
+      "Web Development, Mobile Apps & AI Automation | Nexa Solutions",
     description:
-      "Full-service web & app development agency in Germany: Get modern websites built with Next.js, develop iOS & Android apps, create custom business portals, and automate workflows with AI and n8n. Request your free initial consultation today!",
+      "Full-service agency in Germany: Next.js websites, iOS & Android apps, and custom n8n AI workflow automation. Request a free consultation!",
     locale: "en_US",
     alternateLocale: "de_DE",
   },

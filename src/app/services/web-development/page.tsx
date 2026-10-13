@@ -216,9 +216,9 @@ const coreServices = [
     titleDe: "Individuelle SaaS & Web-Applikationen",
     titleEn: "Custom SaaS & Web Applications",
     descDe:
-      "Skalierbare Cloud-Softwarelösungen und Portale. Ideal kombinierbar mit [mobiler App Entwicklung](/services/mobile-app-development) und intelligenter [KI-Automatisierung](/services/ai-automation) für nahtlose Betriebsabläufe.",
+      "Skalierbare Cloud-Softwarelösungen und Portale. Ideal kombinierbar mit [mobiler App Entwicklung](/services/mobile-app-development), schneller [MVP Entwicklung](/services/mvp-development) und intelligenter [KI-Automatisierung](/services/ai-automation) für nahtlose Betriebsabläufe.",
     descEn:
-      "Scalable cloud software solutions and client portals. Seamlessly integrated with [mobile app development](/services/mobile-app-development) and [AI automation](/services/ai-automation) pipelines.",
+      "Scalable cloud software solutions and client portals. Seamlessly integrated with [mobile app development](/services/mobile-app-development), rapid [MVP development](/services/mvp-development), and [AI automation](/services/ai-automation) pipelines.",
     featuresDe: [
       "Multi-Tenant Architektur",
       "Sichere User-Authentifizierung",
@@ -237,9 +237,9 @@ const coreServices = [
     titleDe: "Headless E-Commerce & Shopsysteme",
     titleEn: "Headless E-Commerce & Online Stores",
     descDe:
-      "High-Conversion Onlineshops ohne die Trägheit gewöhnlicher Templates. Ultraschnelle Produktkataloge, One-Click Checkout und nahtlose Anbindung an Ihr ERP- und Warenwirtschaftssystem.",
+      "High-Conversion Onlineshops ohne die Trägheit gewöhnlicher Templates. Ultraschnelle Produktkataloge, One-Click Checkout und professionelle [Online-Shop Entwicklung](/de/services/online-shop-entwicklung) mit nahtloser ERP-Anbindung.",
     descEn:
-      "High-conversion online stores without template bloat. Blazing-fast product catalogs, one-click checkout, and seamless sync with your ERP and inventory systems.",
+      "High-conversion online stores without template bloat. Blazing-fast product catalogs, one-click checkout, and seamless [e-commerce development](/en/services/ecommerce-stores) with ERP integration.",
     featuresDe: [
       "Sub-Sekunden Checkout",
       "Shopify / MedusaJS / Stripe",
@@ -1425,9 +1425,13 @@ export default function WebDevelopmentPage() {
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
-                "Wählen Sie das passende Modell für Ihr Vorhaben. Alle Pakete beinhalten persönliche Beratung und Code-Übergabe.",
-                "Choose the right plan for your scope. All packages include dedicated engineering and full IP ownership.",
+                "Wählen Sie das passende Modell für Ihr Vorhaben. Alle Pakete beinhalten persönliche Beratung und Code-Übergabe. Detaillierte Preisfaktoren finden Sie in unserem Leitfaden zu ",
+                "Choose the right plan for your scope. All packages include dedicated engineering and full IP ownership. Explore pricing factors in our guide on "
               )}
+              <Link href="/website-kosten" className="text-orange-600 hover:text-orange-700 font-semibold underline">
+                {t("Website Kosten 2026", "Website Development Costs 2026")}
+              </Link>
+              .
             </p>
           </div>
 

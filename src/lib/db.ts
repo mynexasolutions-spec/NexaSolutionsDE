@@ -51,6 +51,7 @@ export interface BlogRecord {
   read_time_de: string;
   read_time_en: string;
   cover_image: string;
+  coverImage?: string;
   featured: boolean;
   views: string;
   author: any;
@@ -646,10 +647,13 @@ export async function saveBlogRecord(blog: Partial<BlogRecord>) {
   let existingIdx = local.blogs.findIndex((b) => b.slug === blog.slug || (blog.id && b.id === blog.id));
   let savedRecord: BlogRecord;
 
+  const coverImg = blog.cover_image || (blog as any)?.coverImage;
+
   if (existingIdx !== -1) {
     savedRecord = {
       ...local.blogs[existingIdx],
       ...blog,
+      cover_image: coverImg || local.blogs[existingIdx].cover_image || "/images/ai-robot.png",
       updated_at: now,
     } as BlogRecord;
     local.blogs[existingIdx] = savedRecord;
@@ -668,7 +672,7 @@ export async function saveBlogRecord(blog: Partial<BlogRecord>) {
       date: blog.date || new Date().toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" }),
       read_time_de: blog.read_time_de || "5 Min. Lesezeit",
       read_time_en: blog.read_time_en || "5 min read",
-      cover_image: blog.cover_image || "",
+      cover_image: coverImg || "/images/ai-robot.png",
       featured: !!blog.featured,
       views: blog.views || "1.0k",
       author: blog.author || {

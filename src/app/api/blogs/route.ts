@@ -1,10 +1,30 @@
 import { NextResponse } from "next/server";
 import { getBlogsList, saveBlogRecord, deleteBlogRecord } from "@/lib/db";
 
-export async function GET() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export async function GET(req: Request) {
   try {
+    const { searchParams } = new URL(req.url);
+    const slug = searchParams.get("slug");
     const result = await getBlogsList();
-    return NextResponse.json(result);
+
+    const headers = {
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+      Pragma: "no-cache",
+      Expires: "0",
+    };
+
+    if (slug) {
+      const found = result.blogs.find((b) => b.slug === slug);
+      return NextResponse.json(
+        { blog: found || null, blogs: result.blogs, isFromSupabase: result.isFromSupabase },
+        { headers }
+      );
+    }
+
+    return NextResponse.json(result, { headers });
   } catch (error: any) {
     return NextResponse.json(
       { error: error?.message || "Failed to load blogs" },

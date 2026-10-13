@@ -35,7 +35,9 @@ export default function BlogListingPage() {
   React.useEffect(() => {
     async function loadDbBlogs() {
       try {
-        const res = await fetch("/api/blogs");
+        const res = await fetch("/api/blogs?t=" + Date.now(), {
+          cache: "no-store",
+        });
         if (res.ok) {
           const data = await res.json();
           if (data.blogs && data.blogs.length > 0) {
@@ -275,10 +277,15 @@ export default function BlogListingPage() {
                       className="block relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group/img"
                     >
                       <Image
-                        src={featuredPost.coverImage}
+                        key={featuredPost.coverImage}
+                        src={featuredPost.coverImage || "/images/ai-robot.png"}
                         alt={featuredPost.titleDe}
                         fill
                         sizes="(max-width: 1024px) 100vw, 520px"
+                        unoptimized={
+                          typeof featuredPost.coverImage === "string" &&
+                          (featuredPost.coverImage.startsWith("http") || featuredPost.coverImage.startsWith("/images/uploads"))
+                        }
                         className="object-cover object-center transition-transform duration-500 group-hover/img:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
@@ -347,10 +354,15 @@ export default function BlogListingPage() {
                         className="relative block aspect-[16/10] overflow-hidden bg-slate-100"
                       >
                         <Image
-                          src={post.coverImage}
+                          key={post.coverImage}
+                          src={post.coverImage || "/images/ai-robot.png"}
                           alt={title}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+                          unoptimized={
+                            typeof post.coverImage === "string" &&
+                            (post.coverImage.startsWith("http") || post.coverImage.startsWith("/images/uploads"))
+                          }
                           className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

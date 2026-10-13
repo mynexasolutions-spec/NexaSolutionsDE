@@ -12,9 +12,9 @@ interface LanguageContextValue {
 }
 
 const LanguageContext = createContext<LanguageContextValue>({
-  lang: "de",
+  lang: "en",
   setLang: () => {},
-  t: <T,>(de: T): T => de,
+  t: <T,>(_de: T, en: T): T => en,
 });
 
 const GERMAN_TIMEZONES = [
@@ -63,7 +63,7 @@ function detectLocalRegionLanguage(): Language {
 
 export function LanguageProvider({
   children,
-  initialLang = "de",
+  initialLang = "en",
 }: {
   children: React.ReactNode;
   initialLang?: Language;

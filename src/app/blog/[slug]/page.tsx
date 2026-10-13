@@ -82,55 +82,55 @@ export default function SingleBlogPage() {
   const [isFetchingDb, setIsFetchingDb] = useState(!initialPost);
 
   React.useEffect(() => {
-    if (!post) {
-      async function loadDbBlog() {
-        try {
-          const res = await fetch("/api/blogs");
-          if (res.ok) {
-            const data = await res.json();
-            const found = data.blogs?.find((b: any) => b.slug === slug);
-            if (found) {
-              const mapped: BlogPost = {
-                slug: found.slug,
-                titleDe: found.title_de || found.titleDe || "Blog",
-                seoTitleDe: found.seo_title_de || found.title_de || found.titleDe || "Blog",
-                titleEn: found.title_en || found.titleEn || "Blog",
-                excerptDe: found.excerpt_de || found.excerptDe || "",
-                excerptEn: found.excerpt_en || found.excerptEn || "",
-                category: found.category || "ai-automation",
-                categoryLabelDe: found.category_label_de || found.categoryLabelDe || "KI & Automatisierung",
-                categoryLabelEn: found.category_label_en || found.categoryLabelEn || "AI & Automation",
-                categoryBadgeClass: found.category_badge_class || found.categoryBadgeClass || "bg-amber-50 text-amber-700 border-amber-200/80",
-                date: found.date || "2026-03-15",
-                readTimeDe: found.read_time_de || found.readTimeDe || "5 Min.",
-                readTimeEn: found.read_time_en || found.readTimeEn || "5 min read",
-                coverImage: found.cover_image || found.coverImage || "/blog/default.jpg",
-                featured: !!found.featured,
-                views: found.views || "1.0k",
-                author: found.author || {
-                  name: "Nexa Solutions Team",
-                  roleDe: "Software-Architektur & KI-Entwicklung",
-                  roleEn: "Software Architecture & AI Engineering",
-                  avatar: "/favicon.ico",
-                },
-                keyTakeawaysDe: found.key_takeaways_de || found.keyTakeawaysDe || [],
-                keyTakeawaysEn: found.key_takeaways_en || found.keyTakeawaysEn || [],
-                sections: found.sections || [],
-                tags: found.tags || [],
-                relatedSlugs: found.related_slugs || found.relatedSlugs || [],
-              };
-              setPost(mapped);
-            }
+    async function loadDbBlog() {
+      try {
+        const res = await fetch(`/api/blogs?slug=${encodeURIComponent(slug)}`, {
+          cache: "no-store",
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const found = data.blog || data.blogs?.find((b: any) => b.slug === slug);
+          if (found) {
+            const mapped: BlogPost = {
+              slug: found.slug,
+              titleDe: found.title_de || found.titleDe || "Blog",
+              seoTitleDe: found.seo_title_de || found.title_de || found.titleDe || "Blog",
+              titleEn: found.title_en || found.titleEn || "Blog",
+              excerptDe: found.excerpt_de || found.excerptDe || "",
+              excerptEn: found.excerpt_en || found.excerptEn || "",
+              category: found.category || "ai-automation",
+              categoryLabelDe: found.category_label_de || found.categoryLabelDe || "KI & Automatisierung",
+              categoryLabelEn: found.category_label_en || found.categoryLabelEn || "AI & Automation",
+              categoryBadgeClass: found.category_badge_class || found.categoryBadgeClass || "bg-amber-50 text-amber-700 border-amber-200/80",
+              date: found.date || "2026-03-15",
+              readTimeDe: found.read_time_de || found.readTimeDe || "5 Min.",
+              readTimeEn: found.read_time_en || found.readTimeEn || "5 min read",
+              coverImage: found.cover_image || found.coverImage || "/images/ai-robot.png",
+              featured: !!found.featured,
+              views: found.views || "1.0k",
+              author: found.author || {
+                name: "Nexa Solutions Team",
+                roleDe: "Software-Architektur & KI-Entwicklung",
+                roleEn: "Software Architecture & AI Engineering",
+                avatar: "/favicon.ico",
+              },
+              keyTakeawaysDe: (found.key_takeaways_de && found.key_takeaways_de.length > 0) ? found.key_takeaways_de : (initialPost?.keyTakeawaysDe || []),
+              keyTakeawaysEn: (found.key_takeaways_en && found.key_takeaways_en.length > 0) ? found.key_takeaways_en : (initialPost?.keyTakeawaysEn || []),
+              sections: (found.sections && found.sections.length > 0) ? found.sections : (initialPost?.sections || []),
+              tags: (found.tags && found.tags.length > 0) ? found.tags : (initialPost?.tags || []),
+              relatedSlugs: (found.related_slugs && found.related_slugs.length > 0) ? found.related_slugs : (initialPost?.relatedSlugs || []),
+            };
+            setPost(mapped);
           }
-        } catch (err) {
-          console.warn("Could not load dynamic blog from API:", err);
-        } finally {
-          setIsFetchingDb(false);
         }
+      } catch (err) {
+        console.warn("Could not load dynamic blog from API:", err);
+      } finally {
+        setIsFetchingDb(false);
       }
-      loadDbBlog();
     }
-  }, [slug, post]);
+    loadDbBlog();
+  }, [slug]);
 
   const relatedPosts = post ? getRelatedPosts(slug, 2) : [];
 
@@ -430,11 +430,16 @@ export default function SingleBlogPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 mb-8">
           <div className="relative w-full h-56 sm:h-72 md:h-84 lg:h-96 rounded-2xl overflow-hidden border border-slate-200/90 shadow-md bg-slate-100">
             <Image
-              src={post.coverImage}
+              key={post.coverImage}
+              src={post.coverImage || "/images/ai-robot.png"}
               alt={title}
               fill
               sizes="(max-width: 896px) 100vw, 896px"
               priority
+              unoptimized={
+                typeof post.coverImage === "string" &&
+                (post.coverImage.startsWith("http") || post.coverImage.startsWith("/images/uploads"))
+              }
               className="object-cover object-center"
             />
           </div>

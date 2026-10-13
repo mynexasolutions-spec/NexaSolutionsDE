@@ -92,9 +92,9 @@ const mobileCapabilities = [
     titleDe: "Cross-Platform mit React Native & Flutter",
     titleEn: "Cross-Platform React Native & Flutter",
     descDe:
-      "Eine gemeinsame Codebasis für iOS und Android bei nativer 60 FPS Performance. Lesen Sie unsere Analyse zu [React Native App Entwicklung](/blog/react-native-cross-platform-apps) oder sparen Sie bis zu 50% der Entwicklungs- und Wartungskosten ohne Kompromisse bei der User Experience.",
+      "Eine gemeinsame Codebasis für iOS und Android bei nativer 60 FPS Performance. Lesen Sie unsere Analyse zu [React Native App Entwicklung](/blog/react-native-cross-platform-apps), kalkulieren Sie Ihr Budget im Leitfaden zu [App entwickeln lassen Kosten 2026](/app-entwickeln-lassen-kosten) oder starten Sie mit einer schnellen [MVP-Entwicklung](/services/mvp-development).",
     descEn:
-      "A unified codebase powering iOS and Android at buttery-smooth 60 FPS. Save up to 50% in development and ongoing maintenance without sacrificing native fidelity.",
+      "A unified codebase powering iOS and Android at buttery-smooth 60 FPS. Explore our [React Native app analysis](/blog/react-native-cross-platform-apps), calculate budgets in our [App Cost Guide 2026](/app-entwickeln-lassen-kosten), or start with a [Rapid MVP Sprint](/services/mvp-development).",
     tagsDe: ["50% geringere Kosten", "Schnellere Time-to-Market", "Gemeinsame UI-Komponenten"],
     tagsEn: ["50% reduced costs", "Accelerated time-to-market", "Shared UI component library"],
   },
@@ -1102,9 +1102,13 @@ export default function MobileAppPage() {
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
-                "Keine versteckten Gebühren. Jedes Paket beinhaltet den Store-Zulassungsprozess und vollständigen Code-Besitz.",
-                "Zero hidden surprises. Every package includes store submission management and 100% IP ownership."
+                "Keine versteckten Gebühren. Jedes Paket beinhaltet den Store-Zulassungsprozess und vollständigen Code-Besitz. Detaillierte Kostenbeispiele finden Sie im Guide ",
+                "Zero hidden surprises. Every package includes store submission management and 100% IP ownership. Explore cost factors in our guide on "
               )}
+              <Link href="/app-entwickeln-lassen-kosten" className="text-blue-600 hover:text-blue-700 font-semibold underline">
+                {t("App entwickeln lassen Kosten 2026", "Mobile App Development Costs 2026")}
+              </Link>
+              .
             </p>
           </div>
 

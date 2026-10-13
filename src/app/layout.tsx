@@ -26,9 +26,9 @@ export const siteDescriptionEn =
   "Full-service agency in Germany: Next.js websites, iOS & Android apps, and custom n8n AI workflow automation. Request a free consultation!";
 
 export const siteTitleDe =
-  "n8n Automatisierung, Webentwicklung & Apps | Nexa Solutions";
+  "Webentwicklung, Apps & n8n Automatisierung | Nexa Solutions";
 export const siteDescriptionDe =
-  "n8n KI-Automatisierung, Next.js Websites & Mobile Apps zum Festpreis aus Deutschland. Jetzt kostenlose Beratung bei Nexa Solutions anfragen!";
+  "Webentwicklung, mobile Apps & n8n KI-Automatisierung zum Festpreis für Unternehmen in Deutschland, Österreich & Schweiz. Jetzt kostenlos beraten lassen!";
 
 const siteTitle = siteTitleEn;
 const siteDescription = siteDescriptionEn;
@@ -166,7 +166,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const lang: Language = "de";
+  const lang: Language = "en";
 
   return (
     <html

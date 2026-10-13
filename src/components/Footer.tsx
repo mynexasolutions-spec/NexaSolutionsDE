@@ -23,7 +23,7 @@ import BrandLogo from "./BrandLogo";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
 
@@ -181,6 +181,8 @@ export default function Footer() {
                 { label: t("Unsere Arbeit", "Our Work"), href: "/projects" },
                 { label: t("Partner", "Partners"), href: "/#partners" },
                 { label: "Blog", href: "/blog" },
+                { label: t("Digitale Lösungen", "Digital Solutions"), href: "/loesungen" },
+                { label: t("Website-Kosten 2026", "Website Cost Guide"), href: "/website-kosten" },
                 { label: t("Kontakt", "Contact"), href: "/contact" },
               ].map((link, idx) => (
                 <li key={idx}>
@@ -230,7 +232,7 @@ export default function Footer() {
                 },
                 {
                   title: t("CRM-Systeme", "Custom CRM Systems"),
-                  href: "/services/custom-crm-systems",
+                  href: lang === "de" ? "/de/services/crm-system-entwicklung" : "/en/services/custom-crm-systems",
                   icon: Database,
                   badgeBg: "bg-emerald-100 text-emerald-600",
                 },
@@ -410,6 +412,10 @@ export default function Footer() {
 
           {/* Right: Legal & Back To Top */}
           <div className="flex items-center gap-3 sm:gap-5">
+            <Link href="/impressum" className="hover:text-slate-800 transition-colors">
+              {t("Impressum", "Legal Notice")}
+            </Link>
+            <span className="text-slate-300">|</span>
             <Link href="/privacy-policy" className="hover:text-slate-800 transition-colors">
               {t("Datenschutz", "Privacy Policy")}
             </Link>

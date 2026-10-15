@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   Globe,
   Users,
+  Building2,
   ArrowUp,
   Sparkles,
 } from "lucide-react";
@@ -115,7 +116,7 @@ export default function Footer() {
                 href="https://in.linkedin.com/company/mynexasolutions"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn"
+                aria-label="Nexa Solutions auf LinkedIn besuchen"
                 className="w-9 h-9 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-sm flex items-center justify-center text-[#0A66C2] hover:bg-blue-50 transition-all cursor-pointer"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -167,9 +168,9 @@ export default function Footer() {
           {/* Column 2: Quick Links (lg:col-span-2) */}
           <div className="lg:col-span-2">
             <div className="relative inline-block mb-4 sm:mb-5">
-              <h3 className="text-xs sm:text-[13px] font-black text-slate-900 tracking-wider uppercase">
+              <p className="text-xs sm:text-[13px] font-black text-slate-900 tracking-wider uppercase">
                 {t("SCHNELLLINKS", "QUICK LINKS")}
-              </h3>
+              </p>
               <div className="w-6 h-0.5 bg-blue-600 rounded-full mt-1.5" />
             </div>
 
@@ -191,7 +192,7 @@ export default function Footer() {
                     prefetch={link.href.startsWith("/") && !link.href.includes("#") ? true : undefined}
                     className="group inline-flex items-center gap-1.5 hover:text-orange-600 transition-colors"
                   >
-                    <span className="truncate group-hover:text-orange-500 font-bold text-[13.5px] xl:text-[14px] transition-colors">
+                    <span className="truncate group-hover:text-orange-500 font-bold text-[13.5px] xl:text-[14px] transition-colors" aria-hidden="true">
                       &gt;
                     </span>
                     <span className="truncate text-[13.5px] xl:text-[14px] font-medium">{link.label}</span>
@@ -204,9 +205,9 @@ export default function Footer() {
           {/* Column 3: Our Services with Colored Badges (lg:col-span-3) */}
           <div className="lg:col-span-3">
             <div className="relative inline-block mb-4 sm:mb-5">
-              <h3 className="text-xs sm:text-[13px] font-black text-slate-900 tracking-wider uppercase">
+              <p className="text-xs sm:text-[13px] font-black text-slate-900 tracking-wider uppercase">
                 {t("UNSERE LEISTUNGEN", "OUR SERVICES")}
-              </h3>
+              </p>
               <div className="w-6 h-0.5 bg-blue-600 rounded-full mt-1.5" />
             </div>
 
@@ -235,6 +236,12 @@ export default function Footer() {
                   href: lang === "de" ? "/de/services/crm-system-entwicklung" : "/en/services/custom-crm-systems",
                   icon: Database,
                   badgeBg: "bg-emerald-100 text-emerald-600",
+                },
+                {
+                  title: t("B2B-Kundenportal", "B2B Client Portal"),
+                  href: lang === "de" ? "/de/services/b2b-kundenportal" : "/en/services/b2b-client-portal",
+                  icon: Building2,
+                  badgeBg: "bg-blue-100 text-blue-600",
                 },
                 {
                   title: t("MVP-Entwicklung", "MVP Development"),
@@ -274,9 +281,9 @@ export default function Footer() {
           <div className="lg:col-span-3 flex flex-col relative">
             {/* Header */}
             <div className="relative inline-block mb-4 sm:mb-5">
-              <h3 className="text-xs sm:text-[13px] font-black text-slate-900 tracking-wider uppercase">
+              <p className="text-xs sm:text-[13px] font-black text-slate-900 tracking-wider uppercase">
                 {t("KONTAKT", "GET IN TOUCH")}
-              </h3>
+              </p>
               <div className="w-6 h-0.5 bg-blue-600 rounded-full mt-1.5" />
             </div>
 
@@ -338,9 +345,9 @@ export default function Footer() {
                   <Sparkles className="w-3 h-3 text-purple-600" />
                   <span>{t("NEWSLETTER", "NEWSLETTER")}</span>
                 </div>
-                <h4 className="text-lg sm:text-2xl font-black text-slate-900 tracking-tight leading-snug">
+                <p className="text-lg sm:text-2xl font-black text-slate-900 tracking-tight leading-snug">
                   {t("Newsletter abonnieren", "Subscribe to Our Newsletter")}
-                </h4>
+                </p>
                 <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-md">
                   {t(
                     "Erhalten Sie die neuesten Updates, Insights und exklusive Tech-Tipps direkt in Ihr Postfach.",
@@ -440,7 +447,7 @@ export default function Footer() {
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="w-8 h-8 rounded-full bg-blue-50/90 hover:bg-blue-100 border border-blue-200/80 text-blue-600 flex flex-col items-center justify-center transition-all cursor-pointer shadow-sm hover:scale-105 active:scale-95 group ml-1 sm:ml-2"
-              aria-label="Back to Top"
+              aria-label={t("Nach oben scrollen", "Back to top")}
             >
               <ArrowUp className="w-3.5 h-3.5" />
             </button>

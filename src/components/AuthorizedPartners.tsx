@@ -69,7 +69,7 @@ export default function AuthorizedPartners() {
                 <div className="relative w-[100px] sm:w-[120px] h-[35px] sm:h-[40px] flex items-center justify-center">
                   <Image
                     src={partner.image}
-                    alt={isDuplicate ? "" : `${partner.name} Partner`}
+                    alt={`${partner.name} Partner – Technologiepartner Nexa Solutions`}
                     fill
                     sizes="(max-width: 640px) 120px, 150px"
                     className="object-contain transition-transform duration-300"

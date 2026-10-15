@@ -35,7 +35,7 @@ export interface SolutionPageData {
 export const solutionsData: SolutionPageData[] = [
   {
     slug: "zeiterfassung-software",
-    title: "Zeiterfassung Software entwickeln lassen | Nexa Solutions",
+    title: "Zeiterfassung Software entwickeln lassen | Nexa",
     titleEn: "Custom Time Tracking Software Development | Nexa Solutions",
     h1: "Individuelle Zeiterfassung & Personalverwaltung entwickeln lassen",
     h1En: "Custom Time Tracking & HR Management Software Development",
@@ -166,7 +166,7 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "crm-system-entwickeln-lassen",
-    title: "Individuelles CRM System entwickeln lassen | Nexa Solutions",
+    title: "CRM System entwickeln lassen | Nexa Solutions",
     titleEn: "Custom CRM System Development | Nexa Solutions",
     h1: "Maßgeschneidertes CRM-System für Ihr Unternehmen entwickeln lassen",
     h1En: "Develop a Custom CRM System Tailored to Your Business",
@@ -549,7 +549,7 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "n8n-agentur-deutschland",
-    title: "n8n Agentur Deutschland: DSGVO-Workflows | Nexa Solutions",
+    title: "n8n Agentur Deutschland: DSGVO-Workflows | Nexa",
     titleEn: "n8n Agency Germany: GDPR Workflow Automation | Nexa Solutions",
     h1: "n8n Agentur Deutschland: Prozessautomatisierung & Self-Hosting",
     h1En: "n8n Agency Germany: Process Automation & Dedicated Self-Hosting",
@@ -676,7 +676,7 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "restaurant-software-qr-menue",
-    title: "Restaurant Software & QR-Menü entwickeln | Nexa Solutions",
+    title: "Restaurant Software & QR-Menü | Nexa Solutions",
     titleEn: "Restaurant Software & QR Code Menu Development | Nexa Solutions",
     h1: "Restaurant Software & digitales QR-Code Menü entwickeln lassen",
     h1En: "Restaurant Software & Digital QR Code Menu Development",

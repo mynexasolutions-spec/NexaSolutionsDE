@@ -103,18 +103,18 @@ export const servicesData: ServiceItemData[] = [
     slugEn: "employee-attendance-tracking",
     titleDe: "Mitarbeiter- & Zeiterfassung",
     titleEn: "Employee & Attendance Tracking",
-    seoTitleDe: "Mitarbeiter Zeiterfassung Software | Nexa Solutions",
+    seoTitleDe: "Mitarbeiter Zeiterfassung Software entwickeln lassen",
     seoTitleEn: "Employee Attendance Tracking Software | Nexa Solutions",
     metaDescriptionDe:
-      "Digitale Mitarbeiter- & Zeiterfassung für Unternehmen: Arbeitszeiten, Urlaubsverwaltung & Schichten rechtssicher steuern. Jetzt kostenlose Beratung anfragen!",
+      "Mitarbeiter Zeiterfassung Software entwickeln lassen: EuGH-konform, Schichtplanung & DATEV Schnittstelle nach Maß. Jetzt unverbindlich anfragen!",
     metaDescriptionEn:
       "Custom employee attendance tracking systems: Streamline work hours, leaves, and shift schedules with real-time reporting. Book your free consultation today!",
-    h1De: "Mitarbeiter- & Zeiterfassung Software für moderne Unternehmen",
+    h1De: "Mitarbeiter Zeiterfassung Software entwickeln lassen – Individuelle Zeiterfassung",
     h1En: "Employee & Attendance Tracking Software for Modern Businesses",
     badgeDe: "Digitale Zeiterfassung & HR-Workflows",
     badgeEn: "Digital Time Tracking & HR Workflows",
     introDe:
-      "Strukturierte Arbeitszeiterfassung, transparente Abwesenheitsverwaltung und übersichtliche Schichtplanung – maßgeschneidert auf Ihre betrieblichen Anforderungen. Mit Nexa Solutions erhalten Sie individuelle Webanwendungen und Dashboards, die Ihre Personalprozesse vereinfachen und manuelle Excel-Tabellen überflüssig machen.",
+      "Möchten Sie eine individuelle Mitarbeiter Zeiterfassung Software entwickeln lassen? Als erfahrener Digitalpartner entwickeln wir maßgeschneiderte Systeme für Arbeitszeiterfassung, Urlaubsverwaltung und flexible Schichtplanung. Lassen Sie bei uns eine verlässliche DATEV Schnittstelle entwickeln lassen, um Arbeitszeiten fehlerfrei an die Lohnbuchhaltung zu übermitteln. Wenn Sie eine moderne Mitarbeiter Zeiterfassung Software entwickeln lassen, profitieren Sie von 100% EuGH- und BAG-Konformität zum transparenten Festpreis.",
     introEn:
       "Structured working hour tracking, transparent leave management, and clear shift scheduling tailored to your operational requirements. Nexa Solutions builds custom web applications and dashboards that simplify HR processes and eliminate tedious spreadsheet management.",
     heroImage: "/images/hero-workspace.jpg",
@@ -231,10 +231,10 @@ export const servicesData: ServiceItemData[] = [
         scopeBadge: "Kernfunktion",
       },
       {
-        title: "Lohnexport & Schnittstellen (Projektbezogen)",
+        title: "DATEV-Schnittstelle & Lohnbuchhaltung",
         description:
-          "Strukturierter Datenexport für die Lohnbuchhaltung (z. B. DATEV-kompatible CSV oder REST-API-Schnittstellen je nach Anforderung).",
-        scopeBadge: "Projektbezogen",
+          "Direkt eine DATEV Schnittstelle entwickeln lassen: Strukturierter Datenexport für die Lohnbuchhaltung nach DATEV Lodas und Lohn & Gehalt ohne manuelle Übertragungsfehler.",
+        scopeBadge: "DATEV-Schnittstelle",
       },
       {
         title: "Hardware- & Terminal-Integration (Optional)",
@@ -449,6 +449,10 @@ export const servicesData: ServiceItemData[] = [
 
     faqDe: [
       {
+        q: "Können wir eine direkte DATEV Schnittstelle entwickeln lassen?",
+        a: "Ja, absolut. Wir können eine maßgeschneiderte DATEV Schnittstelle entwickeln lassen, über die geleistete Arbeitsstunden, Abwesenheiten, Urlaube und Zuschläge direkt im passenden Format an DATEV Lodas oder DATEV Lohn & Gehalt übergeben werden.",
+      },
+      {
         q: "Welche Funktionen sind im Basissystem enthalten und welche sind projektbezogen?",
         a: "Im Standard-Projektumfang sind die Kernfunktionen wie digitale Stempeluhr, Arbeitszeit- und Gleitzeitkonten, Urlaubsverwaltung, Rollenverwaltung und CSV-Exporte enthalten. Spezielle ERP-Schnittstellen (z. B. tiefe DATEV-Integration) oder Hardware-Terminals werden anhand Ihrer konkreten technischen Vorgaben individuell kalkuliert und umgesetzt.",
       },
@@ -504,7 +508,7 @@ export const servicesData: ServiceItemData[] = [
     seoTitleDe: "Individuelle Finanzsysteme & Software | Nexa Solutions",
     seoTitleEn: "Custom Financial Systems & Software | Nexa Solutions",
     metaDescriptionDe:
-      "Maßgeschneiderte Finanzsysteme für Unternehmen: Rechnungsabläufe, Zahlungsströme und Dashboards sicher automatisieren. Jetzt unverbindliche Beratung anfragen!",
+      "Maßgeschneiderte Finanzsysteme für Unternehmen: Rechnungsabläufe, Zahlungsströme & Dashboards sicher automatisieren. Jetzt unverbindlich anfragen!",
     metaDescriptionEn:
       "Tailored financial systems for businesses: Automate invoicing, expense tracking, and financial dashboards with robust data security. Request a free consultation!",
     h1De: "Individuelle Finanzsysteme & Software für Unternehmen",
@@ -902,7 +906,7 @@ export const servicesData: ServiceItemData[] = [
     seoTitleDe: "Online-Shop Entwicklung - E-Commerce | Nexa Solutions",
     seoTitleEn: "Custom E-Commerce Store Development | Nexa Solutions",
     metaDescriptionDe:
-      "Professionelle Online-Shop Entwicklung: Schnelle Ladezeiten, sichere Zahlungen und conversionstarkes Einkaufserlebnis. Jetzt Ihren maßgeschneiderten Shop anfragen!",
+      "Professionelle Online-Shop Entwicklung: Schnelle Ladezeiten, sichere Zahlungen & conversionstarke Shops. Jetzt maßgeschneiderten Shop anfragen!",
     metaDescriptionEn:
       "Build high-converting e-commerce stores with lightning-fast load times, secure checkout flows, and seamless inventory management. Get a free project quote today!",
     h1De: "Online-Shop Entwicklung & High-Conversion E-Commerce",
@@ -1300,7 +1304,7 @@ export const servicesData: ServiceItemData[] = [
     seoTitleDe: "Coaching & Künstler Portfolio Websites | Nexa Solutions",
     seoTitleEn: "Coaching & Artist Portfolio Websites | Nexa Solutions",
     metaDescriptionDe:
-      "Individuelle Portfolio-Websites für Coaches, Trainer und Künstler: Persönliche Marke stärken, Termine online buchen und Kunden gewinnen. Jetzt beraten lassen!",
+      "Portfolio-Websites für Coaches, Trainer und Künstler: Persönliche Marke stärken, Termine online buchen & Kunden gewinnen. Jetzt beraten lassen!",
     metaDescriptionEn:
       "Showcase your talent and scale your coaching practice with high-impact portfolio websites featuring booking forms, galleries, and SEO. Book a consultation now!",
     h1De: "Portfolio-Websites für Coaches, Trainer & Künstler",
@@ -1698,7 +1702,7 @@ export const servicesData: ServiceItemData[] = [
     seoTitleDe: "Professionelles Webdesign für Firmen | Nexa Solutions",
     seoTitleEn: "Professional Web Design Services | Nexa Solutions",
     metaDescriptionDe:
-      "Professionelles Webdesign für anspruchsvolle Unternehmen: Blitzschnelle Next.js Websites, nutzerzentriertes UI/UX und erstklassiges SEO. Jetzt anfragen!",
+      "Professionelles Webdesign für Unternehmen: Blitzschnelle Next.js Websites, nutzerzentriertes UI/UX und erstklassiges SEO. Jetzt anfragen!",
     metaDescriptionEn:
       "Elevate your business with professional web design services: Fast Next.js websites, conversion-focused UI/UX design, and clean SEO architecture. Get started today!",
     h1De: "Professionelles Webdesign für moderne Unternehmen",
@@ -2096,7 +2100,7 @@ export const servicesData: ServiceItemData[] = [
     seoTitleDe: "Websites für Musiker, Bands & Künstler | Nexa Solutions",
     seoTitleEn: "Websites for Musicians, Bands & Artists | Nexa Solutions",
     metaDescriptionDe:
-      "Moderne Websites für Musiker und Bands: Streaming-Player, Tourkalender mit Ticketlinks, Merch-Shop und digitales EPK für Booker. Jetzt kostenlose Beratung sichern!",
+      "Websites für Musiker und Bands: Streaming-Player, Tourkalender mit Ticketlinks, Merch-Shop und digitales EPK für Booker. Jetzt beraten lassen!",
     metaDescriptionEn:
       "Dedicated websites for musicians and bands: Integrated audio streaming, tour dates with ticket links, electronic press kits, and merch. Launch your artist site now!",
     h1De: "Websites für Musiker, Bands & Solokünstler",
@@ -2494,7 +2498,7 @@ export const servicesData: ServiceItemData[] = [
     seoTitleDe: "Digitale Marketing-Kampagnen & Pages | Nexa Solutions",
     seoTitleEn: "Digital Marketing Campaigns & Pages | Nexa Solutions",
     metaDescriptionDe:
-      "Wirkungsvolle digitale Marketing-Kampagnen: Hochkonvertierende Landingpages, präzises Tracking-Setup und transparente Performance-Optimierung. Jetzt anfragen!",
+      "Digitale Marketing-Kampagnen: Hochkonvertierende Landingpages, präzises Tracking-Setup & transparente Performance-Optimierung. Jetzt anfragen!",
     metaDescriptionEn:
       "Amplify your reach with high-converting marketing campaign landing pages, reliable conversion tracking, and analytics reporting. Request a consultation today!",
     h1De: "Digitale Marketing-Kampagnen & Landingpages",
@@ -2892,7 +2896,7 @@ export const servicesData: ServiceItemData[] = [
     seoTitleDe: "Website Performance-Optimierung | Nexa Solutions",
     seoTitleEn: "Website Performance Optimization | Nexa Solutions",
     metaDescriptionDe:
-      "Professionelle Website Performance-Optimierung: Bessere Core Web Vitals (LCP, INP, CLS), schnellere Ladezeiten und höhere Google-Rankings. Jetzt Audit anfragen!",
+      "Website Performance-Optimierung: Bessere Core Web Vitals (LCP, INP, CLS), schnellere Ladezeiten & höhere Google-Rankings. Jetzt Audit anfragen!",
     metaDescriptionEn:
       "Maximize loading speeds and conquer Core Web Vitals (LCP, INP, CLS) with expert performance optimization for websites and web apps. Request your speed audit now!",
     h1De: "Website Performance-Optimierung & Core Web Vitals",

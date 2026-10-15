@@ -126,7 +126,7 @@ export default function FloatingWidgets() {
           {/* Nexa Solutions Logo */}
           <img
             src="/Nexa_logo.svg"
-            alt="Nexa Solutions"
+            alt="Nexa Solutions WhatsApp Beratung und Kontakt"
             className="w-full h-full object-contain p-0.5 transform group-hover:scale-110 transition-transform duration-300"
           />
 

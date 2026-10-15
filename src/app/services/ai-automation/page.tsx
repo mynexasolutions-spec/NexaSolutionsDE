@@ -502,17 +502,17 @@ export default function AIAutomationPage() {
               </div>
 
               {/* Headline */}
-              <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
+              <h1 className="text-[35px] sm:text-[52px] lg:text-[58px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
                 {t("n8n Automatisierung: ", "Autonomous AI Workflows & ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500">
-                  {t("KI-Agenten für Unternehmen", "n8n Automation Systems")}
+                  {t("Ihre n8n Agentur in Deutschland", "n8n Automation Systems")}
                 </span>
               </h1>
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {t(
-                  "Wir automatisieren bis zu 80% Ihrer repetitiven Geschäftsprozesse mit maßgeschneiderten KI-Agenten, n8n-Workflows und intelligenter Dokumenten-Extraktion. Sicher, DSGVO-konform und mit messbarem ROI in unter 30 Tagen.",
+                  "Suchen Sie nach professioneller n8n Automatisierung? Als spezialisierte n8n Agentur Deutschland automatisieren wir komplexe Arbeitsabläufe für maximale Effizienz. Unsere maßgeschneiderte KI Automatisierung für Unternehmen und gezielte n8n Workflow Automatisierung für KMU eliminiert bis zu 80% repetitiver Routineaufgaben. Profitieren Sie von erstklassiger n8n Automatisierung mit deutschem Hosting – 100% DSGVO-konform und mit messbarem ROI.",
                   "We automate up to 80% of your repetitive business processes with custom AI agents, n8n workflow engines, and intelligent document parsing. Secure, GDPR-compliant, and delivering proven ROI in under 30 days."
                 )}
               </p>
@@ -917,9 +917,9 @@ export default function AIAutomationPage() {
                 <div className="w-10 h-10 rounded-[5px] bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
-                <h4 className="text-[17px] sm:text-[19px] font-bold text-slate-900 mb-2">
+                <h3 className="text-[17px] sm:text-[19px] font-bold text-slate-900 mb-2">
                   {t(item.titleDe, item.titleEn)}
-                </h4>
+                </h3>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                   {t(item.descDe, item.descEn)}
                 </p>
@@ -1195,6 +1195,7 @@ export default function AIAutomationPage() {
               href="https://wa.me/918077313241"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="WhatsApp Chat mit Nexa Solutions"
               className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-sm sm:text-base font-bold transition-all duration-200 border border-white/20"
             >
               <PhoneCall className="w-4 h-4 text-emerald-400" />

@@ -6,7 +6,7 @@ import JsonLd from "@/components/JsonLd";
 export const metadata: Metadata = {
   title: "Terms of Service | Nexa Solutions",
   description:
-    "Read the Nexa Solutions Terms of Service. Understand terms governing website development, software services, PhonePe payments, deliverables, intellectual property, and governing law.",
+    "Read the Nexa Solutions Terms of Service. Learn our terms governing web development, software services, deliverables, and secure payment processing.",
   alternates: {
     canonical: `${SITE_URL}/terms-of-service`,
   },

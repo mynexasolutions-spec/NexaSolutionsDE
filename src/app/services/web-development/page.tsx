@@ -630,18 +630,18 @@ export default function WebDevelopmentPage() {
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
-                {t("Website erstellen lassen: ", "High-Performance Websites & ")}
+              <h1 className="text-[35px] sm:text-[52px] lg:text-[58px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
+                {t("Business Website erstellen lassen: ", "High-Performance Websites & ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">
-                  {t("Next.js zum Festpreis", "Apps That Convert")}
+                  {t("Next.js Agentur zum Festpreis", "Apps That Convert")}
                 </span>
               </h1>
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {t(
-                  "Wir entwickeln maßgeschneiderte, ultra-schnelle Web-Plattformen mit Next.js 15, React und TypeScript. Perfekte Core Web Vitals, überragende SEO-Sichtbarkeit und modernste UX für maximales Unternehmenswachstum.",
-                  "We engineer custom, ultra-fast web platforms with Next.js 15, React, and TypeScript. Flawless Core Web Vitals, unmatched Google rankings, and intuitive UX built for measurable business growth.",
+                  "Möchten Sie eine professionelle Business Website erstellen lassen? Als spezialisierte Next.js Agentur entwickeln wir zukunftssichere, hochperformante Webanwendungen und Corporate Websites. Bei uns können Sie Ihre moderne Website erstellen lassen oder eine skalierbare E-Commerce Website entwickeln lassen – transparent mit garantierter Webentwicklung zum Festpreis und zu 100% DSGVO-konform.",
+                  "We engineer custom, ultra-fast web platforms with Next.js 15, React, and TypeScript. Flawless Core Web Vitals, unmatched Google rankings, and intuitive UX built for measurable business growth."
                 )}
               </p>
 
@@ -785,12 +785,12 @@ export default function WebDevelopmentPage() {
                           Validated
                         </span>
                       </div>
-                      <h4 className="text-lg font-bold leading-snug">
+                      <p className="text-lg font-bold leading-snug">
                         {t(
                           "Enterprise B2B Web-Portal mit Echtzeit-Dashboard",
                           "Enterprise B2B Web Portal with Real-Time Dashboard",
                         )}
-                      </h4>
+                      </p>
                       <p className="text-xs text-slate-400 leading-relaxed">
                         {t(
                           "Auslieferung über globale Edge-Server in unter 0.4s mit automatischem SEO Structured Data.",
@@ -836,12 +836,12 @@ export default function WebDevelopmentPage() {
                       <span className="text-[11px] sm:text-xs font-semibold text-emerald-400 uppercase tracking-widest block">
                         Google Lighthouse 10.0 Verification
                       </span>
-                      <h4 className="text-sm sm:text-base font-bold text-white mt-1">
+                      <p className="text-sm sm:text-base font-bold text-white mt-1">
                         {t(
                           "Offizielle Performance-Bewertung",
                           "Official Performance Benchmark",
                         )}
-                      </h4>
+                      </p>
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center">
@@ -1406,6 +1406,79 @@ export default function WebDevelopmentPage() {
         </div>
       </section>
 
+      {/* Sections: Webentwicklung zum Festpreis & DSGVO-konforme Websites */}
+      <section className="py-10 sm:py-12 lg:py-16 bg-slate-50/50 border-b border-slate-100">
+        <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+            {/* 1. Webentwicklung zum Festpreis */}
+            <div className="rounded-3xl border border-slate-200/90 bg-white p-8 sm:p-10 flex flex-col justify-between shadow-xs">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-200 bg-orange-50 text-orange-700 text-xs font-bold tracking-wider uppercase mb-4">
+                  <ShieldCheck className="w-3.5 h-3.5 text-orange-500" />
+                  <span>{t("100% BUDGETSICHERHEIT", "100% BUDGET PREDICTABILITY")}</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-[900] text-[#0F172A] tracking-tight mb-4">
+                  {t("Webentwicklung zum Festpreis", "Fixed-Price Web Development")}
+                </h3>
+                <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
+                  {t(
+                    "Volle Kostenkontrolle von Beginn an: Bei Nexa Solutions erhalten Sie professionelle Webentwicklung zum Festpreis ohne versteckte Mehrkosten. Wir definieren den Leistungsumfang vor dem Kickoff und garantieren transparente Meilensteine bis zum Go-Live.",
+                    "Full cost transparency from day one: At Nexa Solutions, we deliver fixed-price web engineering with zero unexpected surcharges. Project scopes are locked in prior to kickoff with guaranteed deliverables."
+                  )}
+                </p>
+                <div className="space-y-3 pt-5 border-t border-slate-100">
+                  <div className="flex items-center gap-2.5 text-sm sm:text-base font-medium text-slate-700">
+                    <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{t("Verbindlicher Festpreis vor Projektstart", "Binding fixed-price quote prior to start")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-sm sm:text-base font-medium text-slate-700">
+                    <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{t("Keine versteckten Stundensätze oder Nachforderungen", "Zero surprise hourly billings or hidden fees")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-sm sm:text-base font-medium text-slate-700">
+                    <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{t("Wöchentliche Sprint-Reviews & Staging-Demos", "Weekly milestone sprints with staging previews")}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. DSGVO-konforme Websites */}
+            <div className="rounded-3xl border border-slate-200/90 bg-white p-8 sm:p-10 flex flex-col justify-between shadow-xs">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-200 bg-blue-50 text-blue-700 text-xs font-bold tracking-wider uppercase mb-4">
+                  <Lock className="w-3.5 h-3.5 text-blue-500" />
+                  <span>{t("RECHTSSICHERHEIT", "EU DATA PRIVACY")}</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-[900] text-[#0F172A] tracking-tight mb-4">
+                  {t("DSGVO-konforme Websites", "GDPR-Compliant Websites")}
+                </h3>
+                <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
+                  {t(
+                    "Rechtssicherheit für den deutschen und europäischen Markt: Sie können bei uns eine rundum DSGVO konforme Website erstellen lassen. Wir implementieren lokales Font-Hosting, Cookie-freie Analytics und ISO-27001-zertifiziertes Hosting in Frankfurt am Main.",
+                    "Uncompromising privacy for European operations: Every web platform we engineer satisfies strict GDPR standards with self-hosted fonts, cookieless analytics, and German data centers."
+                  )}
+                </p>
+                <div className="space-y-3 pt-5 border-t border-slate-100">
+                  <div className="flex items-center gap-2.5 text-sm sm:text-base font-medium text-slate-700">
+                    <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{t("100% DSGVO-konforme Website erstellen lassen", "100% GDPR-compliant architecture guaranteed")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-sm sm:text-base font-medium text-slate-700">
+                    <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{t("Serverstandort Deutschland (Frankfurt, ISO 27001)", "German server nodes in Frankfurt (ISO 27001)")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-sm sm:text-base font-medium text-slate-700">
+                    <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{t("Lokales Font-Hosting ohne externe US-Verbindungen", "Self-hosted local fonts without external US calls")}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing / Packages Section */}
       <section
         id="pricing"
@@ -1627,6 +1700,7 @@ export default function WebDevelopmentPage() {
               href="https://wa.me/918077313241"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="WhatsApp Chat mit Nexa Solutions"
               className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-sm sm:text-base font-bold transition-all duration-200 border border-white/15 cursor-pointer"
             >
               <PhoneCall className="w-4 h-4 text-emerald-400" />

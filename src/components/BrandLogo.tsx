@@ -18,13 +18,14 @@ export default function BrandLogo({
     <Link
       href={href}
       prefetch={true}
+      aria-label="Nexa Solutions – Webentwicklung & Agentur Startseite"
       className={`inline-flex items-center justify-center gap-2 sm:gap-2.5 md:gap-3 group select-none shrink-0 ${className}`}
     >
       {/* Official Nexa Logo SVG */}
       <div className="relative h-[22px] sm:h-[24px] md:h-[26px] w-auto shrink-0 flex items-center justify-center self-center translate-y-[1.5px] sm:translate-y-[2px]">
         <img
           src="/Nexa_logo.svg"
-          alt="Nexa Solutions Logo"
+          alt="Nexa Solutions – Webentwicklung, Apps & Automatisierung"
           className="h-full w-auto object-contain transform transition-transform duration-300"
         />
       </div>

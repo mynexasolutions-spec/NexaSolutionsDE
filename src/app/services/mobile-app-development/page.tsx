@@ -457,17 +457,17 @@ export default function MobileAppPage() {
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
+              <h1 className="text-[35px] sm:text-[52px] lg:text-[58px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
                 {t("App entwickeln lassen: ", "Mobile Apps Designed to ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-400">
-                  {t("Nativ für iOS & Android", "Captivate Users & Dominate")}
+                  {t("Ihre App Entwicklung Agentur", "Captivate Users & Dominate")}
                 </span>
               </h1>
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {t(
-                  "Von der ersten Figma-Skizze bis zum weltweiten Rollout im Apple App Store & Google Play Store: Wir entwickeln butterweiche, native & cross-platform Apps mit React Native und Flutter – für maximale Reichweite und geringere Entwicklungskosten.",
+                  "Möchten Sie eine maßgeschneiderte App entwickeln lassen? Als führende App Entwicklung Agentur realisieren wir native & cross-platform iOS Android App Entwicklung in Deutschland mit React Native und Flutter. Bei uns können Sie Ihre erfolgreiche App entwickeln lassen – mit transparenter Festpreis-Garantie, nativer 60 FPS Performance und 100% Store-Zulassung.",
                   "From initial Figma wireframes to worldwide Apple App Store & Google Play distribution: We build buttery-smooth, native & cross-platform mobile apps with React Native and Flutter — maximizing reach while slashing engineering costs."
                 )}
               </p>
@@ -582,7 +582,7 @@ export default function MobileAppPage() {
                                 🛍️
                               </div>
                               <div className="flex-1">
-                                <h4 className="text-xs font-bold text-white">Nexa Premium Box</h4>
+                                <p className="text-xs font-bold text-white">Nexa Premium Box</p>
                                 <span className="text-[11px] text-slate-400">1x Express Courier</span>
                               </div>
                               <span className="text-xs font-black text-white">€89.00</span>
@@ -1273,6 +1273,7 @@ export default function MobileAppPage() {
               href="https://wa.me/918077313241"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="WhatsApp Chat mit Nexa Solutions"
               className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-sm sm:text-base font-bold transition-all duration-200 border border-white/15 cursor-pointer"
             >
               <PhoneCall className="w-4 h-4 text-emerald-400" />

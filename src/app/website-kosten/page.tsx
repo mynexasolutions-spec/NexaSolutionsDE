@@ -7,7 +7,7 @@ import WebsiteKostenClient from "./WebsiteKostenClient";
 export const metadata: Metadata = pageMetadata({
   title: "Website Kosten 2026: Leitfaden | Nexa Solutions",
   description:
-    "Was kostet eine moderne Website? Alle Kostenfaktoren, Phasen, Festpreis-Kalkulation und Einsparpotenziale im transparenten Überblick. Jetzt informieren!",
+    "Was kostet eine moderne Website? Alle Kostenfaktoren, Festpreise & Einsparpotenziale im transparenten Überblick für Unternehmen. Jetzt informieren!",
   path: "/website-kosten",
 });
 

@@ -5,10 +5,10 @@ import MvpDevelopmentClient from "./MvpDevelopmentClient";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "MVP Entwicklung Agentur - 4-6 Wochen | Nexa Solutions",
+    absolute: "MVP Entwicklung Agentur | MVP entwickeln lassen",
   },
   description:
-    "Skalierbares MVP entwickeln lassen in 4-6 Wochen: Next.js, React Native & Festpreise für Startups und Unternehmen. Jetzt Erstberatung anfragen!",
+    "MVP Entwicklung Agentur: In 4-6 Wochen Ihr MVP entwickeln lassen. Next.js & React Native Software MVP in Germany zum Festpreis. Jetzt anfragen!",
   alternates: {
     canonical: `${SITE_URL}/services/mvp-development`,
   },
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "MVP Entwicklung Agentur - 4-6 Wochen | Nexa Solutions",
+    title: "MVP Entwicklung Agentur | MVP entwickeln lassen",
     description:
-      "Skalierbares MVP entwickeln lassen in 4-6 Wochen: Next.js, React Native & Festpreise für Startups und Unternehmen. Jetzt Erstberatung anfragen!",
+      "MVP Entwicklung Agentur: In 4-6 Wochen Ihr MVP entwickeln lassen. Next.js & React Native Software MVP in Germany zum Festpreis. Jetzt anfragen!",
     url: `${SITE_URL}/services/mvp-development`,
     siteName: "Nexa Solutions",
     locale: "de_DE",
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MVP Entwicklung Agentur - 4-6 Wochen | Nexa Solutions",
+    title: "MVP Entwicklung Agentur | MVP entwickeln lassen",
     description:
-      "Skalierbares MVP entwickeln lassen in 4-6 Wochen mit Next.js & React Native zum Festpreis.",
+      "MVP Entwicklung Agentur: In 4-6 Wochen Ihr MVP entwickeln lassen. Next.js & React Native Software MVP in Germany zum Festpreis. Jetzt anfragen!",
     images: [DEFAULT_OG_IMAGE],
   },
 };

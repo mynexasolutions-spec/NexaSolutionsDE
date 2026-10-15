@@ -411,7 +411,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
                                 className="text-orange-600 font-bold hover:text-orange-700 inline-flex items-center gap-1 cursor-pointer"
                               >
                                 {t("Kontakt aufnehmen", "Get in touch")}{" "}
-                                &rarr;
+                                <span aria-hidden="true">&rarr;</span>
                               </Link>
                             </div>
                           </motion.div>

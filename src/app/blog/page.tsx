@@ -274,6 +274,7 @@ export default function BlogListingPage() {
                   <div className="lg:col-span-5 relative">
                     <Link
                       href={`/blog/${featuredPost.slug}`}
+                      aria-label={`${t("Artikel öffnen", "Open article")}: ${featuredPost.titleDe}`}
                       className="block relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group/img"
                     >
                       <Image
@@ -303,11 +304,11 @@ export default function BlogListingPage() {
             {/* Section Header */}
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
                   {searchQuery.trim()
                     ? t("Suchergebnisse", "Search Results")
                     : t("Alle Fachartikel", "All Articles")}
-                </h3>
+                </h2>
                 <p className="text-xs sm:text-sm text-slate-500 mt-1">
                   {t(
                     `${filteredPosts.length} Beiträge gefunden`,
@@ -351,6 +352,7 @@ export default function BlogListingPage() {
                       {/* Post Thumbnail Image */}
                       <Link
                         href={`/blog/${post.slug}`}
+                        aria-label={`${t("Artikel öffnen", "Open article")}: ${title}`}
                         className="relative block aspect-[16/10] overflow-hidden bg-slate-100"
                       >
                         <Image
@@ -395,9 +397,9 @@ export default function BlogListingPage() {
 
                           {/* Post Title */}
                           <Link href={`/blog/${post.slug}`}>
-                            <h4 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2 leading-snug mb-2.5">
+                            <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2 leading-snug mb-2.5">
                               {title}
-                            </h4>
+                            </h3>
                           </Link>
 
                           {/* Excerpt */}
@@ -419,6 +421,7 @@ export default function BlogListingPage() {
 
                           <Link
                             href={`/blog/${post.slug}`}
+                            aria-label={`${t("Artikel lesen", "Read article")}: ${title}`}
                             className="inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-orange-600 hover:text-orange-700 group/link"
                           >
                             <span>{t("Mehr lesen", "Read More")}</span>
@@ -436,9 +439,9 @@ export default function BlogListingPage() {
                 <div className="w-14 h-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-7 h-7 stroke-[1.8]" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-900 mb-2">
+                <p className="text-lg font-bold text-slate-900 mb-2">
                   {t("Keine Artikel gefunden", "No articles found")}
-                </h4>
+                </p>
                 <p className="text-xs sm:text-sm text-slate-500 mb-6">
                   {t(
                     "Leider konnten wir für Ihre Suchanfrage keine passenden Artikel finden. Probieren Sie andere Suchbegriffe.",
@@ -472,12 +475,12 @@ export default function BlogListingPage() {
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{t("Unverbindliche Beratung", "Free Strategy Call")}</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">
                   {t(
                     "Möchten Sie Ihr Projekt mit Nexa Solutions umsetzen?",
                     "Ready to modernise your digital products?"
                   )}
-                </h3>
+                </h2>
                 <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
                   {t(
                     "In einem 30-minütigen Gespräch analysieren wir Ihre aktuellen Prozesse und zeigen konkrete Hebel für Websites, Apps und KI-Automatisierung auf.",

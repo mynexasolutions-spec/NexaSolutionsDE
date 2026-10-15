@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SITE_URL } from "@/lib/site";
 
 export { SITE_URL };
-export const DEFAULT_OG_IMAGE = "/opengraph-image";
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/opengraph-image`;
 
 export function pageMetadata({
   title,
@@ -24,6 +24,9 @@ export function pageMetadata({
 
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
   const absoluteUrl = `${SITE_URL}${normalizedPath === "/" ? "" : normalizedPath}`;
+  const absoluteImageUrl = image.startsWith("http")
+    ? image
+    : `${SITE_URL}${image.startsWith("/") ? "" : "/"}${image}`;
 
   return {
     title: metadataTitle,
@@ -50,13 +53,13 @@ export function pageMetadata({
       locale: "de_DE",
       alternateLocale: ["en_US"],
       type: "website",
-      images: [image],
+      images: [absoluteImageUrl],
     },
     twitter: {
       card: "summary_large_image",
       title: plainTitle,
       description,
-      images: [image],
+      images: [absoluteImageUrl],
     },
   };
 }

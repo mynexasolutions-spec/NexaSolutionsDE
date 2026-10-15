@@ -21,17 +21,17 @@ const dmSans = DM_Sans({
 import { SOCIAL_PROFILES_SAMEAS } from "@/lib/config/socials";
 
 export const siteTitleEn =
-  "Web Development, Mobile Apps & AI Automation | Nexa Solutions";
+  "Web Development Agency Germany | Nexa Solutions";
 export const siteDescriptionEn =
-  "Full-service agency in Germany: Next.js websites, iOS & Android apps, and custom n8n AI workflow automation. Request a free consultation!";
+  "Leading web development agency in Germany: Next.js websites, mobile apps & AI workflow automation. Compliant & fixed price. Request a consultation!";
 
 export const siteTitleDe =
-  "Webentwicklung, Apps & n8n Automatisierung | Nexa Solutions";
+  "Webentwicklung Agentur Stuttgart | Apps & n8n | Nexa";
 export const siteDescriptionDe =
-  "Webentwicklung, mobile Apps & n8n KI-Automatisierung zum Festpreis für Unternehmen in Deutschland, Österreich & Schweiz. Jetzt kostenlos beraten lassen!";
+  "Webentwicklung Agentur Stuttgart: Maßgeschneiderte Websites, Apps & n8n Automatisierung zum Festpreis. Jetzt kostenlose Beratung anfragen!";
 
-const siteTitle = siteTitleEn;
-const siteDescription = siteDescriptionEn;
+const siteTitle = siteTitleDe;
+const siteDescription = siteDescriptionDe;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -41,7 +41,14 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   applicationName: "Nexa Solutions",
-  alternates: { canonical: SITE_URL },
+  alternates: {
+    canonical: SITE_URL,
+    languages: {
+      "de-DE": SITE_URL,
+      en: `${SITE_URL}/en`,
+      "x-default": SITE_URL,
+    },
+  },
   icons: { icon: "/favicon_logo.png", apple: "/favicon_logo.png" },
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
   robots: {
@@ -60,16 +67,23 @@ export const metadata: Metadata = {
     description: siteDescription,
     url: SITE_URL,
     siteName: "Nexa Solutions",
-    locale: "en_US",
-    alternateLocale: ["de_DE"],
+    locale: "de_DE",
+    alternateLocale: ["en_US"],
     type: "website",
-    images: [DEFAULT_OG_IMAGE],
+    images: [
+      {
+        url: `${SITE_URL}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Nexa Solutions – Webentwicklung, Apps & n8n Automatisierung Stuttgart",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [DEFAULT_OG_IMAGE],
+    images: [`${SITE_URL}/opengraph-image`],
   },
 };
 
@@ -85,10 +99,10 @@ const organizationJsonLd = {
       publisher: {
         "@id": `${SITE_URL}/#organization`,
       },
-      inLanguage: ["en-US", "de-DE"],
+      inLanguage: ["de-DE", "en-US"],
     },
     {
-      "@type": ["Organization", "ProfessionalService"],
+      "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
       "@id": `${SITE_URL}/#organization`,
       name: "Nexa Solutions",
       url: SITE_URL,
@@ -105,8 +119,9 @@ const organizationJsonLd = {
       ],
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Delhi",
-        addressCountry: "IN",
+        addressLocality: "Stuttgart",
+        addressRegion: "Baden-Württemberg",
+        addressCountry: "DE",
       },
       sameAs: SOCIAL_PROFILES_SAMEAS,
       areaServed: [
@@ -157,6 +172,44 @@ const organizationJsonLd = {
           },
         ],
       },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Wie setzen sich die Kosten und Projektlaufzeiten zusammen?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Wir arbeiten nach transparenten Festpreisen auf Basis eines vorab definierten Anforderungskatalogs – ohne unerwartete Nachforderungen. Kleinere Webauftritte dauern typischerweise 2 bis 4 Wochen, mobile Apps 4 bis 8 Wochen und umfangreiche Unternehmenssysteme 6 bis 10 Wochen.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Sind die entwickelten Websites und Apps barrierefrei nach dem BFSG-Gesetz?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Ja. Ab Juni 2025 gilt in Deutschland und der EU das Barrierefreiheitsstärkungsgesetz (BFSG). Als erfahrene BFSG Website Agentur bauen wir Anwendungen nach den internationalen WCAG 2.1 AA Standards mit semantischer Struktur, Screenreader-Unterstützung und optimalen Kontrasten.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Bietet Ihre Webentwicklung Agentur Stuttgart auch überregionalen Service?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Ja. Als Webentwicklung Agentur Stuttgart und bundesweit tätige Webdesign Agentur Deutschland betreuen wir Kunden in ganz Deutschland, Österreich und der Schweiz sowie international als Web Development Agency Germany.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Wie stellen Sie DSGVO-Konformität und Datensicherheit sicher?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Alle von uns gehosteten Systeme liegen in ISO-27001-zertifizierten Rechenzentren in Deutschland (Frankfurt am Main). Wir implementieren standardmäßig SSL-Verschlüsselung, Auftragsverarbeitungsverträge (AVV), Cookie-freie Analytics und GoBD-konforme Archivierung.",
+          },
+        },
+      ],
     },
   ],
 };

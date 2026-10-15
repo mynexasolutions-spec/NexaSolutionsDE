@@ -233,6 +233,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/services/b2b-kundenportal",
+        destination: "/de/services/b2b-kundenportal",
+        permanent: true,
+      },
+      {
+        source: "/services/b2b-client-portal",
+        destination: "/en/services/b2b-client-portal",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [
           {

@@ -65,12 +65,12 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
     },
     {
       q: t(
-        "Sind die entwickelten Websites und Apps barrierefrei nach dem BFSG-Gesetz?",
-        "Are your websites and apps compliant with the European Accessibility Act (BFSG)?"
+        "Können wir bei Ihnen eine barrierefreie Website erstellen lassen nach dem BFSG?",
+        "Can we have an accessible website developed in compliance with BFSG?"
       ),
       a: t(
-        "Ja. Ab Juni 2025 gilt in Deutschland und der EU das Barrierefreiheitsstärkungsgesetz (BFSG). Wir bauen Anwendungen nach den internationalen WCAG 2.1 AA Standards mit sauberer semantischer Struktur, Screenreader-Unterstützung und optimalen Kontrasten.",
-        "Yes. Starting June 2025, the European Accessibility Act (BFSG in Germany) is legally mandated for consumer and e-commerce services. We build all applications adhering to WCAG 2.1 AA standards with semantic HTML, screen reader support, and compliant contrast ratios."
+        "Ja, absolut. Ab Juni 2025 gilt in Deutschland das Barrierefreiheitsstärkungsgesetz (BFSG). Als erfahrene BFSG Website Agentur stellen wir sicher, dass Sie eine barrierefreie Website erstellen lassen können, die zu 100 % den WCAG 2.1 AA Standards entspricht – inklusive Screenreader-Tauglichkeit, Farbkontrasten und Tastaturbedienung.",
+        "Yes, absolutely. Starting June 2025, the European Accessibility Act (BFSG) is legally binding. As a dedicated accessibility web agency, we ensure your website complies fully with WCAG 2.1 AA standards, including full screen reader support and keyboard navigation."
       ),
     },
   ];
@@ -147,9 +147,9 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
               <MessageSquare className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-[16px] sm:text-[22px] font-bold text-slate-900">
+              <p className="text-[16px] sm:text-[22px] font-bold text-slate-900">
                 {t("Haben Sie eine spezielle technische Frage?", "Have a specific technical question?")}
-              </h4>
+              </p>
               <p className="text-base sm:text-lg text-slate-600">
                 {t(
                   "Sprechen Sie direkt mit einem unserer Tech Leads – unverbindlich und kostenlos.",

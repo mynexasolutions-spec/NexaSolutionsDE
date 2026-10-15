@@ -6,7 +6,7 @@ import JsonLd from "@/components/JsonLd";
 export const metadata: Metadata = {
   title: "Privacy Policy | Nexa Solutions",
   description:
-    "Read the Nexa Solutions Privacy Policy. Understand how we collect, use, disclose, and safeguard your data, including secure payment processing via PhonePe for nexasolutions.de and nexa-solutions.in.",
+    "Read the Nexa Solutions Privacy Policy. Learn how we collect, protect, and process your data and secure payments for nexa-solutions.de.",
   alternates: {
     canonical: `${SITE_URL}/privacy-policy`,
   },

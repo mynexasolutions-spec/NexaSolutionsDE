@@ -2,9 +2,11 @@ import JsonLd from "@/components/JsonLd";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Website erstellen lassen - Festpreis | Nexa Solutions",
+  title: {
+    absolute: "Business Website erstellen lassen | Next.js Agentur",
+  },
   description:
-    "Professionelle Website erstellen lassen zum Festpreis: High-Performance Next.js Webentwicklung, DSGVO-konform & SEO-optimiert. Jetzt anfragen!",
+    "Professionelle Business Website erstellen lassen: Next.js Agentur für Webentwicklung zum Festpreis & DSGVO-konforme Websites. Jetzt anfragen!",
   path: "/services/web-development",
 });
 

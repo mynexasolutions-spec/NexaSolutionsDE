@@ -23,6 +23,8 @@ export default function FeaturedProjects({
       title: "Aura Masale",
       categoryDe: "E-Commerce Website",
       categoryEn: "Ecommerce Website",
+      altDe: "Aura Masale E-Commerce Online Shop Webdesign und Entwicklung Nexa Solutions",
+      altEn: "Aura Masale Ecommerce Online Shop Web Design and Development",
       badgeIcon: ShoppingCart,
       badgeText: t("E-Commerce", "Ecommerce"),
       image: "/images/aura-masale.jpg",
@@ -38,6 +40,8 @@ export default function FeaturedProjects({
       title: "Meagle360 HRMS",
       categoryDe: "SaaS-Plattform",
       categoryEn: "SaaS Platform",
+      altDe: "Meagle360 HRMS SaaS Plattform Dashboard Benutzeroberfläche Nexa Solutions",
+      altEn: "Meagle360 HRMS SaaS Platform Dashboard User Interface",
       badgeIcon: BarChart3,
       badgeText: "SaaS",
       image: "/images/meagle-laptop.jpg",
@@ -53,6 +57,8 @@ export default function FeaturedProjects({
       title: "Taibeena",
       categoryDe: "E-Commerce Website",
       categoryEn: "Ecommerce Website",
+      altDe: "Taibeena E-Commerce Plattform Webdesign und Online Shop Entwicklung",
+      altEn: "Taibeena Ecommerce Platform Web Design and Online Shop Development",
       badgeIcon: ShoppingCart,
       badgeText: t("E-Commerce", "Ecommerce"),
       image: "/images/taibeena.jpg",
@@ -68,6 +74,8 @@ export default function FeaturedProjects({
       title: "EasywayGermany",
       categoryDe: "Bildungsberatung",
       categoryEn: "Education Consultancy",
+      altDe: "EasywayGermany Bildungsberatung Service Portal Webentwicklung Nexa Solutions",
+      altEn: "EasywayGermany Education Consultancy Service Portal Web Development",
       badgeIcon: GraduationCap,
       badgeText: t("Bildung", "Education"),
       image: "/images/easyway-germany.jpg",
@@ -162,10 +170,10 @@ export default function FeaturedProjects({
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={t(project.altDe, project.altEn)}
                     fill
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
 
                   {/* Top-Left Category Badge (Frosted Glass Pill) */}

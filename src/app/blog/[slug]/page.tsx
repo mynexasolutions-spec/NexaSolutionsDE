@@ -600,12 +600,12 @@ export default function SingleBlogPage() {
                   <Sparkles className="w-3 h-3" />
                   <span>{t("NEXA SOLUTIONS BERATUNG", "NEXA CONSULTING")}</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white mb-1.5">
+                <h2 className="text-lg sm:text-xl font-bold tracking-tight text-white mb-1.5">
                   {t(
                     "Möchten Sie diese Lösung in Ihrem Unternehmen nutzen?",
                     "Ready to implement this solution in your company?"
                   )}
-                </h3>
+                </h2>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-md">
                   {t(
                     "Buchen Sie ein kostenloses 20-minütiges Fachgespräch mit unseren Ingenieuren oder nutzen Sie unsere ",
@@ -632,9 +632,9 @@ export default function SingleBlogPage() {
           {relatedPosts.length > 0 && (
             <div className="mt-12 pt-8 border-t border-slate-200/80">
               <div className="flex items-center justify-between mb-5">
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
+                <h2 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
                   {t("Ähnliche Fachartikel", "Related Articles")}
-                </h3>
+                </h2>
                 <Link
                   href="/blog"
                   className="text-xs font-semibold text-orange-600 hover:text-orange-700 inline-flex items-center gap-1"
@@ -679,9 +679,9 @@ export default function SingleBlogPage() {
                             <span>•</span>
                             <span>{relReadTime}</span>
                           </div>
-                          <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2 leading-snug">
+                          <h3 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2 leading-snug">
                             {relTitle}
-                          </h4>
+                          </h3>
                         </div>
                         <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-orange-600 mt-2">
                           <span>{t("Lesen", "Read article")}</span>

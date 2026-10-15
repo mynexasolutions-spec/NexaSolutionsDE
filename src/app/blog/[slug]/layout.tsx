@@ -38,9 +38,9 @@ export async function generateMetadata({
 
   const rawTitle = (post.seoTitleDe || post.titleDe).replace(/\s*\|\s*Nexa Solutions$/i, "").trim();
   const brandSuffix = " | Nexa Solutions";
-  const title = (rawTitle.length + brandSuffix.length <= 60)
+  const title = (rawTitle.length + brandSuffix.length <= 55)
     ? `${rawTitle}${brandSuffix}`
-    : (rawTitle.length <= 60 ? rawTitle : rawTitle.slice(0, 60));
+    : (rawTitle.length <= 55 ? rawTitle : rawTitle.slice(0, 55));
 
   const metadata = pageMetadata({
     title,

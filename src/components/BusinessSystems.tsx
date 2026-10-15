@@ -23,11 +23,18 @@ interface BusinessSystemsProps {
 }
 
 export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [activeTab, setActiveTab] = useState<string>("hrms");
   const [targetTab, setTargetTab] = useState<string>("hrms");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const systemLinkMap: Record<string, { de: string; en: string }> = {
+    hrms: { de: "/de/services/mitarbeiter-zeiterfassung", en: "/en/services/employee-attendance-tracking" },
+    finance: { de: "/de/services/rechnungswesen-buchhaltung-software", en: "/en/services/invoicing-accounting-systems" },
+    portal: { de: "/de/services/b2b-kundenportal", en: "/en/services/b2b-client-portal" },
+    ordering: { de: "/de/services/gastronomie-restaurant-systeme", en: "/en/services/restaurant-management-systems" },
+  };
 
   useEffect(() => {
     return () => {
@@ -370,13 +377,25 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
                     ))}
                   </div>
 
-                  <Link
-                    href="/contact"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer group"
-                  >
-                    <span>{t("Individuelles System anfragen", "Inquire About This System")}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Link
+                      href="/contact"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
+                    >
+                      <span>{t("Individuelles System anfragen", "Inquire About This System")}</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+
+                    {systemLinkMap[currentSystem.id] && (
+                      <Link
+                        href={lang === "de" ? systemLinkMap[currentSystem.id].de : systemLinkMap[currentSystem.id].en}
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white hover:bg-orange-50/50 text-slate-700 hover:text-orange-600 text-sm sm:text-base font-semibold transition-all border border-slate-200/90 hover:border-orange-200 shadow-2xs group"
+                      >
+                        <span>{t("Details & Funktionen", "Details & Features")}</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-orange-500" />
+                      </Link>
+                    )}
+                  </div>
                 </div>
 
                 {/* Right Column: Visual Metrics & Engineering Architecture Box */}

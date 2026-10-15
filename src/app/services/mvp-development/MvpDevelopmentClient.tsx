@@ -219,17 +219,17 @@ export default function MvpDevelopmentClient() {
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
-                {t("MVP Entwicklung: ", "MVP Development: ")}
+              <h1 className="text-[35px] sm:text-[52px] lg:text-[58px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
+                {t("MVP Entwicklung Agentur: ", "MVP Development: ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">
-                  {t("Von der Idee zum Produkt", "From Idea to Market")}
+                  {t("MVP entwickeln lassen", "From Idea to Market")}
                 </span>
               </h1>
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {t(
-                  "Bauen Sie Ihr digitales Produkt ohne monatelange Verzögerungen und ohne Technical Debt. Wir entwickeln skalierbare Web- und Mobile-MVPs mit Next.js 15, Supabase und modernen Bezahl-Gateways zum Festpreis.",
+                  "Als Full-Service MVP Entwicklung Agentur unterstützen wir Startups und Unternehmen dabei, in 4 bis 6 Wochen ein investorenreifes MVP entwickeln lassen zu können. Ob Next.js Web-App oder React Native App: Als Ihr Spezialist für Software MVP in Germany bauen wir skalierbare Produkte ohne Technical Debt. Jetzt Ihr MVP entwickeln lassen zum Festpreis mit unserer erfahrenen MVP Entwicklung Agentur.",
                   "Launch production-grade Minimum Viable Products in weeks, not months. We engineer high-performance web & mobile MVPs with Next.js 15, PostgreSQL, and verified payment gateways with zero tech debt."
                 )}
               </p>
@@ -367,9 +367,9 @@ export default function MvpDevelopmentClient() {
                           Active &amp; Ready
                         </span>
                       </div>
-                      <h3 className="text-lg font-bold text-slate-100 mb-2">
+                      <p className="text-lg font-bold text-slate-100 mb-2">
                         Dashboard &amp; Customer Checkout
-                      </h3>
+                      </p>
                       <p className="text-xs text-slate-300 leading-relaxed mb-4">
                         Integriertes Onboarding, Subscription Billing via PhonePe / Stripe und
                         Echtzeit-Statistiken für sofortigen Product-Market-Fit.
@@ -396,9 +396,9 @@ export default function MvpDevelopmentClient() {
                       <span className="text-[11px] sm:text-xs font-semibold text-emerald-400 uppercase tracking-widest block">
                         Enterprise Quality &amp; Security
                       </span>
-                      <h4 className="text-sm sm:text-base font-bold text-white mt-1">
+                      <p className="text-sm sm:text-base font-bold text-white mt-1">
                         Investor-Ready Benchmarks
-                      </h4>
+                      </p>
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center">

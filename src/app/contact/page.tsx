@@ -560,9 +560,9 @@ export default function ContactPage() {
             <div className="lg:col-span-5 space-y-5">
               {/* Direct Channels Card */}
               <div className="bg-white rounded-[5px] sm:rounded-[10px] border border-slate-200/80 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.06)] hover:shadow-xl hover:border-slate-300 transition-all duration-300 p-6 sm:p-7">
-                <h3 className="text-[19px] sm:text-[22px] font-bold text-slate-900 mb-1 leading-snug">
+                <h2 className="text-[19px] sm:text-[22px] font-bold text-slate-900 mb-1 leading-snug">
                   {t("Direkter Kontakt", "Direct Channels")}
-                </h3>
+                </h2>
                 <p className="text-sm text-slate-500 mb-5 leading-relaxed">
                   {t(
                     "Sie möchten nicht warten? Erreichen Sie uns direkt per E-Mail, Telefon oder WhatsApp.",
@@ -605,6 +605,7 @@ export default function ContactPage() {
                   {/* Phone Box */}
                   <a
                     href="tel:+918077313241"
+                    aria-label="Nexa Solutions telefonisch kontaktieren: +91 8077 313 241"
                     className="flex items-center justify-between p-3.5 rounded-[5px] bg-slate-50 border border-slate-200/80 hover:border-sky-300 hover:bg-sky-50/40 transition-all group"
                   >
                     <div className="flex items-center gap-3 min-w-0">
@@ -628,6 +629,7 @@ export default function ContactPage() {
                     href="https://wa.me/918077313241?text=Hello%20Nexa%20Solutions%2C%20I%20would%20like%20to%20discuss%20a%20project."
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="WhatsApp Chat mit Nexa Solutions"
                     className="flex items-center justify-between p-3.5 rounded-[5px] bg-emerald-50/70 border border-emerald-200/80 hover:border-emerald-300 hover:bg-emerald-50 transition-all group"
                   >
                     <div className="flex items-center gap-3 min-w-0">
@@ -674,12 +676,12 @@ export default function ContactPage() {
                   </span>
                 </div>
 
-                <h4 className="text-[19px] sm:text-[22px] font-bold text-white mb-2 leading-snug">
+                <h3 className="text-[19px] sm:text-[22px] font-bold text-white mb-2 leading-snug">
                   {t(
                     "Sprechen Sie direkt mit Architekten",
                     "Direct Senior Engineering Access",
                   )}
-                </h4>
+                </h3>
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
                   {t(
                     "Bei Nexa Solutions sprechen Sie im Erstgespräch nicht mit reinen Vertrieblern, sondern direkt mit erfahrenen Senior-Entwicklern und Systemarchitekten.",

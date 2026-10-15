@@ -2,9 +2,11 @@ import JsonLd from "@/components/JsonLd";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "n8n Automatisierung & KI-Agenten | Nexa Solutions",
+  title: {
+    absolute: "n8n Automatisierung | n8n Agentur Deutschland",
+  },
   description:
-    "n8n Automatisierung & autonome KI-Agenten für Unternehmen: Bis zu 80% manuelle Routine sparen. 100% DSGVO-konform in Deutschland gehostet. Jetzt anfragen!",
+    "Führende n8n Agentur Deutschland: n8n Automatisierung & KI Automatisierung für Unternehmen. n8n Workflow Automatisierung für KMU. Jetzt anfragen!",
   path: "/services/ai-automation",
 });
 

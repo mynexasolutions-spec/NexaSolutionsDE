@@ -7,7 +7,7 @@ import AppKostenClient from "./AppKostenClient";
 export const metadata: Metadata = pageMetadata({
   title: "App entwickeln lassen Kosten 2026 | Nexa Solutions",
   description:
-    "Was kostet eine mobile App für iOS & Android? Alle Kostenfaktoren, Native vs. Cross-Platform, Phasen und Festpreis-Kalkulation im Überblick. Informieren!",
+    "Was kostet eine App für iOS & Android? Alle Kostenfaktoren, Native vs. Cross-Platform & Festpreise im transparenten Leitfaden. Jetzt informieren!",
   path: "/app-entwickeln-lassen-kosten",
 });
 

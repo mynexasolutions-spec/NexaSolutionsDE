@@ -57,6 +57,7 @@ export default function ServicesSection({
         "Moderne, schnelle und SEO-freundliche Websites, die Ihre Marke stärken und Besucher in Kunden verwandeln.",
         "Modern, fast and SEO-friendly websites that help you grow your brand and convert visitors into customers."
       ),
+      buttonText: t("Details zu Webentwicklung", "Explore Web Development"),
       image: "/images/web-dev.png",
       imageAlt: t(
         "Website Development Services - Business Website erstellen lassen mit Next.js",
@@ -83,6 +84,7 @@ export default function ServicesSection({
         "Skalierbare und benutzerfreundliche mobile Apps für Android und iOS, die Ihre Ideen zum Leben erwecken.",
         "Scalable and user-friendly mobile apps for Android and iOS to bring your ideas to life."
       ),
+      buttonText: t("Details zur App-Entwicklung", "Explore App Development"),
       image: "/images/app-dev.png",
       imageAlt: t(
         "Mobile Application Development - Custom iOS & Android App entwickeln lassen",
@@ -109,6 +111,7 @@ export default function ServicesSection({
         "Automatisieren Sie Ihre Geschäftsprozesse mit KI-Agenten und individuellen Workflows, um Zeit zu sparen und manuelle Arbeit zu reduzieren.",
         "Automate your business processes with AI agents and custom workflows to save time and reduce manual work."
       ),
+      buttonText: t("Details zu KI-Workflows", "Explore AI Workflows"),
       image: "/images/ai-robot.png",
       imageAlt: t(
         "KI Automatisierung & n8n Workflows für Unternehmen - Prozessautomatisierung",
@@ -728,7 +731,7 @@ export default function ServicesSection({
                       href={service.href}
                       className={`w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[5px] bg-gradient-to-r ${service.buttonGradient} text-white text-sm sm:text-[15px] font-bold shadow-md hover:shadow-lg active:scale-[0.99] transition-all duration-300 group/link`}
                     >
-                      <span>{t("Mehr lesen", "Read More")}</span>
+                      <span>{service.buttonText}</span>
                       <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1.5 transition-transform duration-200" />
                     </Link>
                   </div>
@@ -877,9 +880,9 @@ export default function ServicesSection({
 
                   {/* Content Block with Home Page Typography & Font Sizes */}
                   <div className="relative z-10 mt-5 sm:mt-6 flex-1 flex flex-col justify-start">
-                    <h4 className="text-[19px] sm:text-[21px] lg:text-[22px] font-bold text-slate-900 leading-snug group-hover:text-primary transition-colors mb-2 sm:mb-2.5">
+                    <p className="text-[19px] sm:text-[21px] lg:text-[22px] font-bold text-slate-900 leading-snug group-hover:text-primary transition-colors mb-2 sm:mb-2.5">
                       {service.title}
-                    </h4>
+                    </p>
                     <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
                       {service.description}
                     </p>

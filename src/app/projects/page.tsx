@@ -60,7 +60,7 @@ function ProjectCardMedia({
         <div className="relative w-full h-full">
           <Image
             src={project.image}
-            alt={project.alt}
+            alt={project.alt && !project.alt.includes("preview") ? project.alt : `${project.title} – ${project.categoryDe || project.category} Webdesign & Entwicklung Nexa Solutions`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             priority={priority}
@@ -90,9 +90,9 @@ function ProjectCardMedia({
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-orange-500/20 text-orange-400 border border-orange-500/30 mb-2 shadow-inner">
               <Laptop className="w-6 h-6" />
             </div>
-            <h4 className="text-sm font-bold text-white tracking-tight">
+            <p className="text-sm font-bold text-white tracking-tight">
               {project.title}
-            </h4>
+            </p>
             <span className="text-[11px] text-slate-400 mt-0.5 block font-mono">
               https://{displayHost}
             </span>
@@ -491,6 +491,9 @@ export default function ProjectsPage() {
             </div>
 
             {/* 3-Column Responsive Cards Grid - Starts DIRECTLY below filter bar */}
+            <h2 className="sr-only">
+              {t("Alle Referenzprojekte von Nexa Solutions", "All Client Reference Projects by Nexa Solutions")}
+            </h2>
             {currentProjects.length > 0 ? (
               <div
                 className="mt-6 sm:mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 ow-grid"
@@ -590,9 +593,9 @@ export default function ProjectsPage() {
                 <div className="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mx-auto mb-3">
                   <Laptop className="w-6 h-6 stroke-[1.8]" />
                 </div>
-                <h4 className="text-base font-bold text-slate-900 mb-1.5">
+                <p className="text-base font-bold text-slate-900 mb-1.5">
                   {t("Keine Projekte gefunden", "No projects found")}
-                </h4>
+                </p>
                 <p className="text-xs text-slate-500 mb-4">
                   {t(
                     "Für Ihre aktuelle Auswahl konnten keine passenden Projekte gefunden werden. Bitte passen Sie Ihre Filter an.",

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     absolute: "Impressum | Nexa Solutions",
   },
   description:
-    "Impressum und rechtliche Anbieterkennzeichnung der Nexa Solutions gemäß § 5 DDG. Alle Kontaktdaten, Verantwortliche und Unternehmensangaben im Überblick.",
+    "Impressum und rechtliche Anbieterkennzeichnung der Nexa Solutions gemäß § 5 DDG. Kontaktdaten, Verantwortliche & Unternehmensangaben im Überblick.",
   alternates: {
     canonical: `${SITE_URL}/impressum`,
   },

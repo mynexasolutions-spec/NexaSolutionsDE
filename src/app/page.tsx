@@ -14,6 +14,7 @@ import CtaBanner from "@/components/CtaBanner";
 import Footer from "@/components/Footer";
 
 import TrustGuarantees from "@/components/TrustGuarantees";
+import BfsgSection from "@/components/BfsgSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import BusinessSystems from "@/components/BusinessSystems";
 import FaqSection from "@/components/FaqSection";
@@ -97,6 +98,16 @@ export default function Home() {
           variants={sectionVariants}
         >
           <TrustGuarantees />
+        </motion.div>
+
+        {/* 3b. Barrierefreie Websites nach BFSG */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={sectionVariants}
+        >
+          <BfsgSection onOpenContact={() => handleOpenContact()} />
         </motion.div>
 
         {/* 4. Services Section */}

@@ -34,6 +34,7 @@ import {
   Package,
   MessageSquare,
   Rocket,
+  Building2,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -48,7 +49,7 @@ interface ServiceDetailViewProps {
   locale: "de" | "en";
 }
 
-// Icon mapping for services (all 20 services mapped)
+// Icon mapping for services (all services mapped)
 const serviceIconMap: Record<string, React.ElementType> = {
   // First 8 services
   "employee-attendance-tracking": Users,
@@ -72,6 +73,7 @@ const serviceIconMap: Record<string, React.ElementType> = {
   "inventory-warehouse": Package,
   "smart-chatbots": MessageSquare,
   "digital-transformation": Rocket,
+  "b2b-client-portal": Building2,
 };
 
 export default function ServiceDetailView({ service, locale }: ServiceDetailViewProps) {
@@ -222,7 +224,7 @@ export default function ServiceDetailView({ service, locale }: ServiceDetailView
               <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-100">
                 <Image
                   src={service.heroImage}
-                  alt={`${title} - Nexa Solutions`}
+                  alt={`${title} – ${isDe ? "Professionelle Implementierung & Entwicklung Nexa Solutions" : "Custom Engineering & Development Nexa Solutions"}`}
                   fill
                   priority
                   className="object-cover"
@@ -560,7 +562,7 @@ export default function ServiceDetailView({ service, locale }: ServiceDetailView
                   <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
                     <Image
                       src={proj.image}
-                      alt={proj.alt}
+                      alt={proj.alt && !proj.alt.includes("preview") ? proj.alt : `${proj.title} – ${isDe ? proj.categoryDe : proj.categoryEn} Nexa Solutions Referenz`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       sizes="(max-width: 768px) 100vw, 450px"

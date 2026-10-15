@@ -244,9 +244,9 @@ export default function TestimonialsSection() {
                         </div>
                       )}
                       <div>
-                        <h4 className="text-base sm:text-lg font-bold text-[#0B132B] leading-tight">
+                        <p className="text-base sm:text-lg font-bold text-[#0B132B] leading-tight">
                           {item.name}
-                        </h4>
+                        </p>
                         <p className="text-[13px] text-slate-500 mt-0.3 font-normal">{item.role}</p>
                       </div>
                     </div>

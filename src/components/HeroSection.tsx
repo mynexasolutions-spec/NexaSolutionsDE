@@ -31,8 +31,8 @@ const heroSlides = [
     titleEn: "All-in-One Digital Solutions",
     descriptionDe: "Moderne Websites, mobile Apps und smarte KI-Automatisierung.",
     descriptionEn: "Modern websites, mobile apps, and smart AI automation.",
-    altDe: "Nexa Solutions Agentur für Webentwicklung, Apps und n8n Automatisierung",
-    altEn: "Nexa Solutions Agency for Web Development, Mobile Apps and n8n AI Automation",
+    altDe: "Webentwicklung Agentur Stuttgart und Webdesign Agentur Deutschland - Nexa Solutions",
+    altEn: "Web Development Agency Germany - Next.js Websites, Mobile Apps and AI Automation",
     image: "/images/hero-devices.jpg",
     icon: Layers,
   },
@@ -44,8 +44,8 @@ const heroSlides = [
     titleEn: "High-Performance Websites",
     descriptionDe: "SEO-optimiert, ultraschnell und auf Konversion ausgerichtet.",
     descriptionEn: "SEO-friendly, ultra-fast & conversion-focused web apps.",
-    altDe: "Moderne Unternehmens-Website mit Next.js erstellen lassen zum Festpreis",
-    altEn: "Custom High-Performance Next.js Business Website Development Agency",
+    altDe: "Barrierefreie Website erstellen lassen nach BFSG - Webdesign Agentur Deutschland",
+    altEn: "Accessible Website Development Agency Germany - WCAG 2.1 AA Compliant",
     image: "/images/web-dev.png",
     icon: Globe,
   },
@@ -57,8 +57,8 @@ const heroSlides = [
     titleEn: "Custom Mobile Applications",
     descriptionDe: "Nahtlose plattformübergreifende Apps für iOS und Android.",
     descriptionEn: "Seamless cross-platform apps for iOS and Android.",
-    altDe: "Individuelle iOS und Android App entwickeln lassen mit React Native",
-    altEn: "Cross-Platform iOS and Android Mobile App Development with React Native",
+    altDe: "Individuelle iOS und Android App entwickeln lassen - Webentwicklung Agentur Stuttgart",
+    altEn: "Cross-Platform iOS and Android Mobile App Development Germany",
     image: "/images/app-dev.png",
     icon: Smartphone,
   },
@@ -166,20 +166,20 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-[35px] sm:text-[55px] lg:text-[60px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 text-center lg:text-left">
-              {t("Webentwicklung,", "Web Development,")} <br />
-              <span className="font-[900] text-slate-800">{t("Apps &", "Apps &")}</span>{" "}
+            <h1 className="text-[32px] sm:text-[48px] lg:text-[54px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 text-center lg:text-left">
+              {t("Webentwicklung Agentur Stuttgart", "Web Development Agency Germany")} <br />
+              <span className="font-[900] text-slate-800">{t("& ", "& ")}</span>
               <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
-                {t("n8n", "n8n")}
+                {t("Webdesign Agentur", "Digital Solutions")}
               </span> <br />
-              {t("Automatisierung", "Automation")}
+              {t("Deutschland", "for Enterprises")}
             </h1>
 
             {/* Subtext */}
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mb-7 sm:mb-8 font-normal lg:text-left text-center">
               {t(
-                "Wir unterstützen Unternehmen bei modernen Websites, mobilen Apps und intelligenter KI-Automatisierung – für mehr Effizienz, geringere Kosten und schnelles Wachstum.",
-                "We help businesses build modern websites, mobile apps and AI-powered automation to save time, reduce costs and grow faster."
+                "Ihre Webentwicklung Agentur Stuttgart: Nexa realisiert maßgeschneiderte Websites, native Apps & n8n Automatisierung – verlässlich zum Festpreis und 100 % DSGVO-konform.",
+                "Your premier web development agency in Germany: Nexa builds fast Next.js websites, mobile apps, and n8n AI workflow automations with guaranteed fixed pricing."
               )}
             </p>
 
@@ -276,9 +276,9 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
 
                 {/* Bottom Left Slide Title & Caption */}
                 <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-20 pointer-events-none max-w-[70%] sm:max-w-[65%]">
-                  <h3 className="text-white text-base sm:text-xl font-bold drop-shadow-md leading-tight">
+                  <p className="text-white text-base sm:text-xl font-bold drop-shadow-md leading-tight">
                     {t(activeSlide.titleDe, activeSlide.titleEn)}
-                  </h3>
+                  </p>
                   <p className="text-white/80 text-xs sm:text-sm drop-shadow mt-1 line-clamp-1">
                     {t(activeSlide.descriptionDe, activeSlide.descriptionEn)}
                   </p>

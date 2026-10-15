@@ -2,9 +2,11 @@ import JsonLd from "@/components/JsonLd";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "App entwickeln lassen - iOS & Android | Nexa Solutions",
+  title: {
+    absolute: "App entwickeln lassen | App Entwicklung Agentur",
+  },
   description:
-    "Individuelle App entwickeln lassen für iOS & Android mit React Native. Schneller Launch, Store-Garantie & transparente Festpreise. Erstberatung!",
+    "App entwickeln lassen bei Ihrer App Entwicklung Agentur: Native iOS & Android App Entwicklung in Deutschland zum Festpreis. Jetzt anfragen!",
   path: "/services/mobile-app-development",
 });
 

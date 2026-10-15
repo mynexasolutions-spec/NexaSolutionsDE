@@ -45,7 +45,6 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
     languages: {
       "de-DE": SITE_URL,
-      en: `${SITE_URL}/en`,
       "x-default": SITE_URL,
     },
   },
@@ -219,7 +218,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const lang: Language = "en";
+  const lang: Language = "de";
 
   return (
     <html

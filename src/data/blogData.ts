@@ -207,14 +207,14 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "nextjs-vs-wordpress-2026",
     titleDe:
-      "Next.js vs. WordPress 2026: Warum Ladezeiten direkt über Ihren Unternehmensumsatz entscheiden",
-    seoTitleDe: "Next.js vs WordPress Vergleich 2026",
+      "WordPress oder Next.js: Was passt wirklich zu Ihrem Unternehmen? (Vergleich 2026)",
+    seoTitleDe: "WordPress oder Next.js: Vergleich 2026 & Entscheidungshilfe",
     titleEn:
-      "Next.js vs. WordPress in 2026: Why Website Speed Directly Drives Revenue",
+      "WordPress or Next.js in 2026: Which Platform Truly Fits Your Business?",
     excerptDe:
-      "Next.js vs WordPress Vergleich 2026: Warum Ladezeiten über den Umsatz entscheiden. Core Web Vitals, Konversionsraten & Sicherheit im Praxis-Check.",
+      "WordPress oder Next.js im direkten Vergleich 2026: Wann lohnt sich das traditionelle CMS und wann Next.js? Performance, SEO, Sicherheit & Kosten im Praxis-Check.",
     excerptEn:
-      "Why forward-thinking enterprises are replacing legacy CMS solutions: An in-depth benchmark on Core Web Vitals, Google search rankings, zero-vulnerability security, and conversion rate optimization.",
+      "WordPress vs. Next.js in 2026: An in-depth comparison of Core Web Vitals, enterprise security, Total Cost of Ownership, and when to pick which platform.",
     category: "web-development",
     categoryLabelDe: "Webentwicklung",
     categoryLabelEn: "Web Development",
@@ -300,6 +300,28 @@ export const blogPosts: BlogPost[] = [
         paragraphsEn: [
           "A frequent question from non-technical founders and marketing teams is: 'Can we still edit copy, blog posts, and banners without developer assistance?'. The answer is an emphatic yes.",
           "By decoupling the display layer (Next.js) from content management (headless CMS like Sanity), you gain an intuitive, clutter-free editorial workspace. Content creators publish updates in seconds while design systems and performance remain bulletproof.",
+        ],
+      },
+      {
+        headingDe: "4. Entscheidungsmatrix: Wann WordPress und wann Next.js?",
+        headingEn: "4. Decision Matrix: When to Choose WordPress vs. Next.js",
+        paragraphsDe: [
+          "Die Frage 'WordPress oder Next.js?' lässt sich nicht pauschal beantworten, sondern hängt primär von Ihren Wachstumszielen, Sicherheitsanforderungen und dem Grad individueller Funktionalität ab.",
+          "WordPress eignet sich für einfache redaktionelle Websites mit begrenztem Budget, bei denen Standard-Themes und generische Plugins genügen. Sobald Sie jedoch ein skalierbares Kundenportal, interaktive Webanwendungen oder unübertroffene Ladezeiten für Top-Google-Rankings (Core Web Vitals) anstreben, ist Next.js die überlegene Wahl.",
+        ],
+        paragraphsEn: [
+          "The question 'WordPress or Next.js?' depends on your strategic growth roadmap, data security standards, and customization needs.",
+          "WordPress remains suitable for entry-level editorial sites with modest budgets where standard templates suffice. However, if you require a scalable client portal, custom application logic, or blazing-fast sub-second loading for search rankings, Next.js is the clear winner.",
+        ],
+        bulletsDe: [
+          "Wählen Sie WordPress: Kleines Startbudget, Standard-Blog, keine Schnittstellen zu CRM/ERP erforderlich",
+          "Wählen Sie Next.js: Sub-Sekunden-Ladezeiten (< 0.5s), B2B-Kundenportale, moderne Headless-Architektur, Enterprise-Sicherheit ohne PHP-Sicherheitslücken",
+          "Kosten & Wartung: WordPress erfordert wöchentliche Plugin-Wartung; Next.js bietet wartungsarme Stabilität zum Festpreis",
+        ],
+        bulletsEn: [
+          "Choose WordPress: Modest initial budget, standard blog layout, zero API integrations to CRM/ERP",
+          "Choose Next.js: Sub-second load times (< 0.5s), B2B client portals, headless architecture, enterprise security without PHP vulnerabilities",
+          "TCO & Maintenance: WordPress demands ongoing plugin patching; Next.js delivers bulletproof, low-maintenance stability",
         ],
       },
     ],

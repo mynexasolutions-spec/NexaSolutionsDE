@@ -118,6 +118,32 @@ export const solutionsData: SolutionPageData[] = [
         ],
       },
       {
+        h2: "Zeiterfassung für Rechtsanwaltskanzleien: Mandatsbezogen, diskret & RVG-konform",
+        h2En: "Time Tracking for Law Firms: Case-Based, Discreet & Fee-Agreement Ready",
+        body: [
+          "Für Rechtsanwaltskanzleien, Steuerberater und Wirtschaftsprüfer gelten bei der Zeiterfassung besondere berufsrechtliche Maßstäbe: Geleistete Arbeitszeiten müssen minutengenau konkreten Aktenzeichen, Mandanten und Vergütungsvereinbarungen (Stundensätze, Pauschalen oder RVG) zugeordnet werden.",
+          "Gleichzeitig erfordert die anwaltliche Verschwiegenheitspflicht (§ 203 StGB) höchste Datensicherheit: Vertrauliche Mandatsdetails dürfen keinesfalls auf ausländischen Servern landen. Unsere kanzleispezifische Zeiterfassungssoftware garantiert durch strikte Rollentrennung, dass nur autorisierte Sachbearbeiter und Partner Einblick in sensible Akten erhalten.",
+          "Anwälte und juristische Mitarbeiter erfassen Telefonate, Schriftsatzerstellungen und Gerichtstermine mit einem Klick per Stoppuhr oder Schnellerfassung. Am Monatsende werden Abrechnungen und Leistungsnachweise automatisch als PDF generiert oder an Kanzleisysteme wie RA-MICRO oder DATEV übergeben.",
+        ],
+        bodyEn: [
+          "Law firms, tax consultancies, and auditors require specialized standards for tracking billable hours: Work must be linked down to the minute against specific case files, matters, and fee agreements (hourly rates, fixed retainer, or statutory fee schedules).",
+          "At the same time, professional confidentiality regulations demand ironclad data security: Privileged case records must never be hosted on insecure foreign clouds. Our law firm time-tracking software enforces strict role-based access ensuring only designated attorneys and partners access sensitive matters.",
+          "Attorneys and legal staff log client calls, brief drafting, and court hearings with a single-click timer or fast entry modal. At month-end, itemized fee statements and invoices generate automatically as PDFs or sync directly to legal practice systems.",
+        ],
+        bullets: [
+          "Mandats- und Aktenzeichen-Zuordnung mit individuellen Stundensätzen pro Partner / Associate",
+          "Konform mit anwaltlicher Verschwiegenheit (§ 203 StGB) und ISO-27001-Servern in Frankfurt",
+          "Automatisierte Erstellung detaillierter Tätigkeitsnachweise für Mandantenrechnungen",
+          "Schnittstellen zu Kanzleimanagement- und Buchhaltungssystemen (DATEV, RA-MICRO)",
+        ],
+        bulletsEn: [
+          "Matter and file-number allocation with tiered hourly rates per partner and associate",
+          "Compliant with legal confidentiality standards and ISO 27001 German server hosting",
+          "Automated generation of itemized timesheet reports for client billing",
+          "Integrations with legal practice management and accounting software",
+        ],
+      },
+      {
         h2: "Projektphasen: Von der Anforderungsanalyse zum Rollout",
         h2En: "Project Milestones: From Requirements to Rollout",
         body: [
@@ -138,6 +164,12 @@ export const solutionsData: SolutionPageData[] = [
         qEn: "What legal requirements must workforce tracking tools satisfy?",
         a: "Nach dem BAG-Beschluss vom September 2022 müssen Arbeitgeber Beginn, Ende und Dauer der täglichen Arbeitszeit inklusive Pausen objektiv, verlässlich und zugänglich aufzeichnen. Eine reine Vertrauensarbeitszeit ohne Dokumentationsmöglichkeit genügt nicht mehr. Unsere Lösungen erfüllen diese Vorgaben vollständig und revisionssicher.",
         aEn: "Under EU and German labor rulings, employers must record the start, finish, and total duration of daily work hours including pauses in an objective, accessible, and tamper-proof format. Trust-based working hours without a tracking mechanism no longer meet legal requirements. Our software ensures full, audit-proof compliance.",
+      },
+      {
+        q: "Erfüllt die Zeiterfassung die strengen Anforderungen für Rechtsanwaltskanzleien und Steuerberater?",
+        qEn: "Does the time tracking system satisfy compliance rules for law and accounting firms?",
+        a: "Ja. Das System ist speziell auf das anwaltliche Berufsgeheimnis (§ 203 StGB) und die DSGVO ausgelegt: Deutsche Serverstandorte (Frankfurt am Main), Ende-zu-Ende-Verschlüsselung, granulare Akteneinsichtsrechte und minutengenaue Leistungsnachweise für Stundensatzabrechnungen.",
+        aEn: "Yes. The platform is engineered specifically for legal confidentiality standards and GDPR requirements: German hosting (Frankfurt am Main), end-to-end encryption, granular case permissions, and minute-precision activity logs for billable hour client invoicing.",
       },
       {
         q: "Können bestehende Systeme wie DATEV oder ERP angebunden werden?",
@@ -166,9 +198,9 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "crm-system-entwickeln-lassen",
-    title: "CRM System entwickeln lassen | Nexa Solutions",
+    title: "Individuelles CRM System entwickeln lassen | Nexa Solutions",
     titleEn: "Custom CRM System Development | Nexa Solutions",
-    h1: "Maßgeschneidertes CRM-System für Ihr Unternehmen entwickeln lassen",
+    h1: "Individuelles CRM-System für Ihr Unternehmen entwickeln lassen",
     h1En: "Develop a Custom CRM System Tailored to Your Business",
     description:
       "Individuelles CRM statt überteuerter Standard-SaaS: Exakt auf Ihre Vertriebs- & Kundenprozesse zugeschnitten. DSGVO-konform und nahtlos integriert.",
@@ -235,6 +267,32 @@ export const solutionsData: SolutionPageData[] = [
         ],
       },
       {
+        h2: "Integriertes Terminbuchungssystem & Kalendersynchronisation",
+        h2En: "Integrated Appointment Booking & Calendar Synchronization",
+        body: [
+          "Ein wesentlicher Vorteil eines individuellen CRM-Systems ist die native Verzahnung mit Ihrer Terminvergabe: Statt isolierte Buchungstools wie Calendly zu abonnieren und Termindaten mühsam per Hand ins CRM zu übertragen, integrieren wir ein passgenaues [Terminbuchungssystem](/loesungen/terminbuchungssystem-entwickeln-lassen) direkt in Ihre Kundenverwaltung.",
+          "Interessenten wählen auf Ihrer Website freie Terminslots für Erstgespräche oder Produkt-Demos aus. Die Buchung synchronisiert sich in Echtzeit mit den Outlook-, Google- oder Apple-Kalendern Ihrer Vertriebsmitarbeiter, legt automatisch einen neuen Lead-Datensatz im CRM an und generiert sichere Videokonferenz-Links.",
+          "Vorqualifizierende Fragen im Buchungsformular (z. B. Budget, Unternehmensgröße, Anliegen) werden direkt in das Lead-Profil übernommen, sodass Ihr Vertriebsteam optimal vorbereitet in jedes Gespräch geht.",
+        ],
+        bodyEn: [
+          "A decisive advantage of a custom CRM is native alignment with appointment scheduling: Instead of paying for disconnected third-party tools like Calendly and manually copy-pasting records, we engineer a tailored [Booking System](/loesungen/terminbuchungssystem-entwickeln-lassen) right inside your customer relationship hub.",
+          "Prospects select open consultation slots directly on your website. Bookings sync in real time with Outlook, Google, or Apple calendars, automatically instantiate lead records in your CRM, and generate video conference links.",
+          "Pre-qualification fields submitted during booking (e.g. project budget, timeline, team size) enrich the client profile instantly, preparing account reps thoroughly for discovery calls.",
+        ],
+        bullets: [
+          "Nahtlose Echtzeit-Zwei-Wege-Synchronisation mit Microsoft 365, Google Calendar & iCloud",
+          "Automatisierte Lead-Erstellung im CRM bei jeder neuen Terminbuchung",
+          "Intelligente Round-Robin-Verteilung auf verfügbare Vertriebsmitarbeiter",
+          "Automatisierte Erinnerungs-Workflows zur drastischen Senkung von No-Shows",
+        ],
+        bulletsEn: [
+          "Real-time bi-directional synchronization with Microsoft 365, Google Calendar & iCloud",
+          "Automated lead creation inside the CRM upon every confirmed booking",
+          "Intelligent round-robin routing among available account executives",
+          "Automated reminder sequences dramatically slashing missed meetings (no-shows)",
+        ],
+      },
+      {
         h2: "Schnittstellen & KI-gestützte Datenanreicherung",
         h2En: "API Integrations & AI-Powered Data Enrichment",
         body: [
@@ -265,6 +323,12 @@ export const solutionsData: SolutionPageData[] = [
         qEn: "When is a custom CRM commercially viable?",
         a: "Ein Individual-CRM lohnt sich typischerweise ab etwa 10 bis 15 CRM-Nutzern oder wenn Ihre Vertriebsprozesse so individuell sind, dass Standardsoftware aufwendig verbogen werden müsste. Auch Unternehmen, die strenge DSGVO-Vorgaben erfüllen müssen oder hohe SaaS-Lizenzkosten abbauen wollen, profitieren ab Tag eins.",
         aEn: "A custom CRM is typically cost-effective starting at 10 to 15 CRM users, or whenever your sales workflows are too unique to fit into standard software without clunky workarounds. Companies seeking to escape escalating SaaS seat fees or meet strict EU data privacy rules also profit immediately.",
+      },
+      {
+        q: "Kann ein individuelles CRM auch ein Terminbuchungssystem für Kunden ersetzen?",
+        qEn: "Can a custom CRM replace third-party scheduling software like Calendly?",
+        a: "Ja, vollkommen. Wir integrieren Terminbuchungs-Widgets direkt in Ihre Website und verbinden sie mit den Kalendern Ihres Vertriebsteams. Jeder gebuchte Termin wird sofort als qualifizierter Lead im CRM erfasst – ohne monatliche Zusatzabos für Calendly oder Doodle.",
+        aEn: "Yes, completely. We embed custom booking interfaces directly on your site and sync them with your team's calendars. Every booked meeting automatically populates as a qualified lead record inside your CRM—eliminating recurring seat fees for tools like Calendly.",
       },
       {
         q: "Wie lange dauert die Entwicklung eines maßgeschneiderten CRMs?",
@@ -489,17 +553,29 @@ export const solutionsData: SolutionPageData[] = [
         ],
       },
       {
-        h2: "Datenschutz & DSGVO: Enterprise-Sicherheit für deutsche Betriebe",
-        h2En: "Data Privacy & GDPR: Enterprise Security for European Businesses",
+        h2: "DSGVO-konforme KI-Infrastruktur: On-Premise, Private EU-Cloud & Zero Data Retention",
+        h2En: "GDPR-Compliant AI Infrastructure: On-Premise, Private EU-Cloud & Zero Data Retention",
         body: [
-          "Viele Unternehmen zögern beim Einsatz generativer KI aus Angst vor Datenschutzverstößen. Wenn Mitarbeiter oder Kunden sensible Daten eingeben, darf dieses Wissen keinesfalls für das allgemeine Training öffentlicher KI-Modelle genutzt werden.",
-          "Wir setzen auf strikte Zero-Data-Retention-Agreements mit europäischen LLM-Endpunkten oder deployen quelloffene Modelle (wie Mistral, Llama 3) auf Ihrer eigenen dedicated Infrastruktur in Frankfurt am Main. Personenbezogene Daten können vor der Modellverarbeitung lokal pseudonymisiert werden.",
-          "Lesen Sie auch unseren Fachartikel zu [DSGVO-konformer KI-Infrastruktur](/blog/dsgvo-konforme-ki-infrastruktur) für tiefergehende Sicherheitsdetails.",
+          "Für mittelständische Unternehmen, Anwaltskanzleien, Finanzdienstleister und Industrieunternehmen in Deutschland ist Datenschutz bei KI-Projekten nicht verhandelbar. Werden Kundenanfragen oder vertrauliche interne Unterlagen über öffentliche US-Schnittstellen verarbeitet, drohen Bußgelder nach DSGVO und der Verlust von Betriebsgeheimnissen.",
+          "Nexa Solutions baut für Ihr Unternehmen eine vollständig DSGVO-konforme KI-Infrastruktur auf: Wir implementieren strikte Zero-Data-Retention-Agreements (ZDR) mit zertifizierten europäischen Rechenzentren (Frankfurt am Main) oder deployen performante Open-Source-Modelle (wie Llama 3, Mistral Large) direkt auf Ihrer eigenen On-Premise-Hardware oder in einer isolierten Virtual Private Cloud (VPC).",
+          "Personenbezogene Daten (PII) werden auf Wunsch bereits vor der Weiterleitung an das Sprachmodell durch clientseitige Anonymisierungs-Pipelines maskiert. Ergänzt wird die Architektur durch rechtssichere Auftragsverarbeitungsverträge (AVV) nach Art. 28 DSGVO und revisionssichere Protokollierung.",
         ],
         bodyEn: [
-          "Many enterprises hesitate to deploy generative AI due to privacy concerns. When staff or customers input sensitive details, that data must never be used to train public foundation models.",
-          "We enforce zero-data-retention (ZDR) agreements with enterprise model endpoints or deploy open-source models (such as Mistral or Llama 3) onto dedicated servers in Frankfurt. PII is scrubbed or pseudonymized prior to inference.",
-          "Read our technical breakdown of [GDPR-Compliant AI Infrastructure](/blog/dsgvo-konforme-ki-infrastruktur) for deeper architectural insights.",
+          "For mid-sized enterprises, law firms, healthcare providers, and industrial corporations across Europe, AI compliance is non-negotiable. Exposing customer data or confidential corporate files to public US cloud APIs risks GDPR sanctions and intellectual property leaks.",
+          "Nexa Solutions builds sovereign, 100% GDPR-compliant AI infrastructure for your organization: We configure contractual Zero-Data-Retention (ZDR) agreements with EU data center clusters (Frankfurt am Main) or deploy leading open-source models (such as Llama 3, Mistral Large) straight onto your own on-premise servers or isolated Virtual Private Clouds (VPC).",
+          "Personally identifiable information (PII) is automatically scrubbed or pseudonymized locally before tokenization. The setup is fortified by standard Art. 28 GDPR data processing agreements (DPA) and tamper-proof audit trails.",
+        ],
+        bullets: [
+          "100% DSGVO-konform: Hosting in ISO-27001-zertifizierten deutschen Rechenzentren",
+          "Kein Modell-Training mit Ihren Firmendaten (Garantierte Zero Data Retention)",
+          "On-Premise- und Private-VPC-Optionen für maximale Datensouveränität",
+          "Lokale PII-Filterung & Anonymisierung sensibler Nutzerangaben vor Modellanfragen",
+        ],
+        bulletsEn: [
+          "100% GDPR compliant: Hosted in ISO 27001-certified German data centers",
+          "Zero public training on your business files (contractual Zero Data Retention)",
+          "On-premise and isolated private VPC options for total data sovereignty",
+          "Local PII scrubbing and anonymization of sensitive inputs prior to inference",
         ],
       },
       {
@@ -527,6 +603,12 @@ export const solutionsData: SolutionPageData[] = [
         qEn: "Are company records used to train public AI models?",
         a: "Nein, niemals. Wir nutzen Enterprise-APIs mit vertraglich garantierter Zero-Data-Retention (ZDR) oder hosten Open-Source-Modelle direkt auf Ihren eigenen europäischen Servern. Ihre Daten bleiben zu 100% in Ihrem Besitz.",
         aEn: "Never. We utilize enterprise API contracts with verified Zero Data Retention (ZDR) or host open-source models on your private European servers. You retain 100% intellectual property ownership.",
+      },
+      {
+        q: "Wie wird eine KI-Infrastruktur für Unternehmen 100% DSGVO-konform aufgebaut?",
+        qEn: "How is an enterprise AI infrastructure engineered to be 100% GDPR compliant?",
+        a: "Eine DSGVO-konforme KI-Infrastruktur basiert auf drei Säulen: 1. Europäisches Cloud-Hosting (z. B. Frankfurt am Main) oder On-Premise-Server, 2. Vertraglich garantierte Zero-Data-Retention (keine Speicherung und kein Nachtraining durch Modellprovider) und 3. Lokale Vorfilterung zur Anonymisierung personenbezogener Daten (PII) vor der KI-Verarbeitung.",
+        aEn: "GDPR-compliant AI infrastructure relies on three pillars: 1. European cloud hosting (e.g. Frankfurt am Main) or private on-premise hardware, 2. Contractually verified Zero Data Retention (preventing model providers from storing or retraining on prompts), and 3. Client-side PII scrubbing to anonymize personal records before AI inference.",
       },
       {
         q: "Wie einfach lässt sich das Wissen des Chatbots aktualisieren?",
@@ -676,14 +758,14 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "restaurant-software-qr-menue",
-    title: "Restaurant Software & QR-Menü | Nexa Solutions",
+    title: "Restaurant Software & QR-Code App Gastronomie | Nexa Solutions",
     titleEn: "Restaurant Software & QR Code Menu Development | Nexa Solutions",
-    h1: "Restaurant Software & digitales QR-Code Menü entwickeln lassen",
+    h1: "Restaurant Software & QR-Code App für die moderne Gastronomie",
     h1En: "Restaurant Software & Digital QR Code Menu Development",
     description:
-      "Digitale Gastronomie-Lösungen: Interaktives QR-Code Menü, digitale Tischanfragen, Vorbestellung & TSE/KassenSichV-Schnittstellen. Mehr Umsatz!",
+      "Digitale Gastronomie-Lösungen: Interaktives QR-Code Menü, Software für Restaurant & Catering, Angebotskalkulation & TSE/KassenSichV-Schnittstellen.",
     descriptionEn:
-      "Digital hospitality solutions: Interactive QR code menus, table ordering, pre-orders, and POS integrations. Boost revenue and relieve staff.",
+      "Digital hospitality solutions: Interactive QR code menus, table ordering, catering quotation software, and POS integrations. Boost revenue and relieve staff.",
     intro:
       "Die Gastronomiebranche steht vor massiven Herausforderungen: Akuter Fachkräftemangel im Service, hohe Provisionsabgaben an Lieferplattformen (bis zu 30%) und steigende Betriebskosten. Ein maßgeschneidertes digitales QR-Code-Menü und eine moderne Restaurant-Software revolutionieren den Gastronomiebetrieb: Gäste scannen am Tisch einfach einen QR-Code, sehen eine appetitanregende, mehrsprachige Speisekarte mit tagesaktuellen Empfehlungen und können direkt digital bestellen und bezahlen. Nexa Solutions entwickelt individuelle Gastro-Systeme, die Servicekräfte spürbar entlasten und den Tischumsatz nachweislich steigern.",
     introEn:
@@ -745,6 +827,32 @@ export const solutionsData: SolutionPageData[] = [
         ],
       },
       {
+        h2: "Angebotssoftware Gastronomie: Digitale Bankett-, Catering- und Eventkalkulation",
+        h2En: "Hospitality Quoting Software: Banquet, Catering & Event Estimations",
+        body: [
+          "Für Gastronomiebetriebe mit Event-, Tagungs- oder Catering-Geschäft ist die manuelle Angebotserstellung ein enormer Zeitfresser: Menüvorschläge zusammenstellen, Raummieten, Servicepauschalen und Getränkepauschalen fehleranfällig in Excel berechnen und als statisches PDF versenden.",
+          "Unsere modulare Gastronomie-Software umfasst ein integriertes Angebotsmodul speziell für Restaurants, Hotels und Caterer: Erstellen Sie professionelle, interaktive Angebote in wenigen Minuten. Gäste können Menüfolgen, Getränkewünsche und Zusatzleistungen direkt online anpassen, das Angebot digital mit rechtssicherer Signatur annehmen und eine Anzahlung leisten.",
+          "Verbinden Sie die Eventkalkulation mit Ihrem Warenwirtschafts- und Küchensystem, um Wareneinsätze und Personalbedarf für Großveranstaltungen automatisch zu prognostizieren und teure Überhänge zu vermeiden.",
+        ],
+        bodyEn: [
+          "For hospitality businesses offering event, conference, or catering services, preparing quotes manually is time-intensive: compiling menu proposals, calculating room rentals, staffing fees, and beverage flat-rates in spreadsheets.",
+          "Our modular restaurant management software includes a dedicated quotation engine engineered for restaurants, caterers, and venues: generate polished, interactive proposals in minutes. Clients configure menu courses and beverage packages online, approve quotes via legally compliant digital signatures, and submit deposits instantly.",
+          "Link your banquet estimations with backend inventory and kitchen prep systems to forecast ingredient usage and staffing requirements for large events automatically.",
+        ],
+        bullets: [
+          "Automatisierte Menü- & Buffet-Kalkulation nach Personenanzahl und Staffelpreisen",
+          "Interaktive Online-Angebote mit digitaler Unterschrift und Anzahlungsabwicklung",
+          "Nahtlose Übergabe in die Küchenplanung, Personaleinsatz und Rechnungsstellung",
+          "Export-Schnittstellen für DATEV und GoBD-konforme Buchhaltung",
+        ],
+        bulletsEn: [
+          "Automated menu and buffet cost modeling scaled to guest headcount and tiered pricing",
+          "Interactive digital proposals with online signature acceptance and deposit processing",
+          "Seamless handoff to kitchen prep, staff scheduling, and final invoice generation",
+          "Export integrations for DATEV and compliant accounting pipelines",
+        ],
+      },
+      {
         h2: "Schnelle Einführung & individuelles Branding",
         h2En: "Fast Implementation & Custom Brand Experience",
         body: [
@@ -763,6 +871,12 @@ export const solutionsData: SolutionPageData[] = [
         qEn: "Do guests have to download an app from the App Store?",
         a: "Nein. Gäste scannen den QR-Code einfach mit der normalen Smartphone-Kamera. Die Speisekarte öffnet sich sofort im Browser als blitzschnelle Progressive Web App (PWA). Keine Installation, keine Hürden.",
         aEn: "No. Guests simply scan the table QR code with their native smartphone camera. The menu opens immediately in their web browser as an ultra-fast Progressive Web App (PWA) with zero installation required.",
+      },
+      {
+        q: "Bietet die Gastronomie-Software auch Funktionen zur Angebotserstellung für Events und Catering?",
+        qEn: "Does the restaurant software include quotation tools for events and catering?",
+        a: "Ja. Das optionale Angebotsmodul ermöglicht die schnelle, fehlerfreie Kalkulation von Banketten, Hochzeiten, Firmen-Events und Catering-Aufträgen inklusive digitaler Signatur, Anzahlungsabwicklung und automatischer Bedarfsermittlung für Küche und Service.",
+        aEn: "Yes. The modular quotation engine enables fast, error-free cost calculation for banquets, weddings, corporate events, and catering orders—complete with e-signatures, deposit processing, and automated kitchen prep forecasting.",
       },
       {
         q: "Können ausverkaufte Gerichte oder Tagespreise schnell geändert werden?",

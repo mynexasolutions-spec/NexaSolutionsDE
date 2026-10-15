@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Smartphone } from "lucide-react";
+import { ArrowRight, ChevronRight, Smartphone, HelpCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/context/LanguageContext";
@@ -44,15 +44,15 @@ export default function AppKostenClient() {
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-[900] text-[#0F172A] tracking-tight leading-[1.12] mb-6">
               {t(
-                "Was kostet es, eine App entwickeln zu lassen?",
-                "How Much Does Mobile App Development Cost?"
+                "App Entwicklung Kosten: Was kostet es, eine App entwickeln zu lassen?",
+                "App Development Costs: How Much Does It Cost to Build a Mobile App?"
               )}
             </h1>
 
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal mb-8">
               {t(
-                "Von der ersten Idee bis zur weltweiten Veröffentlichung im Apple App Store und Google Play Store: Die Kosten einer App-Entwicklung hängen von Plattformwahl, Funktionsumfang und Backend-Architektur ab. Mit modernen Cross-Platform-Technologien wie React Native sparen Unternehmen heute bis zu 50% der Entwicklungskosten, ohne Abstriche bei nativer Performance oder Benutzererlebnis zu machen.",
-                "From initial concept to publication on the Apple App Store and Google Play Store: Mobile app development costs depend on platform selection, feature complexity, and backend infrastructure. Using cross-platform frameworks like React Native, companies save up to 50% in development costs without sacrificing native performance."
+                "Von der ersten Idee bis zur weltweiten Veröffentlichung im Apple App Store und Google Play Store: Die Kosten einer App-Entwicklung hängen von Plattformwahl, Funktionsumfang und Backend-Architektur ab. Mit modernen Cross-Platform-Technologien wie React Native sparen Unternehmen heute bis zu 50% der Entwicklungskosten, ohne Abstriche bei nativer Performance oder Benutzererlebnis zu machen. In diesem Leitfaden erfahren Sie alles über Richtwerte, Kostentreiber, Zeitpläne und laufende Betriebskosten.",
+                "From initial concept to publication on the Apple App Store and Google Play Store: Mobile app development costs depend on platform selection, feature complexity, and backend infrastructure. Using cross-platform frameworks like React Native, companies save up to 50% in development costs without sacrificing native performance. In this guide, explore budgeting tiers, cost drivers, timelines, and ongoing operating fees."
               )}
             </p>
 
@@ -160,7 +160,7 @@ export default function AppKostenClient() {
                       {t("Minimum Viable Product (MVP) / Prototyp", "Minimum Viable Product (MVP) / Prototype")}
                     </h3>
                     <span className="text-sm font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-md border border-orange-200/80">
-                      {t("TODO: Preisspannen vom Inhaber", "TODO: Price ranges by owner")}
+                      {t("[PREIS HIER EINTRAGEN: MVP ab X.XXX €]", "[ENTER PRICE HERE: MVP from $X,XXX]")}
                     </span>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed mb-3">
@@ -182,7 +182,7 @@ export default function AppKostenClient() {
                       {t("Vollwertige B2B- oder B2C-Unternehmens-App", "Full-Featured B2B or B2C Enterprise App")}
                     </h3>
                     <span className="text-sm font-bold text-sky-700 bg-sky-100 px-3 py-1 rounded-md border border-sky-300">
-                      {t("TODO: Preisspannen vom Inhaber", "TODO: Price ranges by owner")}
+                      {t("[PREIS HIER EINTRAGEN: Business-App ab XX.XXX €]", "[ENTER PRICE HERE: Business App from $XX,XXX]")}
                     </span>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed mb-3">
@@ -204,7 +204,7 @@ export default function AppKostenClient() {
                       {t("Komplexe Enterprise- & Plattform-App", "Complex Enterprise & Multi-Tenant App")}
                     </h3>
                     <span className="text-sm font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-md border border-orange-200/80">
-                      {t("TODO: Preisspannen vom Inhaber", "TODO: Price ranges by owner")}
+                      {t("[PREIS HIER EINTRAGEN: Enterprise ab XX.XXX €]", "[ENTER PRICE HERE: Enterprise from $XX,XXX]")}
                     </span>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed mb-3">
@@ -218,6 +218,150 @@ export default function AppKostenClient() {
                     <li>• {t("Dedizierte Sicherheitsaudits & Penetration-Testing", "Dedicated security reviews & penetration tests")}</li>
                     <li>• {t("Service-Level-Agreements (SLA) & 24/7 Monitoring", "Service Level Agreements (SLA) & continuous monitoring")}</li>
                   </ul>
+                </div>
+              </div>
+            </article>
+
+            {/* Kostenübersicht nach App-Typ */}
+            <article className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-xs overflow-hidden">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
+                {t(
+                  "Übersicht: Was kostet eine App-Entwicklung nach Kategorie?",
+                  "Overview: Mobile App Development Costs by Category"
+                )}
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                {t(
+                  "Die folgende Vergleichstabelle gibt Ihnen eine transparente Orientierung über typische Entwicklungszeiten, Zielsysteme und Budgets für die mobile App-Programmierung:",
+                  "The following overview provides structured orientation on typical delivery timelines, target ecosystems, and budget baselines:"
+                )}
+              </p>
+
+              <div className="overflow-x-auto -mx-6 sm:mx-0">
+                <table className="w-full text-left text-sm border-collapse min-w-[620px]">
+                  <thead>
+                    <tr className="border-b border-slate-200 bg-slate-50/70 text-slate-800 text-xs uppercase tracking-wider font-bold">
+                      <th className="py-3.5 px-4">{t("Kategorie", "Category")}</th>
+                      <th className="py-3.5 px-4">{t("Entwicklungszeit", "Timeline")}</th>
+                      <th className="py-3.5 px-4">{t("Technologie", "Tech Stack")}</th>
+                      <th className="py-3.5 px-4">{t("Budgetrahmen (Festpreis)", "Budget (Fixed Price)")}</th>
+                      <th className="py-3.5 px-4">{t("Laufende Wartung", "Monthly Maintenance")}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 text-slate-700">
+                    <tr className="hover:bg-slate-50/50 transition-colors">
+                      <td className="py-4 px-4 font-semibold text-slate-900">
+                        {t("MVP / Prototyp", "MVP / Prototype")}
+                        <span className="block text-xs font-normal text-slate-500">{t("Marktvalidierung, 1 Kernfunktion", "Market validation, 1 core feature")}</span>
+                      </td>
+                      <td className="py-4 px-4">{t("4 – 6 Wochen", "4 – 6 Weeks")}</td>
+                      <td className="py-4 px-4">React Native, Supabase</td>
+                      <td className="py-4 px-4 font-bold text-orange-600">
+                        {t("[PREIS HIER EINTRAGEN: MVP ab X.XXX €]", "[ENTER PRICE HERE: MVP from $X,XXX]")}
+                      </td>
+                      <td className="py-4 px-4 text-xs text-slate-500">
+                        {t("[WARTUNGSKOSTEN HIER EINTRAGEN]", "[ENTER MAINTENANCE HERE]")}
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-slate-50/50 transition-colors bg-sky-50/30">
+                      <td className="py-4 px-4 font-semibold text-slate-900">
+                        {t("Business-App (B2B/B2C)", "Business App (B2B/B2C)")}
+                        <span className="block text-xs font-normal text-slate-500">{t("User-Accounts, Push, Payment, Sync", "User accounts, push, payment, sync")}</span>
+                      </td>
+                      <td className="py-4 px-4">{t("2 – 3 Monate", "2 – 3 Months")}</td>
+                      <td className="py-4 px-4">React Native, PostgreSQL, Node/Next</td>
+                      <td className="py-4 px-4 font-bold text-sky-700">
+                        {t("[PREIS HIER EINTRAGEN: Business-App ab XX.XXX €]", "[ENTER PRICE HERE: Business App from $XX,XXX]")}
+                      </td>
+                      <td className="py-4 px-4 text-xs text-slate-500">
+                        {t("[WARTUNGSKOSTEN HIER EINTRAGEN]", "[ENTER MAINTENANCE HERE]")}
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-slate-50/50 transition-colors">
+                      <td className="py-4 px-4 font-semibold text-slate-900">
+                        {t("Enterprise-Plattform", "Enterprise Platform")}
+                        <span className="block text-xs font-normal text-slate-500">{t("Multi-Tenant, ERP/CRM, Offline-First", "Multi-tenant, ERP/CRM, offline-first")}</span>
+                      </td>
+                      <td className="py-4 px-4">{t("3 – 6 Monate", "3 – 6 Months")}</td>
+                      <td className="py-4 px-4">Custom Stack, ISO-27001 Cloud, SLA</td>
+                      <td className="py-4 px-4 font-bold text-slate-900">
+                        {t("[PREIS HIER EINTRAGEN: Enterprise ab XX.XXX €]", "[ENTER PRICE HERE: Enterprise from $XX,XXX]")}
+                      </td>
+                      <td className="py-4 px-4 text-xs text-slate-500">
+                        {t("[WARTUNGSKOSTEN HIER EINTRAGEN]", "[ENTER MAINTENANCE HERE]")}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            {/* Laufende Kosten */}
+            <article className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-xs">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
+                {t(
+                  "Laufende Kosten einer App: Store-Gebühren, Hosting & Updates",
+                  "Ongoing App Operating Costs: Store Fees, Hosting & Updates"
+                )}
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                {t(
+                  "Neben den einmaligen Entwicklungskosten fallen im laufenden Betrieb wiederkehrende Gebühren an, die in jeder professionellen Budgetplanung berücksichtigt werden sollten:",
+                  "Beyond initial engineering spend, mobile applications require recurring operational fees that must be budgeted:"
+                )}
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="p-5 rounded-xl bg-slate-50 border border-slate-200/80">
+                  <h3 className="font-bold text-slate-900 text-base mb-1">
+                    {t("Apple Developer Program", "Apple Developer Program")}
+                  </h3>
+                  <div className="text-xs font-semibold text-slate-500 mb-2">99 USD / Jahr</div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {t(
+                      "Obligatorisch für die Bereitstellung im weltweiten Apple App Store sowie für TestFlight-Beta-Distribution.",
+                      "Mandatory subscription for distribution across Apple's worldwide App Store and TestFlight beta tracks."
+                    )}
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-xl bg-slate-50 border border-slate-200/80">
+                  <h3 className="font-bold text-slate-900 text-base mb-1">
+                    {t("Google Play Developer Console", "Google Play Developer Console")}
+                  </h3>
+                  <div className="text-xs font-semibold text-slate-500 mb-2">{t("25 USD einmalig", "$25 one-time fee")}</div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {t(
+                      "Einmalige Gebühr zur Erstellung Ihres offiziellen Entwicklerkontos im Google Play Store.",
+                      "One-off registration fee to set up your official organization publisher profile on Google Play."
+                    )}
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-xl bg-slate-50 border border-slate-200/80">
+                  <h3 className="font-bold text-slate-900 text-base mb-1">
+                    {t("Cloud-Backend & Datenbank", "Cloud Backend & Database")}
+                  </h3>
+                  <div className="text-xs font-semibold text-slate-500 mb-2">{t("ab ca. 25 € / Monat", "from approx. €25 / month")}</div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {t(
+                      "Serverlose Datenbanken (PostgreSQL/Supabase) und Cloud-Speicher skalieren nutzungsbasiert nach aktiven Nutzern und Datenvolumen.",
+                      "Serverless databases (PostgreSQL/Supabase) scale flexibly based on monthly active users and bandwidth consumption."
+                    )}
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-xl bg-slate-50 border border-slate-200/80">
+                  <h3 className="font-bold text-slate-900 text-base mb-1">
+                    {t("Wartung & OS-Kompatibilität", "Maintenance & OS Compatibility")}
+                  </h3>
+                  <div className="text-xs font-semibold text-orange-600 mb-2">{t("[WARTUNGSKOSTEN HIER EINTRAGEN]", "[ENTER MAINTENANCE HERE]")}</div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {t(
+                      "Regelmäßige Updates für neue iOS- und Android-Jahresversionen, Sicherheits-Patches von Drittbibliotheken und Bugfixing.",
+                      "Continuous updates ensuring compatibility with annual iOS/Android OS upgrades, library security patches, and issue resolution."
+                    )}
+                  </p>
                 </div>
               </div>
             </article>
@@ -306,6 +450,87 @@ export default function AppKostenClient() {
                 </div>
               </div>
             </article>
+
+            {/* FAQ Section */}
+            <article className="bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-xs">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-200/80 bg-sky-50/90 text-sky-700 text-xs font-bold tracking-wider uppercase mb-3">
+                <HelpCircle className="w-3.5 h-3.5 text-sky-600" />
+                <span>{t("Häufig gestellte Fragen", "Frequently Asked Questions")}</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-6">
+                {t(
+                  "FAQ: Häufige Fragen zu den App-Entwicklungskosten",
+                  "FAQ: Frequent Questions on App Development Costs"
+                )}
+              </h2>
+
+              <div className="space-y-4">
+                <details className="group bg-slate-50 rounded-xl border border-slate-200/80 p-5 shadow-2xs open:border-orange-300 transition-colors">
+                  <summary className="font-bold text-slate-900 cursor-pointer flex items-center justify-between gap-4 text-base sm:text-lg select-none list-none">
+                    <span>{t("Was kostet es, eine App entwickeln zu lassen?", "How much does it cost to build a mobile app?")}</span>
+                    <span className="text-orange-500 font-bold text-xl group-open:rotate-45 transition-transform shrink-0">+</span>
+                  </summary>
+                  <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed pt-3 border-t border-slate-200">
+                    {t(
+                      "Die Kosten einer App-Entwicklung hängen stark vom Funktionsumfang, Design und der Plattformstrategie ab. Ein Basis-MVP startet typischerweise bei einem schlanken Festpreis, während mittelgroße Business-Apps oder komplexe Enterprise-Plattformen mit Schnittstellenanbindung umfangreichere Budgets erfordern. Nexa Solutions bietet verbindliche Festpreise nach einer detaillierten Erstanalyse.",
+                      "Costs depend heavily on scope, design fidelity, and platform choice. A lean MVP starts at an accessible fixed price, while feature-rich enterprise apps require broader investment. Nexa Solutions provides binding fixed-quote estimates following discovery."
+                    )}
+                  </p>
+                </details>
+
+                <details className="group bg-slate-50 rounded-xl border border-slate-200/80 p-5 shadow-2xs open:border-orange-300 transition-colors">
+                  <summary className="font-bold text-slate-900 cursor-pointer flex items-center justify-between gap-4 text-base sm:text-lg select-none list-none">
+                    <span>{t("Warum spart Cross-Platform mit React Native gegenüber nativer Entwicklung Kosten?", "Why does React Native cross-platform reduce costs compared to native?")}</span>
+                    <span className="text-orange-500 font-bold text-xl group-open:rotate-45 transition-transform shrink-0">+</span>
+                  </summary>
+                  <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed pt-3 border-t border-slate-200">
+                    {t(
+                      "Bei nativer Entwicklung müssen zwei separate Codebases in Swift (iOS) und Kotlin (Android) programmiert und doppelt gewartet werden. Mit React Native nutzen wir eine einheitliche Codebase für beide Plattformen. Das spart bis zu 50% der Entwicklungs- und Folgekosten bei 100% nativer Benutzeroberfläche und Performance.",
+                      "Native engineering requires writing and maintaining two distinct codebases in Swift (iOS) and Kotlin (Android). React Native utilizes a unified codebase for both platforms, trimming up to 50% of development and maintenance overhead with native 60fps UX."
+                    )}
+                  </p>
+                </details>
+
+                <details className="group bg-slate-50 rounded-xl border border-slate-200/80 p-5 shadow-2xs open:border-orange-300 transition-colors">
+                  <summary className="font-bold text-slate-900 cursor-pointer flex items-center justify-between gap-4 text-base sm:text-lg select-none list-none">
+                    <span>{t("Welche laufenden Kosten entstehen nach dem App-Launch?", "What ongoing expenses arise after launching an app?")}</span>
+                    <span className="text-orange-500 font-bold text-xl group-open:rotate-45 transition-transform shrink-0">+</span>
+                  </summary>
+                  <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed pt-3 border-t border-slate-200">
+                    {t(
+                      "Zu den laufenden Kosten gehören die Entwickler-Accounts (Apple Developer Program für 99 USD/Jahr, Google Play Console einmalig 25 USD), Backend- und Cloud-Hosting (z. B. Supabase/PostgreSQL) sowie Wartungsverträge für Sicherheitsupdates und OS-Kompatibilität bei neuen iOS- und Android-Versionen.",
+                      "Recurring fees include app store licenses ($99/yr for Apple, $25 one-time for Google Play), database and cloud hosting, plus maintenance retainers for OS compatibility patches."
+                    )}
+                  </p>
+                </details>
+
+                <details className="group bg-slate-50 rounded-xl border border-slate-200/80 p-5 shadow-2xs open:border-orange-300 transition-colors">
+                  <summary className="font-bold text-slate-900 cursor-pointer flex items-center justify-between gap-4 text-base sm:text-lg select-none list-none">
+                    <span>{t("Wie lange dauert eine App-Entwicklung von der Idee bis zum Store-Release?", "How long does app development take from concept to store release?")}</span>
+                    <span className="text-orange-500 font-bold text-xl group-open:rotate-45 transition-transform shrink-0">+</span>
+                  </summary>
+                  <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed pt-3 border-t border-slate-200">
+                    {t(
+                      "Ein fokussiertes MVP kann innerhalb von 4 bis 6 Wochen umgesetzt und in TestFlight sowie Google Play Internal Testing bereitgestellt werden. Vollwertige Unternehmens-Apps benötigen im Schnitt 2 bis 3 Monate agiler Entwicklungszeit in zweiwöchigen Sprints.",
+                      "A focused MVP ships in 4 to 6 weeks directly to TestFlight and Play Store internal tracks. Complex corporate applications average 2 to 3 months of agile sprint cycles."
+                    )}
+                  </p>
+                </details>
+
+                <details className="group bg-slate-50 rounded-xl border border-slate-200/80 p-5 shadow-2xs open:border-orange-300 transition-colors">
+                  <summary className="font-bold text-slate-900 cursor-pointer flex items-center justify-between gap-4 text-base sm:text-lg select-none list-none">
+                    <span>{t("Bietet Nexa Solutions Festpreise für die App-Programmierung an?", "Does Nexa Solutions offer fixed-price contracts for app development?")}</span>
+                    <span className="text-orange-500 font-bold text-xl group-open:rotate-45 transition-transform shrink-0">+</span>
+                  </summary>
+                  <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed pt-3 border-t border-slate-200">
+                    {t(
+                      "Ja. Nach einem initialen Konzeptionsgespräch und Scope-Definition erstellen wir ein verbindliches Festpreisangebot ohne versteckte Nachforderungen oder Budgetrisiken.",
+                      "Yes. Following initial requirements scoping, we issue binding fixed-price proposals guaranteeing zero hidden surcharges or budget creep."
+                    )}
+                  </p>
+                </details>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -328,6 +553,12 @@ export default function AppKostenClient() {
               >
                 <span>{t("Jetzt App anfragen", "Request App Proposal")}</span>
                 <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/services/mvp-development"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-[5px] bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm border border-slate-700 transition-all"
+              >
+                <span>{t("MVP Entwicklung", "MVP Development")}</span>
               </Link>
               <Link
                 href="/website-kosten"

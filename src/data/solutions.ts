@@ -857,11 +857,11 @@ export const solutionsData: SolutionPageData[] = [
         h2En: "Fast Implementation & Custom Brand Experience",
         body: [
           "Wir passen das Design des digitalen Menüs exakt an das Ambiente Ihres Hauses an: Edle Typografie für Fine-Dining-Restaurants, lebendige Farben für Burger-Bars oder minimalistisches Design für Coffeeshops.",
-          "Erfahren Sie mehr über unsere [App-Entwicklungskosten](/app-entwickeln-lassen-kosten) oder vereinbaren Sie eine Live-Demo über unser [Kontaktformular](/contact).",
+          "Erfahren Sie mehr über unsere [Mobile App Entwicklung](/services/mobile-app-development) oder vereinbaren Sie eine Live-Demo über unser [Kontaktformular](/contact).",
         ],
         bodyEn: [
           "We design your digital restaurant presence to match your venue unique interior and brand aesthetic. From fine dining to multi-location chains and trendy bars, we deliver a lightning-fast experience.",
-          "Explore our [App Development Costs](/app-entwickeln-lassen-kosten) guide or request a demonstration via our [Contact Form](/contact).",
+          "Explore our [Mobile App Development Services](/services/mobile-app-development) or request a demonstration via our [Contact Form](/contact).",
         ],
       },
     ],

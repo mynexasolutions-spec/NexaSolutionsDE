@@ -12,6 +12,13 @@ export interface BlogSection {
   calloutEn?: { title: string; content: string };
 }
 
+export interface BlogFaq {
+  questionDe: string;
+  questionEn: string;
+  answerDe: string;
+  answerEn: string;
+}
+
 export interface BlogPost {
   slug: string;
   titleDe: string;
@@ -40,6 +47,7 @@ export interface BlogPost {
   keyTakeawaysDe: string[];
   keyTakeawaysEn: string[];
   sections: BlogSection[];
+  faqs?: BlogFaq[];
   tags: string[];
   relatedSlugs: string[];
 }
@@ -323,6 +331,70 @@ export const blogPosts: BlogPost[] = [
           "Choose Next.js: Sub-second load times (< 0.5s), B2B client portals, headless architecture, enterprise security without PHP vulnerabilities",
           "TCO & Maintenance: WordPress demands ongoing plugin patching; Next.js delivers bulletproof, low-maintenance stability",
         ],
+      },
+      {
+        headingDe: "5. TCO-Vergleich: Kosten von WordPress vs. Next.js über 3 Jahre",
+        headingEn: "5. Total Cost of Ownership: WordPress vs. Next.js Over 3 Years",
+        paragraphsDe: [
+          "Viele Unternehmen unterschätzen die versteckten Folgekosten einer WordPress-Website: Regelmäßige Sicherheitsupdates, Plugin-Abonnements (ACF Pro, WPML, Elementor), Wartungsverträge gegen PHP-Inkompatibilitäten und teure Performance-Server summieren sich schnell auf tausende Euro pro Jahr.",
+          "Ein modernes Next.js-Projekt erfordert zwar eine strukturierte Initialentwicklung, zeichnet sich danach jedoch durch minimale Betriebskosten aus. Durch Serverless-Hosting (z. B. Vercel oder DSGVO-konforme Hetzner/Frankfurt-Cluster) und den Wegfall fragiler Plugins sparen Unternehmen über einen 3-Jahres-Horizont oft 30% bis 50% der Gesamtkosten ein. Berechnen Sie Ihre individuellen Projektkosten in unserem [Website-Kosten Leitfaden 2026](/website-kosten) oder lassen Sie sich zur [Webentwicklung Stuttgart](/services/web-development) beraten.",
+        ],
+        paragraphsEn: [
+          "Organizations often underestimate the compounding hidden maintenance costs of legacy WordPress: monthly plugin subscriptions, developer retainer fees for PHP upgrades, and expensive server tiers to counteract sluggish TTFB.",
+          "Next.js applications represent an asset built on modern software principles: virtually zero plugin dependency churn, predictable serverless edge hosting, and robust long-term reliability. Explore detailed estimates in our [Website Cost Guide 2026](/website-kosten) and custom [Web Development Services](/services/web-development).",
+        ],
+        bulletsDe: [
+          "WordPress Folgekosten: [PREIS HIER EINTRAGEN: z. B. 150 – 400 € monatlich für Plugin-Lizenzen, Backups & technisches Update-Monitoring]",
+          "Next.js Betriebskosten: [PREIS HIER EINTRAGEN: z. B. ab 20 – 50 € monatlich für Serverless Edge Hosting]",
+          "Wartungsaufwand: Nahezu null Plugin-Konflikte bei Next.js durch statische Generierung und versionierte Builds",
+        ],
+        bulletsEn: [
+          "WordPress Recurring TCO: [PREIS HIER EINTRAGEN: e.g. €150 – €400/mo for plugins, security patches & emergency fixes]",
+          "Next.js Cloud Hosting: [PREIS HIER EINTRAGEN: e.g. from €20 – €50/mo on serverless edge networks]",
+          "Engineering Overhead: Zero plugin incompatibilities with decoupled Git-driven deployments",
+        ],
+      },
+      {
+        headingDe: "6. Häufig gestellte Fragen (FAQ) zu WordPress vs. Next.js",
+        headingEn: "6. Frequently Asked Questions: WordPress vs. Next.js",
+        paragraphsDe: [
+          "Hier beantworten unsere Senior-Entwickler die wichtigsten Praxisfragen von Geschäftsführern und Marketingleitern zur Systemauswahl.",
+        ],
+        paragraphsEn: [
+          "Here our senior engineering team addresses the most common practical questions regarding platform selection.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        questionDe: "Ist Next.js für SEO wirklich besser als WordPress?",
+        questionEn: "Is Next.js genuinely superior to WordPress for SEO?",
+        answerDe: "Ja, vor allem bei den Core Web Vitals (LCP, INP, CLS). Während WordPress-Themes dutzende ungenutzte Skripte laden, liefert Next.js serverseitig vorgerendertes, semantisches HTML mit Ladezeiten unter 500 ms. Google belohnt diese herausragende User Experience mit höheren Rankings.",
+        answerEn: "Yes, particularly across Google's Core Web Vitals. Next.js delivers pre-rendered HTML with sub-500ms load times, resulting in 95-100 Lighthouse scores and superior organic search visibility.",
+      },
+      {
+        questionDe: "Kann ich meine bestehende WordPress-Website zu Next.js migrieren?",
+        questionEn: "Can I migrate an existing WordPress website to Next.js?",
+        answerDe: "Ja, problemlos. Wir können WordPress als 'Headless CMS' über die REST-API weiter betreiben, während die Benutzeroberfläche in Next.js neu gebaut wird. Alternativ unterstützen wir die vollständige Migration zu modernen Headless CMS wie Sanity oder Strapi.",
+        answerEn: "Yes, seamlessly. WordPress can either be retained as a headless content API or completely migrated to modern headless solutions like Sanity or Strapi.",
+      },
+      {
+        questionDe: "Was ist besser für E-Commerce: WooCommerce oder Next.js Commerce?",
+        questionEn: "Which is better for eCommerce: WooCommerce or Next.js Commerce?",
+        answerDe: "Für kleine Produktkataloge genügt WooCommerce. Sobald jedoch schnelle Ladezeiten, hohe Conversion-Raten oder internationale Skalierbarkeit gefordert sind, bietet Next.js Commerce (in Kombination mit Shopify oder Medusa.js) unschlagbare Vorteile.",
+        answerEn: "WooCommerce suits simple stores. For growing brands prioritizing conversion velocity and international scale, Next.js Commerce integrated with Shopify or Medusa.js is the clear benchmark.",
+      },
+      {
+        questionDe: "Können Nicht-Programmierer Inhalte auf einer Next.js-Website bearbeiten?",
+        questionEn: "Can non-developers edit content on a Next.js website?",
+        answerDe: "Ja, absolut. Über intuitive Headless CMS Redaktionssysteme können Texte, Bilder, Blogbeiträge und Preise ohne jede Programmiererfahrung per visueller Maske gepflegt werden.",
+        answerEn: "Yes, absolutely. Decoupled headless CMS dashboards offer intuitive visual editing so marketing teams update copy, images, and blogs without touching code.",
+      },
+      {
+        questionDe: "Wie hoch sind die Entwicklungskosten für eine Next.js Website?",
+        questionEn: "What are the typical development costs for a Next.js website?",
+        answerDe: "Professionelle Unternehmens-Websites mit Next.js beginnen bei [PREIS HIER EINTRAGEN: z. B. ab 2.500 € bis 8.000 €] je nach Umfang, individuellem Design und CMS-Anbindung. Detaillierte Richtwerte finden Sie in unserem Website-Kostenrechner.",
+        answerEn: "Custom enterprise Next.js websites typically range from [PREIS HIER EINTRAGEN: e.g. from €2,500 to €8,000] depending on complexity and CMS integrations.",
       },
     ],
     tags: [
@@ -1186,7 +1258,7 @@ export const blogPosts: BlogPost[] = [
         paragraphsDe: [
           "Der Kundenservice galt lange Zeit als frustrierender Engpass in deutschen Unternehmen: ewige Warteschleifen, unzureichende Tastatur-Menüs ('Drücken Sie die 1') und überlastete Callcenter-Mitarbeiter. Berliner Startups wie Parloa und telli beenden dieses Dilemma mit autonomen, natürlich sprechenden KI-Telefonagenten.",
           "Parloa konnte seine Series-D-Finanzierungsrunde im Januar 2026 über 350 Millionen US-Dollar bei einer Bewertung von 3 Milliarden US-Dollar erfolgreich abschließen (gefolgt auf die $120 Mio. Series C aus Mai 2025). Die Plattform ermöglicht es Großunternehmen wie Ergo, Decathlon und Swiss Life, hochgradig intelligente Voice- und Chat-Agenten zu orchestrieren, die Anrufer mit natürlicher menschlicher Sprachmelodie und Latenzen unter 400 Millisekunden verstehen, Anliegen im Backend-CRM abgleichen und Termine direkt buchen.",
-          "Gleichzeitig sorgt das Berliner Startup telli mit seiner im Juli 2026 abgeschlossenen 15-Millionen-Dollar-Seed-Runde (geführt von redalpine) für Aufsehen: Mit dem KI-Mitarbeiter 'Charlie' optimiert das Team B2C-Kundeninteraktionen über WhatsApp, Telefon und E-Mail. Für Unternehmen, die eine maßgeschneiderte [KI-Automatisierung](/services/ai-automation) oder [Custom CRM-Systeme](/services/custom-crm-systems) anstreben, eröffnet diese Technologie ungeahnte Skaleneffekte.",
+          "Gleichzeitig sorgt das Berliner Startup telli mit seiner im Juli 2026 abgeschlossenen 15-Millionen-Dollar-Seed-Runde (geführt von redalpine) für Aufsehen: Mit dem KI-Mitarbeiter 'Charlie' optimiert das Team B2C-Kundeninteraktionen über WhatsApp, Telefon und E-Mail. Für Unternehmen, die eine maßgeschneiderte [KI-Automatisierung](/services/ai-automation) oder [Custom CRM-Systeme](/loesungen/crm-system-entwickeln-lassen) anstreben, eröffnet diese Technologie ungeahnte Skaleneffekte.",
         ],
         paragraphsEn: [
           "Berlin-based Parloa secured a $350 million Series D at a $3B valuation in January 2026 led by General Catalyst, enabling autonomous voice agents with human-like latency under 400ms.",

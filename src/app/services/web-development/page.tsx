@@ -631,17 +631,19 @@ export default function WebDevelopmentPage() {
 
               {/* Main Headline */}
               <h1 className="text-[35px] sm:text-[52px] lg:text-[58px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
-                {t("Business Website erstellen lassen: ", "High-Performance Websites & ")}
+                {t("Webentwicklung Stuttgart: ", "High-Performance Websites & ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">
-                  {t("Next.js Agentur zum Festpreis", "Apps That Convert")}
+                  {t("Ihre Next.js Agentur", "Apps That Convert")}
                 </span>
               </h1>
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
-                {t(
-                  "Möchten Sie eine professionelle Business Website erstellen lassen? Als spezialisierte Next.js Agentur entwickeln wir zukunftssichere, hochperformante Webanwendungen und Corporate Websites. Bei uns können Sie Ihre moderne Website erstellen lassen oder eine skalierbare E-Commerce Website entwickeln lassen – transparent mit garantierter Webentwicklung zum Festpreis und zu 100% DSGVO-konform.",
-                  "We engineer custom, ultra-fast web platforms with Next.js 15, React, and TypeScript. Flawless Core Web Vitals, unmatched Google rankings, and intuitive UX built for measurable business growth."
+                {renderWithLinks(
+                  t(
+                    "Möchten Sie eine professionelle Website programmieren lassen? Als spezialisierte Agentur für Webentwicklung in Stuttgart entwickeln wir zukunftssichere, hochperformante Next.js Webanwendungen, moderne Corporate Websites und skalierbare Online-Shops zum verbindlichen Festpreis. Berechnen Sie transparent Ihre [Website Kosten im Leitfaden](/website-kosten) – zu 100% DSGVO-konform mit Server-Hosting in Frankfurt.",
+                    "We engineer custom, ultra-fast web platforms with Next.js, React, and TypeScript. Flawless Core Web Vitals, unmatched Google rankings, and intuitive UX built for measurable business growth."
+                  )
                 )}
               </p>
 

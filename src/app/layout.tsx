@@ -118,10 +118,20 @@ const organizationJsonLd = {
       ],
       address: {
         "@type": "PostalAddress",
+        streetAddress: "[STRASSE HIER EINTRAGEN: z. B. Königstraße XX]",
+        postalCode: "[PLZ HIER EINTRAGEN: z. B. 70173]",
         addressLocality: "Stuttgart",
         addressRegion: "Baden-Württemberg",
         addressCountry: "DE",
       },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "09:00",
+          closes: "18:00",
+        },
+      ],
       sameAs: SOCIAL_PROFILES_SAMEAS,
       areaServed: [
         { "@type": "Country", name: "Germany" },

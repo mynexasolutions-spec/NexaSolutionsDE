@@ -3,17 +3,17 @@ import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: {
-    absolute: "Business Website erstellen lassen | Next.js Agentur",
+    absolute: "Webentwicklung Stuttgart | Next.js Agentur Nexa",
   },
   description:
-    "Professionelle Business Website erstellen lassen: Next.js Agentur für Webentwicklung zum Festpreis & DSGVO-konforme Websites. Jetzt anfragen!",
+    "Webentwicklung Stuttgart: High-End Next.js Websites & Webanwendungen zum Festpreis. Schnell, DSGVO-konform & SEO-optimiert. Jetzt beraten lassen!",
   path: "/services/web-development",
 });
 
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Website erstellen lassen zum Festpreis - Webentwicklung Agentur",
+  name: "Webentwicklung Stuttgart: Next.js Websites & Webanwendungen",
   serviceType: "Web Development & Next.js Websites",
   provider: {
     "@type": "Organization",
@@ -22,7 +22,7 @@ const serviceJsonLd = {
   },
   areaServed: ["DE", "AT", "CH"],
   description:
-    "Professionelle Webentwicklung zum Festpreis: High-Performance Business Websites, Next.js Web-Applikationen und Headless CMS.",
+    "Professionelle Webentwicklung in Stuttgart zum Festpreis: High-Performance Next.js Websites, individuelle Web-Applikationen und Headless CMS.",
 };
 
 const breadcrumbJsonLd = {

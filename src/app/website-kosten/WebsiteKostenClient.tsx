@@ -357,10 +357,10 @@ export default function WebsiteKostenClient() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/app-entwickeln-lassen-kosten"
+                href="/services/mobile-app-development"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-[5px] bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm border border-slate-700 transition-all"
               >
-                <span>{t("App Entwicklung Kosten", "App Development Costs")}</span>
+                <span>{t("Mobile App Entwicklung", "Mobile App Development")}</span>
               </Link>
             </div>
           </div>

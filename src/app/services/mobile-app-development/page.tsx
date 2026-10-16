@@ -92,9 +92,9 @@ const mobileCapabilities = [
     titleDe: "Cross-Platform mit React Native & Flutter",
     titleEn: "Cross-Platform React Native & Flutter",
     descDe:
-      "Eine gemeinsame Codebasis für iOS und Android bei nativer 60 FPS Performance. Lesen Sie unsere Analyse zu [React Native App Entwicklung](/blog/react-native-cross-platform-apps), kalkulieren Sie Ihr Budget im Leitfaden zu [App entwickeln lassen Kosten 2026](/app-entwickeln-lassen-kosten) oder starten Sie mit einer schnellen [MVP-Entwicklung](/services/mvp-development).",
+      "Eine gemeinsame Codebasis für iOS und Android bei nativer 60 FPS Performance. Lesen Sie unsere Analyse zu [React Native App Entwicklung](/blog/react-native-cross-platform-apps) oder starten Sie mit einer schnellen [MVP-Entwicklung](/services/mvp-development).",
     descEn:
-      "A unified codebase powering iOS and Android at buttery-smooth 60 FPS. Explore our [React Native app analysis](/blog/react-native-cross-platform-apps), calculate budgets in our [App Cost Guide 2026](/app-entwickeln-lassen-kosten), or start with a [Rapid MVP Sprint](/services/mvp-development).",
+      "A unified codebase powering iOS and Android at buttery-smooth 60 FPS. Explore our [React Native app analysis](/blog/react-native-cross-platform-apps) or start with a [Rapid MVP Sprint](/services/mvp-development).",
     tagsDe: ["50% geringere Kosten", "Schnellere Time-to-Market", "Gemeinsame UI-Komponenten"],
     tagsEn: ["50% reduced costs", "Accelerated time-to-market", "Shared UI component library"],
   },
@@ -458,7 +458,7 @@ export default function MobileAppPage() {
 
               {/* Main Headline */}
               <h1 className="text-[35px] sm:text-[52px] lg:text-[58px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
-                {t("App entwickeln lassen: ", "Mobile Apps Designed to ")}
+                {t("App entwickeln lassen in Stuttgart: ", "Mobile Apps Designed to ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-400">
                   {t("Ihre App Entwicklung Agentur", "Captivate Users & Dominate")}
                 </span>
@@ -466,9 +466,11 @@ export default function MobileAppPage() {
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
-                {t(
-                  "Möchten Sie eine maßgeschneiderte App entwickeln lassen? Als führende App Entwicklung Agentur realisieren wir native & cross-platform iOS Android App Entwicklung in Deutschland mit React Native und Flutter. Bei uns können Sie Ihre erfolgreiche App entwickeln lassen – mit transparenter Festpreis-Garantie, nativer 60 FPS Performance und 100% Store-Zulassung.",
-                  "From initial Figma wireframes to worldwide Apple App Store & Google Play distribution: We build buttery-smooth, native & cross-platform mobile apps with React Native and Flutter — maximizing reach while slashing engineering costs."
+                {renderWithLinks(
+                  t(
+                    "Möchten Sie eine professionelle App entwickeln lassen? Als erfahrene App Entwicklung Agentur in Stuttgart realisieren wir native & cross-platform iOS & Android App Entwicklung für Startups und den Mittelstand mit React Native und Flutter – mit Festpreis-Garantie, nativer 60 FPS Performance und 100% Store-Zulassung.",
+                    "From initial Figma wireframes to worldwide Apple App Store & Google Play distribution: We build buttery-smooth, native & cross-platform mobile apps for iOS and Android with React Native and Flutter — maximizing reach while slashing engineering costs."
+                  )
                 )}
               </p>
 
@@ -1102,13 +1104,9 @@ export default function MobileAppPage() {
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
-                "Keine versteckten Gebühren. Jedes Paket beinhaltet den Store-Zulassungsprozess und vollständigen Code-Besitz. Detaillierte Kostenbeispiele finden Sie im Guide ",
-                "Zero hidden surprises. Every package includes store submission management and 100% IP ownership. Explore cost factors in our guide on "
+                "Keine versteckten Gebühren. Jedes Paket beinhaltet den Store-Zulassungsprozess und vollständigen Code-Besitz.",
+                "Zero hidden surprises. Every package includes store submission management and 100% IP ownership."
               )}
-              <Link href="/app-entwickeln-lassen-kosten" className="text-blue-600 hover:text-blue-700 font-semibold underline">
-                {t("App entwickeln lassen Kosten 2026", "Mobile App Development Costs 2026")}
-              </Link>
-              .
             </p>
           </div>
 

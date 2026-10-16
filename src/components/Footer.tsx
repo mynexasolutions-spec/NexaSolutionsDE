@@ -19,6 +19,7 @@ import {
   Building2,
   ArrowUp,
   Sparkles,
+  UtensilsCrossed,
 } from "lucide-react";
 import BrandLogo from "./BrandLogo";
 import { useLanguage } from "@/context/LanguageContext";
@@ -250,6 +251,12 @@ export default function Footer() {
                   badgeBg: "bg-pink-100 text-pink-600",
                 },
                 {
+                  title: t("Restaurant QR-Code App", "Restaurant QR Code App"),
+                  href: "/loesungen/restaurant-software-qr-menue",
+                  icon: UtensilsCrossed,
+                  badgeBg: "bg-rose-100 text-rose-600",
+                },
+                {
                   title: t("Wartung & Support", "Maintenance & Support"),
                   href: "/contact",
                   icon: Headphones,
@@ -315,7 +322,22 @@ export default function Footer() {
                 </span>
               </a>
 
-              {/* Location Pill */}
+              {/* Location Germany / Stuttgart Pill */}
+              <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
+                <div className="w-7 h-7 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center shrink-0">
+                  <MapPin className="w-3.5 h-3.5 stroke-[2.2]" />
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[13px] font-bold text-slate-900 truncate">
+                    {t("Stuttgart, Deutschland", "Stuttgart, Germany")}
+                  </span>
+                  <span className="text-[11px] text-slate-500 truncate">
+                    {t("[ADRESSE HIER EINTRAGEN: z. B. Königstraße XX, 70173 Stuttgart]", "[ENTER ADDRESS HERE: Stuttgart, Germany]")}
+                  </span>
+                </div>
+              </div>
+
+              {/* Location Global Pill */}
               <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
                 <div className="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
                   <MapPin className="w-3.5 h-3.5 stroke-[2.2]" />

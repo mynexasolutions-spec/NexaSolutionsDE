@@ -69,6 +69,10 @@ export default function ServicesSection({
         t("Web-Applikationen", "Custom Web Applications"),
         t("SEO & Performance-Optimierung", "SEO & Performance Optimization"),
       ],
+      subLink: {
+        href: "/website-kosten",
+        text: t("Website-Kosten Leitfaden 2026", "Website Cost Guide 2026"),
+      },
     },
     {
       id: "app-dev",
@@ -123,6 +127,10 @@ export default function ServicesSection({
         t("Geschäftsprozess-Automatisierung", "Business Process Automation"),
         t("Datenanalyse & Insights", "Data Analysis & Insights"),
       ],
+      subLink: {
+        href: "/loesungen/n8n-agentur-deutschland",
+        text: t("n8n Agentur Deutschland", "n8n Agency Germany"),
+      },
     },
   ];
 
@@ -726,7 +734,7 @@ export default function ServicesSection({
                   </div>
 
                   {/* Action: Full-Width Modern Button */}
-                  <div className="pt-4 border-t border-slate-100">
+                  <div className="pt-4 border-t border-slate-100 flex flex-col gap-2">
                     <Link
                       href={service.href}
                       className={`w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[5px] bg-gradient-to-r ${service.buttonGradient} text-white text-sm sm:text-[15px] font-bold shadow-md hover:shadow-lg active:scale-[0.99] transition-all duration-300 group/link`}
@@ -734,6 +742,14 @@ export default function ServicesSection({
                       <span>{service.buttonText}</span>
                       <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1.5 transition-transform duration-200" />
                     </Link>
+                    {service.subLink && (
+                      <Link
+                        href={service.subLink.href}
+                        className="text-xs sm:text-[13px] text-center text-slate-500 hover:text-orange-600 transition-colors font-medium py-1 underline underline-offset-4 decoration-slate-200 hover:decoration-orange-500"
+                      >
+                        {service.subLink.text} &rarr;
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>

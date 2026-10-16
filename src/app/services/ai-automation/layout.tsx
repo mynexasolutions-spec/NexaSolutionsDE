@@ -3,10 +3,10 @@ import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: {
-    absolute: "n8n Automatisierung | n8n Agentur Deutschland",
+    absolute: "KI Automatisierung & Workflows | Nexa Solutions",
   },
   description:
-    "Führende n8n Agentur Deutschland: n8n Automatisierung & KI Automatisierung für Unternehmen. n8n Workflow Automatisierung für KMU. Jetzt anfragen!",
+    "KI Automatisierung für Unternehmen: Maßgeschneiderte Workflows, autonome KI-Agenten und Prozessoptimierung. DSGVO-konform & skalierbar. Jetzt anfragen!",
   path: "/services/ai-automation",
 });
 

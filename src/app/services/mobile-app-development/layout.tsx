@@ -3,17 +3,17 @@ import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: {
-    absolute: "App entwickeln lassen | App Entwicklung Agentur",
+    absolute: "App entwickeln lassen Stuttgart | App Agentur Nexa",
   },
   description:
-    "App entwickeln lassen bei Ihrer App Entwicklung Agentur: Native iOS & Android App Entwicklung in Deutschland zum Festpreis. Jetzt anfragen!",
+    "App entwickeln lassen in Stuttgart: Native iOS & Android Apps für Startups & KMU. React Native, Store-Garantie & Festpreise. Jetzt anfragen!",
   path: "/services/mobile-app-development",
 });
 
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "App entwickeln lassen für iOS & Android - Mobile App Agentur",
+  name: "App entwickeln lassen Stuttgart für iOS & Android - Mobile App Agentur",
   serviceType: "Mobile Application Development & React Native Apps",
   provider: {
     "@type": "Organization",
@@ -22,7 +22,7 @@ const serviceJsonLd = {
   },
   areaServed: ["DE", "AT", "CH"],
   description:
-    "Individuelle mobile App-Entwicklung für iOS und Android mit React Native und Flutter: MVP-Entwicklung, Store-Zulassungsgarantie und skalierbare Backend-Systeme.",
+    "Individuelle mobile App-Entwicklung in Stuttgart für iOS und Android mit React Native und Flutter: MVP-Entwicklung für Startups, Store-Zulassungsgarantie und transparente Festpreise.",
 };
 
 const breadcrumbJsonLd = {

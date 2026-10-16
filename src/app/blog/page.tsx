@@ -277,6 +277,9 @@ export default function BlogListingPage() {
                       aria-label={`${t("Artikel öffnen", "Open article")}: ${featuredPost.titleDe}`}
                       className="block relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group/img"
                     >
+                      <span className="sr-only">
+                        {lang === "de" ? featuredPost.titleDe : featuredPost.titleEn}
+                      </span>
                       <Image
                         key={featuredPost.coverImage}
                         src={featuredPost.coverImage || "/images/ai-robot.png"}
@@ -355,6 +358,7 @@ export default function BlogListingPage() {
                         aria-label={`${t("Artikel öffnen", "Open article")}: ${title}`}
                         className="relative block aspect-[16/10] overflow-hidden bg-slate-100"
                       >
+                        <span className="sr-only">{title}</span>
                         <Image
                           key={post.coverImage}
                           src={post.coverImage || "/images/ai-robot.png"}
@@ -425,6 +429,7 @@ export default function BlogListingPage() {
                             className="inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-orange-600 hover:text-orange-700 group/link"
                           >
                             <span>{t("Mehr lesen", "Read More")}</span>
+                            <span className="sr-only">: {title}</span>
                             <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                           </Link>
                         </div>

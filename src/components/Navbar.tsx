@@ -12,6 +12,8 @@ import {
   Code2,
   Smartphone,
   Cpu,
+  Calculator,
+  UtensilsCrossed,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import BrandLogo from "./BrandLogo";
@@ -232,6 +234,17 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
       icon: Cpu,
       badge: t("Top ROI", "Top ROI"),
       accent: "bg-orange-50 text-orange-600",
+    },
+    {
+      title: t("Restaurant QR-Code App", "Restaurant QR Code App"),
+      desc: t(
+        "Digitale Speisekarte, Tischbestellung & Kassenanbindung",
+        "Digital menu, table ordering & POS integration",
+      ),
+      href: "/loesungen/restaurant-software-qr-menue",
+      icon: UtensilsCrossed,
+      badge: t("Gastro", "Hospitality"),
+      accent: "bg-rose-50 text-rose-600",
     },
   ];
 

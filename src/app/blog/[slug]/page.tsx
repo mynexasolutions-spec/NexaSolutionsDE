@@ -263,10 +263,32 @@ export default function SingleBlogPage() {
     ],
   };
 
+  const faqJsonLd =
+    post.faqs && post.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: post.faqs.map((faq) => ({
+            "@type": "Question",
+            name: lang === "de" ? faq.questionDe : faq.questionEn,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: lang === "de" ? faq.answerDe : faq.answerEn,
+            },
+          })),
+        }
+      : null;
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FDFDFE] text-[#0F172A] selection:bg-[#EA580C] selection:text-white">
-      {/* Article + Breadcrumbs Schema.org JSON-LD */}
-      <JsonLd data={[articleJsonLd, breadcrumbJsonLd]} />
+      {/* Article + Breadcrumbs + FAQ Schema.org JSON-LD */}
+      <JsonLd
+        data={[
+          articleJsonLd,
+          breadcrumbJsonLd,
+          ...(faqJsonLd ? [faqJsonLd] : []),
+        ]}
+      />
 
       {/* Top Navbar */}
       <Navbar onOpenContact={() => setContactOpen(true)} />
@@ -552,6 +574,30 @@ export default function SingleBlogPage() {
               );
             })}
           </article>
+
+          {/* Optional Interactive/Expanded FAQs */}
+          {post.faqs && post.faqs.length > 0 && (
+            <div className="mt-10 pt-8 border-t border-slate-200">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">
+                {t("Häufig gestellte Fragen (FAQ)", "Frequently Asked Questions (FAQ)")}
+              </h3>
+              <div className="space-y-4">
+                {post.faqs.map((faq, fIdx) => (
+                  <div
+                    key={fIdx}
+                    className="p-4 sm:p-5 rounded-xl border border-slate-200/80 bg-slate-50/60"
+                  >
+                    <h4 className="font-bold text-slate-900 text-sm sm:text-base mb-2">
+                      {lang === "de" ? faq.questionDe : faq.questionEn}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {lang === "de" ? faq.answerDe : faq.answerEn}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Tags Row */}
           <div className="mt-8 pt-4 border-t border-slate-200/80 flex flex-wrap items-center gap-2">

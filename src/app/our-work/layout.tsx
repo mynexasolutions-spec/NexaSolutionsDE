@@ -1,11 +1,15 @@
-import { pageMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 
-export const metadata = pageMetadata({
-  title: "Digitale Projekte & Referenzen | Nexa Solutions",
-  description:
-    "Erfolgreiche digitale Projekte und Softwarelösungen: Webentwicklung, mobile Apps und smarte KI-Pipelines. Portfolio entdecken!",
-  path: "/our-work",
-});
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+  alternates: {
+    canonical: `${SITE_URL}/projects`,
+  },
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

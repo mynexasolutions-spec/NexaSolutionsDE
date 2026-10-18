@@ -30,8 +30,8 @@ export const siteTitleDe =
 export const siteDescriptionDe =
   "Webentwicklung Agentur Stuttgart: Maßgeschneiderte Websites, Apps & n8n Automatisierung zum Festpreis. Jetzt kostenlose Beratung anfragen!";
 
-const siteTitle = siteTitleDe;
-const siteDescription = siteDescriptionDe;
+const siteTitle = siteTitleEn;
+const siteDescription = siteDescriptionEn;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -123,6 +123,11 @@ const organizationJsonLd = {
         addressLocality: "Stuttgart",
         addressRegion: "Baden-Württemberg",
         addressCountry: "DE",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "[LATITUDE HIER EINTRAGEN: z. B. 48.7758]",
+        longitude: "[LONGITUDE HIER EINTRAGEN: z. B. 9.1829]",
       },
       openingHoursSpecification: [
         {

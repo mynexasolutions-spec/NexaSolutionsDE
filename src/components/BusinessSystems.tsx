@@ -322,9 +322,9 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
                 <span>{targetSystem.navTitle}</span>
               </div>
 
-              <h4 className="text-base sm:text-lg font-bold text-[#0B132B] tracking-tight">
+              <p className="text-base sm:text-lg font-bold text-[#0B132B] tracking-tight">
                 {t("System-Modul wird initialisiert...", "Initializing system module...")}
-              </h4>
+              </p>
 
               <p className="text-slate-400 text-xs mt-1 max-w-xs">
                 {t(

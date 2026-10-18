@@ -9,12 +9,18 @@ export function pageMetadata({
   description,
   path,
   image = DEFAULT_OG_IMAGE,
+  languages,
+  locale = "de_DE",
+  alternateLocale = ["en_US"],
 }: {
   title: string | { absolute: string };
   description: string;
   path: string;
   keywords?: string[] | string;
   image?: string;
+  languages?: Record<string, string>;
+  locale?: string;
+  alternateLocale?: string[];
 }): Metadata {
   const plainTitle = typeof title === "string" ? title : title.absolute;
   const metadataTitle =
@@ -33,6 +39,7 @@ export function pageMetadata({
     description,
     alternates: {
       canonical: absoluteUrl,
+      ...(languages ? { languages } : {}),
     },
     robots: {
       index: true,
@@ -50,8 +57,8 @@ export function pageMetadata({
       description,
       url: absoluteUrl,
       siteName: "Nexa Solutions",
-      locale: "de_DE",
-      alternateLocale: ["en_US"],
+      locale,
+      alternateLocale,
       type: "website",
       images: [absoluteImageUrl],
     },

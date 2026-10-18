@@ -26,6 +26,8 @@ export interface SolutionPageData {
   introEn?: string;
   badge: string;
   badgeEn?: string;
+  faqTitle?: string;
+  faqTitleEn?: string;
   sections: SolutionSection[];
   faq: SolutionFaq[];
   related: string[];
@@ -772,96 +774,118 @@ export const solutionsData: SolutionPageData[] = [
       "Hospitality businesses face critical headwinds: acute staffing shortages in service, heavy commission cuts to delivery aggregators (up to 30%), and rising overhead. A bespoke digital QR code menu and modern restaurant management software modernize dining operations: Guests scan a QR code at their table, browse an appetizing multilingual menu with real-time daily specials, and order or pay directly from their smartphone. Nexa Solutions builds custom hospitality applications that ease the burden on waitstaff and demonstrably drive higher table spend.",
     badge: "Gastro-Digitalisierung & TSE",
     badgeEn: "Hospitality Digitalization & POS Sync",
+    faqTitle: "FAQ zu Restaurant Software & QR-Menü",
+    faqTitleEn: "FAQ: Restaurant Software & QR Code Menus",
     updatedAt: "2026-10-07T08:00:00.000Z",
     sections: [
       {
-        h2: "Vorteile digitaler Speisekarten & Self-Ordering am Tisch",
-        h2En: "Benefits of Digital Menus & Table Self-Ordering",
+        h2: "QR-Code Speisekarte & Digitales Self-Ordering am Tisch",
+        h2En: "Digital QR Code Menu & Table Self-Ordering",
         body: [
-          "Gedruckte Speisekarten sind teuer im Nachdruck, unhygienisch und bei Preis- oder Zutatenänderungen sofort veraltet. Mit einem interaktiven digitalen Menü aktualisieren Restaurantbetreiber Preise, Tagesgerichte und ausverkaufte Posten in Echtzeit mit einem Klick im Browser.",
-          "Hochauflösende Fotos, appetitliche Beschreibungen und intelligente Upselling-Vorschläge (z. B. 'Passender Wein zum Steak' oder 'Dessertempfehlung des Küchenchefs') führen in der Praxis zu einer durchschnittlichen Umsatzsteigerung von 15 bis 25% pro Gast.",
-          "Gerade bei Stoßzeiten entlastet das System das Servicepersonal dramatisch: Gäste müssen nicht mehr minutenlang auf die Karte oder die Rechnung warten, sondern bestellen Zwischengetränke und Desserts eigenständig per Smartphone. Servicemitarbeiter konzentrieren sich auf herzliche Gastfreundschaft und schnelle Auslieferung.",
+          "Ihre Gäste scannen den Tisch-QR-Code und bestellen sofort kontaktlos im Browser – ohne App-Download. Das interaktive Menü steigert durch automatisiertes Upselling den Pro-Kopf-Umsatz um 15–25 % und entlastet das Servicepersonal in Spitzenzeiten spürbar.",
         ],
         bodyEn: [
-          "Printed menus are expensive to reprint, unhygienic, and immediately outdated whenever prices or seasonal ingredients change. With an interactive digital menu, restaurant operators update pricing, daily specials, and sold-out items in real time through a simple web dashboard.",
-          "High-resolution photography, rich descriptions, and automated upselling recommendations ('Pair with Chef recommended wine' or 'Add dessert') generate an average check increase of 15% to 25% per guest in live environments.",
-          "During peak rush hours, the platform dramatically relieves service staff: Guests no longer wait for printed menus or checks; they order additional drinks and desserts autonomously on their phones, allowing waitstaff to focus on genuine hospitality.",
+          "Guests simply scan the table QR code to browse and order directly in their mobile browser—zero app download required. Automated upselling prompts boost average guest spend by 15–25% while relieving waitstaff during peak rush hours.",
         ],
         bullets: [
-          "Kein App-Download für Gäste: Scan per Smartphone-Kamera öffnet sofort die Next.js Web-App",
-          "Automatisches Upselling von Beilagen, Getränken und Desserts",
-          "Mehrsprachigkeit auf Knopfdruck für internationale Touristen und Messegäste",
-          "Allergen- und Nährwertfilter nach Lebensmittelinformations-Verordnung (LMIV)",
+          "Sofortstart per Web-App: Kein App-Store-Download nötig",
+          "Echtzeit-Updates für Tagesgerichte, Preise & Zutaten",
+          "Mehrsprachige Menüführung mit LMIV-Allergenfiltern",
+          "Integrierte Trinkgeld- & Split-Payment-Optionen",
         ],
         bulletsEn: [
-          "Zero app download required: Native mobile camera scan launches the Next.js web app instantly",
-          "Automated upselling prompts for sides, premium beverages, and desserts",
-          "Multilingual support at the tap of a button for international guests and tourists",
-          "Allergen and dietary filters compliant with food labeling regulations",
+          "Instant web app launch: Zero App Store downloads needed",
+          "Real-time menu updates for daily specials & pricing",
+          "Multilingual interface with automatic allergen filters",
+          "Integrated digital tipping and split-bill payments",
         ],
       },
       {
-        h2: "Kassenschnittstellen, TSE & GoBD-Konformität in Deutschland",
-        h2En: "POS Integrations & Fiscal Compliance in Europe",
+        h2: "Kassenschnittstellen & TSE KassenSichV-Konformität",
+        h2En: "POS Integrations & Certified TSE Compliance",
         body: [
-          "In Deutschland stellt das Finanzamt über die Kassensicherungsverordnung (KassenSichV) und die GoBD strenge Anforderungen an die Unveränderbarkeit von Kassenbuchungen und die Nutzung einer zertifizierten Technischen Sicherheitseinrichtung (TSE).",
-          "Unsere Softwarelösungen lassen sich nahtlos an bestehende POS-Kassensysteme (wie Orderbird, Vectron, Lightspeed) anbinden oder als integriertes Gesamtsystem mit Cloud-TSE betreiben. Jede Bestellung wird manipulationssicher protokolliert, und Gäste erhalten auf Wunsch einen digitalen Rechnungsbeleg per QR-Code oder E-Mail direkt aufs Smartphone.",
-          "Zahlungen können wahlweise direkt online (Apple Pay, Google Pay, Kreditkarte, PayPal) oder traditionell bar/EC-Karte beim Servicepersonal abgewickelt werden.",
+          "Volle Gesetzeskonformität nach KassenSichV und GoBD: Unsere Restaurant-Software bindet führende POS-Kassensysteme (Vectron, Lightspeed, Orderbird) nahtlos an oder läuft eigenständig mit zertifizierter Cloud-TSE und manipulationssicherem digitalem Beleg.",
         ],
         bodyEn: [
-          "In Germany and Europe, tax regulations (such as KassenSichV and TSE) impose strict requirements on audit-proof cash transactions and certified recording devices.",
-          "Our software integrates seamlessly with established POS systems (such as Orderbird, Vectron, Lightspeed) or operates as an all-in-one system with Cloud TSE compliance. Every order is tamper-proof, and guests can receive a digital receipt directly on their smartphone.",
-          "Payments can be handled online (Apple Pay, Google Pay, Credit Card, PayPal) or traditionally via cash or card terminal with waitstaff.",
-        ],
-      },
-      {
-        h2: "Eigene Abhol- & Lieferplattform ohne 30% Provision",
-        h2En: "Pickup & Direct Delivery Without High Commission Fees",
-        body: [
-          "Lieferportale wie Lieferando verlangen bis zu 30% Provision pro Bestellung – das frisst die Marge der Gastronomen fast vollständig auf. Mit einer eigenen Bestellsoftware machen Sie sich unabhängig von teuren Vermittlern.",
-          "Stammkunden bestellen direkt über Ihre Website, die Küchenbons werden automatisch gedruckt oder auf einem Küchen-Tablet (KDS) angezeigt. Sie behalten 100% des Umsatzes und bauen sich eine wertvolle Kundenkartei auf.",
-        ],
-        bodyEn: [
-          "Third-party delivery platforms take up to 30% commission per order, eroding restaurant margins. With custom ordering software, you build your own direct pickup and delivery pipeline.",
-          "Customers order directly through your website, and order notifications print instantly in the kitchen or appear on dedicated kitchen display monitors (KDS). You retain 100% of revenue and direct customer relationships.",
-        ],
-      },
-      {
-        h2: "Angebotssoftware Gastronomie: Digitale Bankett-, Catering- und Eventkalkulation",
-        h2En: "Hospitality Quoting Software: Banquet, Catering & Event Estimations",
-        body: [
-          "Für Gastronomiebetriebe mit Event-, Tagungs- oder Catering-Geschäft ist die manuelle Angebotserstellung ein enormer Zeitfresser: Menüvorschläge zusammenstellen, Raummieten, Servicepauschalen und Getränkepauschalen fehleranfällig in Excel berechnen und als statisches PDF versenden.",
-          "Unsere modulare Gastronomie-Software umfasst ein integriertes Angebotsmodul speziell für Restaurants, Hotels und Caterer: Erstellen Sie professionelle, interaktive Angebote in wenigen Minuten. Gäste können Menüfolgen, Getränkewünsche und Zusatzleistungen direkt online anpassen, das Angebot digital mit rechtssicherer Signatur annehmen und eine Anzahlung leisten.",
-          "Verbinden Sie die Eventkalkulation mit Ihrem Warenwirtschafts- und Küchensystem, um Wareneinsätze und Personalbedarf für Großveranstaltungen automatisch zu prognostizieren und teure Überhänge zu vermeiden.",
-        ],
-        bodyEn: [
-          "For hospitality businesses offering event, conference, or catering services, preparing quotes manually is time-intensive: compiling menu proposals, calculating room rentals, staffing fees, and beverage flat-rates in spreadsheets.",
-          "Our modular restaurant management software includes a dedicated quotation engine engineered for restaurants, caterers, and venues: generate polished, interactive proposals in minutes. Clients configure menu courses and beverage packages online, approve quotes via legally compliant digital signatures, and submit deposits instantly.",
-          "Link your banquet estimations with backend inventory and kitchen prep systems to forecast ingredient usage and staffing requirements for large events automatically.",
+          "Fully compliant with KassenSichV and fiscal standards: Our restaurant management software syncs seamlessly with existing POS systems (Vectron, Lightspeed, Orderbird) or operates independently with certified Cloud TSE.",
         ],
         bullets: [
-          "Automatisierte Menü- & Buffet-Kalkulation nach Personenanzahl und Staffelpreisen",
-          "Interaktive Online-Angebote mit digitaler Unterschrift und Anzahlungsabwicklung",
-          "Nahtlose Übergabe in die Küchenplanung, Personaleinsatz und Rechnungsstellung",
-          "Export-Schnittstellen für DATEV und GoBD-konforme Buchhaltung",
+          "Rechtssichere Cloud-TSE mit digitalem QR-Kassenbon",
+          "API-Schnittstellen zu führenden Gastronomie-Kassen",
+          "Manipulationssichere Protokollierung aller Umsätze",
+          "Schneller DATEV-Export für die Buchhaltung",
         ],
         bulletsEn: [
-          "Automated menu and buffet cost modeling scaled to guest headcount and tiered pricing",
-          "Interactive digital proposals with online signature acceptance and deposit processing",
-          "Seamless handoff to kitchen prep, staff scheduling, and final invoice generation",
-          "Export integrations for DATEV and compliant accounting pipelines",
+          "Certified Cloud TSE with QR-based digital receipts",
+          "Direct API connectors for established restaurant POS terminals",
+          "Tamper-proof audit logging for tax compliance",
+          "One-click DATEV export for streamlined accounting",
         ],
       },
       {
-        h2: "Schnelle Einführung & individuelles Branding",
-        h2En: "Fast Implementation & Custom Brand Experience",
+        h2: "Eigene Abhol- & Lieferplattform (0 % Provision)",
+        h2En: "Direct Pickup & Delivery Ordering (0% Commission)",
         body: [
-          "Wir passen das Design des digitalen Menüs exakt an das Ambiente Ihres Hauses an: Edle Typografie für Fine-Dining-Restaurants, lebendige Farben für Burger-Bars oder minimalistisches Design für Coffeeshops.",
-          "Erfahren Sie mehr über unsere [Mobile App Entwicklung](/services/mobile-app-development) oder vereinbaren Sie eine Live-Demo über unser [Kontaktformular](/contact).",
+          "Befreien Sie Ihren Gastronomiebetrieb von bis zu 30 % Vermittlerprovision: Mit Ihrem eigenen Web-Bestellsystem wickeln Sie Abholungen und Lieferungen direkt ab, behalten 100 % Ihrer Marge und bauen wertvolle Kundendaten für Stammkunden-Aktionen auf.",
         ],
         bodyEn: [
-          "We design your digital restaurant presence to match your venue unique interior and brand aesthetic. From fine dining to multi-location chains and trendy bars, we deliver a lightning-fast experience.",
-          "Explore our [Mobile App Development Services](/services/mobile-app-development) or request a demonstration via our [Contact Form](/contact).",
+          "Eliminate 30% aggregator commissions: Own your digital takeaway and delivery pipeline directly, protect your full gross margin, and build high-value customer relationships with built-in re-order marketing.",
+        ],
+        bullets: [
+          "Keine Provisionsabgaben an externe Lieferportale",
+          "Küchen-Monitor (KDS) & automatischer Bondruck",
+          "Flexible Lieferzonen, Mindestbestellwerte & Abholzeiten",
+          "Direkte Online-Zahlung via Apple Pay, PayPal & Kreditkarte",
+        ],
+        bulletsEn: [
+          "Zero commission payouts to third-party delivery platforms",
+          "Kitchen Display System (KDS) and direct thermal ticket printing",
+          "Custom delivery radii, minimum orders, and pickup windows",
+          "Seamless checkout with Apple Pay, Google Pay, and PayPal",
+        ],
+      },
+      {
+        h2: "Angebotssoftware Gastronomie: Catering- & Eventkalkulation",
+        h2En: "Hospitality Quoting: Catering & Banquet Cost Estimator",
+        body: [
+          "Schluss mit fehlerhaften Tabellen: Kalkulieren Sie Caterings, Hochzeiten und Firmenevents in wenigen Minuten. Kunden erhalten ein interaktives Online-Angebot, passen Menüfolgen oder Pauschalen eigenständig an und bestätigen digital mit rechtssicherer Signatur.",
+        ],
+        bodyEn: [
+          "Replace cumbersome spreadsheets: Generate professional quotes for caterings, weddings, and corporate banquets in minutes. Clients configure menu options and beverage packages online and approve with legally binding e-signatures.",
+        ],
+        bullets: [
+          "Automatisierte Menü- & Staffelpreiskalkulation nach Personenzahl",
+          "Interaktive Online-Angebote mit digitaler Signatur & Anzahlung",
+          "Automatische Übergabe an Küchenplanung & Wareneinsatz",
+          "Präzise Deckungsbeitrags- und Personalbedarfsanalyse",
+        ],
+        bulletsEn: [
+          "Automated headcount and tiered-pricing menu cost calculator",
+          "Interactive digital proposals with deposit checkout & e-signing",
+          "Direct dispatch to kitchen prep and ingredient purchasing",
+          "Real-time margin forecasting and labor requirement analysis",
+        ],
+      },
+      {
+        h2: "Individuelles Branding & Schnelle Einrichtung",
+        h2En: "Custom Venue Branding & Fast Deployment",
+        body: [
+          "Wir stimmen das Design des digitalen Menüs punktgenau auf Ihr Restaurant-Interieur und Branding ab – von Fine-Dining bis zu Burger-Bars. Entdecken Sie auch unsere [Mobile App Entwicklung](/services/mobile-app-development) oder fordern Sie eine Demo über unser [Kontaktformular](/contact) an.",
+        ],
+        bodyEn: [
+          "We customize the entire digital menu and ordering UI to reflect your restaurant unique brand identity and interior aesthetic. Explore our [Mobile App Development Services](/services/mobile-app-development) or request a live demo via our [Contact Form](/contact).",
+        ],
+        bullets: [
+          "Individuelle Typografie, Farbwelten & Logo-Integration",
+          "Einsatzbereit in wenigen Werktagen ohne Betriebsunterbrechung",
+          "Optimiert für Smartphones, Tablets und SB-Terminals",
+          "Persönliche Einweisung und zuverlässiger Gastro-Support",
+        ],
+        bulletsEn: [
+          "Custom typography, brand colorways, and venue imagery",
+          "Turnkey onboarding within days without operational disruption",
+          "Responsive performance across smartphones, tablets, and kiosks",
+          "Dedicated onboarding session and reliable hospitality support",
         ],
       },
     ],

@@ -12,9 +12,9 @@ interface LanguageContextValue {
 }
 
 const LanguageContext = createContext<LanguageContextValue>({
-  lang: "en",
+  lang: "de",
   setLang: () => {},
-  t: <T,>(_de: T, en: T): T => en,
+  t: <T,>(de: T, _en: T): T => de,
 });
 
 const GERMAN_TIMEZONES = [
@@ -27,43 +27,29 @@ const GERMAN_TIMEZONES = [
 ];
 
 /**
- * Fast synchronous check using browser timezone and system language.
- * Runs instantly on client mount with zero network delay.
+ * Fast synchronous check using route path, stored preference and browser settings.
+ * Defaults reliably to German ('de') for Nexa Solutions.
  */
 function detectLocalRegionLanguage(): Language {
   try {
-    // 1. Check system / browser timezone
-    const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
-    if (GERMAN_TIMEZONES.some((gtz) => tz.includes(gtz))) {
-      return "de";
+    if (typeof window !== "undefined") {
+      const pathname = window.location.pathname;
+      if (pathname.startsWith("/en") || pathname.includes("/en/")) {
+        return "en";
+      }
+      if (pathname.startsWith("/de") || pathname.includes("/de/")) {
+        return "de";
+      }
     }
-
-    // 2. Check browser language settings
-    const navLangs =
-      typeof navigator !== "undefined"
-        ? navigator.languages && navigator.languages.length > 0
-          ? navigator.languages
-          : [navigator.language || ""]
-        : [];
-
-    const hasGermanLocale = navLangs.some(
-      (l) => typeof l === "string" && l.toLowerCase().startsWith("de")
-    );
-
-    if (hasGermanLocale) {
-      return "de";
-    }
-
-    // For any other region or locale, default to English ("en")
-    return "en";
+    return "de";
   } catch {
-    return "en";
+    return "de";
   }
 }
 
 export function LanguageProvider({
   children,
-  initialLang = "en",
+  initialLang = "de",
 }: {
   children: React.ReactNode;
   initialLang?: Language;
@@ -72,93 +58,37 @@ export function LanguageProvider({
 
   useEffect(() => {
     let isSubscribed = true;
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2500);
 
     try {
-      // 1. If user previously made a manual selection, prioritize and respect it
+      // 1. Path-based language always takes highest precedence
+      if (typeof window !== "undefined") {
+        const p = window.location.pathname;
+        if (p.startsWith("/en") || p.includes("/en/")) {
+          setLangState("en");
+          return;
+        }
+        if (p.startsWith("/de") || p.includes("/de/")) {
+          setLangState("de");
+          return;
+        }
+      }
+
+      // 2. If user previously made a manual selection, prioritize and respect it
       const isManual = localStorage.getItem("site:lang_manual") === "true";
       const stored = localStorage.getItem("site:lang") as Language | null;
 
-      // Asynchronously schedule initial state synchronization to prevent cascading render warnings
-      queueMicrotask(() => {
-        if (!isSubscribed) return;
+      if (isManual && (stored === "de" || stored === "en")) {
+        setLangState(stored);
+        return;
+      }
 
-        if (isManual && (stored === "de" || stored === "en")) {
-          setLangState(stored);
-          return;
-        }
-
-        // 2. Instant client-side region detection (0ms delay)
-        const instantDetected = detectLocalRegionLanguage();
-        setLangState(instantDetected);
-      });
-
-      // 3. Precise IP-based region check in background (validates physical country once per session)
-      const checkGeoIP = async () => {
-        if (typeof window !== "undefined" && sessionStorage.getItem("site:geo_done")) {
-          return;
-        }
-
-        let detectedCountry: string | null = null;
-
-        try {
-          // Primary fast lookup
-          const res = await fetch("https://api.country.is", {
-            signal: controller.signal,
-          });
-          if (res.ok) {
-            const data = await res.json();
-            if (data?.country) {
-              detectedCountry = String(data.country).trim().toUpperCase();
-            }
-          }
-        } catch {
-          // Secondary fallback lookup
-          try {
-            const res2 = await fetch("https://ipwho.is/", {
-              signal: controller.signal,
-            });
-            if (res2.ok) {
-              const data2 = await res2.json();
-              if (data2?.country_code) {
-                detectedCountry = String(data2.country_code).trim().toUpperCase();
-              }
-            }
-          } catch {}
-        } finally {
-          clearTimeout(timeoutId);
-          try {
-            sessionStorage.setItem("site:geo_done", "true");
-          } catch {}
-        }
-
-        if (isSubscribed && detectedCountry) {
-          // Only update if user hasn't made a manual choice while the request was in flight
-          const userHasManuallyChosen =
-            localStorage.getItem("site:lang_manual") === "true";
-
-          if (!userHasManuallyChosen) {
-            const regionLang: Language = GERMAN_COUNTRIES.has(detectedCountry)
-              ? "de"
-              : "en";
-
-            setLangState(regionLang);
-            try {
-              localStorage.setItem("site:lang", regionLang);
-            } catch {}
-          }
-        }
-      };
-
-      checkGeoIP();
-
-      return () => {
-        isSubscribed = false;
-        clearTimeout(timeoutId);
-        controller.abort();
-      };
+      // 3. Reliable default for Stuttgart agency
+      setLangState("de");
     } catch {}
+
+    return () => {
+      isSubscribed = false;
+    };
   }, []);
 
   // Update HTML lang attribute, document title, and meta description whenever language changes

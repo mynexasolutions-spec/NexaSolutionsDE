@@ -412,7 +412,8 @@ export default function MobileAppPage() {
       {/* Top Navbar */}
       <Navbar onOpenContact={() => { setSelectedPackage("Mobile-App-Entwicklung"); setContactOpen(true); }} />
 
-      {/* Hero Section */}
+      <main role="main" className="flex-1">
+        {/* Hero Section */}
       <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-28 overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-slate-50/40">
         {/* Ambient glows */}
         <div className="absolute top-10 right-0 w-[550px] h-[550px] bg-gradient-to-bl from-blue-200/40 via-indigo-100/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10 translate-x-1/4 -translate-y-1/4" />
@@ -1292,6 +1293,7 @@ export default function MobileAppPage() {
           </div>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
       <Footer />

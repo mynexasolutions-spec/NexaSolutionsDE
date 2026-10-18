@@ -1,6 +1,6 @@
 ================================================================================
 GOOGLE SEARCH CONSOLE - URL INDEXING LIST
-Domain: https://nexa-solutions.de
+Domain: https://www.nexa-solutions.de
 Generated for: Nexa Solutions
 ================================================================================
 
@@ -8,7 +8,7 @@ Generated for: Nexa Solutions
 1. SITEMAP SUBMISSION (Google Search Console -> "Sitemaps")
 --------------------------------------------------------------------------------
 sitemap.xml
-(Full URL: https://nexa-solutions.de/sitemap.xml)
+(Full URL: https://www.nexa-solutions.de/sitemap.xml)
 
 
 --------------------------------------------------------------------------------
@@ -16,151 +16,151 @@ sitemap.xml
 --------------------------------------------------------------------------------
 
 --- TIER 1: HIGH PRIORITY (Core Business & Lead Pages) ---
-https://nexa-solutions.de/
-https://nexa-solutions.de/services/web-development
-https://nexa-solutions.de/services/mobile-app-development
-https://nexa-solutions.de/services/ai-automation
-https://nexa-solutions.de/services/mvp-development
-https://nexa-solutions.de/contact
+https://www.nexa-solutions.de/
+https://www.nexa-solutions.de/services/web-development
+https://www.nexa-solutions.de/services/mobile-app-development
+https://www.nexa-solutions.de/services/ai-automation
+https://www.nexa-solutions.de/services/mvp-development
+https://www.nexa-solutions.de/contact
 
 --- TIER 1.5: 20 DEDICATED SERVICE PAGES (German DE & English EN) ---
-https://nexa-solutions.de/de/services/mitarbeiter-zeiterfassung
-https://nexa-solutions.de/en/services/employee-attendance-tracking
-https://nexa-solutions.de/de/services/individuelle-finanzsysteme
-https://nexa-solutions.de/en/services/custom-financial-systems
-https://nexa-solutions.de/de/services/online-shop-entwicklung
-https://nexa-solutions.de/en/services/ecommerce-stores
-https://nexa-solutions.de/de/services/coaching-kuenstler-portfolios
-https://nexa-solutions.de/en/services/coaching-artist-portfolios
-https://nexa-solutions.de/de/services/professionelles-webdesign
-https://nexa-solutions.de/en/services/professional-web-design
-https://nexa-solutions.de/de/services/websites-fuer-musiker
-https://nexa-solutions.de/en/services/websites-for-musicians
-https://nexa-solutions.de/de/services/digitale-marketing-kampagnen
-https://nexa-solutions.de/en/services/digital-marketing-campaigns
-https://nexa-solutions.de/de/services/performance-optimierung
-https://nexa-solutions.de/en/services/performance-optimization
-https://nexa-solutions.de/de/services/llm-integration
-https://nexa-solutions.de/en/services/llm-integration
-https://nexa-solutions.de/de/services/ki-fuer-unternehmen
-https://nexa-solutions.de/en/services/ai-for-businesses
-https://nexa-solutions.de/de/services/gastronomie-restaurant-systeme
-https://nexa-solutions.de/en/services/restaurant-management-systems
-https://nexa-solutions.de/de/services/unternehmensverwaltung-systeme
-https://nexa-solutions.de/en/services/business-management-systems
-https://nexa-solutions.de/de/services/geschaeftsprozess-automatisierung
-https://nexa-solutions.de/en/services/business-workflow-automation
-https://nexa-solutions.de/de/services/ki-agenten-automatisierung
-https://nexa-solutions.de/en/services/ai-agents-automation
-https://nexa-solutions.de/de/services/crm-system-entwicklung
-https://nexa-solutions.de/en/services/custom-crm-systems
-https://nexa-solutions.de/de/services/online-terminbuchungssysteme
-https://nexa-solutions.de/en/services/appointment-booking-systems
-https://nexa-solutions.de/de/services/rechnungswesen-buchhaltung-software
-https://nexa-solutions.de/en/services/invoicing-accounting-systems
-https://nexa-solutions.de/de/services/warenwirtschaft-lagerverwaltung
-https://nexa-solutions.de/en/services/inventory-warehouse-management
-https://nexa-solutions.de/de/services/ki-chatbots-kundenservice
-https://nexa-solutions.de/en/services/smart-ai-chatbots
-https://nexa-solutions.de/de/services/digitale-transformation-beratung
-https://nexa-solutions.de/en/services/digital-transformation-solutions
+https://www.nexa-solutions.de/de/services/mitarbeiter-zeiterfassung
+https://www.nexa-solutions.de/en/services/employee-attendance-tracking
+https://www.nexa-solutions.de/de/services/individuelle-finanzsysteme
+https://www.nexa-solutions.de/en/services/custom-financial-systems
+https://www.nexa-solutions.de/de/services/online-shop-entwicklung
+https://www.nexa-solutions.de/en/services/ecommerce-stores
+https://www.nexa-solutions.de/de/services/coaching-kuenstler-portfolios
+https://www.nexa-solutions.de/en/services/coaching-artist-portfolios
+https://www.nexa-solutions.de/de/services/professionelles-webdesign
+https://www.nexa-solutions.de/en/services/professional-web-design
+https://www.nexa-solutions.de/de/services/websites-fuer-musiker
+https://www.nexa-solutions.de/en/services/websites-for-musicians
+https://www.nexa-solutions.de/de/services/digitale-marketing-kampagnen
+https://www.nexa-solutions.de/en/services/digital-marketing-campaigns
+https://www.nexa-solutions.de/de/services/performance-optimierung
+https://www.nexa-solutions.de/en/services/performance-optimization
+https://www.nexa-solutions.de/de/services/llm-integration
+https://www.nexa-solutions.de/en/services/llm-integration
+https://www.nexa-solutions.de/de/services/ki-fuer-unternehmen
+https://www.nexa-solutions.de/en/services/ai-for-businesses
+https://www.nexa-solutions.de/de/services/gastronomie-restaurant-systeme
+https://www.nexa-solutions.de/en/services/restaurant-management-systems
+https://www.nexa-solutions.de/de/services/unternehmensverwaltung-systeme
+https://www.nexa-solutions.de/en/services/business-management-systems
+https://www.nexa-solutions.de/de/services/geschaeftsprozess-automatisierung
+https://www.nexa-solutions.de/en/services/business-workflow-automation
+https://www.nexa-solutions.de/de/services/ki-agenten-automatisierung
+https://www.nexa-solutions.de/en/services/ai-agents-automation
+https://www.nexa-solutions.de/de/services/crm-system-entwicklung
+https://www.nexa-solutions.de/en/services/custom-crm-systems
+https://www.nexa-solutions.de/de/services/online-terminbuchungssysteme
+https://www.nexa-solutions.de/en/services/appointment-booking-systems
+https://www.nexa-solutions.de/de/services/rechnungswesen-buchhaltung-software
+https://www.nexa-solutions.de/en/services/invoicing-accounting-systems
+https://www.nexa-solutions.de/de/services/warenwirtschaft-lagerverwaltung
+https://www.nexa-solutions.de/en/services/inventory-warehouse-management
+https://www.nexa-solutions.de/de/services/ki-chatbots-kundenservice
+https://www.nexa-solutions.de/en/services/smart-ai-chatbots
+https://www.nexa-solutions.de/de/services/digitale-transformation-beratung
+https://www.nexa-solutions.de/en/services/digital-transformation-solutions
 
 --- TIER 2: PORTFOLIO, GUIDES & HUBS ---
-https://nexa-solutions.de/projects
-https://nexa-solutions.de/website-kosten
-https://nexa-solutions.de/app-entwickeln-lassen-kosten
-https://nexa-solutions.de/loesungen
-https://nexa-solutions.de/blog
+https://www.nexa-solutions.de/projects
+https://www.nexa-solutions.de/website-kosten
+https://www.nexa-solutions.de/app-entwickeln-lassen-kosten
+https://www.nexa-solutions.de/loesungen
+https://www.nexa-solutions.de/blog
 
 --- TIER 3: BLOG ARTICLES (Organic SEO & Google Traffic) ---
-https://nexa-solutions.de/blog/ki-automatisierung-unternehmen-2026
-https://nexa-solutions.de/blog/nextjs-vs-wordpress-2026
-https://nexa-solutions.de/blog/react-native-cross-platform-apps
-https://nexa-solutions.de/blog/dsgvo-konforme-ki-infrastruktur
-https://nexa-solutions.de/blog/mvp-development-strategy-startups
-https://nexa-solutions.de/blog/crm-lead-automation-n8n
-https://nexa-solutions.de/blog/ki-startups-deutschland-2026
-https://nexa-solutions.de/blog/ki-startups-finanzierung-2026
-https://nexa-solutions.de/blog/generative-ki-startups-deutschland
+https://www.nexa-solutions.de/blog/ki-automatisierung-unternehmen-2026
+https://www.nexa-solutions.de/blog/nextjs-vs-wordpress-2026
+https://www.nexa-solutions.de/blog/react-native-cross-platform-apps
+https://www.nexa-solutions.de/blog/dsgvo-konforme-ki-infrastruktur
+https://www.nexa-solutions.de/blog/mvp-development-strategy-startups
+https://www.nexa-solutions.de/blog/crm-lead-automation-n8n
+https://www.nexa-solutions.de/blog/ki-startups-deutschland-2026
+https://www.nexa-solutions.de/blog/ki-startups-finanzierung-2026
+https://www.nexa-solutions.de/blog/generative-ki-startups-deutschland
 
 --- TIER 4: LEGAL & COMPLIANCE PAGES ---
-https://nexa-solutions.de/impressum
-https://nexa-solutions.de/privacy-policy
-https://nexa-solutions.de/terms-of-service
+https://www.nexa-solutions.de/impressum
+https://www.nexa-solutions.de/privacy-policy
+https://www.nexa-solutions.de/terms-of-service
 
 
 --------------------------------------------------------------------------------
 3. RAW CLEAN LIST (One Canonical URL per line - Easy Copy/Paste for GSC)
 --------------------------------------------------------------------------------
-https://nexa-solutions.de/
-https://nexa-solutions.de/services/web-development
-https://nexa-solutions.de/services/mobile-app-development
-https://nexa-solutions.de/services/ai-automation
-https://nexa-solutions.de/services/mvp-development
-https://nexa-solutions.de/contact
-https://nexa-solutions.de/projects
-https://nexa-solutions.de/website-kosten
-https://nexa-solutions.de/app-entwickeln-lassen-kosten
-https://nexa-solutions.de/loesungen
-https://nexa-solutions.de/blog
-https://nexa-solutions.de/impressum
-https://nexa-solutions.de/privacy-policy
-https://nexa-solutions.de/terms-of-service
-https://nexa-solutions.de/de/services/mitarbeiter-zeiterfassung
-https://nexa-solutions.de/en/services/employee-attendance-tracking
-https://nexa-solutions.de/de/services/individuelle-finanzsysteme
-https://nexa-solutions.de/en/services/custom-financial-systems
-https://nexa-solutions.de/de/services/online-shop-entwicklung
-https://nexa-solutions.de/en/services/ecommerce-stores
-https://nexa-solutions.de/de/services/coaching-kuenstler-portfolios
-https://nexa-solutions.de/en/services/coaching-artist-portfolios
-https://nexa-solutions.de/de/services/professionelles-webdesign
-https://nexa-solutions.de/en/services/professional-web-design
-https://nexa-solutions.de/de/services/websites-fuer-musiker
-https://nexa-solutions.de/en/services/websites-for-musicians
-https://nexa-solutions.de/de/services/digitale-marketing-kampagnen
-https://nexa-solutions.de/en/services/digital-marketing-campaigns
-https://nexa-solutions.de/de/services/performance-optimierung
-https://nexa-solutions.de/en/services/performance-optimization
-https://nexa-solutions.de/de/services/llm-integration
-https://nexa-solutions.de/en/services/llm-integration
-https://nexa-solutions.de/de/services/ki-fuer-unternehmen
-https://nexa-solutions.de/en/services/ai-for-businesses
-https://nexa-solutions.de/de/services/gastronomie-restaurant-systeme
-https://nexa-solutions.de/en/services/restaurant-management-systems
-https://nexa-solutions.de/de/services/unternehmensverwaltung-systeme
-https://nexa-solutions.de/en/services/business-management-systems
-https://nexa-solutions.de/de/services/geschaeftsprozess-automatisierung
-https://nexa-solutions.de/en/services/business-workflow-automation
-https://nexa-solutions.de/de/services/ki-agenten-automatisierung
-https://nexa-solutions.de/en/services/ai-agents-automation
-https://nexa-solutions.de/de/services/crm-system-entwicklung
-https://nexa-solutions.de/en/services/custom-crm-systems
-https://nexa-solutions.de/de/services/online-terminbuchungssysteme
-https://nexa-solutions.de/en/services/appointment-booking-systems
-https://nexa-solutions.de/de/services/rechnungswesen-buchhaltung-software
-https://nexa-solutions.de/en/services/invoicing-accounting-systems
-https://nexa-solutions.de/de/services/warenwirtschaft-lagerverwaltung
-https://nexa-solutions.de/en/services/inventory-warehouse-management
-https://nexa-solutions.de/de/services/ki-chatbots-kundenservice
-https://nexa-solutions.de/en/services/smart-ai-chatbots
-https://nexa-solutions.de/de/services/digitale-transformation-beratung
-https://nexa-solutions.de/en/services/digital-transformation-solutions
-https://nexa-solutions.de/blog/ki-automatisierung-unternehmen-2026
-https://nexa-solutions.de/blog/nextjs-vs-wordpress-2026
-https://nexa-solutions.de/blog/react-native-cross-platform-apps
-https://nexa-solutions.de/blog/dsgvo-konforme-ki-infrastruktur
-https://nexa-solutions.de/blog/mvp-development-strategy-startups
-https://nexa-solutions.de/blog/crm-lead-automation-n8n
-https://nexa-solutions.de/blog/ki-startups-deutschland-2026
-https://nexa-solutions.de/blog/ki-startups-finanzierung-2026
-https://nexa-solutions.de/blog/generative-ki-startups-deutschland
+https://www.nexa-solutions.de/
+https://www.nexa-solutions.de/services/web-development
+https://www.nexa-solutions.de/services/mobile-app-development
+https://www.nexa-solutions.de/services/ai-automation
+https://www.nexa-solutions.de/services/mvp-development
+https://www.nexa-solutions.de/contact
+https://www.nexa-solutions.de/projects
+https://www.nexa-solutions.de/website-kosten
+https://www.nexa-solutions.de/app-entwickeln-lassen-kosten
+https://www.nexa-solutions.de/loesungen
+https://www.nexa-solutions.de/blog
+https://www.nexa-solutions.de/impressum
+https://www.nexa-solutions.de/privacy-policy
+https://www.nexa-solutions.de/terms-of-service
+https://www.nexa-solutions.de/de/services/mitarbeiter-zeiterfassung
+https://www.nexa-solutions.de/en/services/employee-attendance-tracking
+https://www.nexa-solutions.de/de/services/individuelle-finanzsysteme
+https://www.nexa-solutions.de/en/services/custom-financial-systems
+https://www.nexa-solutions.de/de/services/online-shop-entwicklung
+https://www.nexa-solutions.de/en/services/ecommerce-stores
+https://www.nexa-solutions.de/de/services/coaching-kuenstler-portfolios
+https://www.nexa-solutions.de/en/services/coaching-artist-portfolios
+https://www.nexa-solutions.de/de/services/professionelles-webdesign
+https://www.nexa-solutions.de/en/services/professional-web-design
+https://www.nexa-solutions.de/de/services/websites-fuer-musiker
+https://www.nexa-solutions.de/en/services/websites-for-musicians
+https://www.nexa-solutions.de/de/services/digitale-marketing-kampagnen
+https://www.nexa-solutions.de/en/services/digital-marketing-campaigns
+https://www.nexa-solutions.de/de/services/performance-optimierung
+https://www.nexa-solutions.de/en/services/performance-optimization
+https://www.nexa-solutions.de/de/services/llm-integration
+https://www.nexa-solutions.de/en/services/llm-integration
+https://www.nexa-solutions.de/de/services/ki-fuer-unternehmen
+https://www.nexa-solutions.de/en/services/ai-for-businesses
+https://www.nexa-solutions.de/de/services/gastronomie-restaurant-systeme
+https://www.nexa-solutions.de/en/services/restaurant-management-systems
+https://www.nexa-solutions.de/de/services/unternehmensverwaltung-systeme
+https://www.nexa-solutions.de/en/services/business-management-systems
+https://www.nexa-solutions.de/de/services/geschaeftsprozess-automatisierung
+https://www.nexa-solutions.de/en/services/business-workflow-automation
+https://www.nexa-solutions.de/de/services/ki-agenten-automatisierung
+https://www.nexa-solutions.de/en/services/ai-agents-automation
+https://www.nexa-solutions.de/de/services/crm-system-entwicklung
+https://www.nexa-solutions.de/en/services/custom-crm-systems
+https://www.nexa-solutions.de/de/services/online-terminbuchungssysteme
+https://www.nexa-solutions.de/en/services/appointment-booking-systems
+https://www.nexa-solutions.de/de/services/rechnungswesen-buchhaltung-software
+https://www.nexa-solutions.de/en/services/invoicing-accounting-systems
+https://www.nexa-solutions.de/de/services/warenwirtschaft-lagerverwaltung
+https://www.nexa-solutions.de/en/services/inventory-warehouse-management
+https://www.nexa-solutions.de/de/services/ki-chatbots-kundenservice
+https://www.nexa-solutions.de/en/services/smart-ai-chatbots
+https://www.nexa-solutions.de/de/services/digitale-transformation-beratung
+https://www.nexa-solutions.de/en/services/digital-transformation-solutions
+https://www.nexa-solutions.de/blog/ki-automatisierung-unternehmen-2026
+https://www.nexa-solutions.de/blog/nextjs-vs-wordpress-2026
+https://www.nexa-solutions.de/blog/react-native-cross-platform-apps
+https://www.nexa-solutions.de/blog/dsgvo-konforme-ki-infrastruktur
+https://www.nexa-solutions.de/blog/mvp-development-strategy-startups
+https://www.nexa-solutions.de/blog/crm-lead-automation-n8n
+https://www.nexa-solutions.de/blog/ki-startups-deutschland-2026
+https://www.nexa-solutions.de/blog/ki-startups-finanzierung-2026
+https://www.nexa-solutions.de/blog/generative-ki-startups-deutschland
 
 
 --------------------------------------------------------------------------------
 4. DO NOT INDEX (Blocked in robots.txt)
 --------------------------------------------------------------------------------
-https://nexa-solutions.de/admin
-https://nexa-solutions.de/admin/*
-https://nexa-solutions.de/api/*
+https://www.nexa-solutions.de/admin
+https://www.nexa-solutions.de/admin/*
+https://www.nexa-solutions.de/api/*
 ================================================================================

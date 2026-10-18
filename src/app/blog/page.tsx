@@ -24,12 +24,57 @@ import ContactModal from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { blogPosts, blogCategories, BlogPost } from "@/data/blogData";
 
-export default function BlogListingPage() {
-  const { t, lang } = useLanguage();
+const GERMAN_MONTH_MAP: Record<string, number> = {
+  januar: 0, january: 0,
+  februar: 1, february: 1,
+  märz: 2, maerz: 2, march: 2,
+  april: 3,
+  mai: 4, may: 4,
+  juni: 5, june: 5,
+  juli: 6, july: 6,
+  august: 7,
+  september: 8,
+  oktober: 9, october: 9,
+  november: 10,
+  dezember: 11, december: 11,
+};
+
+function getBlogPostTimestamp(post: BlogPost): number {
+  const iso = post.createdAt || post.publishedAt || post.updatedAt;
+  if (iso) {
+    const t = new Date(iso).getTime();
+    if (!isNaN(t) && t > 0) return t;
+  }
+  if (!post.date) return 0;
+  const m = String(post.date).match(/(\d{1,2})\.?\s+([a-zA-ZäöüÄÖÜ]+)\s+(\d{4})/);
+  if (m) {
+    const day = parseInt(m[1], 10);
+    const month = GERMAN_MONTH_MAP[m[2].toLowerCase()];
+    const year = parseInt(m[3], 10);
+    if (month !== undefined) {
+      return new Date(Date.UTC(year, month, day, 12, 0, 0)).getTime();
+    }
+  }
+  const std = new Date(post.date).getTime();
+  return isNaN(std) ? 0 : std;
+}
+
+function sortBlogPostsNewestFirst(posts: BlogPost[]): BlogPost[] {
+  return [...posts].sort((a, b) => getBlogPostTimestamp(b) - getBlogPostTimestamp(a));
+}
+
+export default function BlogListingPage({
+  forcedLocale,
+}: {
+  forcedLocale?: "de" | "en";
+} = {}) {
+  const { t, lang: ctxLang } = useLanguage();
+  const lang = forcedLocale || ctxLang;
+  const postBasePath = lang === "de" ? "/blog" : "/en/blog";
   const [contactOpen, setContactOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [allPosts, setAllPosts] = useState<BlogPost[]>(blogPosts);
+  const [allPosts, setAllPosts] = useState<BlogPost[]>(() => sortBlogPostsNewestFirst(blogPosts));
 
   // Fetch blogs from DB/API
   React.useEffect(() => {
@@ -44,6 +89,7 @@ export default function BlogListingPage() {
             const mapped: BlogPost[] = data.blogs.map((b: any) => ({
               slug: b.slug,
               titleDe: b.title_de || b.titleDe,
+              seoTitleDe: b.seo_title_de || b.seoTitleDe || b.title_de || b.titleDe,
               titleEn: b.title_en || b.titleEn,
               excerptDe: b.excerpt_de || b.excerptDe,
               excerptEn: b.excerpt_en || b.excerptEn,
@@ -52,6 +98,9 @@ export default function BlogListingPage() {
               categoryLabelEn: b.category_label_en || b.categoryLabelEn || "AI & Automation",
               categoryBadgeClass: b.category_badge_class || b.categoryBadgeClass || "bg-amber-50 text-amber-700 border-amber-200/80",
               date: b.date,
+              createdAt: b.created_at || b.createdAt,
+              publishedAt: b.published_at || b.publishedAt,
+              updatedAt: b.updated_at || b.updatedAt,
               readTimeDe: b.read_time_de || b.readTimeDe,
               readTimeEn: b.read_time_en || b.readTimeEn,
               coverImage: b.cover_image || b.coverImage,
@@ -69,7 +118,7 @@ export default function BlogListingPage() {
               tags: b.tags || [],
               relatedSlugs: b.related_slugs || b.relatedSlugs || [],
             }));
-            setAllPosts(mapped);
+            setAllPosts(sortBlogPostsNewestFirst(mapped));
           }
         }
       } catch (err) {
@@ -79,14 +128,14 @@ export default function BlogListingPage() {
     loadDbBlogs();
   }, []);
 
-  // Filter posts based on category and search query
+  // Filter posts based on category and search query, always sorted newest first
   const filteredPosts = useMemo(() => {
-    return allPosts.filter((post) => {
+    const list = allPosts.filter((post) => {
       const matchesCategory =
         selectedCategory === "all" || post.category === selectedCategory;
       const title = lang === "de" ? post.titleDe : post.titleEn;
       const excerpt = lang === "de" ? post.excerptDe : post.excerptEn;
-      const tags = post.tags.join(" ");
+      const tags = (post.tags || []).join(" ");
 
       const matchesSearch =
         !searchQuery.trim() ||
@@ -96,11 +145,15 @@ export default function BlogListingPage() {
 
       return matchesCategory && matchesSearch;
     });
+
+    return sortBlogPostsNewestFirst(list);
   }, [allPosts, selectedCategory, searchQuery, lang]);
 
-  // Main featured article (default or first in list)
+  // Main featured article (newest post or explicitly featured article)
   const featuredPost = useMemo(() => {
-    return allPosts.find((p) => p.featured) || allPosts[0];
+    if (!allPosts || allPosts.length === 0) return null;
+    const feat = allPosts.find((p) => p.featured);
+    return feat || allPosts[0];
   }, [allPosts]);
 
   return (
@@ -199,7 +252,11 @@ export default function BlogListingPage() {
             <div className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center gap-2 text-xs font-bold text-orange-600 uppercase tracking-wider mb-4">
                 <TrendingUp className="w-4 h-4" />
-                <span>{t("Hervorgehobener Leitartikel", "Featured Lead Article")}</span>
+                <span>
+                  {featuredPost.featured
+                    ? t("Hervorgehobener Leitartikel", "Featured Lead Article")
+                    : t("Neuester Fachartikel", "Latest Article")}
+                </span>
               </div>
 
               <div className="group relative rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border border-slate-800 text-white overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10">
@@ -228,7 +285,7 @@ export default function BlogListingPage() {
                       </span>
                     </div>
 
-                    <Link href={`/blog/${featuredPost.slug}`}>
+                    <Link href={`${postBasePath}/${featuredPost.slug}`}>
                       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight group-hover:text-orange-400 transition-colors mb-4">
                         {lang === "de"
                           ? featuredPost.titleDe
@@ -261,10 +318,11 @@ export default function BlogListingPage() {
                       </div>
 
                       <Link
-                        href={`/blog/${featuredPost.slug}`}
+                        href={`${postBasePath}/${featuredPost.slug}`}
+                        aria-label={`${t("Leitfaden lesen", "Read In-Depth Guide")}: ${lang === "de" ? featuredPost.titleDe : featuredPost.titleEn}`}
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm sm:text-base font-bold shadow-lg shadow-orange-600/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
                       >
-                        <span>{t("Artikel lesen", "Read Article")}</span>
+                        <span>{t("Leitfaden lesen", "Read In-Depth Guide")}</span>
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
@@ -273,8 +331,8 @@ export default function BlogListingPage() {
                   {/* Right Image */}
                   <div className="lg:col-span-5 relative">
                     <Link
-                      href={`/blog/${featuredPost.slug}`}
-                      aria-label={`${t("Artikel öffnen", "Open article")}: ${featuredPost.titleDe}`}
+                      href={`${postBasePath}/${featuredPost.slug}`}
+                      aria-label={`${t("Artikel öffnen", "Open article")}: ${lang === "de" ? featuredPost.titleDe : featuredPost.titleEn}`}
                       className="block relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group/img"
                     >
                       <span className="sr-only">
@@ -354,7 +412,7 @@ export default function BlogListingPage() {
                     >
                       {/* Post Thumbnail Image */}
                       <Link
-                        href={`/blog/${post.slug}`}
+                        href={`${postBasePath}/${post.slug}`}
                         aria-label={`${t("Artikel öffnen", "Open article")}: ${title}`}
                         className="relative block aspect-[16/10] overflow-hidden bg-slate-100"
                       >
@@ -373,13 +431,19 @@ export default function BlogListingPage() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                        {/* Category Tag Overlay */}
-                        <div className="absolute top-3.5 left-3.5">
+                        {/* Category Tag Overlay & New Badge */}
+                        <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 flex-wrap">
                           <span
                             className={`px-3 py-1 rounded-full text-[11px] font-bold border backdrop-blur-md shadow-xs ${post.categoryBadgeClass}`}
                           >
                             {categoryLabel}
                           </span>
+                          {idx === 0 && selectedCategory === "all" && !searchQuery.trim() && (
+                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-xs border border-orange-400/50 flex items-center gap-1">
+                              <Sparkles className="w-2.5 h-2.5" />
+                              {t("Neu", "New")}
+                            </span>
+                          )}
                         </div>
                       </Link>
 
@@ -400,7 +464,7 @@ export default function BlogListingPage() {
                           </div>
 
                           {/* Post Title */}
-                          <Link href={`/blog/${post.slug}`}>
+                          <Link href={`${postBasePath}/${post.slug}`}>
                             <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2 leading-snug mb-2.5">
                               {title}
                             </h3>
@@ -424,11 +488,11 @@ export default function BlogListingPage() {
                           </div>
 
                           <Link
-                            href={`/blog/${post.slug}`}
-                            aria-label={`${t("Artikel lesen", "Read article")}: ${title}`}
+                            href={`${postBasePath}/${post.slug}`}
+                            aria-label={`${t("Fachartikel lesen", "Read article")}: ${title}`}
                             className="inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-orange-600 hover:text-orange-700 group/link"
                           >
-                            <span>{t("Mehr lesen", "Read More")}</span>
+                            <span>{t("Fachartikel lesen", "Read Article")}</span>
                             <span className="sr-only">: {title}</span>
                             <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                           </Link>

@@ -2,19 +2,43 @@ import JsonLd from "@/components/JsonLd";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Kontakt & Erstberatung | Nexa Solutions",
+  title: "Kontakt & Beratung Stuttgart | Nexa Solutions",
   description:
-    "Kostenlose Erstberatung für Webentwicklung, Apps & n8n Automatisierung anfragen. Transparente Festpreise und Antwort in unter 24 Stunden erhalten!",
+    "Kostenlose Erstberatung in Stuttgart für Webentwicklung, Apps & n8n Automatisierung anfragen. Transparente Festpreise & Antwort in unter 24h!",
   path: "/contact",
 });
 
 const contactJsonLd = {
   "@context": "https://schema.org",
-  "@type": "ContactPage",
-  name: "Kontakt & Erstberatung - Nexa Solutions",
+  "@type": ["ContactPage", "LocalBusiness", "ProfessionalService"],
+  name: "Kontakt & Beratung Stuttgart - Nexa Solutions",
   description:
-    "Treten Sie in Kontakt mit Nexa Solutions für Webentwicklung, mobile Apps und KI-Automatisierung mit n8n.",
+    "Treten Sie in Kontakt mit Nexa Solutions in Stuttgart für Webentwicklung, mobile Apps und KI-Automatisierung mit n8n.",
   url: `${SITE_URL}/contact`,
+  telephone: "+91 8077 313 241",
+  email: "contact@nexa-solutions.de",
+  priceRange: "€€",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "[STRASSE HIER EINTRAGEN: z. B. Königstraße XX]",
+    postalCode: "[PLZ HIER EINTRAGEN: z. B. 70173]",
+    addressLocality: "Stuttgart",
+    addressRegion: "Baden-Württemberg",
+    addressCountry: "DE",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "[LATITUDE HIER EINTRAGEN: z. B. 48.7758]",
+    longitude: "[LONGITUDE HIER EINTRAGEN: z. B. 9.1829]",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+  ],
   mainEntity: {
     "@type": "Organization",
     name: "Nexa Solutions",

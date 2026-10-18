@@ -3,6 +3,11 @@
 -- Run this in your Supabase SQL Editor (https://supabase.com/dashboard/project/_/sql)
 -- =========================================================
 
+-- Migration snippet to update existing tables (safe to run multiple times):
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS faqs JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS seo_title_de TEXT;
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS published_at TIMESTAMPTZ;
+
 -- 1. Create queries / submissions table
 CREATE TABLE IF NOT EXISTS public.queries (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -38,6 +43,7 @@ CREATE TABLE IF NOT EXISTS public.blogs (
     slug VARCHAR(255) UNIQUE NOT NULL,
     title_de TEXT NOT NULL,
     title_en TEXT NOT NULL,
+    seo_title_de TEXT,
     excerpt_de TEXT,
     excerpt_en TEXT,
     category VARCHAR(100) NOT NULL DEFAULT 'ai-automation',
@@ -54,8 +60,10 @@ CREATE TABLE IF NOT EXISTS public.blogs (
     key_takeaways_de JSONB DEFAULT '[]'::jsonb,
     key_takeaways_en JSONB DEFAULT '[]'::jsonb,
     sections JSONB DEFAULT '[]'::jsonb,
+    faqs JSONB DEFAULT '[]'::jsonb,
     tags JSONB DEFAULT '[]'::jsonb,
     related_slugs JSONB DEFAULT '[]'::jsonb,
+    published_at TIMESTAMPTZ,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -197,4 +205,17 @@ CREATE TRIGGER update_contacts_updated_at
 BEFORE UPDATE ON public.contacts
 FOR EACH ROW
 EXECUTE FUNCTION update_updated_at_column();
+
+-- ==============================================================================
+-- 5. BLOGS TABLE UPDATE (Run this in Supabase SQL Editor if table already exists)
+-- ==============================================================================
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS faqs JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS seo_title_de TEXT;
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS published_at TIMESTAMPTZ;
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS key_takeaways_de JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS key_takeaways_en JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS sections JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS tags JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.blogs ADD COLUMN IF NOT EXISTS related_slugs JSONB DEFAULT '[]'::jsonb;
+
 

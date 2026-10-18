@@ -61,10 +61,25 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
   const router = useRouter();
   const isHomePage = pathname === "/";
 
+  const getTargetLocalizedUrl = (path: string, targetLang: Language): string | null => {
+    const serviceAlt = getAlternateServiceUrl(path, targetLang);
+    if (serviceAlt) return serviceAlt;
+
+    if (path === "/blog" && targetLang === "en") return "/en/blog";
+    if (path === "/en/blog" && targetLang === "de") return "/blog";
+    if (path.startsWith("/blog/") && targetLang === "en") {
+      return path.replace(/^\/blog/, "/en/blog");
+    }
+    if (path.startsWith("/en/blog/") && targetLang === "de") {
+      return path.replace(/^\/en\/blog/, "/blog");
+    }
+    return null;
+  };
+
   const handleLanguageSwitch = (newLang: Language) => {
     setLang(newLang);
     setLangDropdownOpen(false);
-    const alternateUrl = getAlternateServiceUrl(pathname, newLang);
+    const alternateUrl = getTargetLocalizedUrl(pathname, newLang);
     if (alternateUrl && alternateUrl !== pathname) {
       router.push(alternateUrl);
     }
@@ -72,7 +87,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
 
   const handleMobileLanguageSwitch = (newLang: Language) => {
     setLang(newLang);
-    const alternateUrl = getAlternateServiceUrl(pathname, newLang);
+    const alternateUrl = getTargetLocalizedUrl(pathname, newLang);
     if (alternateUrl && alternateUrl !== pathname) {
       router.push(alternateUrl);
     }

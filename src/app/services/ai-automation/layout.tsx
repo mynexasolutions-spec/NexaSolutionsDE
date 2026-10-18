@@ -3,17 +3,17 @@ import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: {
-    absolute: "KI Automatisierung & Workflows | Nexa Solutions",
+    absolute: "KI Automatisierung Stuttgart | n8n Agentur Nexa",
   },
   description:
-    "KI Automatisierung für Unternehmen: Maßgeschneiderte Workflows, autonome KI-Agenten und Prozessoptimierung. DSGVO-konform & skalierbar. Jetzt anfragen!",
+    "KI Automatisierung Stuttgart: n8n Workflows, autonome KI-Agenten und DSGVO-konforme Prozessoptimierung für Unternehmen. Jetzt beraten lassen!",
   path: "/services/ai-automation",
 });
 
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "n8n Automatisierung & KI-Agenten Entwicklung",
+  name: "KI Automatisierung Stuttgart: n8n & KI-Agenten Entwicklung",
   serviceType: "Business Process Automation & n8n Workflows",
   provider: {
     "@type": "Organization",

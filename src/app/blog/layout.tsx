@@ -6,6 +6,13 @@ export const metadata = pageMetadata({
   description:
     "Praxis-Guides zu n8n Automatisierung, Next.js Webentwicklung, App-Kosten und DSGVO-konformer KI-Infrastruktur. Jetzt Expertenwissen entdecken!",
   path: "/blog",
+  languages: {
+    "de-DE": `${SITE_URL}/blog`,
+    "en-US": `${SITE_URL}/en/blog`,
+    "x-default": `${SITE_URL}/blog`,
+  },
+  locale: "de_DE",
+  alternateLocale: ["en_US"],
 });
 
 const collectionJsonLd = {

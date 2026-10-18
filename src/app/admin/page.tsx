@@ -6,7 +6,6 @@ import {
   Search,
   Bell,
   ChevronDown,
-  ChevronRight,
   Download,
   Calendar,
   Clock,
@@ -29,15 +28,19 @@ import {
   Menu,
   Sparkles,
   Edit3,
-  ShieldCheck,
   ChevronLeft,
-  LayoutDashboard,
-  Filter,
   Eye,
   EyeOff,
   Lock,
   ArrowRight,
   Loader2,
+  HelpCircle,
+  List,
+  Code2,
+  Quote,
+  Layers,
+  ChevronUp,
+  Sliders,
 } from "lucide-react";
 import { QueryRecord, BlogRecord } from "@/lib/db";
 
@@ -99,6 +102,7 @@ export default function AdminDashboardPage() {
   const [selectedQueryId, setSelectedQueryId] = useState<string | null>(null);
   const [selectedCheckboxIds, setSelectedCheckboxIds] = useState<string[]>([]);
   const [detailTab, setDetailTab] = useState<"details" | "reply">("details");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -120,6 +124,10 @@ export default function AdminDashboardPage() {
   const [localPreview, setLocalPreview] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [syncingBlogs, setSyncingBlogs] = useState(false);
+  const [savingBlog, setSavingBlog] = useState(false);
+  const [blogEditorTab, setBlogEditorTab] = useState<"general" | "sections" | "takeaways" | "faqs" | "author">("general");
+  const [blogSearch, setBlogSearch] = useState("");
+  const [blogCategoryFilter, setBlogCategoryFilter] = useState("all");
 
   // Notifications & Refs
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -210,7 +218,13 @@ export default function AdminDashboardPage() {
   const fetchQueries = async () => {
     setLoadingQueries(true);
     try {
-      const res = await fetch("/api/queries");
+      const res = await fetch("/api/queries?t=" + Date.now(), {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+        },
+      });
       if (res.ok) {
         const data = await res.json();
         setQueries(data.queries || []);
@@ -308,24 +322,55 @@ export default function AdminDashboardPage() {
     }
   };
 
-  // Delete Query
-  const handleDeleteQuery = async (id: string) => {
-    if (!confirm(tr("Are you sure you want to delete this query?", "Möchten Sie diese Anfrage wirklich löschen?"))) return;
+  // Delete Query (handles single item deletion with proper prompt according to active tab)
+  const handleDeleteQuery = async (id: string, skipConfirm = false) => {
+    if (!skipConfirm) {
+      const confirmMsg =
+        activeTab === "consultations"
+          ? tr("Are you sure you want to delete this consultation?", "Möchten Sie diese Beratung wirklich löschen?")
+          : activeTab === "contacts"
+          ? tr("Are you sure you want to delete this contact message?", "Möchten Sie diese Kontaktanfrage wirklich löschen?")
+          : tr("Are you sure you want to delete this inquiry?", "Möchten Sie diese Anfrage wirklich löschen?");
 
+      if (!confirm(confirmMsg)) return;
+    }
+
+    setDeletingId(id);
     try {
-      const res = await fetch(`/api/queries?id=${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/queries?id=${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        headers: { "Cache-Control": "no-cache" },
+      });
+
       if (res.ok) {
+        // Remove immediately from local state
         setQueries((prev) => prev.filter((q) => q.id !== id));
+        setSelectedCheckboxIds((prev) => prev.filter((chkId) => chkId !== id));
+
+        // If the deleted item was currently selected in detail view, select next or clear
         if (selectedQueryId === id) {
-          const remaining = queries.filter((q) => q.id !== id);
-          setSelectedQueryId(remaining.length > 0 ? remaining[0].id : null);
+          const remainingInCurrentTab = filteredQueries.filter((q) => q.id !== id);
+          setSelectedQueryId(remainingInCurrentTab.length > 0 ? remainingInCurrentTab[0].id : null);
         }
-        showToast(tr("Query deleted successfully", "Anfrage gelöscht"));
-        fetchQueries();
+
+        const successMsg =
+          activeTab === "consultations"
+            ? tr("Consultation deleted successfully", "Beratung gelöscht")
+            : activeTab === "contacts"
+            ? tr("Contact message deleted successfully", "Kontaktnachricht gelöscht")
+            : tr("Query deleted successfully", "Anfrage gelöscht");
+
+        showToast(successMsg);
+        await fetchQueries();
+      } else {
+        const errJson = await res.json().catch(() => ({}));
+        showToast(errJson.error || tr("Failed to delete", "Fehler beim Löschen"));
       }
     } catch (err) {
       console.error(err);
-      showToast(tr("Failed to delete query", "Fehler beim Löschen"));
+      showToast(tr("Failed to delete", "Fehler beim Löschen"));
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -568,6 +613,223 @@ export default function AdminDashboardPage() {
     }
   };
 
+  // Helper to generate SEO-friendly slug
+  const generateSlugFromText = (text: string) => {
+    return text
+      .toLowerCase()
+      .replace(/ä/g, "ae")
+      .replace(/ö/g, "oe")
+      .replace(/ü/g, "ue")
+      .replace(/ß/g, "ss")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  };
+
+  // Open New Blog Post Modal with full template
+  const handleOpenNewBlog = () => {
+    setLocalPreview(null);
+    setBlogEditorTab("general");
+    const newDate = new Date().toLocaleDateString(adminLang === "en" ? "en-US" : "de-DE", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    setEditingBlog({
+      title_de: "",
+      title_en: "",
+      slug: "",
+      excerpt_de: "",
+      excerpt_en: "",
+      category: "ai-automation",
+      cover_image: "/images/ai-robot.png",
+      coverImage: "/images/ai-robot.png",
+      date: newDate,
+      read_time_de: "5 Min. Lesezeit",
+      read_time_en: "5 min read",
+      featured: false,
+      views: "1.0k",
+      author: {
+        name: "Nexa Solutions Team",
+        roleDe: "Software-Architektur & KI-Entwicklung",
+        roleEn: "Software Architecture & AI Engineering",
+        avatar: "/favicon.ico",
+      },
+      key_takeaways_de: [
+        "Messbare Effizienzsteigerung und sofortige Entlastung Ihrer Fachkräfte.",
+        "DSGVO-konforme Architektur mit Servern in Frankfurt am Main.",
+        "Nahtlose Integration in bestehende ERP-, CRM- und Web-Systeme.",
+      ],
+      key_takeaways_en: [
+        "Measurable efficiency gains and immediate workload relief for skilled teams.",
+        "GDPR-compliant infrastructure with dedicated EU data centers.",
+        "Seamless integration with legacy ERP, CRM, and cloud workflows.",
+      ],
+      sections: [
+        {
+          headingDe: "1. Das Problem: Manuelle Routineprozesse kosten wertvolle Zeit",
+          headingEn: "1. The Challenge: Repetitive Tasks Drain Enterprise Resources",
+          paragraphsDe: [
+            "Viele Unternehmen verbringen wöchentlich unzählige Arbeitsstunden mit repetitiver Datenerfassung und manuellen Abstimmungen.",
+            "Durch moderne KI-gestützte Automatisierung lassen sich diese Reibungsverluste minimieren und Reaktionszeiten auf wenige Sekunden verkürzen.",
+          ],
+          paragraphsEn: [
+            "Modern organizations spend countless hours on routine data transfers and manual administrative coordination.",
+            "Leveraging intelligent automation pipelines eliminates human error and accelerates response times to seconds.",
+          ],
+          bulletsDe: [
+            "Bis zu 70 % schnellere Bearbeitung standardisierter Vorgänge",
+            "Keine Medienbrüche zwischen E-Mail, CRM und Datenbank",
+            "Volle Datensouveränität nach europäischen Richtlinien",
+          ],
+          bulletsEn: [
+            "Up to 70% reduction in processing time for standard requests",
+            "Zero friction between communication channels and backend databases",
+            "Complete data privacy aligned with European compliance standards",
+          ],
+          quoteDe: {
+            text: "Erfolgreiche Digitalisierung bedeutet nicht mehr Software, sondern die smarte Vernetzung bestehender Daten.",
+            author: "Nexa Solutions Architekten",
+          },
+          quoteEn: {
+            text: "True digital transformation isn't about more software — it's about smart interoperability.",
+            author: "Nexa Solutions Architects",
+          },
+        },
+        {
+          headingDe: "2. Die Lösung: Maßgeschneiderte Implementierung & Best Practices",
+          headingEn: "2. The Solution: Tailored Implementation & Architecture",
+          paragraphsDe: [
+            "Erklären Sie hier Schritt für Schritt die technische Umsetzung und den messbaren Mehrwert für den Kunden.",
+          ],
+          paragraphsEn: [
+            "Outline the architectural phases and tangible ROI delivered by the custom system.",
+          ],
+          bulletsDe: [],
+          bulletsEn: [],
+        },
+      ],
+      faqs: [
+        {
+          questionDe: "Wie schnell kann ein solches System produktiv eingesetzt werden?",
+          questionEn: "How quickly can this solution be deployed in production?",
+          answerDe: "Ein praxiserprobter Prototyp steht in der Regel nach 5 bis 10 Werktagen zur Verfügung.",
+          answerEn: "A production-grade prototype is typically live within 5 to 10 business days.",
+        },
+      ],
+      tags: ["KI", "Automatisierung", "Workflows", "Enterprise"],
+      related_slugs: [],
+    });
+    setBlogModalOpen(true);
+  };
+
+  // Open Edit Blog Post Modal with full data mapped
+  const handleOpenEditBlog = (post: BlogRecord) => {
+    setLocalPreview(null);
+    setBlogEditorTab("general");
+    setEditingBlog({
+      ...post,
+      cover_image: post.cover_image || (post as any).coverImage || "/images/ai-robot.png",
+      coverImage: post.cover_image || (post as any).coverImage || "/images/ai-robot.png",
+      author: post.author || {
+        name: "Nexa Solutions Team",
+        roleDe: "Software-Architektur & KI-Entwicklung",
+        roleEn: "Software Architecture & AI Engineering",
+        avatar: "/favicon.ico",
+      },
+      key_takeaways_de: post.key_takeaways_de || [],
+      key_takeaways_en: post.key_takeaways_en || [],
+      sections: post.sections || [],
+      faqs: post.faqs || [],
+      tags: post.tags || [],
+      related_slugs: post.related_slugs || [],
+    });
+    setBlogModalOpen(true);
+  };
+
+  // Rich Blog section handlers
+  const handleAddSection = () => {
+    if (!editingBlog) return;
+    const currentSections = editingBlog.sections || [];
+    const newIdx = currentSections.length + 1;
+    const newSec = {
+      headingDe: `${newIdx}. Neuer Abschnitt`,
+      headingEn: `${newIdx}. New Section`,
+      paragraphsDe: [""],
+      paragraphsEn: [""],
+      bulletsDe: [],
+      bulletsEn: [],
+    };
+    setEditingBlog({
+      ...editingBlog,
+      sections: [...currentSections, newSec],
+    });
+  };
+
+  const handleRemoveSection = (idx: number) => {
+    if (!editingBlog) return;
+    const updated = [...(editingBlog.sections || [])];
+    updated.splice(idx, 1);
+    setEditingBlog({ ...editingBlog, sections: updated });
+  };
+
+  const handleMoveSection = (idx: number, dir: "up" | "down") => {
+    if (!editingBlog) return;
+    const list = [...(editingBlog.sections || [])];
+    const target = dir === "up" ? idx - 1 : idx + 1;
+    if (target < 0 || target >= list.length) return;
+    const temp = list[idx];
+    list[idx] = list[target];
+    list[target] = temp;
+    setEditingBlog({ ...editingBlog, sections: list });
+  };
+
+  // Takeaways handlers
+  const handleAddTakeaway = () => {
+    if (!editingBlog) return;
+    setEditingBlog({
+      ...editingBlog,
+      key_takeaways_de: [...(editingBlog.key_takeaways_de || []), ""],
+      key_takeaways_en: [...(editingBlog.key_takeaways_en || []), ""],
+    });
+  };
+
+  const handleRemoveTakeaway = (idx: number) => {
+    if (!editingBlog) return;
+    const de = [...(editingBlog.key_takeaways_de || [])];
+    const en = [...(editingBlog.key_takeaways_en || [])];
+    de.splice(idx, 1);
+    en.splice(idx, 1);
+    setEditingBlog({
+      ...editingBlog,
+      key_takeaways_de: de,
+      key_takeaways_en: en,
+    });
+  };
+
+  // FAQs handlers
+  const handleAddFaq = () => {
+    if (!editingBlog) return;
+    setEditingBlog({
+      ...editingBlog,
+      faqs: [
+        ...(editingBlog.faqs || []),
+        {
+          questionDe: "",
+          questionEn: "",
+          answerDe: "",
+          answerEn: "",
+        },
+      ],
+    });
+  };
+
+  const handleRemoveFaq = (idx: number) => {
+    if (!editingBlog) return;
+    const list = [...(editingBlog.faqs || [])];
+    list.splice(idx, 1);
+    setEditingBlog({ ...editingBlog, faqs: list });
+  };
+
   // Save Blog
   const handleSaveBlog = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -578,11 +840,126 @@ export default function AdminDashboardPage() {
       return;
     }
 
+    if (!editingBlog.title_de && !editingBlog.title_en) {
+      showToast(tr("Please enter at least one title", "Bitte geben Sie mindestens einen Titel ein"));
+      return;
+    }
+
+    let finalSlug = editingBlog.slug?.trim();
+    if (!finalSlug) {
+      const source = editingBlog.title_de || editingBlog.title_en || "article";
+      finalSlug = generateSlugFromText(source);
+    }
+
+    setSavingBlog(true);
     try {
       const coverImg = editingBlog.cover_image || (editingBlog as any).coverImage || "/images/ai-robot.png";
+
+      // Clean & normalize sections
+      const cleanSections = (editingBlog.sections || []).map((s: any) => {
+        const pDe = Array.isArray(s.paragraphsDe)
+          ? s.paragraphsDe.map((p: any) => String(p).trim()).filter(Boolean)
+          : typeof s.paragraphsDe === "string"
+          ? s.paragraphsDe.split(/\n\n+/).map((p: string) => p.trim()).filter(Boolean)
+          : [];
+
+        const pEn = Array.isArray(s.paragraphsEn)
+          ? s.paragraphsEn.map((p: any) => String(p).trim()).filter(Boolean)
+          : typeof s.paragraphsEn === "string"
+          ? s.paragraphsEn.split(/\n\n+/).map((p: string) => p.trim()).filter(Boolean)
+          : [];
+
+        const bDe = Array.isArray(s.bulletsDe)
+          ? s.bulletsDe.map((b: any) => String(b).trim()).filter(Boolean)
+          : typeof s.bulletsDe === "string"
+          ? s.bulletsDe.split(/\r?\n/).map((b: string) => b.trim()).filter(Boolean)
+          : [];
+
+        const bEn = Array.isArray(s.bulletsEn)
+          ? s.bulletsEn.map((b: any) => String(b).trim()).filter(Boolean)
+          : typeof s.bulletsEn === "string"
+          ? s.bulletsEn.split(/\r?\n/).map((b: string) => b.trim()).filter(Boolean)
+          : [];
+
+        const secObj: any = {
+          headingDe: s.headingDe || "",
+          headingEn: s.headingEn || "",
+          paragraphsDe: pDe.length > 0 ? pDe : [""],
+          paragraphsEn: pEn.length > 0 ? pEn : [""],
+          bulletsDe: bDe,
+          bulletsEn: bEn,
+        };
+
+        if (s.quoteDe?.text?.trim() || s.quoteEn?.text?.trim()) {
+          secObj.quoteDe = {
+            text: s.quoteDe?.text?.trim() || "",
+            author: s.quoteDe?.author?.trim() || "",
+          };
+          secObj.quoteEn = {
+            text: s.quoteEn?.text?.trim() || "",
+            author: s.quoteEn?.author?.trim() || "",
+          };
+        }
+
+        if (s.codeSnippet?.code?.trim()) {
+          secObj.codeSnippet = {
+            title: s.codeSnippet.title?.trim() || "Code",
+            language: s.codeSnippet.language?.trim() || "typescript",
+            code: s.codeSnippet.code,
+          };
+        }
+
+        return secObj;
+      });
+
+      // Clean tags
+      const cleanTags = Array.isArray(editingBlog.tags)
+        ? editingBlog.tags.map((t: any) => String(t).trim()).filter(Boolean)
+        : typeof (editingBlog as any).tags === "string"
+        ? (editingBlog as any).tags.split(",").map((t: string) => t.trim()).filter(Boolean)
+        : [];
+
+      // Clean related slugs
+      const cleanRelatedSlugs = Array.isArray(editingBlog.related_slugs)
+        ? editingBlog.related_slugs.map((s: any) => String(s).trim()).filter(Boolean)
+        : typeof (editingBlog as any).related_slugs === "string"
+        ? (editingBlog as any).related_slugs.split(",").map((s: string) => s.trim()).filter(Boolean)
+        : [];
+
+      // Clean takeaways
+      const cleanTakeawaysDe = (editingBlog.key_takeaways_de || [])
+        .map((t: any) => String(t).trim())
+        .filter(Boolean);
+      const cleanTakeawaysEn = (editingBlog.key_takeaways_en || [])
+        .map((t: any) => String(t).trim())
+        .filter(Boolean);
+
+      // Clean FAQs
+      const cleanFaqs = (editingBlog.faqs || []).filter(
+        (f: any) =>
+          (f.questionDe && f.questionDe.trim()) ||
+          (f.questionEn && f.questionEn.trim()) ||
+          (f.answerDe && f.answerDe.trim()) ||
+          (f.answerEn && f.answerEn.trim())
+      );
+
       const payloadToSave = {
         ...editingBlog,
+        slug: finalSlug,
         cover_image: coverImg,
+        coverImage: coverImg,
+        sections: cleanSections,
+        key_takeaways_de: cleanTakeawaysDe,
+        key_takeaways_en: cleanTakeawaysEn,
+        faqs: cleanFaqs,
+        tags: cleanTags,
+        related_slugs: cleanRelatedSlugs,
+        author: editingBlog.author || {
+          name: "Nexa Solutions Team",
+          roleDe: "Software-Architektur & KI-Entwicklung",
+          roleEn: "Software Architecture & AI Engineering",
+          avatar: "/favicon.ico",
+        },
       };
 
       const res = await fetch("/api/blogs", {
@@ -603,6 +980,8 @@ export default function AdminDashboardPage() {
       }
     } catch (err: any) {
       showToast(err?.message || tr("Save error", "Fehler beim Speichern"));
+    } finally {
+      setSavingBlog(false);
     }
   };
 
@@ -624,53 +1003,42 @@ export default function AdminDashboardPage() {
 
   // Filtered queries for active view (strictly separated by tab and filters)
   const filteredQueries = useMemo(() => {
-    let list = [...queries];
+    const s = searchQuery.trim().toLowerCase();
+    const f = formTypeFilter.toLowerCase();
 
-    // 1. Strict separation by tab
-    if (activeTab === "consultations") {
-      list = list.filter((q) => q.type === "consultation");
-    } else if (activeTab === "contacts") {
-      list = list.filter((q) => q.type === "contact");
-    } else if (activeTab === "queries") {
-      list = list.filter((q) => q.type !== "consultation" && q.type !== "contact");
-    }
+    return queries.filter((q) => {
+      // 1. Strict separation by tab
+      if (activeTab === "consultations" && q.type !== "consultation") return false;
+      if (activeTab === "contacts" && q.type !== "contact") return false;
+      if (activeTab === "queries" && (q.type === "consultation" || q.type === "contact")) return false;
 
-    // 2. Status filter
-    if (statusFilter !== "all") {
-      list = list.filter((q) => q.status === statusFilter);
-    }
+      // 2. Status filter
+      if (statusFilter !== "all" && q.status !== statusFilter) return false;
 
-    // 3. Form type / category filter
-    if (formTypeFilter !== "all") {
-      if (activeTab === "queries") {
-        list = list.filter((q) => q.type === formTypeFilter);
-      } else if (activeTab === "contacts") {
-        const f = formTypeFilter.toLowerCase();
-        list = list.filter((q) => q.service?.toLowerCase().includes(f));
-      } else if (activeTab === "consultations") {
-        const f = formTypeFilter.toLowerCase();
-        list = list.filter((q) => q.call_type?.toLowerCase().includes(f));
+      // 3. Form type / category filter
+      if (formTypeFilter !== "all") {
+        if (activeTab === "queries" && q.type !== formTypeFilter) return false;
+        if (activeTab === "contacts" && !q.service?.toLowerCase().includes(f)) return false;
+        if (activeTab === "consultations" && !q.call_type?.toLowerCase().includes(f)) return false;
       }
-    }
 
-    // 4. Search query filter
-    if (searchQuery.trim()) {
-      const s = searchQuery.toLowerCase().trim();
-      list = list.filter(
-        (q) =>
-          q.name?.toLowerCase().includes(s) ||
-          q.email?.toLowerCase().includes(s) ||
-          q.phone?.toLowerCase().includes(s) ||
-          q.message?.toLowerCase().includes(s) ||
-          q.company?.toLowerCase().includes(s) ||
-          q.service?.toLowerCase().includes(s) ||
-          q.call_type?.toLowerCase().includes(s) ||
-          q.date_slot?.toLowerCase().includes(s) ||
-          q.time_slot?.toLowerCase().includes(s)
-      );
-    }
+      // 4. Search query filter
+      if (s) {
+        const matches =
+          Boolean(q.name?.toLowerCase().includes(s)) ||
+          Boolean(q.email?.toLowerCase().includes(s)) ||
+          Boolean(q.phone?.toLowerCase().includes(s)) ||
+          Boolean(q.message?.toLowerCase().includes(s)) ||
+          Boolean(q.company?.toLowerCase().includes(s)) ||
+          Boolean(q.service?.toLowerCase().includes(s)) ||
+          Boolean(q.call_type?.toLowerCase().includes(s)) ||
+          Boolean(q.date_slot?.toLowerCase().includes(s)) ||
+          Boolean(q.time_slot?.toLowerCase().includes(s));
+        if (!matches) return false;
+      }
 
-    return list;
+      return true;
+    });
   }, [queries, activeTab, statusFilter, formTypeFilter, searchQuery]);
 
   // Dynamic stats strictly for the active tab (Queries vs Consultations vs Contacts)
@@ -701,6 +1069,23 @@ export default function AdminDashboardPage() {
     if (!selectedQueryId || filteredQueries.length === 0) return null;
     return filteredQueries.find((q) => q.id === selectedQueryId) || null;
   }, [filteredQueries, selectedQueryId]);
+
+  // Filtered blogs for blogs management view
+  const filteredBlogs = useMemo(() => {
+    const s = blogSearch.trim().toLowerCase();
+    return blogs.filter((b) => {
+      if (blogCategoryFilter !== "all" && b.category !== blogCategoryFilter) return false;
+      if (s) {
+        const matches =
+          Boolean(b.title_de?.toLowerCase().includes(s)) ||
+          Boolean(b.title_en?.toLowerCase().includes(s)) ||
+          Boolean(b.slug?.toLowerCase().includes(s)) ||
+          (Array.isArray(b.tags) && b.tags.some((t) => t.toLowerCase().includes(s)));
+        if (!matches) return false;
+      }
+      return true;
+    });
+  }, [blogs, blogCategoryFilter, blogSearch]);
 
   // Select all checkbox handler
   const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1915,10 +2300,50 @@ export default function AdminDashboardPage() {
                         {tr("Mark as Resolved", "Als gelöst markieren")}
                       </button>
                       <button
-                        onClick={() => {
-                          if (confirm(tr(`Delete ${selectedCheckboxIds.length} queries?`, `${selectedCheckboxIds.length} Anfragen löschen?`))) {
-                            selectedCheckboxIds.forEach((id) => handleDeleteQuery(id));
-                            setSelectedCheckboxIds([]);
+                        type="button"
+                        onClick={async () => {
+                          const count = selectedCheckboxIds.length;
+                          const confirmMsg =
+                            activeTab === "consultations"
+                              ? tr(`Delete ${count} selected consultation(s)?`, `${count} ausgewählte Beratung(en) löschen?`)
+                              : activeTab === "contacts"
+                              ? tr(`Delete ${count} selected contact message(s)?`, `${count} ausgewählte Kontaktnachricht(en) löschen?`)
+                              : tr(`Delete ${count} selected queries?`, `${count} ausgewählte Anfragen löschen?`);
+
+                          if (!confirm(confirmMsg)) return;
+
+                          try {
+                            const res = await fetch("/api/queries", {
+                              method: "DELETE",
+                              headers: {
+                                "Content-Type": "application/json",
+                                "Cache-Control": "no-cache",
+                              },
+                              body: JSON.stringify({ ids: selectedCheckboxIds }),
+                            });
+
+                            if (res.ok) {
+                              const deletedSet = new Set(selectedCheckboxIds);
+                              setQueries((prev) => prev.filter((q) => !deletedSet.has(q.id)));
+                              if (selectedQueryId && deletedSet.has(selectedQueryId)) {
+                                setSelectedQueryId(null);
+                              }
+                              setSelectedCheckboxIds([]);
+                              showToast(
+                                activeTab === "consultations"
+                                  ? tr(`${count} consultation(s) deleted successfully`, `${count} Beratung(en) gelöscht`)
+                                  : activeTab === "contacts"
+                                  ? tr(`${count} contact message(s) deleted successfully`, `${count} Kontaktnachricht(en) gelöscht`)
+                                  : tr(`${count} queries deleted successfully`, `${count} Anfragen gelöscht`)
+                              );
+                              await fetchQueries();
+                            } else {
+                              const errJson = await res.json().catch(() => ({}));
+                              showToast(errJson.error || tr("Failed to delete selected items", "Fehler beim Löschen"));
+                            }
+                          } catch (err) {
+                            console.error(err);
+                            showToast(tr("Failed to delete selected items", "Fehler beim Löschen"));
                           }
                         }}
                         className="px-2.5 py-1.5 rounded-[5px] bg-red-50 text-red-700 border border-red-200 text-xs font-bold hover:bg-red-100 transition-colors cursor-pointer"
@@ -2177,11 +2602,20 @@ export default function AdminDashboardPage() {
                                       </button>
 
                                       <button
-                                        onClick={() => handleDeleteQuery(item.id)}
-                                        className="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-[5px] transition-colors cursor-pointer"
+                                        type="button"
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          handleDeleteQuery(item.id);
+                                        }}
+                                        disabled={deletingId === item.id}
+                                        className="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-[5px] transition-colors cursor-pointer disabled:opacity-50"
                                         title={tr("Delete", "Löschen")}
                                       >
-                                        <Trash2 className="w-3.5 h-3.5" />
+                                        {deletingId === item.id ? (
+                                          <Loader2 className="w-3.5 h-3.5 animate-spin text-red-500" />
+                                        ) : (
+                                          <Trash2 className="w-3.5 h-3.5" />
+                                        )}
                                       </button>
                                     </div>
                                   </td>
@@ -2497,11 +2931,20 @@ export default function AdminDashboardPage() {
                                 </button>
 
                                 <button
-                                  onClick={() => handleDeleteQuery(selectedQuery.id)}
-                                  className="py-2 px-3 rounded-[5px] bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDeleteQuery(selectedQuery.id);
+                                  }}
+                                  disabled={deletingId === selectedQuery.id}
+                                  className="py-2 px-3 rounded-[5px] bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
                                   title={tr("Delete query", "Anfrage löschen")}
                                 >
-                                  <Trash2 className="w-3.5 h-3.5" />
+                                  {deletingId === selectedQuery.id ? (
+                                    <Loader2 className="w-3.5 h-3.5 animate-spin text-red-500" />
+                                  ) : (
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  )}
                                   <span>{tr("Delete", "Löschen")}</span>
                                 </button>
                               </div>
@@ -2565,33 +3008,88 @@ export default function AdminDashboardPage() {
                     </button>
 
                     <button
-                      onClick={() => {
-                        setLocalPreview(null);
-                        setEditingBlog({
-                          title_de: "",
-                          title_en: "",
-                          excerpt_de: "",
-                          excerpt_en: "",
-                          category: "ai-automation",
-                          cover_image: "",
-                          coverImage: "",
-                          date: new Date().toLocaleDateString(adminLang === "en" ? "en-US" : "de-DE", {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric",
-                          }),
-                          read_time_de: "5 Min. Lesezeit",
-                          read_time_en: "5 min read",
-                          tags: ["AI", "Next.js"],
-                          featured: false,
-                        });
-                        setBlogModalOpen(true);
-                      }}
+                      onClick={handleOpenNewBlog}
                       className="px-4 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-[5px] text-xs sm:text-sm font-bold shadow-sm transition-all duration-200 flex items-center gap-2 cursor-pointer"
                     >
                       <Plus className="w-4 h-4" />
                       <span>{tr("New Blog Post", "Neuen Artikel verfassen")}</span>
                     </button>
+                  </div>
+                </div>
+
+                {/* Search & Category Filter Bar */}
+                <div className="bg-white p-3.5 sm:p-4 rounded-[5px] border border-slate-200/80 shadow-2xs space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    {/* Search Input */}
+                    <div className="relative flex-1 max-w-md">
+                      <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                      <input
+                        type="text"
+                        value={blogSearch}
+                        onChange={(e) => setBlogSearch(e.target.value)}
+                        placeholder={tr("Search by title, slug or tag...", "Nach Titel, Slug oder Tag suchen...")}
+                        className="w-full pl-9 pr-8 py-2 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none focus:border-orange-500 transition-colors"
+                      />
+                      {blogSearch && (
+                        <button
+                          type="button"
+                          onClick={() => setBlogSearch("")}
+                          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Counter / Reset */}
+                    <div className="text-xs text-slate-500 font-semibold flex items-center gap-2">
+                      <span>
+                        {tr(
+                          `Showing ${filteredBlogs.length} of ${blogs.length} articles`,
+                          `Zeige ${filteredBlogs.length} von ${blogs.length} Artikeln`
+                        )}
+                      </span>
+                      {(blogSearch || blogCategoryFilter !== "all") && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setBlogSearch("");
+                            setBlogCategoryFilter("all");
+                          }}
+                          className="text-[11px] font-bold text-orange-600 hover:text-orange-700 underline cursor-pointer"
+                        >
+                          {tr("Reset filters", "Filter zurücksetzen")}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Category Pills */}
+                  <div className="flex items-center gap-1.5 flex-wrap pt-2 border-t border-slate-100">
+                    <span className="text-[11px] text-slate-400 font-semibold mr-1">{tr("Category:", "Kategorie:")}</span>
+                    {[
+                      { id: "all", label: tr("All Categories", "Alle Kategorien") },
+                      { id: "ai-automation", label: tr("AI & Automation", "KI & Automatisierung") },
+                      { id: "web-development", label: tr("Web Development", "Webentwicklung") },
+                      { id: "mobile-apps", label: tr("Mobile Apps", "Mobile Apps") },
+                      { id: "cloud-tech", label: tr("Cloud & Security", "Cloud & Sicherheit") },
+                    ].map((cat) => {
+                      const isActive = blogCategoryFilter === cat.id;
+                      return (
+                        <button
+                          key={cat.id}
+                          type="button"
+                          onClick={() => setBlogCategoryFilter(cat.id)}
+                          className={`px-2.5 py-1 rounded-[5px] text-[11px] font-bold transition-all cursor-pointer ${
+                            isActive
+                              ? "bg-orange-600 text-white shadow-2xs"
+                              : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                          }`}
+                        >
+                          {cat.label}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -2601,12 +3099,14 @@ export default function AdminDashboardPage() {
                     <div className="col-span-full py-12 text-center text-slate-500">
                       {tr("Loading blog articles...", "Lade Blog-Artikel...")}
                     </div>
-                  ) : blogs.length === 0 ? (
+                  ) : filteredBlogs.length === 0 ? (
                     <div className="col-span-full py-12 text-center text-slate-400">
-                      {tr("No blogs found. Click 'Sync to Supabase' to populate.", "Keine Blogs vorhanden. Klicken Sie auf 'Mit Supabase synchronisieren'.")}
+                      {blogs.length === 0
+                        ? tr("No blogs found. Click 'Sync to Supabase' to populate.", "Keine Blogs vorhanden. Klicken Sie auf 'Mit Supabase synchronisieren'.")
+                        : tr("No articles match your filter criteria.", "Keine Artikel entsprechen Ihren Filterkriterien.")}
                     </div>
                   ) : (
-                    blogs.map((post) => (
+                    filteredBlogs.map((post) => (
                       <div
                         key={post.id || post.slug}
                         className="bg-white rounded-[5px] border border-slate-200/80 shadow-2xs overflow-hidden flex flex-col hover:shadow-md transition-all group"
@@ -2669,15 +3169,7 @@ export default function AdminDashboardPage() {
 
                             <div className="flex items-center gap-1.5">
                               <button
-                                onClick={() => {
-                                  setLocalPreview(null);
-                                  setEditingBlog({
-                                    ...post,
-                                    cover_image: post.cover_image || (post as any).coverImage || "",
-                                    coverImage: post.cover_image || (post as any).coverImage || "",
-                                  });
-                                  setBlogModalOpen(true);
-                                }}
+                                onClick={() => handleOpenEditBlog(post)}
                                 className="p-1.5 rounded-[5px] text-slate-500 hover:text-orange-600 hover:bg-orange-50 transition-colors"
                                 title={tr("Edit", "Bearbeiten")}
                               >
@@ -2713,258 +3205,1216 @@ export default function AdminDashboardPage() {
           }}
         >
           <div
-            className="w-full max-w-2xl bg-white rounded-[5px] shadow-2xl border border-slate-200 max-h-[90vh] flex flex-col overflow-hidden"
+            className="w-full max-w-4xl bg-white rounded-[5px] shadow-2xl border border-slate-200 max-h-[92vh] flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="p-5 border-b border-slate-100 flex items-center justify-between">
-              <h3 className="text-lg font-black text-slate-900">
-                {editingBlog.id ? tr("Edit Article", "Artikel bearbeiten") : tr("New Blog Post", "Neuen Artikel verfassen")}
-              </h3>
+            <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-white shrink-0">
+              <div>
+                <h3 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
+                  <span>{editingBlog.id ? tr("Edit Article", "Artikel bearbeiten") : tr("New Blog Post", "Neuen Artikel verfassen")}</span>
+                  {editingBlog.featured && (
+                    <span className="px-2 py-0.5 rounded-[5px] text-[10px] font-bold bg-orange-100 text-orange-700 border border-orange-200">
+                      Featured
+                    </span>
+                  )}
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5 font-mono line-clamp-1">
+                  {editingBlog.slug ? `/blog/${editingBlog.slug}` : tr("Full single blog article management", "Vollständige Verwaltung des Blogartikels")}
+                </p>
+              </div>
               <button
+                type="button"
                 onClick={() => {
                   setLocalPreview(null);
                   setBlogModalOpen(false);
                 }}
-                className="p-1.5 rounded-[5px] text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+                className="p-1.5 rounded-[5px] text-slate-400 hover:text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSaveBlog} className="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  {tr("Title (English) *", "Titel (Englisch) *")}
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={editingBlog.title_en || ""}
-                  onChange={(e) => setEditingBlog({ ...editingBlog, title_en: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:border-orange-500"
-                  placeholder="e.g. How European Businesses Save 15+ Hours Weekly"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  {tr("Title (German) *", "Titel (Deutsch) *")}
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={editingBlog.title_de || ""}
-                  onChange={(e) => setEditingBlog({ ...editingBlog, title_de: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:border-orange-500"
-                  placeholder="z.B. Wie deutsche Unternehmen mit KI 15h sparen"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    {tr("Category", "Kategorie")}
-                  </label>
-                  <select
-                    value={editingBlog.category || "ai-automation"}
-                    onChange={(e) => setEditingBlog({ ...editingBlog, category: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs font-semibold focus:bg-white focus:outline-none cursor-pointer"
-                  >
-                    <option value="ai-automation">{tr("AI & Automation", "KI & Automatisierung")}</option>
-                    <option value="web-development">{tr("Web Development", "Webentwicklung")}</option>
-                    <option value="mobile-apps">{tr("Mobile Apps", "Mobile Apps")}</option>
-                    <option value="cloud-tech">{tr("Cloud & Security", "Cloud & Sicherheit")}</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    {tr("URL Slug", "URL-Slug")}
-                  </label>
-                  <input
-                    type="text"
-                    value={editingBlog.slug || ""}
-                    onChange={(e) => setEditingBlog({ ...editingBlog, slug: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
-                    placeholder="my-new-blog-post-2026"
-                  />
-                </div>
-              </div>
-
-              {/* Cover Image Area */}
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  {tr("Cover Image (ImageKit CDN or Local)", "Cover-Bild (ImageKit CDN oder Lokal)")}
-                </label>
-                <div className="flex items-center gap-3">
-                  <input
-                    type="text"
-                    value={localPreview ? (adminLang === "en" ? "(Uploading local image...)" : "(Lokales Bild wird hochgeladen...)") : (editingBlog.cover_image || (editingBlog as any).coverImage || "")}
-                    onChange={(e) => {
-                      setLocalPreview(null);
-                      setEditingBlog({
-                        ...editingBlog,
-                        cover_image: e.target.value,
-                        coverImage: e.target.value,
-                      } as any);
-                    }}
-                    className="flex-1 px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
-                    placeholder="https://ik.imagekit.io/... oder /images/ai-robot.png"
-                  />
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleImageUpload}
-                    accept="image/*"
-                    className="hidden"
-                  />
+            {/* Modal Tabs Bar */}
+            <div className="flex items-center gap-1.5 px-4 sm:px-6 pt-2.5 pb-2 border-b border-slate-200 bg-slate-50 overflow-x-auto shrink-0 scrollbar-none">
+              {[
+                { id: "general", label: tr("General", "Allgemein"), icon: Sliders },
+                {
+                  id: "sections",
+                  label: tr("Sections / Content", "Abschnitte & Inhalt"),
+                  icon: Layers,
+                  badge: editingBlog.sections?.length || 0,
+                },
+                {
+                  id: "takeaways",
+                  label: tr("Key Takeaways", "Kernaussagen"),
+                  icon: Sparkles,
+                  badge: editingBlog.key_takeaways_de?.length || 0,
+                },
+                {
+                  id: "faqs",
+                  label: tr("FAQs", "Häufige Fragen"),
+                  icon: HelpCircle,
+                  badge: editingBlog.faqs?.length || 0,
+                },
+                { id: "author", label: tr("Author & SEO", "Autor & Meta"), icon: User },
+              ].map((tab) => {
+                const Icon = tab.icon;
+                const isActive = blogEditorTab === tab.id;
+                return (
                   <button
+                    key={tab.id}
                     type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    disabled={uploadingImage}
-                    className="px-4 py-2.5 bg-slate-900 hover:bg-orange-600 text-white rounded-[5px] text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-60 shadow-xs shrink-0"
+                    onClick={() => setBlogEditorTab(tab.id as any)}
+                    className={`px-3 py-1.5 rounded-[5px] text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 cursor-pointer ${
+                      isActive
+                        ? "bg-orange-600 text-white shadow-xs"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/70"
+                    }`}
                   >
-                    {uploadingImage ? (
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                    ) : (
-                      <Upload className="w-3.5 h-3.5" />
+                    <Icon className="w-3.5 h-3.5" />
+                    <span>{tab.label}</span>
+                    {typeof tab.badge === "number" && (
+                      <span
+                        className={`px-1.5 py-0.2 rounded-full text-[10px] font-extrabold ${
+                          isActive ? "bg-white/25 text-white" : "bg-slate-200 text-slate-700"
+                        }`}
+                      >
+                        {tab.badge}
+                      </span>
                     )}
-                    <span>{uploadingImage ? tr("Uploading...", "Lädt hoch...") : tr("Upload Image", "Bild hochladen")}</span>
                   </button>
-                </div>
+                );
+              })}
+            </div>
 
-                {/* Presets */}
-                <div className="mt-2 flex items-center gap-1.5 flex-wrap">
-                  <span className="text-[11px] text-slate-400 font-semibold mr-1">{tr("Presets:", "Vorlagen:")}</span>
-                  {[
-                    { label: "AI Robot", path: "/images/ai-robot.png" },
-                    { label: "Boardroom", path: "/images/boardroom-crop.png" },
-                    { label: "Workspace", path: "/images/hero-workspace.jpg" },
-                    { label: "Devices", path: "/images/hero-devices.jpg" },
-                    { label: "Web Dev", path: "/images/web-dev.png" },
-                    { label: "App Dev", path: "/images/app-dev.png" },
-                  ].map((preset) => (
-                    <button
-                      key={preset.path}
-                      type="button"
-                      onClick={() => {
-                        setLocalPreview(null);
-                        setEditingBlog({
-                          ...editingBlog,
-                          cover_image: preset.path,
-                          coverImage: preset.path,
-                        } as any);
-                      }}
-                      className={`px-2 py-0.5 rounded text-[10px] font-semibold border transition-colors cursor-pointer ${
-                        (editingBlog.cover_image || (editingBlog as any).coverImage) === preset.path && !localPreview
-                          ? "bg-orange-50 border-orange-400 text-orange-700"
-                          : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
-                      }`}
-                    >
-                      {preset.label}
-                    </button>
-                  ))}
-                </div>
+            {/* Form & Tab Contents */}
+            <form onSubmit={handleSaveBlog} className="p-4 sm:p-6 overflow-y-auto flex-1 space-y-5">
+              {/* TAB 1: GENERAL */}
+              {blogEditorTab === "general" && (
+                <div className="space-y-4">
+                  {/* Titles */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        {tr("Title (English) *", "Titel (Englisch) *")}
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={editingBlog.title_en || ""}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, title_en: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:border-orange-500"
+                        placeholder="e.g. How European Businesses Save 15+ Hours Weekly"
+                      />
+                    </div>
 
-                {/* Preview Image Box */}
-                {(() => {
-                  const displayCoverImage = localPreview || editingBlog.cover_image || (editingBlog as any).coverImage || "";
-                  if (!displayCoverImage) {
-                    return (
-                      <p className="mt-2 text-[11px] text-slate-400">
-                        {tr("No image selected yet. Upload an image, choose a preset, or paste a URL.", "Noch kein Bild ausgewählt. Laden Sie ein Bild hoch, wählen Sie eine Vorlage oder fügen Sie eine URL ein.")}
-                      </p>
-                    );
-                  }
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        {tr("Title (German) *", "Titel (Deutsch) *")}
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={editingBlog.title_de || ""}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, title_de: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-sm focus:bg-white focus:outline-none focus:border-orange-500"
+                        placeholder="z.B. Wie deutsche Unternehmen mit KI 15h sparen"
+                      />
+                    </div>
+                  </div>
 
-                  return (
-                    <div className="mt-2.5 relative inline-block rounded-[5px] overflow-hidden border border-slate-200 shadow-2xs group">
-                      <div className="h-28 w-44 bg-slate-100 relative">
-                        <img
-                          key={displayCoverImage}
-                          src={displayCoverImage}
-                          alt="Preview"
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            if (!target.src.endsWith("/images/ai-robot.png")) {
-                              target.src = "/images/ai-robot.png";
-                            }
-                          }}
-                        />
-                        {uploadingImage && (
-                          <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] flex flex-col items-center justify-center text-white p-2 text-center animate-in fade-in">
-                            <Loader2 className="w-5 h-5 animate-spin text-orange-400 mb-1" />
-                            <span className="text-[10px] font-bold tracking-wide">
-                              {tr("Uploading...", "Wird hochgeladen...")}
-                            </span>
-                          </div>
-                        )}
-                      </div>
+                  {/* Slug and Auto-Generate */}
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="block text-xs font-bold text-slate-700 uppercase">
+                        {tr("URL Slug *", "URL-Slug *")}
+                      </label>
                       <button
                         type="button"
                         onClick={() => {
-                          setLocalPreview(null);
-                          setEditingBlog({ ...editingBlog, cover_image: "", coverImage: "" } as any);
+                          const src = editingBlog.title_de || editingBlog.title_en || "article";
+                          setEditingBlog({ ...editingBlog, slug: generateSlugFromText(src) });
                         }}
-                        className="absolute top-1.5 right-1.5 p-1 bg-black/70 hover:bg-red-600 text-white rounded-full transition-colors cursor-pointer shadow-xs"
-                        title={tr("Remove image", "Bild entfernen")}
+                        className="text-[11px] font-bold text-orange-600 hover:text-orange-700 flex items-center gap-1 cursor-pointer"
+                        title={tr("Generate slug from title", "Slug aus Titel generieren")}
                       >
-                        <X className="w-3.5 h-3.5" />
+                        <Sparkles className="w-3 h-3" />
+                        <span>{tr("Auto-Generate Slug", "Slug automatisch generieren")}</span>
                       </button>
                     </div>
-                  );
-                })()}
-              </div>
+                    <div className="flex items-center rounded-[5px] bg-slate-50 border border-slate-200 overflow-hidden focus-within:border-orange-500 focus-within:bg-white">
+                      <span className="px-3 text-xs text-slate-400 font-mono select-none">/blog/</span>
+                      <input
+                        type="text"
+                        required
+                        value={editingBlog.slug || ""}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, slug: e.target.value })}
+                        className="flex-1 py-2.5 pr-3 bg-transparent text-xs font-mono text-slate-800 focus:outline-none"
+                        placeholder="how-european-businesses-save-hours"
+                      />
+                    </div>
+                  </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  {tr("Excerpt / Summary (English)", "Kurzbeschreibung (Englisch)")}
-                </label>
-                <textarea
-                  rows={2}
-                  value={editingBlog.excerpt_en || ""}
-                  onChange={(e) => setEditingBlog({ ...editingBlog, excerpt_en: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
-                  placeholder="Short summary for the article card..."
-                />
-              </div>
+                  {/* Category & Featured & Views */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        {tr("Category", "Kategorie")}
+                      </label>
+                      <select
+                        value={editingBlog.category || "ai-automation"}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, category: e.target.value })}
+                        className="w-full px-3 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs font-semibold focus:bg-white focus:outline-none cursor-pointer"
+                      >
+                        <option value="ai-automation">{tr("AI & Automation", "KI & Automatisierung")}</option>
+                        <option value="web-development">{tr("Web Development", "Webentwicklung")}</option>
+                        <option value="mobile-apps">{tr("Mobile Apps", "Mobile Apps")}</option>
+                        <option value="cloud-tech">{tr("Cloud & Security", "Cloud & Sicherheit")}</option>
+                      </select>
+                    </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  {tr("Excerpt / Summary (German)", "Kurzbeschreibung (Deutsch)")}
-                </label>
-                <textarea
-                  rows={2}
-                  value={editingBlog.excerpt_de || ""}
-                  onChange={(e) => setEditingBlog({ ...editingBlog, excerpt_de: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
-                  placeholder="Kurze Zusammenfassung für die Blog-Karte..."
-                />
-              </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        {tr("Views Counter", "Aufruf-Zähler")}
+                      </label>
+                      <input
+                        type="text"
+                        value={editingBlog.views || "1.0k"}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, views: e.target.value })}
+                        className="w-full px-3 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                        placeholder="1.2k"
+                      />
+                    </div>
+
+                    <div className="flex flex-col justify-end">
+                      <label className="flex items-center gap-2 p-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 cursor-pointer hover:bg-slate-100 transition-colors">
+                        <input
+                          type="checkbox"
+                          checked={!!editingBlog.featured}
+                          onChange={(e) => setEditingBlog({ ...editingBlog, featured: e.target.checked })}
+                          className="w-4 h-4 text-orange-600 rounded cursor-pointer accent-orange-600"
+                        />
+                        <span>{tr("Featured Article", "Hervorgehobener Artikel")}</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  {/* Dates & Read Times */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        {tr("Publication Date", "Veröffentlichungsdatum")}
+                      </label>
+                      <input
+                        type="text"
+                        value={editingBlog.date || ""}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, date: e.target.value })}
+                        className="w-full px-3 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                        placeholder="18. Oktober 2026"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        {tr("Read Time (German)", "Lesezeit (Deutsch)")}
+                      </label>
+                      <input
+                        type="text"
+                        value={editingBlog.read_time_de || ""}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, read_time_de: e.target.value })}
+                        className="w-full px-3 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                        placeholder="5 Min. Lesezeit"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        {tr("Read Time (English)", "Lesezeit (Englisch)")}
+                      </label>
+                      <input
+                        type="text"
+                        value={editingBlog.read_time_en || ""}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, read_time_en: e.target.value })}
+                        className="w-full px-3 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                        placeholder="5 min read"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Cover Image Area */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      {tr("Cover Image (ImageKit CDN or Local)", "Cover-Bild (ImageKit CDN oder Lokal)")}
+                    </label>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="text"
+                        value={
+                          localPreview
+                            ? adminLang === "en"
+                              ? "(Uploading local image...)"
+                              : "(Lokales Bild wird hochgeladen...)"
+                            : editingBlog.cover_image || (editingBlog as any).coverImage || ""
+                        }
+                        onChange={(e) => {
+                          setLocalPreview(null);
+                          setEditingBlog({
+                            ...editingBlog,
+                            cover_image: e.target.value,
+                            coverImage: e.target.value,
+                          } as any);
+                        }}
+                        className="flex-1 px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                        placeholder="https://ik.imagekit.io/... oder /images/ai-robot.png"
+                      />
+                      <input
+                        type="file"
+                        ref={fileInputRef}
+                        onChange={handleImageUpload}
+                        accept="image/*"
+                        className="hidden"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={uploadingImage}
+                        className="px-4 py-2.5 bg-slate-900 hover:bg-orange-600 text-white rounded-[5px] text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-60 shadow-xs shrink-0"
+                      >
+                        {uploadingImage ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        ) : (
+                          <Upload className="w-3.5 h-3.5" />
+                        )}
+                        <span>{uploadingImage ? tr("Uploading...", "Lädt hoch...") : tr("Upload Image", "Bild hochladen")}</span>
+                      </button>
+                    </div>
+
+                    {/* Presets */}
+                    <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+                      <span className="text-[11px] text-slate-400 font-semibold mr-1">{tr("Presets:", "Vorlagen:")}</span>
+                      {[
+                        { label: "AI Robot", path: "/images/ai-robot.png" },
+                        { label: "Boardroom", path: "/images/boardroom-crop.png" },
+                        { label: "Workspace", path: "/images/hero-workspace.jpg" },
+                        { label: "Devices", path: "/images/hero-devices.jpg" },
+                        { label: "Web Dev", path: "/images/web-dev.png" },
+                        { label: "App Dev", path: "/images/app-dev.png" },
+                      ].map((preset) => (
+                        <button
+                          key={preset.path}
+                          type="button"
+                          onClick={() => {
+                            setLocalPreview(null);
+                            setEditingBlog({
+                              ...editingBlog,
+                              cover_image: preset.path,
+                              coverImage: preset.path,
+                            } as any);
+                          }}
+                          className={`px-2 py-0.5 rounded text-[10px] font-semibold border transition-colors cursor-pointer ${
+                            (editingBlog.cover_image || (editingBlog as any).coverImage) === preset.path && !localPreview
+                              ? "bg-orange-50 border-orange-400 text-orange-700"
+                              : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
+                          }`}
+                        >
+                          {preset.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Preview Image Box */}
+                    {(() => {
+                      const displayCoverImage = localPreview || editingBlog.cover_image || (editingBlog as any).coverImage || "";
+                      if (!displayCoverImage) {
+                        return (
+                          <p className="mt-2 text-[11px] text-slate-400">
+                            {tr(
+                              "No image selected yet. Upload an image, choose a preset, or paste a URL.",
+                              "Noch kein Bild ausgewählt. Laden Sie ein Bild hoch, wählen Sie eine Vorlage oder fügen Sie eine URL ein."
+                            )}
+                          </p>
+                        );
+                      }
+
+                      return (
+                        <div className="mt-2.5 relative inline-block rounded-[5px] overflow-hidden border border-slate-200 shadow-2xs group">
+                          <div className="h-28 w-44 bg-slate-100 relative">
+                            <img
+                              key={displayCoverImage}
+                              src={displayCoverImage}
+                              alt="Preview"
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                if (!target.src.endsWith("/images/ai-robot.png")) {
+                                  target.src = "/images/ai-robot.png";
+                                }
+                              }}
+                            />
+                            {uploadingImage && (
+                              <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] flex flex-col items-center justify-center text-white p-2 text-center animate-in fade-in">
+                                <Loader2 className="w-5 h-5 animate-spin text-orange-400 mb-1" />
+                                <span className="text-[10px] font-bold tracking-wide">
+                                  {tr("Uploading...", "Wird hochgeladen...")}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setLocalPreview(null);
+                              setEditingBlog({ ...editingBlog, cover_image: "", coverImage: "" } as any);
+                            }}
+                            className="absolute top-1.5 right-1.5 p-1 bg-black/70 hover:bg-red-600 text-white rounded-full transition-colors cursor-pointer shadow-xs"
+                            title={tr("Remove image", "Bild entfernen")}
+                          >
+                            <X className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      );
+                    })()}
+                  </div>
+
+                  {/* Excerpts */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        {tr("Excerpt / Summary (German)", "Kurzbeschreibung (Deutsch)")}
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={editingBlog.excerpt_de || ""}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, excerpt_de: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                        placeholder="Kurze Zusammenfassung für die Blog-Karte..."
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                        {tr("Excerpt / Summary (English)", "Kurzbeschreibung (Englisch)")}
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={editingBlog.excerpt_en || ""}
+                        onChange={(e) => setEditingBlog({ ...editingBlog, excerpt_en: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                        placeholder="Short summary for the article card..."
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 2: SECTIONS (INHALT / ABSCHNITTE) */}
+              {blogEditorTab === "sections" && (
+                <div className="space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-orange-50/60 rounded-[5px] border border-orange-100">
+                    <p className="text-xs text-orange-900 font-medium">
+                      {tr(
+                        "Manage all article body sections, headings, paragraphs, bullet points, quotes and code snippets.",
+                        "Verwalten Sie alle Textabschnitte, Überschriften, Absätze, Aufzählungspunkte, Zitate und Code-Snippets."
+                      )}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleAddSection}
+                      className="px-3 py-1.5 bg-orange-600 hover:bg-orange-700 text-white rounded-[5px] text-xs font-bold flex items-center gap-1.5 cursor-pointer shrink-0 shadow-2xs"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>{tr("Add Section", "Abschnitt hinzufügen")}</span>
+                    </button>
+                  </div>
+
+                  {(!editingBlog.sections || editingBlog.sections.length === 0) ? (
+                    <div className="text-center py-10 bg-slate-50 rounded-[5px] border border-dashed border-slate-300">
+                      <Layers className="w-8 h-8 text-slate-400 mx-auto mb-2" />
+                      <p className="text-xs font-bold text-slate-600">
+                        {tr("No content sections yet", "Noch keine Textabschnitte vorhanden")}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={handleAddSection}
+                        className="mt-3 px-3.5 py-1.5 bg-slate-900 hover:bg-orange-600 text-white rounded-[5px] text-xs font-bold cursor-pointer transition-colors"
+                      >
+                        {tr("+ Add First Section", "+ Ersten Abschnitt anlegen")}
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {editingBlog.sections.map((section: any, sIdx: number) => {
+                        const paragraphsDeStr = Array.isArray(section.paragraphsDe)
+                          ? section.paragraphsDe.join("\n\n")
+                          : typeof section.paragraphsDe === "string"
+                          ? section.paragraphsDe
+                          : "";
+                        const paragraphsEnStr = Array.isArray(section.paragraphsEn)
+                          ? section.paragraphsEn.join("\n\n")
+                          : typeof section.paragraphsEn === "string"
+                          ? section.paragraphsEn
+                          : "";
+
+                        const bulletsDeStr = Array.isArray(section.bulletsDe)
+                          ? section.bulletsDe.join("\n")
+                          : typeof section.bulletsDe === "string"
+                          ? section.bulletsDe
+                          : "";
+                        const bulletsEnStr = Array.isArray(section.bulletsEn)
+                          ? section.bulletsEn.join("\n")
+                          : typeof section.bulletsEn === "string"
+                          ? section.bulletsEn
+                          : "";
+
+                        return (
+                          <div
+                            key={sIdx}
+                            className="bg-slate-50/70 border border-slate-200 rounded-[5px] overflow-hidden shadow-2xs"
+                          >
+                            {/* Section Header */}
+                            <div className="bg-slate-100/90 px-4 py-2.5 border-b border-slate-200 flex items-center justify-between">
+                              <span className="font-extrabold text-xs text-slate-800 flex items-center gap-2">
+                                <span className="w-5 h-5 rounded-full bg-slate-900 text-white text-[10px] font-mono flex items-center justify-center">
+                                  {sIdx + 1}
+                                </span>
+                                <span>{section.headingDe || section.headingEn || tr("Section", "Abschnitt")}</span>
+                              </span>
+
+                              <div className="flex items-center gap-1">
+                                <button
+                                  type="button"
+                                  onClick={() => handleMoveSection(sIdx, "up")}
+                                  disabled={sIdx === 0}
+                                  className="p-1 rounded text-slate-500 hover:text-slate-800 hover:bg-white disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                                  title={tr("Move Up", "Nach oben")}
+                                >
+                                  <ChevronUp className="w-3.5 h-3.5" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => handleMoveSection(sIdx, "down")}
+                                  disabled={sIdx === (editingBlog.sections?.length || 1) - 1}
+                                  className="p-1 rounded text-slate-500 hover:text-slate-800 hover:bg-white disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
+                                  title={tr("Move Down", "Nach unten")}
+                                >
+                                  <ChevronDown className="w-3.5 h-3.5" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => handleRemoveSection(sIdx)}
+                                  className="p-1 rounded text-red-500 hover:text-red-700 hover:bg-red-50 cursor-pointer ml-1"
+                                  title={tr("Delete Section", "Abschnitt löschen")}
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            </div>
+
+                            {/* Section Inputs */}
+                            <div className="p-4 space-y-3.5">
+                              {/* Headings */}
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-600 uppercase mb-1">
+                                    {tr("Section Heading (German)", "Zwischenüberschrift (Deutsch)")}
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={section.headingDe || ""}
+                                    onChange={(e) => {
+                                      const updated = [...(editingBlog.sections || [])];
+                                      updated[sIdx] = { ...updated[sIdx], headingDe: e.target.value };
+                                      setEditingBlog({ ...editingBlog, sections: updated });
+                                    }}
+                                    className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs font-semibold focus:outline-none focus:border-orange-500"
+                                    placeholder="1. Das Problem..."
+                                  />
+                                </div>
+
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-600 uppercase mb-1">
+                                    {tr("Section Heading (English)", "Zwischenüberschrift (Englisch)")}
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={section.headingEn || ""}
+                                    onChange={(e) => {
+                                      const updated = [...(editingBlog.sections || [])];
+                                      updated[sIdx] = { ...updated[sIdx], headingEn: e.target.value };
+                                      setEditingBlog({ ...editingBlog, sections: updated });
+                                    }}
+                                    className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs font-semibold focus:outline-none focus:border-orange-500"
+                                    placeholder="1. The Challenge..."
+                                  />
+                                </div>
+                              </div>
+
+                              {/* Paragraphs */}
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                  <div className="flex items-center justify-between mb-1">
+                                    <label className="block text-[11px] font-bold text-slate-600 uppercase">
+                                      {tr("Paragraphs (German)", "Absätze / Fließtext (Deutsch)")}
+                                    </label>
+                                    <span className="text-[10px] text-slate-400">Doppel-Enter für neuen Absatz</span>
+                                  </div>
+                                  <textarea
+                                    rows={4}
+                                    value={paragraphsDeStr}
+                                    onChange={(e) => {
+                                      const updated = [...(editingBlog.sections || [])];
+                                      updated[sIdx] = {
+                                        ...updated[sIdx],
+                                        paragraphsDe: e.target.value.split(/\n\n+/).map((p) => p.trim()),
+                                      };
+                                      setEditingBlog({ ...editingBlog, sections: updated });
+                                    }}
+                                    className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs leading-relaxed focus:outline-none focus:border-orange-500"
+                                    placeholder="Absatz 1 hier schreiben...\n\nAbsatz 2 hier schreiben..."
+                                  />
+                                </div>
+
+                                <div>
+                                  <div className="flex items-center justify-between mb-1">
+                                    <label className="block text-[11px] font-bold text-slate-600 uppercase">
+                                      {tr("Paragraphs (English)", "Absätze / Fließtext (Englisch)")}
+                                    </label>
+                                    <span className="text-[10px] text-slate-400">Double enter for new paragraph</span>
+                                  </div>
+                                  <textarea
+                                    rows={4}
+                                    value={paragraphsEnStr}
+                                    onChange={(e) => {
+                                      const updated = [...(editingBlog.sections || [])];
+                                      updated[sIdx] = {
+                                        ...updated[sIdx],
+                                        paragraphsEn: e.target.value.split(/\n\n+/).map((p) => p.trim()),
+                                      };
+                                      setEditingBlog({ ...editingBlog, sections: updated });
+                                    }}
+                                    className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs leading-relaxed focus:outline-none focus:border-orange-500"
+                                    placeholder="Write paragraph 1 here...\n\nWrite paragraph 2 here..."
+                                  />
+                                </div>
+                              </div>
+
+                              {/* Bullets */}
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                  <div className="flex items-center justify-between mb-1">
+                                    <label className="block text-[11px] font-bold text-slate-600 uppercase flex items-center gap-1">
+                                      <List className="w-3 h-3 text-orange-600" />
+                                      <span>{tr("Bullet Points (German)", "Aufzählungspunkte (Deutsch)")}</span>
+                                    </label>
+                                    <span className="text-[10px] text-slate-400">1 Punkt pro Zeile</span>
+                                  </div>
+                                  <textarea
+                                    rows={3}
+                                    value={bulletsDeStr}
+                                    onChange={(e) => {
+                                      const updated = [...(editingBlog.sections || [])];
+                                      updated[sIdx] = {
+                                        ...updated[sIdx],
+                                        bulletsDe: e.target.value.split(/\r?\n/).map((b) => b.trim()),
+                                      };
+                                      setEditingBlog({ ...editingBlog, sections: updated });
+                                    }}
+                                    className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-orange-500 font-mono text-[11px]"
+                                    placeholder="Bis zu 70% Zeitersparnis&#10;Nahtlose Integration&#10;100% DSGVO-konform"
+                                  />
+                                </div>
+
+                                <div>
+                                  <div className="flex items-center justify-between mb-1">
+                                    <label className="block text-[11px] font-bold text-slate-600 uppercase flex items-center gap-1">
+                                      <List className="w-3 h-3 text-orange-600" />
+                                      <span>{tr("Bullet Points (English)", "Aufzählungspunkte (Englisch)")}</span>
+                                    </label>
+                                    <span className="text-[10px] text-slate-400">1 bullet per line</span>
+                                  </div>
+                                  <textarea
+                                    rows={3}
+                                    value={bulletsEnStr}
+                                    onChange={(e) => {
+                                      const updated = [...(editingBlog.sections || [])];
+                                      updated[sIdx] = {
+                                        ...updated[sIdx],
+                                        bulletsEn: e.target.value.split(/\r?\n/).map((b) => b.trim()),
+                                      };
+                                      setEditingBlog({ ...editingBlog, sections: updated });
+                                    }}
+                                    className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-orange-500 font-mono text-[11px]"
+                                    placeholder="Up to 70% faster workflows&#10;Seamless integration&#10;100% GDPR compliant"
+                                  />
+                                </div>
+                              </div>
+
+                              {/* Quotes & Code Snippets */}
+                              <div className="pt-2 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                {/* Quote */}
+                                <div className="p-2.5 rounded-[5px] bg-white border border-slate-200 space-y-2">
+                                  <span className="font-bold text-[11px] text-slate-700 flex items-center gap-1">
+                                    <Quote className="w-3 h-3 text-orange-600" />
+                                    <span>{tr("Highlight Quote (Optional)", "Hervorgehobenes Zitat (Optional)")}</span>
+                                  </span>
+                                  <input
+                                    type="text"
+                                    value={section.quoteDe?.text || ""}
+                                    onChange={(e) => {
+                                      const updated = [...(editingBlog.sections || [])];
+                                      updated[sIdx] = {
+                                        ...updated[sIdx],
+                                        quoteDe: { ...(updated[sIdx].quoteDe || {}), text: e.target.value },
+                                      };
+                                      setEditingBlog({ ...editingBlog, sections: updated });
+                                    }}
+                                    className="w-full px-2.5 py-1.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                                    placeholder="Zitat Text (Deutsch)..."
+                                  />
+                                  <input
+                                    type="text"
+                                    value={section.quoteDe?.author || ""}
+                                    onChange={(e) => {
+                                      const updated = [...(editingBlog.sections || [])];
+                                      updated[sIdx] = {
+                                        ...updated[sIdx],
+                                        quoteDe: { ...(updated[sIdx].quoteDe || {}), author: e.target.value },
+                                      };
+                                      setEditingBlog({ ...editingBlog, sections: updated });
+                                    }}
+                                    className="w-full px-2.5 py-1.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                                    placeholder="Zitat Autor (z.B. Handelsblatt 2026)..."
+                                  />
+                                </div>
+
+                                {/* Code Snippet */}
+                                <div className="p-2.5 rounded-[5px] bg-white border border-slate-200 space-y-2">
+                                  <span className="font-bold text-[11px] text-slate-700 flex items-center gap-1">
+                                    <Code2 className="w-3 h-3 text-orange-600" />
+                                    <span>{tr("Code Snippet (Optional)", "Code-Beispiel (Optional)")}</span>
+                                  </span>
+                                  <div className="grid grid-cols-2 gap-2">
+                                    <input
+                                      type="text"
+                                      value={section.codeSnippet?.title || ""}
+                                      onChange={(e) => {
+                                        const updated = [...(editingBlog.sections || [])];
+                                        updated[sIdx] = {
+                                          ...updated[sIdx],
+                                          codeSnippet: { ...(updated[sIdx].codeSnippet || {}), title: e.target.value },
+                                        };
+                                        setEditingBlog({ ...editingBlog, sections: updated });
+                                      }}
+                                      className="px-2.5 py-1.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                                      placeholder="Titel (z.B. agent.py)"
+                                    />
+                                    <input
+                                      type="text"
+                                      value={section.codeSnippet?.language || "typescript"}
+                                      onChange={(e) => {
+                                        const updated = [...(editingBlog.sections || [])];
+                                        updated[sIdx] = {
+                                          ...updated[sIdx],
+                                          codeSnippet: { ...(updated[sIdx].codeSnippet || {}), language: e.target.value },
+                                        };
+                                        setEditingBlog({ ...editingBlog, sections: updated });
+                                      }}
+                                      className="px-2.5 py-1.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                                      placeholder="Sprache (ts/py/sql)"
+                                    />
+                                  </div>
+                                  <textarea
+                                    rows={2}
+                                    value={section.codeSnippet?.code || ""}
+                                    onChange={(e) => {
+                                      const updated = [...(editingBlog.sections || [])];
+                                      updated[sIdx] = {
+                                        ...updated[sIdx],
+                                        codeSnippet: { ...(updated[sIdx].codeSnippet || {}), code: e.target.value },
+                                      };
+                                      setEditingBlog({ ...editingBlog, sections: updated });
+                                    }}
+                                    className="w-full px-2.5 py-1.5 rounded-[5px] bg-slate-900 text-emerald-300 font-mono text-[11px] focus:outline-none"
+                                    placeholder="const result = await runWorkflow();"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                      <button
+                        type="button"
+                        onClick={handleAddSection}
+                        className="w-full py-2.5 rounded-[5px] border-2 border-dashed border-orange-300 hover:border-orange-500 bg-orange-50/50 hover:bg-orange-50 text-orange-700 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                      >
+                        <Plus className="w-4 h-4" />
+                        <span>{tr("Add Another Section", "Weiteren Abschnitt hinzufügen")}</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* TAB 3: KEY TAKEAWAYS (KERNAUSSAGEN) */}
+              {blogEditorTab === "takeaways" && (
+                <div className="space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-amber-50/60 rounded-[5px] border border-amber-100">
+                    <p className="text-xs text-amber-900 font-medium">
+                      {tr(
+                        "Key Takeaways are rendered at the top of the single blog post in an executive callout box.",
+                        "Kernaussagen werden oben im Artikel als Highlight-Kasten für Entscheider hervorgehoben."
+                      )}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleAddTakeaway}
+                      className="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-[5px] text-xs font-bold flex items-center gap-1.5 cursor-pointer shrink-0 shadow-2xs"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>{tr("Add Takeaway", "Kernaussage hinzufügen")}</span>
+                    </button>
+                  </div>
+
+                  {(!editingBlog.key_takeaways_de || editingBlog.key_takeaways_de.length === 0) ? (
+                    <div className="text-center py-10 bg-slate-50 rounded-[5px] border border-dashed border-slate-300">
+                      <Sparkles className="w-8 h-8 text-slate-400 mx-auto mb-2" />
+                      <p className="text-xs font-bold text-slate-600">
+                        {tr("No key takeaways added yet", "Noch keine Kernaussagen hinzugefügt")}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={handleAddTakeaway}
+                        className="mt-3 px-3.5 py-1.5 bg-slate-900 hover:bg-orange-600 text-white rounded-[5px] text-xs font-bold cursor-pointer transition-colors"
+                      >
+                        {tr("+ Add First Takeaway", "+ Erste Kernaussage hinzufügen")}
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {editingBlog.key_takeaways_de.map((tDe: string, tIdx: number) => {
+                        const tEn = editingBlog.key_takeaways_en?.[tIdx] || "";
+                        return (
+                          <div
+                            key={tIdx}
+                            className="p-3.5 rounded-[5px] bg-slate-50 border border-slate-200 space-y-2.5 relative group"
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
+                                <span className="w-4 h-4 rounded-full bg-amber-500 text-white text-[10px] font-mono flex items-center justify-center">
+                                  {tIdx + 1}
+                                </span>
+                                <span>{tr(`Takeaway #${tIdx + 1}`, `Kernaussage #${tIdx + 1}`)}</span>
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveTakeaway(tIdx)}
+                                className="p-1 rounded text-red-500 hover:text-red-700 hover:bg-red-50 cursor-pointer"
+                                title={tr("Remove Takeaway", "Kernaussage löschen")}
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <div>
+                                <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">
+                                  {tr("German", "Deutsch")}
+                                </label>
+                                <textarea
+                                  rows={2}
+                                  value={tDe}
+                                  onChange={(e) => {
+                                    const de = [...(editingBlog.key_takeaways_de || [])];
+                                    de[tIdx] = e.target.value;
+                                    setEditingBlog({ ...editingBlog, key_takeaways_de: de });
+                                  }}
+                                  className="w-full px-3 py-1.5 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-amber-500"
+                                  placeholder="Messbare Effizienzsteigerung..."
+                                />
+                              </div>
+
+                              <div>
+                                <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">
+                                  {tr("English", "Englisch")}
+                                </label>
+                                <textarea
+                                  rows={2}
+                                  value={tEn}
+                                  onChange={(e) => {
+                                    const en = [...(editingBlog.key_takeaways_en || [])];
+                                    en[tIdx] = e.target.value;
+                                    setEditingBlog({ ...editingBlog, key_takeaways_en: en });
+                                  }}
+                                  className="w-full px-3 py-1.5 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-amber-500"
+                                  placeholder="Measurable efficiency gains..."
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                      <button
+                        type="button"
+                        onClick={handleAddTakeaway}
+                        className="w-full py-2.5 rounded-[5px] border-2 border-dashed border-amber-300 hover:border-amber-500 bg-amber-50/50 hover:bg-amber-50 text-amber-800 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                      >
+                        <Plus className="w-4 h-4" />
+                        <span>{tr("Add Another Takeaway", "Weitere Kernaussage hinzufügen")}</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* TAB 4: FAQS */}
+              {blogEditorTab === "faqs" && (
+                <div className="space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-blue-50/60 rounded-[5px] border border-blue-100">
+                    <p className="text-xs text-blue-900 font-medium">
+                      {tr(
+                        "Frequently Asked Questions (FAQ) appear at the bottom of the article for interactive client engagement.",
+                        "Häufig gestellte Fragen (FAQ) werden am Ende des Artikels für Kundenfragen dargestellt."
+                      )}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleAddFaq}
+                      className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-[5px] text-xs font-bold flex items-center gap-1.5 cursor-pointer shrink-0 shadow-2xs"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>{tr("Add FAQ", "FAQ hinzufügen")}</span>
+                    </button>
+                  </div>
+
+                  {(!editingBlog.faqs || editingBlog.faqs.length === 0) ? (
+                    <div className="text-center py-10 bg-slate-50 rounded-[5px] border border-dashed border-slate-300">
+                      <HelpCircle className="w-8 h-8 text-slate-400 mx-auto mb-2" />
+                      <p className="text-xs font-bold text-slate-600">
+                        {tr("No FAQs added yet", "Noch keine FAQs hinzugefügt")}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={handleAddFaq}
+                        className="mt-3 px-3.5 py-1.5 bg-slate-900 hover:bg-orange-600 text-white rounded-[5px] text-xs font-bold cursor-pointer transition-colors"
+                      >
+                        {tr("+ Add First FAQ", "+ Erste FAQ hinzufügen")}
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {editingBlog.faqs.map((faq: any, fIdx: number) => (
+                        <div
+                          key={fIdx}
+                          className="p-4 rounded-[5px] bg-slate-50 border border-slate-200 space-y-3 relative"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
+                              <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[10px] font-mono flex items-center justify-center">
+                                {fIdx + 1}
+                              </span>
+                              <span>{tr(`Question #${fIdx + 1}`, `Frage #${fIdx + 1}`)}</span>
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveFaq(fIdx)}
+                              className="p-1 rounded text-red-500 hover:text-red-700 hover:bg-red-50 cursor-pointer"
+                              title={tr("Remove FAQ", "FAQ entfernen")}
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+
+                          {/* Questions */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">
+                                {tr("Question (German)", "Frage (Deutsch)")}
+                              </label>
+                              <input
+                                type="text"
+                                value={faq.questionDe || ""}
+                                onChange={(e) => {
+                                  const list = [...(editingBlog.faqs || [])];
+                                  list[fIdx] = { ...list[fIdx], questionDe: e.target.value };
+                                  setEditingBlog({ ...editingBlog, faqs: list });
+                                }}
+                                className="w-full px-3 py-1.5 rounded-[5px] bg-white border border-slate-200 text-xs font-semibold focus:outline-none focus:border-blue-500"
+                                placeholder="Wie schnell kann das System implementiert werden?"
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">
+                                {tr("Question (English)", "Frage (Englisch)")}
+                              </label>
+                              <input
+                                type="text"
+                                value={faq.questionEn || ""}
+                                onChange={(e) => {
+                                  const list = [...(editingBlog.faqs || [])];
+                                  list[fIdx] = { ...list[fIdx], questionEn: e.target.value };
+                                  setEditingBlog({ ...editingBlog, faqs: list });
+                                }}
+                                className="w-full px-3 py-1.5 rounded-[5px] bg-white border border-slate-200 text-xs font-semibold focus:outline-none focus:border-blue-500"
+                                placeholder="How quickly can the system be implemented?"
+                              />
+                            </div>
+                          </div>
+
+                          {/* Answers */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">
+                                {tr("Answer (German)", "Antwort (Deutsch)")}
+                              </label>
+                              <textarea
+                                rows={2}
+                                value={faq.answerDe || ""}
+                                onChange={(e) => {
+                                  const list = [...(editingBlog.faqs || [])];
+                                  list[fIdx] = { ...list[fIdx], answerDe: e.target.value };
+                                  setEditingBlog({ ...editingBlog, faqs: list });
+                                }}
+                                className="w-full px-3 py-1.5 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-blue-500 leading-relaxed"
+                                placeholder="Die Implementierung erfolgt in der Regel innerhalb von 5 bis 10 Tagen..."
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">
+                                {tr("Answer (English)", "Antwort (Englisch)")}
+                              </label>
+                              <textarea
+                                rows={2}
+                                value={faq.answerEn || ""}
+                                onChange={(e) => {
+                                  const list = [...(editingBlog.faqs || [])];
+                                  list[fIdx] = { ...list[fIdx], answerEn: e.target.value };
+                                  setEditingBlog({ ...editingBlog, faqs: list });
+                                }}
+                                className="w-full px-3 py-1.5 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-blue-500 leading-relaxed"
+                                placeholder="Deployment is typically accomplished within 5 to 10 days..."
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+
+                      <button
+                        type="button"
+                        onClick={handleAddFaq}
+                        className="w-full py-2.5 rounded-[5px] border-2 border-dashed border-blue-300 hover:border-blue-500 bg-blue-50/50 hover:bg-blue-50 text-blue-800 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                      >
+                        <Plus className="w-4 h-4" />
+                        <span>{tr("Add Another FAQ", "Weitere FAQ hinzufügen")}</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* TAB 5: AUTHOR & SEO META */}
+              {blogEditorTab === "author" && (
+                <div className="space-y-4">
+                  {/* Author Box */}
+                  <div className="p-4 rounded-[5px] bg-slate-50 border border-slate-200 space-y-3">
+                    <span className="font-extrabold text-xs text-slate-800 flex items-center gap-1.5">
+                      <User className="w-3.5 h-3.5 text-orange-600" />
+                      <span>{tr("Author Details", "Autor-Informationen")}</span>
+                    </span>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[11px] font-bold text-slate-600 uppercase mb-1">
+                          {tr("Author Name", "Autor-Name")}
+                        </label>
+                        <input
+                          type="text"
+                          value={editingBlog.author?.name || ""}
+                          onChange={(e) =>
+                            setEditingBlog({
+                              ...editingBlog,
+                              author: { ...(editingBlog.author || {}), name: e.target.value },
+                            })
+                          }
+                          className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-orange-500"
+                          placeholder="Nexa Solutions Team"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold text-slate-600 uppercase mb-1">
+                          {tr("Avatar Image URL", "Avatar Bild-URL")}
+                        </label>
+                        <input
+                          type="text"
+                          value={editingBlog.author?.avatar || ""}
+                          onChange={(e) =>
+                            setEditingBlog({
+                              ...editingBlog,
+                              author: { ...(editingBlog.author || {}), avatar: e.target.value },
+                            })
+                          }
+                          className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-orange-500"
+                          placeholder="/favicon.ico oder Bild-URL"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[11px] font-bold text-slate-600 uppercase mb-1">
+                          {tr("Role (German)", "Rolle / Berufsbezeichnung (Deutsch)")}
+                        </label>
+                        <input
+                          type="text"
+                          value={editingBlog.author?.roleDe || ""}
+                          onChange={(e) =>
+                            setEditingBlog({
+                              ...editingBlog,
+                              author: { ...(editingBlog.author || {}), roleDe: e.target.value },
+                            })
+                          }
+                          className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-orange-500"
+                          placeholder="Software-Architektur & KI-Entwicklung"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold text-slate-600 uppercase mb-1">
+                          {tr("Role (English)", "Rolle / Berufsbezeichnung (Englisch)")}
+                        </label>
+                        <input
+                          type="text"
+                          value={editingBlog.author?.roleEn || ""}
+                          onChange={(e) =>
+                            setEditingBlog({
+                              ...editingBlog,
+                              author: { ...(editingBlog.author || {}), roleEn: e.target.value },
+                            })
+                          }
+                          className="w-full px-3 py-2 rounded-[5px] bg-white border border-slate-200 text-xs focus:outline-none focus:border-orange-500"
+                          placeholder="Software Architecture & AI Engineering"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* SEO Title DE */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      {tr("SEO Title (German Meta Title)", "SEO-Titel (Google Suchergebnis-Titel)")}
+                    </label>
+                    <input
+                      type="text"
+                      value={editingBlog.seo_title_de || ""}
+                      onChange={(e) => setEditingBlog({ ...editingBlog, seo_title_de: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                      placeholder="Optionaler Titel für Google Suchergebnisse..."
+                    />
+                  </div>
+
+                  {/* Tags */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      {tr("Tags / Keywords (comma separated)", "Schlagwörter / Tags (kommagetrennt)")}
+                    </label>
+                    <input
+                      type="text"
+                      value={
+                        Array.isArray(editingBlog.tags)
+                          ? editingBlog.tags.join(", ")
+                          : (editingBlog as any).tags || ""
+                      }
+                      onChange={(e) =>
+                        setEditingBlog({
+                          ...editingBlog,
+                          tags: e.target.value.split(",").map((t) => t.trim()),
+                        })
+                      }
+                      className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs focus:bg-white focus:outline-none"
+                      placeholder="KI, Next.js, Automatisierung, Cloud, DSGVO"
+                    />
+
+                    {/* Tag Pills Preview */}
+                    {Array.isArray(editingBlog.tags) && editingBlog.tags.filter(Boolean).length > 0 && (
+                      <div className="flex items-center gap-1.5 flex-wrap mt-2">
+                        {editingBlog.tags.filter(Boolean).map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="px-2 py-0.5 rounded-[5px] text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Related Slugs */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                      {tr("Related Article Slugs (comma separated)", "Verwandte Artikel-Slugs (kommagetrennt)")}
+                    </label>
+                    <input
+                      type="text"
+                      value={
+                        Array.isArray(editingBlog.related_slugs)
+                          ? editingBlog.related_slugs.join(", ")
+                          : (editingBlog as any).related_slugs || ""
+                      }
+                      onChange={(e) =>
+                        setEditingBlog({
+                          ...editingBlog,
+                          related_slugs: e.target.value.split(",").map((s) => s.trim()),
+                        })
+                      }
+                      className="w-full px-3.5 py-2.5 rounded-[5px] bg-slate-50 border border-slate-200 text-xs font-mono focus:bg-white focus:outline-none"
+                      placeholder="ki-startups-deutschland-2026, nextjs-vs-wordpress-2026"
+                    />
+                  </div>
+                </div>
+              )}
 
               {/* Submit CTA */}
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-end gap-2.5">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setLocalPreview(null);
-                    setBlogModalOpen(false);
-                  }}
-                  className="px-4 py-2.5 rounded-[5px] bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs cursor-pointer"
-                >
-                  {tr("Cancel", "Abbrechen")}
-                </button>
-                <button
-                  type="submit"
-                  disabled={uploadingImage}
-                  className="px-5 py-2.5 rounded-[5px] bg-orange-600 hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-xs shadow-md shadow-orange-500/20 cursor-pointer flex items-center gap-1.5"
-                >
-                  {uploadingImage && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-                  <span>{uploadingImage ? tr("Uploading Image...", "Bild wird hochgeladen...") : tr("Save Article", "Artikel speichern")}</span>
-                </button>
+              <div className="pt-3 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
+                <div className="text-[11px] text-slate-400 font-medium">
+                  {tr(
+                    `${editingBlog.sections?.length || 0} Sections • ${editingBlog.key_takeaways_de?.length || 0} Takeaways • ${editingBlog.faqs?.length || 0} FAQs`,
+                    `${editingBlog.sections?.length || 0} Abschnitte • ${editingBlog.key_takeaways_de?.length || 0} Kernaussagen • ${editingBlog.faqs?.length || 0} FAQs`
+                  )}
+                </div>
+
+                <div className="flex items-center justify-end gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLocalPreview(null);
+                      setBlogModalOpen(false);
+                    }}
+                    className="px-4 py-2.5 rounded-[5px] bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs cursor-pointer transition-colors"
+                  >
+                    {tr("Cancel", "Abbrechen")}
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={uploadingImage || savingBlog}
+                    className="px-5 py-2.5 rounded-[5px] bg-orange-600 hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-xs shadow-md shadow-orange-500/20 cursor-pointer flex items-center gap-1.5 transition-all"
+                  >
+                    {(uploadingImage || savingBlog) && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+                    <span>
+                      {uploadingImage
+                        ? tr("Uploading Image...", "Bild wird hochgeladen...")
+                        : savingBlog
+                        ? tr("Saving Article...", "Wird gespeichert...")
+                        : tr("Save Article", "Artikel speichern")}
+                    </span>
+                  </button>
+                </div>
               </div>
             </form>
           </div>

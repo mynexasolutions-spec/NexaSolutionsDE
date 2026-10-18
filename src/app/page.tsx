@@ -20,10 +20,20 @@ import BusinessSystems from "@/components/BusinessSystems";
 import FaqSection from "@/components/FaqSection";
 import BookingSection from "@/components/BookingSection";
 
-import ContactModal from "@/components/ContactModal";
-import VideoModal from "@/components/VideoModal";
-import ServiceModal from "@/components/ServiceModal";
-import ProjectModal from "@/components/ProjectModal";
+import dynamic from "next/dynamic";
+
+const ContactModal = dynamic(() => import("@/components/ContactModal"), {
+  ssr: false,
+});
+const VideoModal = dynamic(() => import("@/components/VideoModal"), {
+  ssr: false,
+});
+const ServiceModal = dynamic(() => import("@/components/ServiceModal"), {
+  ssr: false,
+});
+const ProjectModal = dynamic(() => import("@/components/ProjectModal"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
@@ -217,39 +227,47 @@ export default function Home() {
       {/* 9. Footer */}
       <Footer />
 
-      {/* Interactive Modals */}
-      <ContactModal
-        isOpen={contactOpen}
-        onClose={() => setContactOpen(false)}
-        defaultService={defaultServiceContact}
-      />
+      {/* Interactive Modals (Lazy Loaded on Demand) */}
+      {contactOpen && (
+        <ContactModal
+          isOpen={contactOpen}
+          onClose={() => setContactOpen(false)}
+          defaultService={defaultServiceContact}
+        />
+      )}
 
-      <VideoModal
-        isOpen={videoOpen}
-        onClose={() => setVideoOpen(false)}
-      />
+      {videoOpen && (
+        <VideoModal
+          isOpen={videoOpen}
+          onClose={() => setVideoOpen(false)}
+        />
+      )}
 
-      <ServiceModal
-        serviceId={selectedService}
-        onClose={() => setSelectedService(null)}
-        onGetQuote={(serviceName) => {
-          setSelectedService(null);
-          handleOpenContact(serviceName);
-        }}
-      />
+      {selectedService && (
+        <ServiceModal
+          serviceId={selectedService}
+          onClose={() => setSelectedService(null)}
+          onGetQuote={(serviceName) => {
+            setSelectedService(null);
+            handleOpenContact(serviceName);
+          }}
+        />
+      )}
 
-      <ProjectModal
-        initialProjectId={selectedProject}
-        isOpen={projectModalOpen}
-        onClose={() => {
-          setProjectModalOpen(false);
-          setSelectedProject(null);
-        }}
-        onRequestSimilar={() => {
-          setProjectModalOpen(false);
-          handleOpenContact();
-        }}
-      />
+      {projectModalOpen && (
+        <ProjectModal
+          initialProjectId={selectedProject}
+          isOpen={projectModalOpen}
+          onClose={() => {
+            setProjectModalOpen(false);
+            setSelectedProject(null);
+          }}
+          onRequestSimilar={() => {
+            setProjectModalOpen(false);
+            handleOpenContact();
+          }}
+        />
+      )}
     </div>
   );
 }

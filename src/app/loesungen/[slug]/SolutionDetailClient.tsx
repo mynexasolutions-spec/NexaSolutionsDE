@@ -83,6 +83,9 @@ export default function SolutionDetailClient({
   const h1 = isEn && solution.h1En ? solution.h1En : solution.h1;
   const intro = isEn && solution.introEn ? solution.introEn : solution.intro;
   const badge = isEn && solution.badgeEn ? solution.badgeEn : solution.badge;
+  const faqHeading = isEn
+    ? (solution.faqTitleEn || `FAQ on ${h1}`)
+    : (solution.faqTitle || `FAQ zu ${h1}`);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FDFDFE] text-[#0F172A] selection:bg-[#EA580C] selection:text-white">
@@ -474,7 +477,7 @@ export default function SolutionDetailClient({
                 <span>{t("HÄUFIG GESTELLTE FRAGEN", "FAQ")}</span>
               </div>
               <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-4 text-center">
-                {t(`FAQ zu ${h1}`, `FAQ on ${h1}`)}
+                {faqHeading}
               </h2>
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
                 {t(

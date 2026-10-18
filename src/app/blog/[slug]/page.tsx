@@ -21,6 +21,7 @@ import {
   Code2,
   ShieldCheck,
   Send,
+  Globe,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -67,11 +68,18 @@ function renderWithLinks(text: string) {
   return parts;
 }
 
-export default function SingleBlogPage() {
+export default function SingleBlogPage({
+  forcedLocale,
+  forcedSlug,
+}: {
+  forcedLocale?: "de" | "en";
+  forcedSlug?: string;
+} = {}) {
   const params = useParams();
   const router = useRouter();
-  const slug = params?.slug as string;
-  const { t, lang } = useLanguage();
+  const slug = forcedSlug || (params?.slug as string);
+  const { t, lang: ctxLang } = useLanguage();
+  const lang = forcedLocale || ctxLang;
 
   const [contactOpen, setContactOpen] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -117,6 +125,7 @@ export default function SingleBlogPage() {
               keyTakeawaysDe: (found.key_takeaways_de && found.key_takeaways_de.length > 0) ? found.key_takeaways_de : (initialPost?.keyTakeawaysDe || []),
               keyTakeawaysEn: (found.key_takeaways_en && found.key_takeaways_en.length > 0) ? found.key_takeaways_en : (initialPost?.keyTakeawaysEn || []),
               sections: (found.sections && found.sections.length > 0) ? found.sections : (initialPost?.sections || []),
+              faqs: (found.faqs && found.faqs.length > 0) ? found.faqs : (initialPost?.faqs || []),
               tags: (found.tags && found.tags.length > 0) ? found.tags : (initialPost?.tags || []),
               relatedSlugs: (found.related_slugs && found.related_slugs.length > 0) ? found.related_slugs : (initialPost?.relatedSlugs || []),
             };
@@ -167,11 +176,11 @@ export default function SingleBlogPage() {
               )}
             </p>
             <Link
-              href="/blog"
+              href={lang === "de" ? "/blog" : "/en/blog"}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold transition-all shadow-md"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>{t("Zurück zum Blog", "Back to Blog")}</span>
+              <span>{t("Zurück zur Blog-Übersicht", "Back to Blog Overview")}</span>
             </Link>
           </div>
         </main>
@@ -233,7 +242,7 @@ export default function SingleBlogPage() {
         : "2026-10-06T09:00:00.000Z"),
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${SITE_URL}/blog/${post.slug}`,
+      "@id": lang === "de" ? `${SITE_URL}/blog/${post.slug}` : `${SITE_URL}/en/blog/${post.slug}`,
     },
     inLanguage: lang === "de" ? "de-DE" : "en-US",
   };
@@ -252,13 +261,13 @@ export default function SingleBlogPage() {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: `${SITE_URL}/blog`,
+        item: lang === "de" ? `${SITE_URL}/blog` : `${SITE_URL}/en/blog`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: title,
-        item: `${SITE_URL}/blog/${post.slug}`,
+        item: lang === "de" ? `${SITE_URL}/blog/${post.slug}` : `${SITE_URL}/en/blog/${post.slug}`,
       },
     ],
   };
@@ -300,11 +309,11 @@ export default function SingleBlogPage() {
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
             {/* Back Button */}
             <Link
-              href="/blog"
+              href={lang === "de" ? "/blog" : "/en/blog"}
               className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100/80 hover:bg-orange-50 text-slate-700 hover:text-orange-600 font-semibold transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" />
-              <span>{t("Alle Artikel", "All Articles")}</span>
+              <span>{t("Alle Blog-Artikel", "All Blog Articles")}</span>
             </Link>
 
             {/* Breadcrumb Path */}
@@ -314,7 +323,7 @@ export default function SingleBlogPage() {
               </Link>
               <ChevronRight className="w-3 h-3 text-slate-300" />
               <Link
-                href="/blog"
+                href={lang === "de" ? "/blog" : "/en/blog"}
                 className="hover:text-slate-600 transition-colors"
               >
                 Blog
@@ -387,6 +396,16 @@ export default function SingleBlogPage() {
               <span className="text-xs font-medium text-slate-400 mr-1 hidden sm:inline">
                 {t("Teilen:", "Share:")}
               </span>
+
+              {/* Visible Language Switcher Button */}
+              <Link
+                href={lang === "de" ? `/en/blog/${post.slug}` : `/blog/${post.slug}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-700 text-xs font-bold transition-all hover:scale-105 shadow-2xs mr-1"
+                title={lang === "de" ? "Diesen Artikel auf Englisch lesen" : "Read this article in German"}
+              >
+                <Globe className="w-3.5 h-3.5 text-orange-600" />
+                <span>{lang === "de" ? "English 🇬🇧" : "Deutsch 🇩🇪"}</span>
+              </Link>
 
               {/* Copy Link Button */}
               <button
@@ -668,7 +687,7 @@ export default function SingleBlogPage() {
                 onClick={() => setContactOpen(true)}
                 className="px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-xs sm:text-sm font-bold shadow-md shadow-orange-600/20 transition-all hover:scale-105 active:scale-95 shrink-0 cursor-pointer flex items-center gap-2"
               >
-                <span>{t("Erstgespräch anfragen", "Book Discovery Call")}</span>
+                <span>{t("Kostenloses Erstgespräch vereinbaren", "Book a Free Consultation")}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -682,7 +701,7 @@ export default function SingleBlogPage() {
                   {t("Ähnliche Fachartikel", "Related Articles")}
                 </h2>
                 <Link
-                  href="/blog"
+                  href={lang === "de" ? "/blog" : "/en/blog"}
                   className="text-xs font-semibold text-orange-600 hover:text-orange-700 inline-flex items-center gap-1"
                 >
                   <span>{t("Alle ansehen", "View all")}</span>
@@ -704,7 +723,8 @@ export default function SingleBlogPage() {
                   return (
                     <Link
                       key={rel.slug}
-                      href={`/blog/${rel.slug}`}
+                      href={lang === "de" ? `/blog/${rel.slug}` : `/en/blog/${rel.slug}`}
+                      aria-label={`${t("Artikel lesen", "Read article")}: ${relTitle}`}
                       className="group flex gap-4 p-4 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-orange-200 transition-all"
                     >
                       <div className="relative w-24 h-20 sm:w-28 sm:h-24 rounded-lg overflow-hidden shrink-0 bg-slate-100">
@@ -730,7 +750,7 @@ export default function SingleBlogPage() {
                           </h3>
                         </div>
                         <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-orange-600 mt-2">
-                          <span>{t("Lesen", "Read article")}</span>
+                          <span>{t("Artikel lesen", "Read Article")}</span>
                           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>

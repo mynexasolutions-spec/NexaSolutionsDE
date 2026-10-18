@@ -578,7 +578,8 @@ export default function WebDevelopmentPage() {
         }}
       />
 
-      {/* Hero Section */}
+      <main role="main" className="flex-1">
+        {/* Hero Section */}
       <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-28 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50">
         {/* Subtle decorative glowing background orbs */}
         <div className="absolute top-10 right-0 w-[550px] h-[550px] bg-gradient-to-bl from-orange-200/35 via-amber-100/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10 translate-x-1/4 -translate-y-1/4" />
@@ -1419,9 +1420,9 @@ export default function WebDevelopmentPage() {
                   <ShieldCheck className="w-3.5 h-3.5 text-orange-500" />
                   <span>{t("100% BUDGETSICHERHEIT", "100% BUDGET PREDICTABILITY")}</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-[900] text-[#0F172A] tracking-tight mb-4">
+                <h2 className="text-2xl sm:text-3xl font-[900] text-[#0F172A] tracking-tight mb-4">
                   {t("Webentwicklung zum Festpreis", "Fixed-Price Web Development")}
-                </h3>
+                </h2>
                 <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
                   {t(
                     "Volle Kostenkontrolle von Beginn an: Bei Nexa Solutions erhalten Sie professionelle Webentwicklung zum Festpreis ohne versteckte Mehrkosten. Wir definieren den Leistungsumfang vor dem Kickoff und garantieren transparente Meilensteine bis zum Go-Live.",
@@ -1452,9 +1453,9 @@ export default function WebDevelopmentPage() {
                   <Lock className="w-3.5 h-3.5 text-blue-500" />
                   <span>{t("RECHTSSICHERHEIT", "EU DATA PRIVACY")}</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-[900] text-[#0F172A] tracking-tight mb-4">
+                <h2 className="text-2xl sm:text-3xl font-[900] text-[#0F172A] tracking-tight mb-4">
                   {t("DSGVO-konforme Websites", "GDPR-Compliant Websites")}
-                </h3>
+                </h2>
                 <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
                   {t(
                     "Rechtssicherheit für den deutschen und europäischen Markt: Sie können bei uns eine rundum DSGVO konforme Website erstellen lassen. Wir implementieren lokales Font-Hosting, Cookie-freie Analytics und ISO-27001-zertifiziertes Hosting in Frankfurt am Main.",
@@ -1724,6 +1725,7 @@ export default function WebDevelopmentPage() {
           </div>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
       <Footer />

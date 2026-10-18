@@ -1,3 +1,5 @@
+import { extendedBlogPosts } from "./blogDataExtended";
+
 export interface BlogSection {
   headingDe: string;
   headingEn: string;
@@ -31,6 +33,7 @@ export interface BlogPost {
   categoryLabelEn: string;
   categoryBadgeClass: string;
   date: string;
+  createdAt?: string;
   publishedAt?: string;
   updatedAt?: string;
   readTimeDe: string;
@@ -72,7 +75,7 @@ export const blogCategories = [
   },
 ];
 
-export const blogPosts: BlogPost[] = [
+const baseBlogPosts: BlogPost[] = [
   {
     slug: "ki-automatisierung-unternehmen-2026",
     titleDe:
@@ -93,7 +96,7 @@ export const blogPosts: BlogPost[] = [
     readTimeDe: "5 Min. Lesezeit",
     readTimeEn: "5 min read",
     coverImage: "/images/ai-robot.png",
-    featured: true,
+    featured: false,
     views: "2.8k",
     author: {
       name: "Nexa Solutions Team",
@@ -119,11 +122,11 @@ export const blogPosts: BlogPost[] = [
         headingEn: "1. The Bottleneck: Costly Manual Tasks Paralyze Teams",
         paragraphsDe: [
           "In vielen mittelständischen Unternehmen verbringen qualifizierte Mitarbeiter bis zu 30% ihrer wöchentlichen Arbeitszeit mit dem Kopieren von Daten zwischen Excel, E-Mails, CRM und ERP-Systemen. Diese manuelle Fleißarbeit ist nicht nur fehleranfällig, sondern bindet wertvolle Kapazitäten, die für Vertrieb, Kundenbetreuung und Innovation fehlen.",
-          "Hier setzt moderne KI-gestützte Workflow-Automatisierung an: Durch die Kombination von Event-basierten Auslösern (Webhooks) mit Large Language Models (LLMs) können Dokumente, Leads und Support-Tickets ohne menschliches Eingreifen fehlerfrei verarbeitet werden.",
+          "Hier setzt moderne KI-gestützte Workflow-Automatisierung an: Durch unsere maßgeschneiderte [KI-Automatisierung für Unternehmen](/services/ai-automation) und die nahtlose Anbindung an moderne [Webentwicklung](/services/web-development) werden Dokumente, Leads und Support-Tickets ohne menschliches Eingreifen fehlerfrei verarbeitet.",
         ],
         paragraphsEn: [
           "In most mid-market organizations, skilled professionals spend up to 30% of their working hours manually copy-pasting data across spreadsheets, emails, CRMs, and accounting platforms. This routine overhead introduces human errors and diverts focus away from core growth.",
-          "This is where modern AI-driven automation changes the game: By pairing event-based triggers (webhooks) with high-speed LLMs, incoming documents, sales leads, and support requests are categorized, extracted, and synced with pinpoint accuracy in real time.",
+          "This is where modern AI-driven automation changes the game: By pairing custom [AI & Automation services](/services/ai-automation) with high-performance [Web Development](/services/web-development), incoming documents, sales leads, and support requests are categorized, extracted, and synced with pinpoint accuracy in real time.",
         ],
         quoteDe: {
           text: "Unternehmen, die ihre Kernprozesse mit n8n und KI-Pipelines automatisieren, verkürzen ihre Reaktionszeiten auf Kundenanfragen von Stunden auf wenige Sekunden.",
@@ -198,11 +201,11 @@ export const blogPosts: BlogPost[] = [
         headingEn: "4. Key Takeaways & Action Plan",
         paragraphsDe: [
           "KI-Automatisierung ist längst kein Zukunftsthema mehr, sondern ein messbarer Wettbewerbsvorteil. Unternehmen, die heute repetitive Prozesse digitalisieren, sparen nicht nur wertvolle Arbeitszeit, sondern begeistern Kunden durch blitzschnelle Reaktionszeiten.",
-          "Nexa Solutions unterstützt Sie von der ersten Prozessanalyse über das DSGVO-konforme Hosting bis zur schlüsselfertigen Einrichtung Ihrer individuellen [KI-Automatisierung für Unternehmen](/services/ai-automation). Ergänzend erfahren Sie in unserem Leitfaden, wie Sie eine [DSGVO-konforme KI-Infrastruktur](/blog/dsgvo-konforme-ki-infrastruktur) aufbauen. Jetzt unverbindlich [Kontakt aufnehmen](/contact).",
+          "Nexa Solutions unterstützt Sie von der ersten Prozessanalyse über das DSGVO-konforme Hosting bis zur schlüsselfertigen Einrichtung Ihrer individuellen [KI-Automatisierung für Unternehmen](/services/ai-automation). Benötigen Sie auch agile App-Prototypen, unterstützt Sie unsere [MVP-Entwicklung](/services/mvp-development). Ergänzend erfahren Sie in unserem Leitfaden, wie Sie eine [DSGVO-konforme KI-Infrastruktur](/blog/dsgvo-konforme-ki-infrastruktur) aufbauen. Jetzt unverbindlich [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
           "AI workflow automation is no longer an experiment — it is a decisive competitive edge. Companies embracing automation today reduce operating expenses drastically while providing seamless customer experiences.",
-          "Nexa Solutions handles the complete lifecycle: From workflow discovery and architecture design to GDPR-compliant deployment and maintenance.",
+          "Nexa Solutions handles the complete lifecycle: From workflow discovery and architecture design to GDPR-compliant deployment and maintenance. Discover our tailored [AI & Automation](/services/ai-automation) systems and rapid [MVP Development](/services/mvp-development) to transform routine operations.",
         ],
       },
     ],
@@ -283,7 +286,7 @@ export const blogPosts: BlogPost[] = [
         ],
         paragraphsEn: [
           "Next.js (leveraging React Server Components, App Router, and global Edge CDN distribution) renders page markup instantly at nodes closest to the user. Minimal client-side JavaScript is sent over the wire.",
-          "The experience feels identical to a native desktop software: page transitions happen instantaneously, media is optimized into next-gen AVIF/WebP formats automatically, and plugin-related security alerts are eliminated completely.",
+          "The experience feels identical to a native desktop software: page transitions happen instantaneously, media is optimized into next-gen AVIF/WebP formats automatically, and plugin-related security alerts are eliminated completely. Discover our enterprise [Web Development](/services/web-development) and rapid [MVP Development](/services/mvp-development) approach to launch fast.",
         ],
         bulletsDe: [
           "Ladezeiten oft unter 400 Millisekunden",
@@ -414,13 +417,13 @@ export const blogPosts: BlogPost[] = [
     slug: "react-native-cross-platform-apps",
     titleDe:
       "Native iOS & Android Apps mit React Native: 50% geringere Kosten ohne Performance-Einbußen",
-    seoTitleDe: "React Native Cross-Platform Entwicklung",
+    seoTitleDe: "React Native Apps: Bis zu 50% sparen",
     titleEn:
-      "Cross-Platform Mobile Apps with React Native: 50% Lower Cost, Zero Compromise",
+      "React Native App Development: Save 50%",
     excerptDe:
-      "React Native Cross-Platform Entwicklung: Echte native iOS & Android Apps mit einem Code. Bis zu 50% Kostenersparnis bei 60 FPS Performance. Jetzt informieren!",
+      "React Native Apps für iOS & Android: 50% Kosten sparen bei voller nativer Performance & 60 FPS. DSGVO-konform aus Stuttgart. Jetzt informieren!",
     excerptEn:
-      "Why modern engineering teams no longer maintain dual Swift and Kotlin codebases: Deep dive into React Native architecture, code reuse, and buttery 60 FPS performance.",
+      "Cross-platform iOS and Android apps with React Native: Cut dev costs by 50% with buttery 60 FPS native performance. Discover architecture benefits now!",
     category: "mobile-apps",
     categoryLabelDe: "Mobile Apps",
     categoryLabelEn: "Mobile Apps",
@@ -496,6 +499,7 @@ export const blogPosts: BlogPost[] = [
         ],
         paragraphsEn: [
           "For almost all modern consumer and B2B products, cross-platform architecture is the indisputable best practice. You save significant capital, cut delivery timelines in half, and maintain full agility.",
+          "Explore our specialized [Mobile App Development](/services/mobile-app-development) for iOS and Android, enterprise [Web Development](/services/web-development), or rapid [MVP Development](/services/mvp-development) services to accelerate your digital roadmap.",
         ],
       },
     ],
@@ -557,11 +561,11 @@ export const blogPosts: BlogPost[] = [
         headingEn: "1. The Challenge: Fast AI Innovation vs. Strict EU Privacy",
         paragraphsDe: [
           "Möchten europäische Unternehmen generative KI im Kundenservice, bei der Vertragsanalyse oder internen Wissensverwaltung einsetzen, stehen sie vor strengen regulatorischen Hürden. Die DSGVO verbietet die unkontrollierte Weitergabe personenbezogener Daten an Drittanbieter in den USA.",
-          "Viele Firmen blockieren den Einsatz von KI deshalb aus Angst vor Bußgeldern komplett – und verpassen so entscheidende Produktivitätsgewinne. Dabei gibt es heute praxiserprobte Architekturen, die Innovation und Datenschutz perfekt vereinen.",
+          "Viele Firmen blockieren den Einsatz von KI deshalb aus Angst vor Bußgeldern komplett – und verpassen so entscheidende Produktivitätsgewinne. Dabei gibt es heute praxiserprobte Architekturen, die Innovation und Datenschutz perfekt vereinen – von moderner [Webentwicklung](/services/web-development) bis hin zu agiler [MVP-Entwicklung](/services/mvp-development).",
         ],
         paragraphsEn: [
           "When European businesses seek to implement generative AI in customer operations, contract analysis, or knowledge bases, they encounter strict regulatory requirements. GDPR prohibits reckless data transfers to unauthorized third parties.",
-          "Fearing heavy fines, some companies hesitate to adopt AI tools entirely — sacrificing vital operational efficiency. Fortunately, turnkey enterprise architectures now exist that harmonize regulatory compliance with cutting-edge AI.",
+          "Fearing heavy fines, some companies hesitate to adopt AI tools entirely — sacrificing vital operational efficiency. Fortunately, turnkey enterprise architectures now exist that harmonize regulatory compliance with cutting-edge AI. Discover how our [Web Development](/services/web-development) and [AI & Automation](/services/ai-automation) services implement strict Privacy-by-Design standards.",
         ],
       },
       {
@@ -572,7 +576,7 @@ export const blogPosts: BlogPost[] = [
           "Wie mittelständische Firmen davon konkret im Alltag profitieren, lesen Sie in unserem Praxisbericht über [n8n KI-Agenten im Unternehmen](/blog/ki-automatisierung-unternehmen-2026). Möchten Sie Ihre Systeme auditieren lassen? Jetzt unverbindlich [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
-          "At Nexa Solutions, we engineer enterprise AI workflows grounded in 'Privacy by Design'. This rests upon three rigorous security tiers:",
+          "At Nexa Solutions, we engineer enterprise AI workflows grounded in 'Privacy by Design' through custom [AI & Automation](/services/ai-automation) and compliant [MVP Development](/services/mvp-development). This rests upon three rigorous security tiers:",
         ],
         bulletsDe: [
           "Säule 1: Lokales Daten-Sanitizing – Namen, Adressen und IBANs werden vor dem API-Aufruf maskiert.",
@@ -645,7 +649,7 @@ export const blogPosts: BlogPost[] = [
         headingEn: "1. The #1 Startup Trap: Building Too Much Too Soon",
         paragraphsDe: [
           "Über 70% aller Softwareprojekte scheitern nicht an schlechtem Code, sondern daran, dass monatelang im stillen Kämmerlein an Features gebaut wird, die am Ende niemand braucht oder bezahlen will.",
-          "Ein erfolgreiches MVP (Minimum Viable Product) ist kein unfertiges Produkt voller Bugs – es ist die schlankste Version einer Lösung, die ein echtes Problem für einen klar definierten Kundenkreis überzeugend löst.",
+          "Ein erfolgreiches MVP (Minimum Viable Product) ist kein unfertiges Produkt voller Bugs – mit professioneller [MVP-Entwicklung](/services/mvp-development) ist es die schlankste Version einer Lösung, die ein echtes Problem für einen klar definierten Kundenkreis überzeugend löst.",
         ],
         paragraphsEn: [
           "Over 70% of software initiatives flounder not due to poor code, but because teams spend months in isolation building features that end up solving the wrong problem for paying clients.",
@@ -659,7 +663,7 @@ export const blogPosts: BlogPost[] = [
           "Mit unserem agilen 4-Wochen-Sprint-Modell bringen wir Ihr Produkt von der Konzeption bis zur Live-Schaltung – abgestimmt auf moderne [Webentwicklung für Unternehmen](/services/web-development) und bei Bedarf zeitgleiche [mobile App Entwicklung](/services/mobile-app-development). Erfahren Sie auch im Vergleich [Next.js vs. WordPress](/blog/nextjs-vs-wordpress-2026), warum moderne Stacks skalieren, oder direkt [Kontakt aufnehmen](/contact):",
         ],
         paragraphsEn: [
-          "With our disciplined 4-week sprint execution methodology, we guide founders from whiteboard sketches to a live product:",
+          "With our disciplined 4-week sprint execution methodology, we guide founders from whiteboard sketches to a live product through specialized [MVP Development](/services/mvp-development), modern [Web Development](/services/web-development), and cross-platform [Mobile App Development](/services/mobile-app-development):",
         ],
         bulletsDe: [
           "Woche 1: Scope-Definition, User Stories & interaktive Figma Klick-Dummies",
@@ -734,11 +738,11 @@ export const blogPosts: BlogPost[] = [
         headingEn: "1. The Speed Imperative in High-Value Sales",
         paragraphsDe: [
           "Studien von Harvard Business Review zeigen ein klares Bild: Die Wahrscheinlichkeit, einen Interessenten zu erreichen und zu konvertieren, sinkt nach den ersten 5 Minuten um das Achtfache. Trotzdem vergehen bei den meisten Unternehmen Stunden oder Tage bis zur ersten Kontaktaufnahme.",
-          "Mit intelligenter Workflow-Automatisierung über n8n und unserer maßgeschneiderten [KI-Automatisierung für Unternehmen](/services/ai-automation) wird jede neue Anfrage binnen Sekunden analysiert, mit Firmendaten angereichert und dem passenden Berater zugeordnet. Lesen Sie auch, wie Sie mit [n8n & KI-Agenten 15+ Stunden sparen](/blog/ki-automatisierung-unternehmen-2026). Möchten Sie Ihre Lead-Prozesse beschleunigen? Jetzt [Kontakt aufnehmen](/contact).",
+          "Mit intelligenter Workflow-Automatisierung über n8n und unserer maßgeschneiderten [KI-Automatisierung für Unternehmen](/services/ai-automation) wird jede neue Anfrage binnen Sekunden analysiert, mit Firmendaten angereichert und dem passenden Berater zugeordnet. Kombinieren Sie dies mit skalierbarer [Webentwicklung](/services/web-development) und agiler [MVP-Entwicklung](/services/mvp-development) für maximale Conversion. Lesen Sie auch, wie Sie mit [n8n & KI-Agenten 15+ Stunden sparen](/blog/ki-automatisierung-unternehmen-2026). Möchten Sie Ihre Lead-Prozesse beschleunigen? Jetzt [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
           "Studies published in Harvard Business Review reveal an undeniable trend: The odds of connecting with and qualifying a prospective buyer drop 8x after the first 5 minutes. Yet, most companies take hours or days to initiate contact.",
-          "With intelligent workflow orchestration via n8n, every inbound request is scored in seconds, augmented with company firmographics, and matched with the ideal executive calendar.",
+          "With intelligent workflow orchestration via n8n and our custom [AI & Automation](/services/ai-automation) solutions, every inbound request is scored in seconds, augmented with company firmographics, and matched with the ideal executive calendar. Seamlessly link these pipelines with our enterprise [Web Development](/services/web-development) services for a closed-loop funnel.",
         ],
       },
     ],
@@ -794,11 +798,11 @@ export const blogPosts: BlogPost[] = [
         paragraphsDe: [
           "Workflow-Automatisierung ist der stärkste Hebel zur Steigerung der betrieblichen Effizienz. Wenn jedoch sensible Kundendaten, Rechnungen oder Mitarbeiterinformationen automatisiert verarbeitet werden, stoßen Cloud-Lösungen wie Zapier oder Make in Deutschland schnell an rechtliche Grenzen.",
           "Durch den US CLOUD Act können amerikanische Behörden unter Umständen Zugriff auf Daten verlangen, die auf US-Infrastruktur liegen – selbst wenn die Rechenzentren geografisch in Europa stehen. Für deutsche Unternehmen bedeutet das ein permanentes Abmahn- und Compliance-Risiko.",
-          "Die quelloffene Plattform n8n löst dieses Dilemma elegant: Als 'Self-Hosted'-Instanz auf einem deutschen Server betrieben, verlässt kein einziges Byte den europäischen Rechtsraum. In unserer Praxis als spezialisierte [n8n-Agentur für Deutschland](/loesungen/n8n-agentur-deutschland) setzen wir ausnahmslos auf isolierte Serverumgebungen in Frankfurt am Main.",
+          "Die quelloffene Plattform n8n löst dieses Dilemma elegant: Als 'Self-Hosted'-Instanz auf einem deutschen Server betrieben, verlässt kein einziges Byte den europäischen Rechtsraum. In unserer Praxis als spezialisierte [n8n-Agentur für Deutschland](/loesungen/n8n-agentur-deutschland) und Partner für sichere [KI-Automatisierung](/services/ai-automation) setzen wir ausnahmslos auf isolierte Serverumgebungen in Frankfurt am Main.",
         ],
         paragraphsEn: [
           "Workflow automation drives massive productivity gains, but processing sensitive customer information via US SaaS tools introduces severe regulatory risks under GDPR.",
-          "Self-hosting n8n on European cloud infrastructure guarantees that all execution logs and credentials stay firmly under your sovereign control.",
+          "Self-hosting n8n on European cloud infrastructure guarantees that all execution logs and credentials stay firmly under your sovereign control. Discover how our [AI & Automation](/services/ai-automation) engineering builds enterprise-grade pipelines.",
         ],
       },
       {
@@ -853,7 +857,7 @@ export const blogPosts: BlogPost[] = [
           "Kombinieren Sie n8n mit unseren modernen [Webentwicklung-Services](/services/web-development) oder einem individuellen [CRM-System](/loesungen/crm-system-entwickeln-lassen), um einen durchgängigen, automatisierten Datenfluss zu etablieren.",
         ],
         paragraphsEn: [
-          "Implement automatic data pruning to prevent PII retention in workflow logs, configure daily encrypted GPG backups, and set up error trigger notifications.",
+          "Implement automatic data pruning to prevent PII retention in workflow logs, configure daily encrypted GPG backups, and connect these pipelines with our modern [Web Development](/services/web-development) frameworks.",
         ],
       },
       {
@@ -864,7 +868,7 @@ export const blogPosts: BlogPost[] = [
           "Nexa Solutions unterstützt Unternehmen bei Konzeption, Migration von Zapier/Make und dem schlüsselfertigen Betrieb hochverfügbarer n8n-Cluster. Erfahren Sie mehr über unsere [KI-Automatisierung für Unternehmen](/services/ai-automation) oder fordern Sie ein unverbindliches Erstgespräch über unser [Kontaktformular](/contact) an.",
         ],
         paragraphsEn: [
-          "While a hobby instance is easy to spin up, enterprise workflow pipelines demand high availability, error handling, and dedicated monitoring.",
+          "While a hobby instance is easy to spin up, enterprise workflow pipelines demand high availability, error handling, and dedicated monitoring. Explore our specialized [AI & Automation](/services/ai-automation) solutions or rapid [MVP Development](/services/mvp-development) to transform your internal workflows.",
         ],
       },
     ],
@@ -945,7 +949,7 @@ export const blogPosts: BlogPost[] = [
           "2. Mitarbeiter- & Ressourcenplanung: Benötigen Sie eine Zuweisung nach Fachgebiet, automatische Round-Robin-Verteilung oder müssen neben Mitarbeitern auch Behandlungsräume oder Geräte gebucht werden?",
           "3. Online-Zahlungsabwicklung: Bei kostenpflichtigen Erstberatungen oder Workshops integrieren wir Zahlungsdienstleister wie Stripe, PayPal oder Klarna inklusive automatisierter PDF-Rechnungserstellung.",
           "4. No-Show-Prävention: Automatische Bestätigungen und Erinnerungsketten per E-Mail, SMS oder WhatsApp senken teure Terminausfälle drastisch.",
-          "5. UI/UX-Integration: Die Buchungsstrecke wird nahtlos in das Design Ihrer bestehenden [Next.js Website](/services/web-development) eingebunden, sodass Besucher niemals das Gefühl haben, eine Drittanbieter-Lösung zu nutzen.",
+          "5. UI/UX-Integration: Die Buchungsstrecke wird nahtlos in das Design Ihrer bestehenden [Next.js Website](/services/web-development) eingebunden, abgestimmt auf moderne [mobile App Entwicklung](/services/mobile-app-development), sodass Besucher niemals das Gefühl haben, eine Drittanbieter-Lösung zu nutzen.",
         ],
         paragraphsEn: [
           "Key budget drivers include real-time bi-directional calendar sync, multi-resource room and staff assignment, payment gateways, and automated SMS notifications.",
@@ -971,7 +975,7 @@ export const blogPosts: BlogPost[] = [
           "Die technische Umsetzung erfolgt auf Basis moderner, schneller Webtechnologien (Next.js, TypeScript, PostgreSQL). Ein voll einsatzfähiges System steht in der Regel nach 4 bis 7 Wochen zur Verfügung. Prüfen Sie auch unseren umfassenden Leitfaden zu den allgemeinen [Website Kosten](/website-kosten) für weitere Budgetbeispiele.",
         ],
         paragraphsEn: [
-          "Projects follow structured milestones: Scope & logic definition, Figma prototyping, Next.js engineering, and end-to-end calendar integration testing.",
+          "Projects follow structured milestones: Scope & logic definition, Figma prototyping, custom [Web Development](/services/web-development), and mobile apps via [Mobile App Development](/services/mobile-app-development).",
         ],
       },
       {
@@ -990,10 +994,10 @@ export const blogPosts: BlogPost[] = [
         headingEn: "5. Conclusion: Planning Your Custom Booking Solution",
         paragraphsDe: [
           "Ein maßgeschneidertes Buchungssystem ist eine werthaltige Investition, die sich durch eingesparte SaaS-Gebühren, drastisch reduzierte No-Shows und eine höhere Buchungs-Conversion schnell rentiert. Wir kalkulieren jedes System als verbindliches Festpreisangebot ohne versteckte Kosten.",
-          "Möchten Sie Ihre Terminprozesse digitalisieren? Entdecken Sie unsere [Terminbuchungssystem-Lösung](/loesungen/terminbuchungssystem-entwickeln-lassen) oder fordern Sie Ihre kostenlose Erstberatung direkt über unser [Kontaktformular](/contact) an.",
+          "Möchten Sie Ihre Terminprozesse digitalisieren? Entdecken Sie unsere [Terminbuchungssystem-Lösung](/loesungen/terminbuchungssystem-entwickeln-lassen), unsere [Webentwicklung Stuttgart](/services/web-development) oder starten Sie einen Prototyp mit unserer [MVP-Entwicklung](/services/mvp-development).",
         ],
         paragraphsEn: [
-          "Investing in custom booking architecture eliminates recurring SaaS fees and protects brand equity. Request your consultation today.",
+          "Investing in custom booking architecture eliminates recurring SaaS fees and protects brand equity. Explore our tailored [Web Development](/services/web-development) and [MVP Development](/services/mvp-development) to launch fast.",
         ],
       },
     ],
@@ -1053,7 +1057,7 @@ export const blogPosts: BlogPost[] = [
         headingEn: "1. The Automation Imperative in 2026",
         paragraphsDe: [
           "Fachkräftemangel, steigender Kostendruck und der Wunsch nach schnellen Reaktionszeiten zwingen moderne Unternehmen dazu, manuelle Routinearbeiten konsequent zu eliminieren. Integrationsplattformen (iPaaS – Integration Platform as a Service) sind das Bindeglied, das isolierte Systeme miteinander sprechen lässt.",
-          "Ob das automatische Synchronisieren neuer Shop-Bestellungen in die Buchhaltung, das Anreichern von Vertriebs-Leads oder das Generieren von Verträgen: Ohne intelligente Schnittstellen verbringen Mitarbeiter Stunden mit Copy-Paste-Aufgaben.",
+          "Ob das automatische Synchronisieren neuer Shop-Bestellungen in die Buchhaltung, das Anreichern von Vertriebs-Leads oder das Generieren von Verträgen: In Kombination mit individueller [Webentwicklung](/services/web-development) und flexibler [MVP-Entwicklung](/services/mvp-development) schaffen moderne Schnittstellen maximale Skalierbarkeit.",
           "Auf dem Markt konkurrieren drei führende Plattformen um die Gunst der Anwender: Zapier, Make (ehemals Integromat) und n8n. Doch welche Lösung ist die richtige für Ihr Unternehmen in Deutschland? Wir vergleichen Kosten, Datenschutz, Flexibilität und Skalierbarkeit.",
         ],
         paragraphsEn: [
@@ -1105,7 +1109,7 @@ export const blogPosts: BlogPost[] = [
           "Dieser immense Kostenvorteil macht n8n zum Favoriten für wachsende Unternehmen. In Verbindung mit unserer [KI-Automatisierung für Unternehmen](/services/ai-automation) refinanzieren sich Entwicklungsprojekte oft in weniger als 60 Tagen.",
         ],
         paragraphsEn: [
-          "At 100,000 monthly executions, Zapier costs upwards of €700/mo, whereas self-hosted n8n operates flawlessly on a €25/mo dedicated cloud server.",
+          "At 100,000 monthly executions, Zapier costs upwards of €700/mo, whereas self-hosted n8n operates flawlessly on a €25/mo dedicated cloud server. Paired with our custom [AI & Automation](/services/ai-automation) solutions, automation ROI is achieved within weeks.",
         ],
       },
       {
@@ -1117,7 +1121,7 @@ export const blogPosts: BlogPost[] = [
           "Als zertifizierte [n8n Agentur für Deutschland](/loesungen/n8n-agentur-deutschland) unterstützen wir Sie bei der Migration von Zapier/Make zu n8n sowie beim Aufbau robuster Integrations-Pipelines. Vereinbaren Sie Ihre kostenlose Erstberatung über unser [Kontaktformular](/contact).",
         ],
         paragraphsEn: [
-          "For privacy-conscious European enterprises seeking enterprise-grade scalability, n8n is the premier choice. Contact us for custom integration workflows.",
+          "For privacy-conscious European enterprises seeking enterprise-grade scalability, n8n is the premier choice. Explore our tailored [Web Development](/services/web-development) and [AI & Automation](/services/ai-automation) services or contact us for a strategy session.",
         ],
       },
     ],
@@ -1235,7 +1239,7 @@ export const blogPosts: BlogPost[] = [
         ],
         paragraphsEn: [
           "Based in Freiburg, Black Forest Labs closed a $300M Series B in December 2025 at an estimated $4B valuation backed by Andreessen Horowitz, Salesforce Ventures, and General Catalyst.",
-          "Their FLUX.1 model suite sets global records in photographic realism, prompt fidelity, and text-in-image typography for enterprise creative workflows.",
+          "Their FLUX.1 model suite sets global records in photographic realism, prompt fidelity, and text-in-image typography for enterprise creative workflows, pairing seamlessly with custom [Web Development](/services/web-development).",
         ],
         bulletsDe: [
           "Firmensitz: Freiburg im Breisgau | Gegründet: 2024 von Robin Rombach, Patrick Esser u.a.",
@@ -1261,7 +1265,7 @@ export const blogPosts: BlogPost[] = [
           "Gleichzeitig sorgt das Berliner Startup telli mit seiner im Juli 2026 abgeschlossenen 15-Millionen-Dollar-Seed-Runde (geführt von redalpine) für Aufsehen: Mit dem KI-Mitarbeiter 'Charlie' optimiert das Team B2C-Kundeninteraktionen über WhatsApp, Telefon und E-Mail. Für Unternehmen, die eine maßgeschneiderte [KI-Automatisierung](/services/ai-automation) oder [Custom CRM-Systeme](/loesungen/crm-system-entwickeln-lassen) anstreben, eröffnet diese Technologie ungeahnte Skaleneffekte.",
         ],
         paragraphsEn: [
-          "Berlin-based Parloa secured a $350 million Series D at a $3B valuation in January 2026 led by General Catalyst, enabling autonomous voice agents with human-like latency under 400ms.",
+          "Berlin-based Parloa secured a $350 million Series D at a $3B valuation in January 2026 led by General Catalyst, enabling autonomous voice agents with human-like latency under 400ms. For mid-market companies seeking tailored [AI & Automation](/services/ai-automation), this creates unprecedented scale.",
           "Meanwhile, telli closed a $15M Seed round in July 2026 led by redalpine for multichannel customer operations via its autonomous Charlie coworker.",
         ],
         quoteDe: {
@@ -1310,7 +1314,7 @@ export const blogPosts: BlogPost[] = [
         ],
         paragraphsEn: [
           "Mid-market leaders do not need to train frontier LLMs from scratch. True competitive advantages stem from rapid integration into daily operations.",
-          "Eliminating manual data transfer cuts overhead and elevates client experiences. Nexa Solutions guides businesses end-to-end.",
+          "Eliminating manual data transfer cuts overhead and elevates client experiences. Nexa Solutions guides businesses end-to-end through specialized [MVP Development](/services/mvp-development) and enterprise [AI & Automation](/services/ai-automation).",
         ],
         bulletsDe: [
           "1. Kundenservice: Integration von Voice- und Chat-Agenten für 24/7-Erreichbarkeit ohne Wartezeiten",
@@ -1489,7 +1493,7 @@ export const blogPosts: BlogPost[] = [
         paragraphsDe: [
           "Warum zieht der deutsche Markt trotz bürokratischer Hürden und strenger Regulierung derart enorme Investitionen an? Branchenanalysten nennen vier wesentliche Treiber:",
           "Erstens: Europäische Technologiesouveränität. Im Zeitalter geopolitischer Spannungen wollen Regierungen und europäische Unternehmen kritische Infrastruktur auf heimischen Modellen betreiben. Zweitens: 'Agentic Workflows' für den B2B-Mittelstand. Während Konsumenten-Apps wie ChatGPT stark fluktuieren, lösen B2B-Agenten wie Parloa oder telli harte betriebswirtschaftliche Kostenprobleme im Kundendienst.",
-          "Drittens: Der regulatorische Burggraben. Unternehmen, die den strengen europäischen [DSGVO- und EU-AI-Act-Vorgaben](/blog/dsgvo-konforme-ki-infrastruktur) entsprechen, besitzen einen signifikanten Wettbewerbsvorteil bei globalen Enterprise-Kunden, die sensible Geschäftsgeheimnisse schützen müssen.",
+          "Drittens: Der regulatorische Burggraben. In Kombination mit solider [Webentwicklung](/services/web-development) besitzen Unternehmen, die den strengen europäischen [DSGVO- und EU-AI-Act-Vorgaben](/blog/dsgvo-konforme-ki-infrastruktur) entsprechen, einen signifikanten Wettbewerbsvorteil bei globalen Enterprise-Kunden, die sensible Geschäftsgeheimnisse schützen müssen.",
         ],
         paragraphsEn: [
           "Investors prize data sovereignty, enterprise agent ROI in the Mittelstand, and the natural defensive moat created by strict GDPR compliance.",
@@ -1514,8 +1518,8 @@ export const blogPosts: BlogPost[] = [
           "Für den etablierten Mittelstand bedeuten diese Mega-Runden vor allem Investitionssicherheit. Die deutschen KI-Anbieter verfügen über solide Kriegskassen, um ihre Produkte langfristig weiterzuentwickeln und Enterprise-Schnittstellen bereitzustellen. Über Schnittstellen und Workflow-Engines wie [n8n](/loesungen/n8n-agentur-deutschland) lassen sich diese Systeme ohne hohes Eigenrisiko implementieren. Starten Sie jetzt mit unserer [KI-Automatisierung für Unternehmen](/services/ai-automation).",
         ],
         paragraphsEn: [
-          "For founders: Rapid MVP validation and proven enterprise ROI are mandatory requirements for securing capital.",
-          "For established companies: Massive venture backing guarantees vendor longevity, enabling risk-free integration via proven workflow platforms.",
+          "For founders: Rapid MVP validation via specialized [MVP Development](/services/mvp-development) and enterprise [Web Development](/services/web-development) are mandatory requirements for securing capital.",
+          "For established companies: Massive venture backing guarantees vendor longevity, enabling risk-free integration via proven workflow platforms and tailored [AI & Automation](/services/ai-automation).",
         ],
       },
       {
@@ -1662,7 +1666,7 @@ export const blogPosts: BlogPost[] = [
           "1. Queue-free voice telephony: Resolving routine calls automatically with real-time CRM updates.",
           "2. Scalable creative production: Generating on-brand product visuals with FLUX models at scale.",
           "3. Retrieval-augmented internal knowledge: Providing secure access to proprietary manuals and policies.",
-          "4. Multi-agent workflow automation: Parsing invoices and syncing data across legacy ERPs.",
+          "4. Multi-agent workflow automation: Parsing invoices and syncing data across legacy ERPs via custom [AI & Automation](/services/ai-automation).",
         ],
       },
       {
@@ -1695,7 +1699,7 @@ export const blogPosts: BlogPost[] = [
         ],
         paragraphsEn: [
           "Adoption begins with focused pilot projects yielding fast ROI, followed by phased departmental scaling.",
-          "Nexa Solutions supports your team across rapid prototyping, MVP development, and workflow automation.",
+          "Nexa Solutions supports your team across rapid prototyping with [MVP Development](/services/mvp-development), modern [Web Development](/services/web-development), and end-to-end [AI & Automation](/services/ai-automation).",
         ],
       },
       {
@@ -1740,6 +1744,8 @@ export const blogPosts: BlogPost[] = [
     ],
   },
 ];
+
+export const blogPosts: BlogPost[] = [...baseBlogPosts, ...extendedBlogPosts];
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);

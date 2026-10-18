@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
         destination: "/projects",
         permanent: true,
       },
+      {
+        source: "/services/app-development",
+        destination: "/services/mobile-app-development",
+        permanent: true,
+      },
       // 16 301 Canonical Redirects for 8 Dedicated Services (DE & EN)
       {
         source: "/services/mitarbeiter-zeiterfassung",

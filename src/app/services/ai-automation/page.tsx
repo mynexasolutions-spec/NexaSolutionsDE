@@ -457,7 +457,8 @@ export default function AIAutomationPage() {
       {/* Top Navbar */}
       <Navbar onOpenContact={() => { setSelectedPackage("KI-Automatisierung"); setContactOpen(true); }} />
 
-      {/* Hero Section - Clean Light Palette */}
+      <main role="main" className="flex-1">
+        {/* Hero Section - Clean Light Palette */}
       <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-28 overflow-hidden bg-gradient-to-b from-purple-50/50 via-white to-slate-50/40">
         {/* Soft glowing ambient lights */}
         <div className="absolute top-10 right-0 w-[550px] h-[550px] bg-gradient-to-bl from-purple-200/40 via-violet-100/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10 translate-x-1/4 -translate-y-1/4" />
@@ -1216,6 +1217,7 @@ export default function AIAutomationPage() {
           </div>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
       <Footer />

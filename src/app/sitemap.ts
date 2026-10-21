@@ -64,6 +64,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.85,
     },
     {
+      url: `${SITE_URL}/our-work`,
+      lastModified: lastModDate,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/contact`,
       lastModified: lastModDate,
       changeFrequency: "yearly",
@@ -92,24 +98,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: lastModDate,
       changeFrequency: "daily",
       priority: 0.8,
-      alternates: {
-        languages: {
-          de: `${SITE_URL}/blog`,
-          en: `${SITE_URL}/en/blog`,
-        },
-      },
     },
     {
       url: `${SITE_URL}/en/blog`,
       lastModified: lastModDate,
       changeFrequency: "daily",
       priority: 0.8,
-      alternates: {
-        languages: {
-          de: `${SITE_URL}/blog`,
-          en: `${SITE_URL}/en/blog`,
-        },
-      },
     },
     {
       url: `${SITE_URL}/privacy-policy`,
@@ -184,69 +178,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         toValidDate(post.publishedAt) ||
         toValidDate(post.date);
 
-      const deUrl = `${SITE_URL}/blog/${post.slug}`;
-      const enUrl = `${SITE_URL}/en/blog/${post.slug}`;
-
       return [
         {
-          url: deUrl,
+          url: `${SITE_URL}/blog/${post.slug}`,
           ...(lastModified ? { lastModified } : {}),
           changeFrequency: "monthly" as const,
           priority: 0.75,
-          alternates: {
-            languages: {
-              de: deUrl,
-              en: enUrl,
-            },
-          },
         },
         {
-          url: enUrl,
+          url: `${SITE_URL}/en/blog/${post.slug}`,
           ...(lastModified ? { lastModified } : {}),
           changeFrequency: "monthly" as const,
           priority: 0.7,
-          alternates: {
-            languages: {
-              de: deUrl,
-              en: enUrl,
-            },
-          },
         },
       ];
     }
   );
 
   // All 20 Localized Service detail routes (20 German + 20 English = 40 pages)
-  const serviceRoutes: MetadataRoute.Sitemap = servicesData.flatMap((service) => {
-    const deUrl = `${SITE_URL}/de/services/${service.slugDe}`;
-    const enUrl = `${SITE_URL}/en/services/${service.slugEn}`;
-    return [
-      {
-        url: deUrl,
-        lastModified: lastModDate,
-        changeFrequency: "weekly" as const,
-        priority: 0.9,
-        alternates: {
-          languages: {
-            de: deUrl,
-            en: enUrl,
-          },
-        },
-      },
-      {
-        url: enUrl,
-        lastModified: lastModDate,
-        changeFrequency: "weekly" as const,
-        priority: 0.85,
-        alternates: {
-          languages: {
-            de: deUrl,
-            en: enUrl,
-          },
-        },
-      },
-    ];
-  });
+  const serviceRoutes: MetadataRoute.Sitemap = servicesData.flatMap((service) => [
+    {
+      url: `${SITE_URL}/de/services/${service.slugDe}`,
+      lastModified: lastModDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/en/services/${service.slugEn}`,
+      lastModified: lastModDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    },
+  ]);
 
   const allRoutes = [
     ...staticRoutes,

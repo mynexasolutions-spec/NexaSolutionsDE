@@ -100,6 +100,10 @@ export default function ServicesSection({
         t("UI/UX-Design", "UI/UX Design"),
         t("App-Wartung & Support", "App Maintenance & Support"),
       ],
+      subLink: {
+        href: "/app-entwicklung-kosten",
+        text: t("App Entwicklung Kosten 2026: Rechner & Preise", "App Development Cost Guide 2026"),
+      },
     },
     {
       id: "ai-auto",

@@ -416,12 +416,12 @@ const baseBlogPosts: BlogPost[] = [
   {
     slug: "react-native-cross-platform-apps",
     titleDe:
-      "Native iOS & Android Apps mit React Native: 50% geringere Kosten ohne Performance-Einbußen",
-    seoTitleDe: "React Native Apps: Bis zu 50% sparen",
+      "React Native Apps 2026: 50% geringere Kosten für iOS & Android ohne Performance-Verlust",
+    seoTitleDe: "React Native Apps 2026: 50% Kosten sparen | Nexa",
     titleEn:
       "React Native App Development: Save 50%",
     excerptDe:
-      "React Native Apps für iOS & Android: 50% Kosten sparen bei voller nativer Performance & 60 FPS. DSGVO-konform aus Stuttgart. Jetzt informieren!",
+      "React Native Apps 2026 für iOS & Android: Bis zu 50% Entwicklungskosten sparen bei voller 60 FPS Performance. Jetzt Vorteile vergleichen & Kosten berechnen!",
     excerptEn:
       "Cross-platform iOS and Android apps with React Native: Cut dev costs by 50% with buttery 60 FPS native performance. Discover architecture benefits now!",
     category: "mobile-apps",
@@ -495,11 +495,11 @@ const baseBlogPosts: BlogPost[] = [
         headingEn: "3. Conclusion: The Smart Strategy for Mobile Products",
         paragraphsDe: [
           "Wer heute eine mobile App plant, sollte eine Cross-Platform-Architektur als Standard in Betracht ziehen. Sie sparen bares Geld, verkürzen Ihre Markteinführungszeit drastisch und behalten die Flexibilität, später bei Bedarf native Module einzubinden.",
-          "Entdecken Sie unsere spezialisierte [mobile App Entwicklung](/services/mobile-app-development) für iOS und Android. Falls Sie parallel ein Web-Portal oder SaaS benötigen, verbinden wir dieses nahtlos über unsere [Webentwicklung für Unternehmen](/services/web-development). Lassen Sie uns Ihr Vorhaben besprechen: Jetzt [Kontakt aufnehmen](/contact).",
+          "Entdecken Sie unsere spezialisierte [mobile App Entwicklung](/services/mobile-app-development) für iOS und Android und kalkulieren Sie vorab die [App Entwicklung Kosten](/app-entwicklung-kosten) mit unserem interaktiven Rechner. Falls Sie parallel ein Web-Portal oder SaaS benötigen, verbinden wir dieses nahtlos über unsere [Webentwicklung für Unternehmen](/services/web-development). Lassen Sie uns Ihr Vorhaben besprechen: Jetzt [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
           "For almost all modern consumer and B2B products, cross-platform architecture is the indisputable best practice. You save significant capital, cut delivery timelines in half, and maintain full agility.",
-          "Explore our specialized [Mobile App Development](/services/mobile-app-development) for iOS and Android, enterprise [Web Development](/services/web-development), or rapid [MVP Development](/services/mvp-development) services to accelerate your digital roadmap.",
+          "Explore our specialized [Mobile App Development](/services/mobile-app-development) for iOS and Android, review our interactive [App Development Cost Calculator](/app-entwicklung-kosten), or request rapid [MVP Development](/services/mvp-development) services to accelerate your digital roadmap.",
         ],
       },
     ],

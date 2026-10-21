@@ -185,6 +185,7 @@ export default function Footer() {
                 { label: "Blog", href: "/blog" },
                 { label: t("Digitale Lösungen", "Digital Solutions"), href: "/loesungen" },
                 { label: t("Website-Kosten 2026", "Website Cost Guide"), href: "/website-kosten" },
+                { label: t("App Entwicklung Kosten", "App Development Costs"), href: "/app-entwicklung-kosten" },
                 { label: t("Kontakt", "Contact"), href: "/contact" },
               ].map((link, idx) => (
                 <li key={idx}>

@@ -22,6 +22,7 @@ import {
   ShieldCheck,
   Send,
   Globe,
+  Smartphone,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -690,6 +691,47 @@ export default function SingleBlogPage({
                 <span>{t("Kostenloses Erstgespräch vereinbaren", "Book a Free Consultation")}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
+            </div>
+          </div>
+
+          {/* Dedicated App-Cost CTA Block for Blog Articles */}
+          <div className="mt-8 rounded-2xl border border-orange-200/90 bg-gradient-to-br from-orange-50/70 via-white to-amber-50/50 p-6 sm:p-7 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1.5 max-w-xl">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-orange-700">
+                  <Smartphone className="w-3.5 h-3.5" />
+                  <span>{t("App-Kostenrechner & Leitfaden 2026", "App Cost Calculator & Guide 2026")}</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-slate-950">
+                  {t(
+                    "Was kostet eine App? Berechnen Sie Ihr Budget vorab",
+                    "What does an app cost? Calculate your budget in advance"
+                  )}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {t(
+                    "Erfahren Sie alle Kostenfaktoren für iOS & Android und kalkulieren Sie in unserem interaktiven Leitfaden transparente ",
+                    "Discover key cost drivers for iOS & Android and calculate transparent "
+                  )}
+                  <Link
+                    href="/app-entwicklung-kosten"
+                    className="font-bold text-orange-600 hover:text-orange-700 underline underline-offset-2"
+                  >
+                    {t("App Entwicklung Kosten", "App Development Costs")}
+                  </Link>
+                  {t(
+                    " für Ihr geplantes Vorhaben.",
+                    " for your planned mobile project."
+                  )}
+                </p>
+              </div>
+              <Link
+                href="/app-entwicklung-kosten"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs sm:text-sm font-bold shadow-md shadow-orange-600/20 transition-all shrink-0 self-start sm:self-center"
+              >
+                <span>{t("Zum Kostenrechner", "Calculate App Cost")}</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
 

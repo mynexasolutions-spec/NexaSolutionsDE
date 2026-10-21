@@ -4,12 +4,12 @@ export const extendedBlogPosts: BlogPost[] = [
   {
     slug: "website-trends-businesses-cant-ignore-in-2026",
     titleDe:
-      "Website-Trends 2026: 7 Erfolgsfaktoren für moderne Unternehmens-Websites",
-    seoTitleDe: "Website Trends 2026: 7 Erfolgsfaktoren",
+      "Website Trends 2026: 7 Erfolgsfaktoren für maximale Konversion & Ladezeit",
+    seoTitleDe: "Website Trends 2026: Mehr Leads & Speed | Nexa",
     titleEn:
       "Website Trends Businesses Can't Ignore in 2026: The Strategic Blueprint",
     excerptDe:
-      "Entdecken Sie die wichtigsten Website-Trends 2026 für Unternehmen: KI-Assistenten, Headless Web & Ultra-Performance. Jetzt zukunftssicher aufstellen!",
+      "Wichtige Website-Trends 2026 für Unternehmen: Mehr Leads durch KI-Assistenten, Headless-Speed & BFSG-Barrierefreiheit. Jetzt Website zukunftssicher optimieren!",
     excerptEn:
       "Explore the most critical website trends for 2026: AI-driven UX, headless speed, and accessibility standards that scale your business. Read the full guide!",
     category: "web-development",
@@ -206,7 +206,7 @@ export const extendedBlogPosts: BlogPost[] = [
         paragraphsDe: [
           "Wer die Frage stellt 'Was kostet eine App?', erhält von Agenturen oft die unbefriedigende Antwort: 'Es kommt darauf an'. Der Grund dafür liegt auf der Hand: Eine App ist kein Standardprodukt von der Stange, sondern maßgeschneiderte Software-Architektur.",
           "Die tatsächlichen Kosten hängen entscheidend vom Funktionsumfang, der Anzahl an Benutzerrollen, externen Schnittstellen (Zahlungsgateways, ERP-Anbindungen) und dem gewählten Technologiestack ab. Eine einfache B2B-Vertriebs-App benötigt einen Bruchteil des Aufwands einer komplexen Marketplace-Plattform mit Echtzeit-Tracking.",
-          "Als spezialisierte Agentur für [mobile App Entwicklung](/services/mobile-app-development) legen wir großen Wert auf transparente Festpreisangebote, damit Gründer und Mittelständler volle Budgetsicherheit genießen.",
+          "Als spezialisierte Agentur für [mobile App Entwicklung](/services/mobile-app-development) legen wir großen Wert auf transparente Festpreisangebote, damit Gründer und Mittelständler volle Budgetsicherheit genießen. Nutzen Sie unseren umfassenden Ratgeber und Rechner für [App Entwicklung Kosten](/app-entwicklung-kosten), um Ihr Projektvolumen verlässlich zu kalkulieren.",
         ],
         paragraphsEn: [
           "Founders and executives inquiring 'how much does an app cost?' frequently encounter vague estimates. Software development is custom engineering, not a commoditized off-the-shelf purchase.",

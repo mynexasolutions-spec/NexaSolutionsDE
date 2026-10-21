@@ -92,9 +92,9 @@ const mobileCapabilities = [
     titleDe: "Cross-Platform mit React Native & Flutter",
     titleEn: "Cross-Platform React Native & Flutter",
     descDe:
-      "Eine gemeinsame Codebasis für iOS und Android bei nativer 60 FPS Performance. Lesen Sie unsere Analyse zu [React Native App Entwicklung](/blog/react-native-cross-platform-apps) oder starten Sie mit einer schnellen [MVP-Entwicklung](/services/mvp-development).",
+      "Eine gemeinsame Codebasis für iOS und Android bei nativer 60 FPS Performance. Berechnen Sie vorab die [App Entwicklung Kosten](/app-entwicklung-kosten) mit unserem Rechner, lesen Sie unsere Analyse zu [React Native App Entwicklung](/blog/react-native-cross-platform-apps) oder starten Sie mit einer schnellen [MVP-Entwicklung](/services/mvp-development).",
     descEn:
-      "A unified codebase powering iOS and Android at buttery-smooth 60 FPS. Explore our [React Native app analysis](/blog/react-native-cross-platform-apps) or start with a [Rapid MVP Sprint](/services/mvp-development).",
+      "A unified codebase powering iOS and Android at buttery-smooth 60 FPS. Calculate estimated [App Development Cost](/app-entwicklung-kosten) in advance, explore our [React Native app analysis](/blog/react-native-cross-platform-apps) or start with a [Rapid MVP Sprint](/services/mvp-development).",
     tagsDe: ["50% geringere Kosten", "Schnellere Time-to-Market", "Gemeinsame UI-Komponenten"],
     tagsEn: ["50% reduced costs", "Accelerated time-to-market", "Shared UI component library"],
   },
@@ -329,6 +329,12 @@ const packages = [
 ];
 
 const faqs = [
+  {
+    qDe: "Was kostet eine App-Entwicklung und wie setzen sich die Preise zusammen?",
+    qEn: "What does mobile app development cost and how is pricing calculated?",
+    aDe: "Die Gesamtkosten hängen maßgeblich von Plattform, Funktionsumfang und Backend-Infrastruktur ab. In unserem Leitfaden zu [App Entwicklung Kosten](/app-entwicklung-kosten) beantworten wir detailliert die Frage [Was kostet eine App?](/app-entwicklung-kosten) und stellen Ihnen einen interaktiven Kostenrechner mit Richtwerten für MVPs, Business-Apps und Enterprise-Systeme bereit.",
+    aEn: "Total costs depend on platform selection, feature complexity, and backend infrastructure. In our dedicated guide to [App Development Cost](/app-entwicklung-kosten), we address all factors and provide an interactive cost calculator for MVPs, business apps, and enterprise platforms.",
+  },
   {
     qDe: "Lohnt sich Cross-Platform (React Native / Flutter) wirklich gegenüber nativer Entwicklung?",
     qEn: "Is cross-platform development (React Native / Flutter) truly comparable to native?",

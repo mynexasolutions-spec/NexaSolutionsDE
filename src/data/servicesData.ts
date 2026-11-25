@@ -114,7 +114,7 @@ export const servicesData: ServiceItemData[] = [
     badgeDe: "Digitale Zeiterfassung & HR-Workflows",
     badgeEn: "Digital Time Tracking & HR Workflows",
     introDe:
-      "Möchten Sie eine individuelle Mitarbeiter Zeiterfassung Software entwickeln lassen? Als erfahrener Digitalpartner entwickeln wir maßgeschneiderte Systeme für Arbeitszeiterfassung, Urlaubsverwaltung und flexible Schichtplanung. Lassen Sie bei uns eine verlässliche DATEV Schnittstelle entwickeln lassen, um Arbeitszeiten fehlerfrei an die Lohnbuchhaltung zu übermitteln. Wenn Sie eine moderne Mitarbeiter Zeiterfassung Software entwickeln lassen, profitieren Sie von 100% EuGH- und BAG-Konformität zum transparenten Festpreis.",
+      "Möchten Sie eine individuelle Mitarbeiter Zeiterfassung Software entwickeln lassen? Als erfahrener Digitalpartner entwickeln wir maßgeschneiderte Systeme für Arbeitszeiterfassung, Urlaubsverwaltung und flexible Schichtplanung. Lassen Sie bei uns eine verlässliche DATEV Schnittstelle entwickeln lassen, um Arbeitszeiten fehlerfrei an die Lohnbuchhaltung zu übermitteln. Wenn Sie eine moderne Mitarbeiter Zeiterfassung Software entwickeln lassen, erhalten Sie ein System, das die Anforderungen aus EuGH- und BAG-Urteilen zur Arbeitszeiterfassung berücksichtigt – zum transparenten Festpreis.",
     introEn:
       "Structured working hour tracking, transparent leave management, and clear shift scheduling tailored to your operational requirements. Nexa Solutions builds custom web applications and dashboards that simplify HR processes and eliminate tedious spreadsheet management.",
     heroImage: "/images/hero-workspace.jpg",
@@ -284,7 +284,7 @@ export const servicesData: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 70% weniger HR-Verwaltungsaufwand",
+        title: "Weniger HR-Verwaltungsaufwand",
         description:
           "Manuelles Einsammeln, Prüfen und Abtippen von Stundenzetteln entfällt vollständig durch automatische Erfassung.",
       },
@@ -306,7 +306,7 @@ export const servicesData: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "Up to 70% Less HR Administration Overhead",
+        title: "Less HR Administration Overhead",
         description:
           "Eliminate manual paperwork, chasing signed time sheets, and reconciling manual calculation errors.",
       },
@@ -951,7 +951,7 @@ export const servicesData: ServiceItemData[] = [
       {
         title: "Schlechte mobile Darstellung & Touch-Bedienung",
         description:
-          "Über 70% aller Einkäufe starten auf Smartphones – viele Templates sind jedoch mobil unübersichtlich und schwer zu bedienen.",
+          "Ein Großteil der Einkäufe startet heute auf dem Smartphone – viele Templates sind jedoch mobil unübersichtlich und schwer zu bedienen.",
       },
       {
         title: "Mangelhafte SEO-Architektur & strukturierte Daten",
@@ -973,7 +973,7 @@ export const servicesData: ServiceItemData[] = [
       {
         title: "Subpar Mobile Shopping Experience",
         description:
-          "Over 70% of e-commerce traffic originates from mobile devices, yet standard shop themes frequently suffer from clunky navigation on smaller screens.",
+          "A large share of e-commerce traffic comes from mobile devices, yet standard shop themes frequently suffer from clunky navigation on smaller screens.",
       },
       {
         title: "Inadequate Technical SEO & Product Schemas",
@@ -2057,7 +2057,7 @@ export const servicesData: ServiceItemData[] = [
         a: "Eine fokussierte Unternehmenswebsite ist in der Regel in 2 bis 4 Wochen fertiggestellt. Umfangreichere Portale mit komplexeren Funktionen benötigen etwa 4 bis 6 Wochen.",
       },
       {
-        q: "Ist die Website zu 100% DSGVO-konform?",
+        q: "Ist die Website DSGVO-konform?",
         a: "Ja. Wir binden Schriftarten lokal ein (keine externen Google-Fonts-Verbindungen), integrieren rechtssichere Cookie-Consent-Banner und sorgen für SSL-Verschlüsselung und europäisches Hosting.",
       },
       {
@@ -2079,7 +2079,7 @@ export const servicesData: ServiceItemData[] = [
         a: "A focused corporate website is typically delivered in 2 to 4 weeks. Larger web applications with custom user portals require 4 to 6 weeks.",
       },
       {
-        q: "Is the delivered website 100% GDPR-compliant?",
+        q: "Is the delivered website GDPR-compliant?",
         a: "Yes. Fonts are self-hosted locally without unconsented external tracking calls, compliant cookie management banners are configured, and end-to-end SSL encryption is standard.",
       },
       {
@@ -2691,7 +2691,7 @@ export const servicesData: ServiceItemData[] = [
           "Neue Landingpages für Aktionen oder saisonale Angebote können in wenigen Tagen fertiggestellt werden.",
       },
       {
-        title: "100% DSGVO-konformes Einwilligungsmanagement",
+        title: "DSGVO-konformes Einwilligungsmanagement",
         description:
           "Rechtssichere Cookie-Banner-Integration stellt sicher, dass Tracking nur bei erteilter Einwilligung aktiv wird.",
       },
@@ -3286,6 +3286,35 @@ export const servicesData: ServiceItemData[] = [
   ...servicesBatch3,
 ];
 
+/**
+ * SEO ground rule 1 ("one keyword = one page"):
+ * these German service pages duplicated a /loesungen page for the same keyword.
+ * The /de/services URL 301-redirects to the /loesungen page (see next.config.ts),
+ * is left out of the sitemap, and the English twin's hreflang points to the /loesungen page.
+ * Keep this map and the redirects in next.config.ts in sync.
+ */
+export const MERGED_DE_SERVICE_TARGETS: Record<string, string> = {
+  "ki-chatbots-kundenservice": "/loesungen/ki-chatbot-fuer-unternehmen",
+  "crm-system-entwicklung": "/loesungen/crm-system-entwickeln-lassen",
+  "online-terminbuchungssysteme": "/loesungen/terminbuchungssystem-entwickeln-lassen",
+  "mitarbeiter-zeiterfassung": "/loesungen/zeiterfassung-software",
+  "gastronomie-restaurant-systeme": "/loesungen/restaurant-software-qr-menue",
+};
+
+/** German URL for a service: its /loesungen page if merged, otherwise /de/services/<slugDe>. */
+export function getGermanServicePath(slugDe: string): string {
+  return MERGED_DE_SERVICE_TARGETS[slugDe] ?? `/de/services/${slugDe}`;
+}
+
+/** English twin of a /loesungen page that absorbed a German service page, if any. */
+export function getEnglishTwinForSolution(solutionPath: string): string | null {
+  const slugDe = Object.keys(MERGED_DE_SERVICE_TARGETS).find(
+    (k) => MERGED_DE_SERVICE_TARGETS[k] === solutionPath
+  );
+  const service = slugDe ? servicesData.find((s) => s.slugDe === slugDe) : undefined;
+  return service ? `/en/services/${service.slugEn}` : null;
+}
+
 // Helper functions
 export function getServiceBySlug(slug: string): ServiceItemData | undefined {
   return servicesData.find((s) => s.slugDe === slug || s.slugEn === slug);
@@ -3307,13 +3336,13 @@ export function getAlternateServiceUrl(currentPath: string, targetLocale: "de" |
   const normalized = currentPath.split("?")[0].replace(/\/$/, "");
   
   for (const service of servicesData) {
-    const deUrl = `/de/services/${service.slugDe}`;
+    const deUrl = getGermanServicePath(service.slugDe);
     const enUrl = `/en/services/${service.slugEn}`;
-    
-    if (normalized === deUrl || normalized === enUrl) {
+
+    if (normalized === deUrl || normalized === enUrl || normalized === `/de/services/${service.slugDe}`) {
       return targetLocale === "de" ? deUrl : enUrl;
     }
   }
-  
+
   return null;
 }

@@ -2,49 +2,38 @@ import JsonLd from "@/components/JsonLd";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Kontakt & Beratung Stuttgart | Nexa Solutions",
+  title: "Kontakt & kostenlose Beratung | Nexa Solutions",
   description:
-    "Kostenlose Erstberatung in Stuttgart für Webentwicklung, Apps & n8n Automatisierung anfragen. Transparente Festpreise & Antwort in unter 24h!",
+    "Kostenlose Erstberatung für Webentwicklung, Apps & n8n Automatisierung anfragen – für Unternehmen in Deutschland, Österreich und der Schweiz. Festpreis-Angebot inklusive!",
   path: "/contact",
 });
 
 const contactJsonLd = {
   "@context": "https://schema.org",
-  "@type": ["ContactPage", "LocalBusiness", "ProfessionalService"],
-  name: "Kontakt & Beratung Stuttgart - Nexa Solutions",
+  "@type": "ContactPage",
+  name: "Kontakt & Beratung - Nexa Solutions",
   description:
-    "Treten Sie in Kontakt mit Nexa Solutions in Stuttgart für Webentwicklung, mobile Apps und KI-Automatisierung mit n8n.",
+    "Treten Sie in Kontakt mit Nexa Solutions für Webentwicklung, mobile Apps und KI-Automatisierung mit n8n.",
   url: `${SITE_URL}/contact`,
-  telephone: "+91 8077 313 241",
-  email: "contact@nexa-solutions.de",
-  priceRange: "€€",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "[STRASSE HIER EINTRAGEN: z. B. Königstraße XX]",
-    postalCode: "[PLZ HIER EINTRAGEN: z. B. 70173]",
-    addressLocality: "Stuttgart",
-    addressRegion: "Baden-Württemberg",
-    addressCountry: "DE",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: "[LATITUDE HIER EINTRAGEN: z. B. 48.7758]",
-    longitude: "[LONGITUDE HIER EINTRAGEN: z. B. 9.1829]",
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00",
-    },
-  ],
   mainEntity: {
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     name: "Nexa Solutions",
     url: SITE_URL,
     email: "contact@nexa-solutions.de",
     telephone: "+91 8077 313 241",
+    // Must match the Impressum (legal address)
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "New Delhi",
+      addressRegion: "Delhi",
+      addressCountry: "IN",
+    },
+    areaServed: [
+      { "@type": "Country", name: "Germany" },
+      { "@type": "Country", name: "Austria" },
+      { "@type": "Country", name: "Switzerland" },
+    ],
   },
 };
 

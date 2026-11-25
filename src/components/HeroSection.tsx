@@ -31,7 +31,7 @@ const heroSlides = [
     titleEn: "All-in-One Digital Solutions",
     descriptionDe: "Moderne Websites, mobile Apps und smarte KI-Automatisierung.",
     descriptionEn: "Modern websites, mobile apps, and smart AI automation.",
-    altDe: "Webentwicklung Agentur Stuttgart und Webdesign Agentur Deutschland - Nexa Solutions",
+    altDe: "Webentwicklung und Webdesign Agentur Deutschland - Nexa Solutions",
     altEn: "Web Development Agency Germany - Next.js Websites, Mobile Apps and AI Automation",
     image: "/images/hero-devices.jpg",
     icon: Layers,
@@ -57,7 +57,7 @@ const heroSlides = [
     titleEn: "Custom Mobile Applications",
     descriptionDe: "Nahtlose plattformübergreifende Apps für iOS und Android.",
     descriptionEn: "Seamless cross-platform apps for iOS and Android.",
-    altDe: "Individuelle iOS und Android App entwickeln lassen - Webentwicklung Agentur Stuttgart",
+    altDe: "Individuelle iOS und Android App entwickeln lassen - Nexa Solutions",
     altEn: "Cross-Platform iOS and Android Mobile App Development Germany",
     image: "/images/app-dev.png",
     icon: Smartphone,
@@ -167,7 +167,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
 
             {/* Main Headline */}
             <h1 className="text-[32px] sm:text-[48px] lg:text-[54px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 text-center lg:text-left">
-              {t("Webentwicklung Agentur Stuttgart", "Web Development Agency Germany")} <br />
+              {t("Webentwicklung", "Web Development Agency Germany")} <br />
               <span className="font-[900] text-slate-800">{t("& ", "& ")}</span>
               <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
                 {t("Webdesign Agentur", "Digital Solutions")}
@@ -178,7 +178,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
             {/* Subtext */}
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mb-7 sm:mb-8 font-normal lg:text-left text-center">
               {t(
-                "Ihre Webentwicklung Agentur Stuttgart: Nexa realisiert maßgeschneiderte Websites, native Apps & n8n Automatisierung – verlässlich zum Festpreis und 100 % DSGVO-konform.",
+                "Ihre Webentwicklung Agentur für Deutschland, Österreich und die Schweiz: Nexa realisiert maßgeschneiderte Websites, native Apps & n8n Automatisierung – verlässlich zum Festpreis und DSGVO-konform.",
                 "Your premier web development agency in Germany: Nexa builds fast Next.js websites, mobile apps, and n8n AI workflow automations with guaranteed fixed pricing."
               )}
             </p>
@@ -224,7 +224,7 @@ export default function HeroSection({ onOpenContact }: HeroSectionProps) {
                   DE
                 </span>
                 <span>
-                  <strong className="text-slate-800 font-semibold">{t("Deutscher Qualitätsstandard", "German Quality Standard")}</strong> &bull; {t("100% DSGVO-konform", "100% GDPR Compliant")}
+                  <strong className="text-slate-800 font-semibold">{t("Deutscher Qualitätsstandard", "German Quality Standard")}</strong> &bull; {t("DSGVO-konform", "GDPR Compliant")}
                 </span>
               </div>
             </div>

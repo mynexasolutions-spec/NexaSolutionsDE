@@ -12,12 +12,12 @@ export const servicesBatch3: ServiceItemData[] = [
     seoTitleDe: "CRM System entwickeln lassen | CRM Software Agentur",
     seoTitleEn: "Custom CRM System Development for Growing Businesses | Nexa Solutions",
     metaDescriptionDe: "Individuelle CRM Software nach Maß: Eigenes CRM System entwickeln lassen ohne Lizenzgebühren pro Nutzer. Jetzt unverbindliche Beratung anfragen!",
-    metaDescriptionEn: "Custom CRM system development: Manage leads, customer relationships, and sales pipelines in tailored, intuitive software. 100% GDPR compliant.",
+    metaDescriptionEn: "Custom CRM system development: Manage leads, customer relationships, and sales pipelines in tailored, intuitive software. GDPR compliant.",
     h1De: "CRM System entwickeln lassen: Individuelle CRM Software für Unternehmen",
     h1En: "Custom CRM Systems Built for Streamlined Sales & Client Relations",
     badgeDe: "Customer Relationship Management",
     badgeEn: "Customer Relationship Management",
-    introDe: "Möchten Sie ein passgenaues CRM System entwickeln lassen? Schluss mit überteuerten Lizenzgebühren pro Nutzer und unübersichtlichen Tabellen: Als Spezialist für Custom CRM Development in Germany konzipieren wir moderne, individuelle CRM Software, die exakt Ihre Vertriebs- und Kundenprozesse widerspiegelt. Wenn Sie bei uns Ihr CRM System entwickeln lassen, erhalten Sie eine schlanke, 100% DSGVO-konforme Lösung ohne Vendor Lock-in.",
+    introDe: "Möchten Sie ein passgenaues CRM System entwickeln lassen? Schluss mit überteuerten Lizenzgebühren pro Nutzer und unübersichtlichen Tabellen: Als Spezialist für Custom CRM Development in Germany konzipieren wir moderne, individuelle CRM Software, die exakt Ihre Vertriebs- und Kundenprozesse widerspiegelt. Wenn Sie bei uns Ihr CRM System entwickeln lassen, erhalten Sie eine schlanke, DSGVO-konforme Lösung ohne Vendor Lock-in.",
     introEn: "Move away from messy spreadsheets and bloated generic CRM tools. We engineer custom CRM platforms designed specifically around your unique sales workflow—driving faster deal velocity, complete customer 360 views, and higher win rates.",
     heroImage: "/images/meagle-laptop.jpg",
     primaryKeywordDe: "CRM-Systeme",
@@ -83,7 +83,7 @@ export const servicesBatch3: ServiceItemData[] = [
         "Visualisierte Vertriebspipelines: Ziehen Sie Deals per Drag & Drop durch maßgeschneiderte Phasen",
         "Kunden 360°-Akte: Anrufe, E-Mails, Angebote, Rechnungen und Notizen chronologisch gebündelt",
         "Automatisierte Follow-ups: Erinnerungen und E-Mail-Vorlagen verhindern vergessene Verkaufschancen",
-        "100% DSGVO-konforme Datenspeicherung in zertifizierten deutschen Rechenzentren",
+        "DSGVO-konforme Datenspeicherung in zertifizierten deutschen Rechenzentren",
       ],
     },
     solutionEn: {
@@ -93,7 +93,7 @@ export const servicesBatch3: ServiceItemData[] = [
         "Visualized deal pipelines: Drag-and-drop opportunities through stages customized to your sales playbook",
         "Comprehensive Customer 360 records: Emails, phone logs, quotes, invoices, and notes organized chronologically",
         "Automated follow-up reminders: Programmed triggers guarantee no prospect ever slips through the cracks",
-        "100% GDPR compliance with encrypted hosting in certified German cloud data centers",
+        "GDPR-compliant, encrypted hosting in certified German cloud data centers",
       ],
     },
 
@@ -164,7 +164,7 @@ export const servicesBatch3: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 35% höhere Abschlussquote",
+        title: "Höhere Abschlussquote",
         description: "Schnellere Reaktionszeiten und automatisierte Wiedervorlagen verhindern, dass kaufbereite Interessenten abspringen.",
       },
       {
@@ -172,7 +172,7 @@ export const servicesBatch3: ServiceItemData[] = [
         description: "Wachsen Sie von 5 auf 50 Vertriebsmitarbeiter, ohne dass Ihre monatlichen Softwarekosten explodieren.",
       },
       {
-        title: "100% Anpassung an Ihre Vertriebsrealität",
+        title: "Exakt an Ihre Vertriebsrealität angepasst",
         description: "Felder, Phasen und Berichte bilden genau Ihre Branche ab – ohne frustrierenden Standard-Ballast.",
       },
       {
@@ -182,7 +182,7 @@ export const servicesBatch3: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "Up to 35% Higher Win Rate",
+        title: "Higher Win Rate",
         description: "Faster outreach velocity and automated reminders prevent high-intent buyers from slipping away to competitors.",
       },
       {
@@ -190,7 +190,7 @@ export const servicesBatch3: ServiceItemData[] = [
         description: "Expand your sales force from 5 to 50 representatives without seeing software costs spiral out of control.",
       },
       {
-        title: "Engineered 100% Around Your Playbook",
+        title: "Engineered Around Your Playbook",
         description: "Custom fields, stages, and metrics model your exact sales methodology with zero clutter or confusing jargon.",
       },
       {
@@ -429,7 +429,7 @@ export const servicesBatch3: ServiceItemData[] = [
       description: "Eine elegante, in Ihre Marke eingebettete Buchungslösung mit vollständiger Kalender- und Zahlungsintegration.",
       points: [
         "Echtzeit-Synchronisation mit Google Kalender, Outlook und Apple Kalender (keine Doppelbuchungen)",
-        "Automatisierte SMS- und WhatsApp-Erinnerungen 24 Stunden vor dem Termin – senkt No-Shows um bis zu 85%",
+        "Automatisierte SMS- und WhatsApp-Erinnerungen 24 Stunden vor dem Termin – senkt No-Shows spürbar",
         "Optionale Anzahlungen oder Vorauskasse via PayPal, Stripe, Apple Pay und Kreditkarte",
         "Kundenfreundliche Umbuchungs- und Stornierungsportale nach Ihren individuellen Fristen",
       ],
@@ -439,7 +439,7 @@ export const servicesBatch3: ServiceItemData[] = [
       description: "A polished, brand-aligned scheduling experience integrated directly into your domain with full calendar and payment sync.",
       points: [
         "Real-time two-way synchronization with Google Calendar, Outlook, and Apple Calendar to eliminate double bookings",
-        "Automated SMS and WhatsApp reminder sequences dispatched 24 hours prior—slashing no-shows by up to 85%",
+        "Automated SMS and WhatsApp reminder sequences dispatched 24 hours prior—noticeably reducing no-shows",
         "Seamless deposit or full prepayment processing via Stripe, PayPal, Apple Pay, and credit cards",
         "Self-service rescheduling links honoring your custom cancellation policies and buffer time rules",
       ],
@@ -512,12 +512,12 @@ export const servicesBatch3: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 85% weniger Terminausfälle",
+        title: "Weniger Terminausfälle",
         description: "Automatisierte SMS-Erinnerungen und optionale Anzahlungen machen unentschuldigtes Fernbleiben zur absoluten Ausnahme.",
       },
       {
         title: "Buchungen rund um die Uhr",
-        description: "Über 50% der Termine werden abends oder am Wochenende gebucht – Ihr Kalender füllt sich automatisch, während Sie schlafen.",
+        description: "Viele Kunden buchen abends oder am Wochenende – Ihr Kalender füllt sich automatisch, auch außerhalb der Öffnungszeiten.",
       },
       {
         title: "Entlastung am Empfang & Telefon",
@@ -530,12 +530,12 @@ export const servicesBatch3: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "Up to 85% Reduction in No-Shows",
+        title: "Fewer No-Shows",
         description: "Automated SMS alerts and required deposits make forgotten appointments practically non-existent.",
       },
       {
         title: "Capture Bookings 24/7 Autonomously",
-        description: "Over 50% of bookings occur outside traditional business hours—your schedule fills up while you sleep.",
+        description: "Many customers book in the evening or at weekends—your schedule fills up even outside business hours.",
       },
       {
         title: "Eliminate Reception Phone Overload",
@@ -670,7 +670,7 @@ export const servicesBatch3: ServiceItemData[] = [
       },
       {
         q: "Ist das System DSGVO-konform für sensible Patientendaten oder Klienten?",
-        a: "Ja, zu 100%. Daten werden verschlüsselt auf deutschen Servern verarbeitet, es werden keine Daten an Werbenetzwerke weitergegeben und wir schließen standardmäßig Auftragsverarbeitungsverträge (AVV) ab.",
+        a: "Ja. Daten werden verschlüsselt auf deutschen Servern verarbeitet, es werden keine Daten an Werbenetzwerke weitergegeben und wir schließen standardmäßig Auftragsverarbeitungsverträge (AVV) ab.",
       },
     ],
     faqEn: [
@@ -692,7 +692,7 @@ export const servicesBatch3: ServiceItemData[] = [
       },
       {
         q: "Is the platform compliant with GDPR standards for sensitive client data?",
-        a: "Yes, 100%. All personal information is encrypted on certified German servers, zero client telemetry is sold to ad networks, and standard Data Processing Agreements (DPA) are provided.",
+        a: "Yes. All personal information is encrypted on certified German servers, zero client telemetry is sold to ad networks, and standard Data Processing Agreements (DPA) are provided.",
       },
     ],
   },
@@ -776,7 +776,7 @@ export const servicesBatch3: ServiceItemData[] = [
       title: "Unsere Lösung: Ihr rechtssicheres Finanz- & Abrechnungszentrum",
       description: "Eine maßgeschneiderte Lösung, die Rechnungen in Sekunden erstellt, Zahlungen automatisch verbucht und die Steuerberatung entlastet.",
       points: [
-        "100% GoBD-konforme Rechnungs- und Gutschriftenerstellung mit lückenloser Nummerierung und Revisionssicherheit",
+        "GoBD-konforme Rechnungs- und Gutschriftenerstellung mit lückenloser Nummerierung und Revisionssicherheit",
         "Automatischer Bankenabgleich via EBICS / FinTS: Erkennt Zahlungseingänge und gleicht offene Posten ab",
         "Automatisiertes, dreistufiges Mahnwesen mit Zahlungserinnerungen und Verzugszins-Berechnung",
         "DATEV-kompatibler Export (EXTF / CSV) für die reibungslose Übergabe an Ihren Steuerberater",
@@ -786,7 +786,7 @@ export const servicesBatch3: ServiceItemData[] = [
       title: "Our Solution: An Audit-Proof Financial & Invoicing Engine",
       description: "A tailored software system that generates invoices in seconds, reconciles payments automatically, and streamlines tax compliance.",
       points: [
-        "100% GoBD-compliant invoicing with immutable audit logs, sequential numbering, and digital archive preservation",
+        "GoBD-compliant invoicing with immutable audit logs, sequential numbering, and digital archive preservation",
         "Live bank reconciliation via FinTS / EBICS: Automatically detects incoming wires and marks invoices settled",
         "Multi-tier dunning engine with automated payment reminders and legally calculated interest charges",
         "Standardized 1-click DATEV export (EXTF / CSV) for frictionless handoffs to your tax consultant",
@@ -860,11 +860,11 @@ export const servicesBatch3: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 3x schnellerer Zahlungseingang",
+        title: "Schnellerer Zahlungseingang",
         description: "Automatisierte Zahlungserinnerungen und integrierte Online-Zahlungslinks (SEPA, Stripe) verkürzen Zahlungsziele drastisch.",
       },
       {
-        title: "100% Sicherheit bei Betriebsprüfungen",
+        title: "Gut vorbereitet für Betriebsprüfungen",
         description: "Erfüllen Sie alle GoBD- und Finanzamtsvorgaben lückenlos – keine Beanstandungen oder Steuernachzahlungen.",
       },
       {
@@ -878,11 +878,11 @@ export const servicesBatch3: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "Up to 3x Faster Cash Collection",
+        title: "Faster Cash Collection",
         description: "Automated reminder sequences and 1-click online payment links dramatically compress Days Sales Outstanding (DSO).",
       },
       {
-        title: "100% Tax Audit Defense (GoBD)",
+        title: "Audit-Ready Records (GoBD)",
         description: "Meet all German tax authority standards with immutable versioning—eliminating the risk of audit penalties.",
       },
       {
@@ -1002,7 +1002,7 @@ export const servicesBatch3: ServiceItemData[] = [
     faqDe: [
       {
         q: "Erfüllt die Software alle Anforderungen der deutschen GoBD?",
-        a: "Ja, zu 100%. Rechnungen werden nach der Festschreibung unveränderbar archiviert, erhalten eine fortlaufende Rechnungsnummer und alle Buchungsänderungen werden in einem revisionssicheren Audit-Log protokolliert.",
+        a: "Ja. Rechnungen werden nach der Festschreibung unveränderbar archiviert, erhalten eine fortlaufende Rechnungsnummer und alle Buchungsänderungen werden in einem revisionssicheren Audit-Log protokolliert.",
       },
       {
         q: "Kann unser Steuerberater die Daten direkt in DATEV einlesen?",
@@ -1024,7 +1024,7 @@ export const servicesBatch3: ServiceItemData[] = [
     faqEn: [
       {
         q: "Does this platform fully adhere to German GoBD accounting rules?",
-        a: "Yes, 100%. Invoices are immutably archived upon finalization, assigned strict sequential numbering, and tracked via an audit-proof system log.",
+        a: "Yes. Invoices are immutably archived upon finalization, assigned strict sequential numbering, and tracked via an audit-proof system log.",
       },
       {
         q: "Can our tax advisor import files directly into DATEV software?",
@@ -1208,7 +1208,7 @@ export const servicesBatch3: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 50% schnellere Kommissionierung",
+        title: "Schnellere Kommissionierung",
         description: "Optimierte Laufwege und klare Barcode-Verifizierung beschleunigen das Verpacken von Bestellungen drastisch.",
       },
       {
@@ -1216,17 +1216,17 @@ export const servicesBatch3: ServiceItemData[] = [
         description: "Der Scanner warnt sofort bei Verwechslungen – falsche Artikel können gar nicht erst verpackt werden.",
       },
       {
-        title: "Bis zu 25% weniger gebundenes Kapital",
+        title: "Weniger gebundenes Kapital",
         description: "Präzise Meldebestände und Absatzprognosen verhindern unnötige Überbestände im Lager.",
       },
       {
-        title: "Inventuraufwand um 70% reduziert",
+        title: "Geringerer Inventuraufwand",
         description: "Keine tagelangen Betriebsstillstände mehr: Digitale Zählung per Scanner spart hunderte Arbeitsstunden.",
       },
     ],
     benefitsEn: [
       {
-        title: "Up to 50% Faster Order Fulfillment",
+        title: "Faster Order Fulfillment",
         description: "Optimized pick paths and barcode verification allow pickers to pack orders with unmatched speed.",
       },
       {
@@ -1234,11 +1234,11 @@ export const servicesBatch3: ServiceItemData[] = [
         description: "Scanners issue an immediate audio warning on SKU mismatches—guaranteeing only correct items get boxed.",
       },
       {
-        title: "Up to 25% Reduction in Tied-Up Capital",
+        title: "Less Tied-Up Capital",
         description: "Data-driven safety stock levels and reorder triggers prevent over-purchasing and eliminate dead stock.",
       },
       {
-        title: "70% Reduction in Inventory Audit Hours",
+        title: "Fewer Inventory Audit Hours",
         description: "Eliminate full facility shutdowns: digital cycle counts with mobile scanners slash labor overhead dramatically.",
       },
     ],
@@ -1404,7 +1404,7 @@ export const servicesBatch3: ServiceItemData[] = [
     seoTitleDe: "KI Chatbot für Unternehmen | Chatbot entwickeln lassen",
     seoTitleEn: "Smart AI Chatbots for Customer Service & Lead Capture | Nexa Solutions",
     metaDescriptionDe: "KI Chatbot für Unternehmen & Website: Maßgeschneiderten Chatbot entwickeln lassen für 24/7 Support & Leads. Smart Chatbot in Germany jetzt anfragen!",
-    metaDescriptionEn: "Smart AI chatbots for web & WhatsApp: 24/7 multilingual customer support, automated appointment scheduling, and lead qualification. 100% GDPR compliant.",
+    metaDescriptionEn: "Smart AI chatbots for web & WhatsApp: 24/7 multilingual customer support, automated appointment scheduling, and lead qualification. GDPR compliant.",
     h1De: "KI Chatbot für Unternehmen: Intelligenten Chatbot entwickeln lassen",
     h1En: "Smart AI Chatbots for 24/7 Customer Care & Autonomous Lead Capture",
     badgeDe: "KI-Chatbots & Kundendialog",
@@ -1434,7 +1434,7 @@ export const servicesBatch3: ServiceItemData[] = [
     challengesDe: [
       {
         title: "Verlorene Leads außerhalb der Bürozeiten",
-        description: "Über 60% der Website-Besucher recherchieren abends oder am Wochenende – ohne sofortige Antwort verlassen sie die Seite und gehen zur Konkurrenz.",
+        description: "Viele Website-Besucher recherchieren abends oder am Wochenende – ohne sofortige Antwort verlassen sie die Seite und gehen zur Konkurrenz.",
       },
       {
         title: "Überlastung durch immer wiederkehrende Standardfragen",
@@ -1452,7 +1452,7 @@ export const servicesBatch3: ServiceItemData[] = [
     challengesEn: [
       {
         title: "Lost High-Value Leads Outside Business Hours",
-        description: "Over 60% of prospective buyers research solutions in the evenings and weekends—without immediate answers, they bounce to competitors.",
+        description: "Many prospective buyers research solutions in the evenings and at weekends—without immediate answers, they bounce to competitors.",
       },
       {
         title: "Support Fatigue from Repetitive FAQs",
@@ -1475,7 +1475,7 @@ export const servicesBatch3: ServiceItemData[] = [
         "Versteht natürliche Sprache (NLP): Nutzer können frei formulieren und erhalten präzise, menschlich wirkende Antworten",
         "Wissensbasis auf Basis Ihrer Daten: Beantwortet Fragen ausschließlich anhand Ihrer echten Dokumente und FAQs (keine Halluzinationen)",
         "Direkte Aktionsfähigkeit: Qualifiziert Leads, erfasst Kontaktdaten und bucht Termine direkt im Chat",
-        "100% DSGVO-konform: Gehostet in Deutschland ohne Cookie-Tracking oder unerlaubte Datenweitergabe",
+        "DSGVO-konform: Gehostet in Deutschland ohne Cookie-Tracking oder unerlaubte Datenweitergabe",
       ],
     },
     solutionEn: {
@@ -1485,7 +1485,7 @@ export const servicesBatch3: ServiceItemData[] = [
         "Natural Language Understanding: Visitors speak naturally and receive context-aware, professional responses instantly",
         "Grounded Knowledge Base: Formulates responses strictly based on your company documentation, manuals, and FAQs (zero hallucinations)",
         "Autonomous Action Taking: Collects verified contact info, qualifies buyer intent, and books calendar appointments directly within the conversation",
-        "100% GDPR Compliant: Hosted securely in Germany with zero invasive cookie tracking or third-party data exploitation",
+        "GDPR Compliant: Hosted securely in Germany with zero invasive cookie tracking or third-party data exploitation",
       ],
     },
 
@@ -1556,15 +1556,15 @@ export const servicesBatch3: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 4x mehr qualifizierte Website-Leads",
+        title: "Mehr qualifizierte Website-Leads",
         description: "Proaktive, freundliche Ansprache verwandelt passive Besucher in aktive Interessenten mit hinterlassenen Kontaktdaten.",
       },
       {
-        title: "Sofortige Antwortzeit unter 2 Sekunden",
+        title: "Sofortige Antworten rund um die Uhr",
         description: "Keine Wartezeiten in Telefonwarteschleifen oder tagelanges Warten auf E-Mail-Rückmeldungen.",
       },
       {
-        title: "Bis zu 70% weniger Support-Aufwand",
+        title: "Weniger Support-Aufwand",
         description: "Routinefragen werden vollautomatisch gelöst – Ihr Team hat wieder Zeit für anspruchsvolle Beratungen.",
       },
       {
@@ -1574,7 +1574,7 @@ export const servicesBatch3: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "Up to 4x Increase in Qualified Inbound Leads",
+        title: "More Qualified Inbound Leads",
         description: "Proactive, welcoming prompts convert passive web traffic into engaged prospects with verified contact information.",
       },
       {
@@ -1582,7 +1582,7 @@ export const servicesBatch3: ServiceItemData[] = [
         description: "Zero waiting on hold or enduring multi-day email ticket queues—customers receive immediate, helpful answers.",
       },
       {
-        title: "Up to 70% Reduction in Ticket Workload",
+        title: "Lower Ticket Workload",
         description: "Routine FAQs resolve automatically, freeing up your team to focus on high-margin strategic advisory.",
       },
       {
@@ -1876,7 +1876,7 @@ export const servicesBatch3: ServiceItemData[] = [
         scopeBadge: "Modernization",
       },
       {
-        title: "100% Paperless Digital Workflows",
+        title: "Paperless Digital Workflows",
         description: "Digital web forms, qualified electronic signatures (eIDAS), and audit-proof GoBD digital document archiving.",
         scopeBadge: "Paperless",
       },
@@ -2029,7 +2029,7 @@ export const servicesBatch3: ServiceItemData[] = [
       },
       {
         audience: "Trade & Field Service Organizations",
-        title: "Complete Transition to 100% Paperless Operations",
+        title: "Transition to Paperless Operations",
         description: "Full digitization of field timesheets, material packing slips, customer work orders, and invoice approvals.",
       },
       {
@@ -2105,8 +2105,8 @@ export const servicesBatch3: ServiceItemData[] = [
     h1En: "Custom B2B Client Portal Development: Secure Customer Portals",
     badgeDe: "B2B Portale & Extranets",
     badgeEn: "B2B Portals & Extranets",
-    introDe: "Optimieren Sie Ihre geschäftlichen Kundenbeziehungen durch moderne digitale Self-Service-Prozesse: Wenn Sie ein sicheres B2B Kundenportal entwickeln lassen möchten, bieten wir maßgeschneiderte Portallösungen für mittelständische Unternehmen und Dienstleister. Von der DSGVO-konformen Dokumentenfreigabe und revisionssicheren Rechnungsverwaltung über die transparente Auftragsverfolgung bis hin zum integrierten Ticketsystem können Sie Ihr B2B Kundenportal entwickeln lassen, um repetitive Support-Anfragen nachhaltig um bis zu 60 % zu senken. Wir integrieren Ihr Mandantenportal nahtlos in bestehende ERP- und CRM-Landschaften – fest kalkuliert zum fairen Festpreis.",
-    introEn: "Elevate enterprise customer experiences with modern digital self-service capabilities: We engineer custom B2B client portals and extranets tailored to the security and workflow demands of mid-market enterprises. From end-to-end encrypted document sharing and transparent milestone tracking to integrated ticketing and automated billing workflows, our portals streamline operations and reduce routine support overhead by up to 60%.",
+    introDe: "Optimieren Sie Ihre geschäftlichen Kundenbeziehungen durch moderne digitale Self-Service-Prozesse: Wenn Sie ein sicheres B2B Kundenportal entwickeln lassen möchten, bieten wir maßgeschneiderte Portallösungen für mittelständische Unternehmen und Dienstleister. Von der DSGVO-konformen Dokumentenfreigabe und revisionssicheren Rechnungsverwaltung über die transparente Auftragsverfolgung bis hin zum integrierten Ticketsystem können Sie Ihr B2B Kundenportal entwickeln lassen, um repetitive Support-Anfragen nachhaltig zu senken. Wir integrieren Ihr Mandantenportal nahtlos in bestehende ERP- und CRM-Landschaften – fest kalkuliert zum fairen Festpreis.",
+    introEn: "Elevate enterprise customer experiences with modern digital self-service capabilities: We engineer custom B2B client portals and extranets tailored to the security and workflow demands of mid-market enterprises. From end-to-end encrypted document sharing and transparent milestone tracking to integrated ticketing and automated billing workflows, our portals streamline operations and reduce routine support overhead.",
     heroImage: "/images/hero-devices.jpg",
     primaryKeywordDe: "b2b kundenportal entwickeln lassen",
     primaryKeywordEn: "custom b2b client portal development",
@@ -2168,7 +2168,7 @@ export const servicesBatch3: ServiceItemData[] = [
       title: "Unsere Lösung: Ihr maßgeschneidertes, hochsicheres B2B-Kundenportal",
       description: "Eine zentrale, digitale Anlaufstelle für Ihre Geschäftskunden – vollkommen sicher, nahtlos an Ihre internen Systeme angebunden und exakt auf Ihre geschäftlichen Workflows abgestimmt.",
       points: [
-        "100% DSGVO-konforme Architektur mit Ende-zu-Ende-Verschlüsselung, 2-Faktor-Authentifizierung (2FA) und Hosting in zertifizierten deutschen Rechenzentren",
+        "DSGVO-konforme Architektur mit Ende-zu-Ende-Verschlüsselung, 2-Faktor-Authentifizierung (2FA) und Hosting in zertifizierten deutschen Rechenzentren",
         "Echtzeit-Tracking von Projekten, Meilensteinen und Aufträgen zur drastischen Reduktion von Status-Rückfragen",
         "Revisionssicheres Dokumentenmanagement mit strukturierter Ordnerhierarchie, Versionskontrolle und digitaler Signaturfreigabe",
         "Nahtlose API-Schnittstellen zu Ihren bestehenden CRM-, ERP- und Buchhaltungs-Lösungen für vollautomatische Datensynchronisation",
@@ -2179,7 +2179,7 @@ export const servicesBatch3: ServiceItemData[] = [
       description: "A centralized, high-security client hub that consolidates customer communication, file handoffs, and self-service capabilities into one unified platform.",
       points: [
         "Strict GDPR-compliant architecture with end-to-end encryption, 2FA, and ISO-27001 certified German cloud infrastructure",
-        "Real-time milestone visibility and delivery timelines that slash status inquiries by up to 60%",
+        "Real-time milestone visibility and delivery timelines that cut down status inquiries",
         "Audit-proof document management with granular access privileges, version history, and digital approval workflows",
         "Frictionless REST & GraphQL API integrations synchronizing data directly with your ERP, CRM, and accounting engines",
       ],
@@ -2252,7 +2252,7 @@ export const servicesBatch3: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 60 % weniger Support-Aufwand",
+        title: "Weniger Support-Aufwand",
         description: "Kunden finden Angebote, Verträge und Projektstände selbstständig im Portal, wodurch Ihr Kundenservice massiv entlastet wird.",
       },
       {
@@ -2270,7 +2270,7 @@ export const servicesBatch3: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "Up to 60% Reduction in Support Workload",
+        title: "Lower Support Workload",
         description: "Clients independently retrieve invoices, project assets, and status reports without contacting your team for repetitive updates.",
       },
       {
@@ -2394,7 +2394,7 @@ export const servicesBatch3: ServiceItemData[] = [
     faqDe: [
       {
         q: "Warum sollten wir ein individuelles B2B Kundenportal entwickeln lassen statt eine Standard-SaaS-Lösung zu nutzen?",
-        a: "Wenn Sie ein individuelles B2B Kundenportal entwickeln lassen, behalten Sie die 100%ige Datenhoheit auf deutschen Servern und vermeiden teure monatliche Lizenzgebühren pro Benutzer. Zudem lässt sich die Lösung exakt an Ihre internen ERP- und CRM-Systeme sowie Ihr eigenes Markendesign anpassen, während Standard-Software oft unflexibel ist.",
+        a: "Wenn Sie ein individuelles B2B Kundenportal entwickeln lassen, behalten Sie die volle Datenhoheit auf deutschen Servern und vermeiden teure monatliche Lizenzgebühren pro Benutzer. Zudem lässt sich die Lösung exakt an Ihre internen ERP- und CRM-Systeme sowie Ihr eigenes Markendesign anpassen, während Standard-Software oft unflexibel ist.",
       },
       {
         q: "Wie sicher ist der Dokumentenaustausch im Kundenportal nach DSGVO?",

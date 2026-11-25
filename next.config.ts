@@ -30,6 +30,60 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Deleted pages that still have Google impressions — consolidate signals
+      {
+        source: "/app-entwickeln-lassen-kosten",
+        destination: "/app-entwicklung-kosten",
+        permanent: true,
+      },
+      {
+        source: "/services/performance-marketing",
+        destination: "/de/services/digitale-marketing-kampagnen",
+        permanent: true,
+      },
+      {
+        source: "/about",
+        destination: "/#about",
+        permanent: true,
+      },
+      // SEO ground rule 1: duplicate German service pages merged into their /loesungen page.
+      // Keep in sync with MERGED_DE_SERVICE_TARGETS in src/data/servicesData.ts
+      {
+        source: "/de/services/ki-chatbots-kundenservice",
+        destination: "/loesungen/ki-chatbot-fuer-unternehmen",
+        permanent: true,
+      },
+      {
+        source: "/de/services/crm-system-entwicklung",
+        destination: "/loesungen/crm-system-entwickeln-lassen",
+        permanent: true,
+      },
+      {
+        source: "/de/services/online-terminbuchungssysteme",
+        destination: "/loesungen/terminbuchungssystem-entwickeln-lassen",
+        permanent: true,
+      },
+      {
+        source: "/de/services/mitarbeiter-zeiterfassung",
+        destination: "/loesungen/zeiterfassung-software",
+        permanent: true,
+      },
+      {
+        source: "/de/services/gastronomie-restaurant-systeme",
+        destination: "/loesungen/restaurant-software-qr-menue",
+        permanent: true,
+      },
+      // App-cost blog merged into the main cost page (both languages)
+      {
+        source: "/blog/app-entwicklung-kosten-2026",
+        destination: "/app-entwicklung-kosten",
+        permanent: true,
+      },
+      {
+        source: "/en/blog/app-entwicklung-kosten-2026",
+        destination: "/app-entwicklung-kosten",
+        permanent: true,
+      },
       {
         source: "/our-work",
         destination: "/projects",
@@ -43,7 +97,7 @@ const nextConfig: NextConfig = {
       // 16 301 Canonical Redirects for 8 Dedicated Services (DE & EN)
       {
         source: "/services/mitarbeiter-zeiterfassung",
-        destination: "/de/services/mitarbeiter-zeiterfassung",
+        destination: "/loesungen/zeiterfassung-software",
         permanent: true,
       },
       {
@@ -139,7 +193,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/services/gastronomie-restaurant-systeme",
-        destination: "/de/services/gastronomie-restaurant-systeme",
+        destination: "/loesungen/restaurant-software-qr-menue",
         permanent: true,
       },
       {
@@ -179,7 +233,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/services/crm-system-entwicklung",
-        destination: "/de/services/crm-system-entwicklung",
+        destination: "/loesungen/crm-system-entwickeln-lassen",
         permanent: true,
       },
       {
@@ -189,7 +243,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/services/online-terminbuchungssysteme",
-        destination: "/de/services/online-terminbuchungssysteme",
+        destination: "/loesungen/terminbuchungssystem-entwickeln-lassen",
         permanent: true,
       },
       {
@@ -219,7 +273,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/services/ki-chatbots-kundenservice",
-        destination: "/de/services/ki-chatbots-kundenservice",
+        destination: "/loesungen/ki-chatbot-fuer-unternehmen",
         permanent: true,
       },
       {

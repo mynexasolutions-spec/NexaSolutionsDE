@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
-import { servicesData } from "@/data/servicesData";
+import { servicesData, getGermanServicePath } from "@/data/servicesData";
 import ServiceDetailView from "@/components/ServiceDetailView";
 
 type Props = {
@@ -22,7 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const canonicalUrl = `${SITE_URL}/en/services/${service.slugEn}`;
-  const germanUrl = `${SITE_URL}/de/services/${service.slugDe}`;
+  // Points to the /loesungen page when the German service page was merged into it
+  const germanUrl = `${SITE_URL}${getGermanServicePath(service.slugDe)}`;
   const ogImage = service.heroImage ? `${SITE_URL}${service.heroImage}` : DEFAULT_OG_IMAGE;
 
   return {

@@ -91,7 +91,7 @@ export default function AppKostenClient() {
               <h1 className="text-[35px] sm:text-[52px] lg:text-[58px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center">
                 {t("App Entwicklung Kosten: ", "App Development Cost: ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">
-                  {t("Preise & Rechner 2026", "Pricing & Calculator 2026")}
+                  {t("Rechner & Kostenfaktoren 2026", "Calculator & Cost Factors 2026")}
                 </span>
               </h1>
 
@@ -156,7 +156,7 @@ export default function AppKostenClient() {
                         {lang === "de" ? item.labelDe : item.labelEn}
                       </div>
                       <div className="text-xl sm:text-2xl font-[900] text-orange-600 mt-2">
-                        {item.range}
+                        {lang === "de" ? item.rangeDe : item.rangeEn}
                       </div>
                       <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-slate-700 font-semibold mt-1">
                         <Clock className="w-4 h-4 text-orange-500 shrink-0" />
@@ -205,10 +205,14 @@ export default function AppKostenClient() {
                     Fundament. Wer eine Smartphone-Anwendung plant, möchte wissen, wie sich die{" "}
                     <strong>App Programmieren Kosten</strong> konkret zusammensetzen und was es kostet,{" "}
                     <strong>eine App entwickeln</strong> zu lassen. Wenn Sie in Deutschland eine
-                    professionelle <strong>App erstellen lassen</strong>, bewegen sich die
-                    durchschnittlichen <strong>App Entwicklungskosten</strong> in der Praxis
-                    zwischen <em>[PREIS HIER EINTRAGEN: ca. 12.000 € für ein fokussiertes MVP]</em> und{" "}
-                    <em>[PREIS HIER EINTRAGEN: weit über 60.000 € für komplexe Unternehmensanwendungen]</em>.
+                    professionelle <strong>App erstellen lassen</strong>, hängen die{" "}
+                    <strong>App Entwicklungskosten</strong> vor allem von Funktionsumfang, Plattformwahl,
+                    Design-Anspruch und Schnittstellen ab: Ein fokussiertes MVP kostet nur einen Bruchteil
+                    einer komplexen Unternehmensanwendung. Mit dem{" "}
+                    <a href="#app-rechner" className="text-orange-600 font-semibold underline">App-Kostenrechner</a>{" "}
+                    schätzen Sie die Projektdauer sofort, ein verbindliches Festpreis-Angebot erhalten Sie
+                    nach einem{" "}
+                    <Link href="/contact" className="text-orange-600 font-semibold underline">kostenlosen Erstgespräch</Link>.
                   </p>
                   <p>
                     Der finale Preis setzt sich aus vier Kernphasen zusammen: der strategischen
@@ -216,15 +220,15 @@ export default function AppKostenClient() {
                     Figma, der softwaretechnischen Frontend- und Backend-Entwicklung sowie dem intensiven
                     Quality Assurance Testing inklusive Store-Freigabe bei Apple und Google. Wer an der
                     Planung spart, riskiert spätere Nachbesserungen, die ein Vielfaches kosten. Bei Nexa
-                    Solutions in Stuttgart definieren wir vor Projektbeginn klare Meilensteine, um die{" "}
+                    Solutions definieren wir vor Projektbeginn klare Meilensteine, um die{" "}
                     <strong>Kosten einer App Entwicklung</strong> von Tag eins an transparent und planbar
                     zu halten.
                   </p>
                   <p>
                     Ein wesentlicher Hebel zur Kostenoptimierung liegt in der Wahl der zugrundeliegenden
                     Architektur. Durch den Einsatz moderner Cross-Platform-Technologien wie React Native
-                    lässt sich der Programmieraufwand im Vergleich zu doppelter nativer Entwicklung um bis
-                    zu 40 % senken, ohne Einbußen bei Benutzererlebnis oder Ausführungsgeschwindigkeit.
+                    lässt sich der Programmieraufwand im Vergleich zu doppelter nativer Entwicklung deutlich
+                    senken, ohne Einbußen bei Benutzererlebnis oder Ausführungsgeschwindigkeit.
                   </p>
                 </>
               ) : (
@@ -235,21 +239,23 @@ export default function AppKostenClient() {
                     architectural blueprints, finish quality, floor count, and foundation engineering.
                     Anyone planning a mobile product wants to know how <strong>app development costs</strong>{" "}
                     are structured and what it takes to bring a high-performance application to market.
-                    In Germany and across Europe, average engineering costs range from{" "}
-                    <em>[PREIS HIER EINTRAGEN: approx. €12,000 for a focused MVP]</em> to{" "}
-                    <em>[PREIS HIER EINTRAGEN: upwards of €60,000 for enterprise software]</em>.
+                    Costs depend mainly on feature scope, platform choice, design ambition and integrations:
+                    a focused MVP costs a fraction of a complex enterprise application. Use the{" "}
+                    <a href="#app-rechner" className="text-orange-600 font-semibold underline">app cost calculator</a>{" "}
+                    to estimate your timeline instantly, and get a binding fixed-price proposal after a{" "}
+                    <Link href="/contact" className="text-orange-600 font-semibold underline">free consultation</Link>.
                   </p>
                   <p>
                     The final budget consists of four critical phases: strategic discovery and UX research,
                     bespoke Figma user interface design, full-stack mobile and cloud engineering, and
                     rigorous automated QA testing leading to Apple App Store and Google Play publication.
-                    At Nexa Solutions in Stuttgart, we establish verifiable milestone deliverables from
+                    At Nexa Solutions, we establish verifiable milestone deliverables from
                     day one to guarantee total financial certainty.
                   </p>
                   <p>
                     The greatest lever for cost efficiency is modern cross-platform engineering. By deploying
-                    React Native, organizations share up to 85–90% of their codebase between iOS and Android,
-                    cutting upfront engineering expenses by up to 40% without compromising native 60 FPS fluidity.
+                    React Native, iOS and Android share most of their codebase,
+                    significantly cutting upfront engineering expenses without compromising smooth native performance.
                   </p>
                 </>
               )}
@@ -278,23 +284,23 @@ export default function AppKostenClient() {
                     präzise kalkulieren wollen, ist die Einordnung in den passenden Projekttyp der erste
                     und wichtigste Schritt. Ein einfaches Minimum Viable Product (MVP) zielt darauf ab,
                     eine innovative Geschäftsidee mit echten Endnutzern zu verifizieren, ohne unnötiges
-                    Kapital zu binden. Hier liegen die typischen <strong>App Erstellen Kosten</strong> bei{" "}
-                    <em>[PREIS HIER EINTRAGEN: ca. 12.000 € bis 25.000 €]</em>.
+                    Kapital zu binden. Hier sind die <strong>App Erstellen Kosten</strong> am niedrigsten,
+                    weil nur 1–2 Kernfunktionen umgesetzt werden.
                   </p>
                   <p>
                     Etablierte mittelständische Unternehmen benötigen dagegen meist eine maßgeschneiderte
                     Business-App. Typische Anwendungsfälle sind mobile Kundenportale, Außendienst-Lösungen
                     oder interne Logistik-Apps. Da hier Schnittstellen zu vorhandenen ERP- und CRM-Systemen,
                     ausgereifte Rollen- und Rechtekonzepte sowie höchste Ausfallsicherheit erforderlich
-                    sind, bewegen sich die <strong>Kosten für eine App Entwicklung</strong> in dieser Kategorie
-                    üblicherweise zwischen <em>[PREIS HIER EINTRAGEN: 25.000 € und 60.000 €]</em>.
+                    sind, liegen die <strong>Kosten für eine App Entwicklung</strong> in dieser Kategorie
+                    entsprechend höher als bei einem MVP.
                   </p>
                   <p>
                     Für hochkomplexe Multiplattform-Systeme, FinTech-Anwendungen oder soziale Netzwerke
                     mit Millionen gleichzeitiger Zugriffe steigen die <strong>App Entwicklungskosten</strong>{" "}
-                    durch Microservice-Cloud-Infrastrukturen und strengste Sicherheitsaudits auf{" "}
-                    <em>[PREIS HIER EINTRAGEN: ab 60.000 € aufwärts]</em>. In der folgenden Gegenüberstellung
-                    sehen Sie die drei Ausbaustufen im direkten Vergleich:
+                    durch Microservice-Cloud-Infrastrukturen und strengste Sicherheitsaudits deutlich.
+                    In der folgenden Gegenüberstellung sehen Sie die drei Ausbaustufen im direkten Vergleich –
+                    für jede Stufe erstellen wir Ihnen ein individuelles Festpreis-Angebot:
                   </p>
                 </>
               ) : (
@@ -304,19 +310,19 @@ export default function AppKostenClient() {
                     differ substantially between a focused market test and an enterprise-wide operational portal.
                     Accurately budgeting your application begins with selecting the appropriate tier. A lean
                     Minimum Viable Product (MVP) validates product-market fit with real users while preserving
-                    capital, with benchmarks ranging around{" "}
-                    <em>[PREIS HIER EINTRAGEN: approx. €12,000 to €25,000]</em>.
+                    capital. This is the most affordable tier, since only 1–2 core features are built.
                   </p>
                   <p>
                     Established SMEs and scaling brands typically commission a tailored Business App.
                     Common use cases include customer portals, field service apps, or inventory logistics.
                     With secure ERP/CRM integrations and robust role-based access controls, budgets
-                    typically range from <em>[PREIS HIER EINTRAGEN: €25,000 to €60,000]</em>.
+                    are correspondingly higher than for an MVP.
                   </p>
                   <p>
                     For complex ecosystems, FinTech platforms, or high-concurrency mobile networks, engineering
-                    costs expand to <em>[PREIS HIER EINTRAGEN: from €60,000 upwards]</em> due to distributed
-                    microservices and comprehensive compliance audits. Below is a direct comparison of the three tiers:
+                    costs expand significantly due to distributed microservices and comprehensive compliance
+                    audits. Below is a direct comparison of the three tiers – we prepare a custom fixed-price
+                    proposal for each:
                   </p>
                 </>
               )}
@@ -359,7 +365,7 @@ export default function AppKostenClient() {
                       </div>
 
                       <div className="text-2xl sm:text-3xl lg:text-[34px] font-[900] text-orange-600 tracking-tight mt-4 mb-2">
-                        {tier.priceRange}
+                        {lang === "de" ? tier.priceLabelDe : tier.priceLabelEn}
                       </div>
 
                       <div className="text-xs sm:text-sm text-slate-700 font-semibold flex items-center gap-1.5">
@@ -435,15 +441,15 @@ export default function AppKostenClient() {
                     von Meta und genutzt von Microsoft, Shopify und Discord) hat sich das Paradigma grundlegend
                     geändert. Anstatt getrennter Codebasen schreiben unsere Entwickler eine hochgradig
                     wiederverwendbare Codebasis in TypeScript, die direkt in native Betriebssystem-Komponenten
-                    kompiliert wird. Das Ergebnis: butterweiche 60-FPS-Animationen, native Gesten und direkter
-                    Zugriff auf Kamera, GPS, Bluetooth und Secure Storage – bei bis zu 40 % geringeren
+                    kompiliert wird. Das Ergebnis: flüssige Animationen, native Gesten und direkter
+                    Zugriff auf Kamera, GPS, Bluetooth und Secure Storage – bei deutlich geringeren
                     Entwicklungskosten.
                   </p>
                   <p>
                     Nur bei hochspezialisierten Anwendungen – wie extrem hardwarenahen 3D-AR-Spielen oder
                     spezifischen Low-Level-Bluetooth-Treibern – ist eine separate native Swift/Kotlin-Programmierung
-                    nach wie vor zwingend erforderlich. Für über 95 % aller Business- und Verbraucher-Apps
-                    ist React Native heute die wirtschaftlich und technisch überlegene Wahl.
+                    nach wie vor zwingend erforderlich. Für die meisten Business- und Verbraucher-Apps
+                    ist React Native heute die wirtschaftlich und technisch sinnvollere Wahl.
                   </p>
                 </>
               ) : (
@@ -458,12 +464,12 @@ export default function AppKostenClient() {
                     With modern cross-platform frameworks like <strong>React Native</strong> (created by Meta
                     and powering apps at Microsoft, Shopify, and Discord), the economics have changed fundamentally.
                     Rather than building two siloed codebases, our engineering team crafts a single, robust TypeScript
-                    architecture that compiles directly into native OS primitives. The result: buttery 60 FPS
-                    responsiveness, native gestures, and camera/GPS integration at up to 40% lower cost.
+                    architecture that compiles directly into native OS primitives. The result: smooth
+                    responsiveness, native gestures, and camera/GPS integration at significantly lower cost.
                   </p>
                   <p>
                     Except for specialized low-level hardware or intense 3D gaming, React Native delivers the
-                    fastest time-to-market, cleanest maintainability, and optimal ROI for over 95% of commercial applications.
+                    fastest time-to-market, cleanest maintainability, and optimal ROI for most commercial applications.
                   </p>
                 </>
               )}
@@ -645,13 +651,12 @@ export default function AppKostenClient() {
                     </li>
                     <li>
                       <strong>Cloud-Hosting & Datenbank-Server:</strong> Je nach Nutzeranzahl und
-                      Datenvolumen (z. B. auf AWS, Google Cloud oder Supabase) fallen monatliche Kosten
-                      von <em>{APP_COST_CONFIG.maintenanceCosts.hostingEstimateDe}</em> an.
+                      Datenvolumen (z. B. auf AWS, Google Cloud oder Supabase) fallen{" "}
+                      <em>{APP_COST_CONFIG.maintenanceCosts.hostingEstimateDe}</em> an.
                     </li>
                     <li>
-                      <strong>Technische Wartung & Support (SLA):</strong> Als verlässliche Faustformel
-                      in der Softwarebranche gelten jährlich{" "}
-                      <strong>{APP_COST_CONFIG.maintenanceCosts.yearlyRateDe}</strong>. Dieser Posten stellt
+                      <strong>Technische Wartung & Support (SLA):</strong> Hierfür planen Sie{" "}
+                      <strong>{APP_COST_CONFIG.maintenanceCosts.yearlyRateDe}</strong> ein. Dieser Posten stellt
                       sicher, dass Bibliotheken aktuell bleiben, Sicherheitslücken sofort geschlossen werden
                       und die App auf neuen Endgeräten reibungslos performt.
                     </li>
@@ -681,10 +686,10 @@ export default function AppKostenClient() {
                     </li>
                     <li>
                       <strong>Cloud Hosting & Databases:</strong> Dependent on active traffic (AWS, Supabase, Google Cloud),
-                      budget approximately <em>{APP_COST_CONFIG.maintenanceCosts.hostingEstimateEn}</em>.
+                      expect <em>{APP_COST_CONFIG.maintenanceCosts.hostingEstimateEn}</em>.
                     </li>
                     <li>
-                      <strong>Technical Maintenance & SLA:</strong> The standard industry benchmark is{" "}
+                      <strong>Technical Maintenance & SLA:</strong> Plan for{" "}
                       <strong>{APP_COST_CONFIG.maintenanceCosts.yearlyRateEn}</strong>. This ensures third-party
                       SDKs remain compliant, patches vulnerabilities, and maintains compatibility with new handsets.
                     </li>
@@ -728,10 +733,9 @@ export default function AppKostenClient() {
                   </p>
                   <p>
                     <strong>Das agile Stundensatzmodell</strong> empfiehlt sich hingegen für komplexe,
-                    sich schnell verändernde Plattformen. Hier rechnen wir in 2-Wochen-Sprints zu einem
-                    transparenten Agenturstundensatz von{" "}
-                    <em>{APP_COST_CONFIG.summaryBox.ranges[3].range}</em> ab. Vor jedem Sprint wird der
-                    Backlog priorisiert und geschätzt. Sie behalten zu jedem Zeitpunkt 100 % Budgetkontrolle
+                    sich schnell verändernde Plattformen. Hier arbeiten wir in transparenten 2-Wochen-Sprints:
+                    Vor jedem Sprint wird der Backlog priorisiert, geschätzt und das Sprint-Budget gemeinsam
+                    freigegeben. Sie behalten zu jedem Zeitpunkt 100 % Budgetkontrolle
                     und können flexibel auf Kundenfeedback oder Marktveränderungen reagieren.
                   </p>
                 </>
@@ -750,9 +754,8 @@ export default function AppKostenClient() {
                   </p>
                   <p>
                     <strong>Agile Sprint Billing</strong> is ideal for evolving digital platforms and dynamic product
-                    features. We deliver in iterative 2-week sprints at our transparent senior engineering rate of{" "}
-                    <em>{APP_COST_CONFIG.summaryBox.ranges[3].range}</em>. Backlogs are estimated and agreed upon prior
-                    to each cycle, giving you absolute budget authority.
+                    features. We deliver in transparent 2-week sprints: backlogs are estimated and the sprint budget
+                    is agreed upon prior to each cycle, giving you absolute budget authority.
                   </p>
                 </>
               )}
@@ -907,8 +910,7 @@ export default function AppKostenClient() {
                     bis hin zum eigenen Lieferdienst – amortisiert sich meist innerhalb weniger Monate.
                   </p>
                   <p>
-                    Die Einstiegskosten für ein voll funktionsfähiges QR-Code Bestellsystem beginnen bei
-                    Nexa Solutions bereits ab{" "}
+                    Für ein voll funktionsfähiges QR-Code Bestellsystem erhalten Sie bei Nexa Solutions ein{" "}
                     <em>{APP_COST_CONFIG.restaurantCosts.startingPriceDe}</em>. Gäste scannen den Tisch-Code
                     mit ihrer Smartphone-Kamera und können ohne störenden App-Store-Download direkt im
                     Browser Speisen wählen, Sonderwünsche angeben und per Apple Pay, Google Pay oder PayPal
@@ -930,7 +932,7 @@ export default function AppKostenClient() {
                     typically achieves full ROI within months.
                   </p>
                   <p>
-                    Starting pricing for a turn-key QR-ordering web application begins at Nexa Solutions from{" "}
+                    For a turn-key QR-ordering web application, Nexa Solutions offers a{" "}
                     <em>{APP_COST_CONFIG.restaurantCosts.startingPriceEn}</em>. Guests scan table codes without
                     download barriers to order meals, specify modifications, and pay instantly via Apple Pay or PayPal.
                   </p>
@@ -1068,8 +1070,8 @@ export default function AppKostenClient() {
                   </h3>
                   <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
                     {t(
-                      "Erfahren Sie mehr über unsere Entwicklungsdienstleistungen für iOS & Android aus Stuttgart.",
-                      "Discover our high-performance iOS and Android development services based in Stuttgart."
+                      "Erfahren Sie mehr über unsere Entwicklungsdienstleistungen für iOS & Android.",
+                      "Discover our high-performance iOS and Android development services."
                     )}
                   </p>
                 </div>

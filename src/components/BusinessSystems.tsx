@@ -30,10 +30,10 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const systemLinkMap: Record<string, { de: string; en: string }> = {
-    hrms: { de: "/de/services/mitarbeiter-zeiterfassung", en: "/en/services/employee-attendance-tracking" },
+    hrms: { de: "/loesungen/zeiterfassung-software", en: "/en/services/employee-attendance-tracking" },
     finance: { de: "/de/services/rechnungswesen-buchhaltung-software", en: "/en/services/invoicing-accounting-systems" },
     portal: { de: "/de/services/b2b-kundenportal", en: "/en/services/b2b-client-portal" },
-    ordering: { de: "/de/services/gastronomie-restaurant-systeme", en: "/en/services/restaurant-management-systems" },
+    ordering: { de: "/loesungen/restaurant-software-qr-menue", en: "/en/services/restaurant-management-systems" },
   };
 
   useEffect(() => {
@@ -69,9 +69,9 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
         "Replace fragmented spreadsheets with a unified employee platform: Digital personnel files, 1-click leave requests, biometric attendance logging, and granular role-based permissions."
       ),
       metrics: [
-        { label: t("Verwaltungszeit", "Admin Time"), value: "-60%" },
-        { label: t("Mitarbeiter-Adoption", "Staff Adoption"), value: "98%" },
-        { label: t("DSGVO-Sicherheit", "Data Security"), value: "100%" },
+        { label: t("Personalakten", "Personnel Files"), value: t("Digital", "Digital") },
+        { label: t("Bedienung", "Usability"), value: t("Intuitiv", "Intuitive") },
+        { label: t("Datenschutz", "Data Privacy"), value: t("DSGVO-konform", "GDPR") },
       ],
       features: [
         t(
@@ -106,8 +106,8 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
         "Professional invoicing, expense tracking, and DATEV exports. Reduce payment delays with automated reminder sequences and instant Stripe / SEPA payment links."
       ),
       metrics: [
-        { label: t("Rechnungserstellung", "Invoice Generation"), value: "10 Sek." },
-        { label: t("Zahlungseingang", "DSO Reduction"), value: "3x schneller" },
+        { label: t("Rechnungserstellung", "Invoice Generation"), value: t("Automatisch", "Automated") },
+        { label: t("Mahnwesen", "Dunning"), value: t("Automatisiert", "Automated") },
         { label: t("DATEV-kompatibel", "DATEV Ready"), value: "Ja / Yes" },
       ],
       features: [
@@ -143,8 +143,8 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
         "Provide your business clients with a branded portal: Real-time project tracking, invoice archives, encrypted document exchanges, and integrated support ticketing."
       ),
       metrics: [
-        { label: t("Rückfragen per E-Mail", "Support Inquiries"), value: "-45%" },
-        { label: t("Kundenbindung", "Client Retention"), value: "+80%" },
+        { label: t("Rückfragen per E-Mail", "Support Inquiries"), value: t("Weniger", "Fewer") },
+        { label: t("Kunden-Login", "Client Login"), value: "24/7" },
         { label: t("Dokumentensicherheit", "Encryption"), value: "End-to-End" },
       ],
       features: [
@@ -181,8 +181,8 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
       ),
       metrics: [
         { label: t("Plattformgebühren", "Platform Fees"), value: "0%" },
-        { label: t("Gewinnmarge", "Profit Margin"), value: "+25%" },
-        { label: t("Kundendaten", "Customer Data"), value: "100% Ihnen" },
+        { label: t("Marge", "Margin"), value: t("Voll bei Ihnen", "Fully yours") },
+        { label: t("Kundendaten", "Customer Data"), value: t("100 % Ihnen", "100% yours") },
       ],
       features: [
         t(
@@ -447,7 +447,7 @@ export default function BusinessSystems({ onOpenContact }: BusinessSystemsProps)
 
                     <div className="flex items-center gap-2 pt-3 border-t border-slate-200 text-[12px] sm:text-[15px] text-emerald-700 font-bold">
                       <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                      <span>{t("100% DSGVO & GoBD-konform implementiert", "100% GDPR & GoBD compliant architecture")}</span>
+                      <span>{t("DSGVO- & GoBD-konform implementiert", "GDPR & GoBD compliant architecture")}</span>
                     </div>
                   </div>
                 </div>

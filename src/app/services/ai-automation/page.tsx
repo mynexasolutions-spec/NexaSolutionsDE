@@ -93,9 +93,9 @@ const automationSolutions = [
     titleDe: "24/7 Autonome KI-Kundensupport-Agenten",
     titleEn: "24/7 Autonomous AI Customer Support",
     descDe:
-      "Intelligente Support-Bots, die auf Basis Ihrer echten Wissensdatenbank präzise antworten. Löst über 75% aller Standard-Tickets sofort – nahtlos integrierbar in Ihre [Webentwicklung für Unternehmen](/services/web-development) oder [mobile Apps](/services/mobile-app-development).",
+      "Intelligente Support-Bots, die auf Basis Ihrer echten Wissensdatenbank präzise antworten. Beantwortet Standard-Tickets sofort – nahtlos integrierbar in Ihre [Webentwicklung für Unternehmen](/services/web-development) oder [mobile Apps](/services/mobile-app-development).",
     descEn:
-      "Intelligent support agents answering inquiries using your proprietary knowledge base, FAQs, and manuals. Resolves over 75% of incoming tickets instantly with seamless human escalation.",
+      "Intelligent support agents answering inquiries using your proprietary knowledge base, FAQs, and manuals. Resolves routine tickets instantly with seamless human escalation.",
     featuresDe: [
       "Vektor-Suche (RAG) auf Unternehmensdaten",
       "Mehrsprachig (über 50 Sprachen fließend)",
@@ -181,13 +181,13 @@ const automationSolutions = [
     descEn:
       "A private internal ChatGPT trained exclusively on your SOPs, employee handbooks, and client records. Onboards new hires in minutes and preserves institutional knowledge.",
     featuresDe: [
-      "100% DSGVO-konform ohne OpenAI-Training",
+      "DSGVO-konform ohne OpenAI-Training",
       "Rollenbasierte Berechtigungen (Admin/Team)",
       "Verbindung zu Notion, Sharepoint & Google Drive",
       "Quellenangabe mit Seitenzahl für jede Antwort",
     ],
     featuresEn: [
-      "100% GDPR compliant with zero model training",
+      "GDPR compliant with zero model training",
       "Role-based document access controls",
       "Live sync with Notion, Sharepoint & Drive",
       "Citations with exact document page numbers",
@@ -401,8 +401,8 @@ const faqs = [
   {
     qDe: "Wie schnell amortisiert sich die Investition in KI-Workflows (ROI)?",
     qEn: "How fast do companies achieve a positive return on investment (ROI)?",
-    aDe: "In den meisten mittelständischen Unternehmen amortisiert sich ein Quick-Win-Workflow in unter 30 Tagen. Wenn ein Mitarbeiter beispielsweise 10 Stunden pro Woche an manueller Datenübertragung spart, entspricht dies einer monatlichen Ersparnis von über 1.500 € – dauerhaft.",
-    aEn: "Most mid-sized businesses reach full payback within 30 to 45 days. Saving just one employee 10 hours per week in manual copy-pasting translates directly into recurring savings exceeding €1,500 every single month.",
+    aDe: "Wie schnell sich ein Workflow amortisiert, hängt vor allem von der eingesparten Arbeitszeit ab. Spart ein Mitarbeiter beispielsweise mehrere Stunden pro Woche an manueller Datenübertragung, wird diese Zeit dauerhaft für wertschöpfende Aufgaben frei. Mit unserem ROI-Rechner können Sie das für Ihren Fall durchrechnen.",
+    aEn: "How fast a workflow pays for itself depends mainly on the working time it saves. If one employee saves several hours per week of manual copy-pasting, that time is permanently freed up for value-adding work. Use our ROI calculator to run the numbers for your case.",
   },
   {
     qDe: "Können bestehende Systeme wie DATEV, SAP oder eigene SQL-Datenbanken angebunden werden?",
@@ -498,7 +498,7 @@ export default function AIAutomationPage() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-600"></span>
                   </span>
-                  <span>{t("Autonomous Agents • n8n Workflows • 100% DSGVO", "Autonomous Agents • n8n Workflows • 100% GDPR")}</span>
+                  <span>{t("Autonomous Agents • n8n Workflows • DSGVO-konform", "Autonomous Agents • n8n Workflows • GDPR compliant")}</span>
                 </div>
               </div>
 
@@ -513,16 +513,16 @@ export default function AIAutomationPage() {
               {/* Subheading */}
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {t(
-                  "Suchen Sie nach professioneller n8n Automatisierung? Als spezialisierte n8n Agentur Deutschland automatisieren wir komplexe Arbeitsabläufe für maximale Effizienz. Unsere maßgeschneiderte KI Automatisierung für Unternehmen und gezielte n8n Workflow Automatisierung für KMU eliminiert bis zu 80% repetitiver Routineaufgaben. Profitieren Sie von erstklassiger n8n Automatisierung mit deutschem Hosting – 100% DSGVO-konform und mit messbarem ROI.",
-                  "We automate up to 80% of your repetitive business processes with custom AI agents, n8n workflow engines, and intelligent document parsing. Secure, GDPR-compliant, and delivering proven ROI in under 30 days."
+                  "Suchen Sie nach professioneller n8n Automatisierung? Als spezialisierte n8n Agentur Deutschland automatisieren wir komplexe Arbeitsabläufe für maximale Effizienz. Unsere maßgeschneiderte KI Automatisierung für Unternehmen und gezielte n8n Workflow Automatisierung für KMU übernimmt repetitive Routineaufgaben. Profitieren Sie von erstklassiger n8n Automatisierung mit deutschem Hosting – DSGVO-konform und mit messbarem ROI.",
+                  "We automate your repetitive business processes with custom AI agents, n8n workflow engines, and intelligent document parsing. Secure, GDPR-compliant, and built for measurable ROI."
                 )}
               </p>
 
               {/* Key Trust Signals */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-9">
                 {[
-                  { icon: Zap, label: t("80% Weniger Aufwand", "80% Time Saved"), sub: t("Repetitive Tasks", "Repetitive Tasks") },
-                  { icon: ShieldCheck, label: t("100% DSGVO", "100% GDPR"), sub: t("Kein OpenAI Training", "Zero Data Training") },
+                  { icon: Zap, label: t("Weniger Aufwand", "Time Saved"), sub: t("Repetitive Tasks", "Repetitive Tasks") },
+                  { icon: ShieldCheck, label: t("DSGVO-konform", "GDPR compliant"), sub: t("Kein OpenAI Training", "Zero Data Training") },
                   { icon: Bot, label: t("24/7 Autopilot", "24/7 Autopilot"), sub: t("Autonome Agenten", "Self-Healing Flows") },
                   { icon: Clock, label: t("< 30 Tage ROI", "< 30 Days ROI"), sub: t("Messbare Einsparung", "Fast Payback") },
                 ].map(({ icon: Icon, label, sub }) => (
@@ -899,7 +899,7 @@ export default function AIAutomationPage() {
               <span>{t("DATENSCHUTZ & COMPLIANCE", "ENTERPRISE PRIVACY")}</span>
             </div>
             <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-5 text-center">
-              {t("100% DSGVO-konforme KI-Infrastruktur", "100% GDPR-Compliant AI Architecture")}
+              {t("DSGVO-konforme KI-Infrastruktur", "GDPR-Compliant AI Architecture")}
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(

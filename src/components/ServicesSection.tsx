@@ -794,7 +794,7 @@ export default function ServicesSection({
               const detailRoutes: Record<string, { de: string; en: string }> = {
                 // First 8 services
                 "employee-tracking": {
-                  de: "/de/services/mitarbeiter-zeiterfassung",
+                  de: "/loesungen/zeiterfassung-software",
                   en: "/en/services/employee-attendance-tracking",
                 },
                 "custom-financial": {
@@ -835,7 +835,7 @@ export default function ServicesSection({
                   en: "/en/services/ai-for-businesses",
                 },
                 "restaurant-systems": {
-                  de: "/de/services/gastronomie-restaurant-systeme",
+                  de: "/loesungen/restaurant-software-qr-menue",
                   en: "/en/services/restaurant-management-systems",
                 },
                 "business-mgmt": {
@@ -851,11 +851,11 @@ export default function ServicesSection({
                   en: "/en/services/ai-agents-automation",
                 },
                 "crm-systems": {
-                  de: "/de/services/crm-system-entwicklung",
+                  de: "/loesungen/crm-system-entwickeln-lassen",
                   en: "/en/services/custom-crm-systems",
                 },
                 "appointment-booking": {
-                  de: "/de/services/online-terminbuchungssysteme",
+                  de: "/loesungen/terminbuchungssystem-entwickeln-lassen",
                   en: "/en/services/appointment-booking-systems",
                 },
                 "invoicing-accounting": {
@@ -867,7 +867,7 @@ export default function ServicesSection({
                   en: "/en/services/inventory-warehouse-management",
                 },
                 "smart-chatbots": {
-                  de: "/de/services/ki-chatbots-kundenservice",
+                  de: "/loesungen/ki-chatbot-fuer-unternehmen",
                   en: "/en/services/smart-ai-chatbots",
                 },
                 "digital-transformation": {

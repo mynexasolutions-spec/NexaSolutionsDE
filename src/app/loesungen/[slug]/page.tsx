@@ -4,6 +4,7 @@ import JsonLd from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
 import { solutionsData, getSolutionBySlug } from "@/data/solutions";
+import { getEnglishTwinForSolution } from "@/data/servicesData";
 import SolutionDetailClient from "./SolutionDetailClient";
 
 type Props = {
@@ -22,10 +23,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound();
   }
 
+  const path = `/loesungen/${solution.slug}`;
+  // Pages that absorbed a /de/services page pair with that page's English twin (hreflang both ways)
+  const enTwin = getEnglishTwinForSolution(path);
+
   return pageMetadata({
     title: solution.title,
     description: solution.description,
-    path: `/loesungen/${solution.slug}`,
+    path,
+    ...(enTwin
+      ? {
+          languages: {
+            "de-DE": `${SITE_URL}${path}`,
+            en: `${SITE_URL}${enTwin}`,
+            "x-default": `${SITE_URL}${path}`,
+          },
+        }
+      : {}),
   });
 }
 

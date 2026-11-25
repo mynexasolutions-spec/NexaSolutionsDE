@@ -14,7 +14,7 @@ export default function TrustGuarantees({ onOpenContact }: TrustGuaranteesProps)
   const guarantees = [
     {
       icon: ShieldCheck,
-      badge: t("100% PLANUNGSSICHERHEIT", "100% BUDGET PREDICTABILITY"),
+      badge: t("PLANUNGSSICHERHEIT DURCH FESTPREIS", "FIXED-PRICE BUDGET CERTAINTY"),
       badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200/90",
       iconBg: "bg-emerald-50 border-emerald-100 text-emerald-600",
       bottomGradient: "from-emerald-50/80 via-emerald-50/30 to-transparent",

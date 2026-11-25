@@ -5,10 +5,11 @@ export const GERMAN_COUNTRIES = new Set(["DE", "AT", "CH", "LI", "LU"]);
 
 export const SITE_METADATA = {
   de: {
+    // Keep identical to siteTitleDe / siteDescriptionDe in src/app/layout.tsx
     title:
-      "Webentwicklung, Apps & n8n Automatisierung | Nexa Solutions",
+      "Webentwicklung & Webdesign Agentur Deutschland | Nexa Solutions",
     description:
-      "Maßgeschneiderte Webentwicklung, mobile Apps & n8n-Workflow-Automatisierung für Unternehmen in Deutschland, Österreich und der Schweiz. Jetzt beraten lassen!",
+      "Webentwicklung & Webdesign Agentur für Deutschland, Österreich und die Schweiz: Next.js Websites, Apps & n8n Automatisierung zum Festpreis. Jetzt beraten lassen!",
     locale: "de_DE",
     alternateLocale: "en_US",
   },

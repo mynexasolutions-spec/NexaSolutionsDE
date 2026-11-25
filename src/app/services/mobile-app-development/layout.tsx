@@ -3,17 +3,17 @@ import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: {
-    absolute: "App entwickeln lassen Stuttgart | App Agentur Nexa",
+    absolute: "App entwickeln lassen | App Entwicklung Agentur Nexa",
   },
   description:
-    "App entwickeln lassen in Stuttgart: Native iOS & Android Apps für Startups & KMU. React Native, Store-Garantie & Festpreise. Jetzt anfragen!",
+    "App entwickeln lassen: iOS & Android Apps für Startups & KMU in Deutschland. React Native, Begleitung bis zum Store-Release & Festpreise. Jetzt anfragen!",
   path: "/services/mobile-app-development",
 });
 
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "App entwickeln lassen Stuttgart für iOS & Android - Mobile App Agentur",
+  name: "App entwickeln lassen für iOS & Android - Mobile App Entwicklung Agentur",
   serviceType: "Mobile Application Development & React Native Apps",
   provider: {
     "@type": "Organization",
@@ -22,7 +22,7 @@ const serviceJsonLd = {
   },
   areaServed: ["DE", "AT", "CH"],
   description:
-    "Individuelle mobile App-Entwicklung in Stuttgart für iOS und Android mit React Native und Flutter: MVP-Entwicklung für Startups, Store-Zulassungsgarantie und transparente Festpreise.",
+    "Individuelle mobile App-Entwicklung für iOS und Android mit React Native: MVP-Entwicklung für Startups, Begleitung bis zum Store-Release und transparente Festpreise.",
 };
 
 const breadcrumbJsonLd = {
@@ -59,7 +59,7 @@ const faqJsonLd = {
       name: "Lohnt sich Cross-Platform (React Native / Flutter) wirklich gegenüber nativer Entwicklung?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Ja, absolut. Über 80% aller Top-Apps setzen auf Cross-Platform. Sie erhalten eine einzige Codebasis für iOS und Android, halbieren die Entwicklungskosten und haben trotzdem vollen Zugriff auf alle Smartphone-Sensoren und flüssige 60 FPS Animationen.",
+        text: "Ja. Bekannte Apps wie Instagram, Discord oder Shopify nutzen React Native. Sie erhalten eine einzige Codebasis für iOS und Android, senken die Entwicklungskosten deutlich und haben trotzdem vollen Zugriff auf alle Smartphone-Sensoren und flüssige Animationen.",
       },
     },
     {
@@ -67,7 +67,7 @@ const faqJsonLd = {
       name: "Was passiert, wenn Apple oder Google die App im Store ablehnen?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Wir geben Ihnen eine 100%ige Zulassungsgarantie. Sollte das Review-Team von Apple oder Google Beanstandungen haben, beheben wir diese sofort auf unsere Kosten.",
+        text: "Wir begleiten den gesamten Review-Prozess bei Apple und Google. Sollte das Review-Team Beanstandungen haben, beheben wir diese im Rahmen des Projekts ohne Zusatzkosten.",
       },
     },
     {

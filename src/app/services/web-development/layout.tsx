@@ -3,17 +3,17 @@ import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: {
-    absolute: "Webentwicklung Stuttgart | Next.js Agentur Nexa",
+    absolute: "Webentwicklung Agentur Deutschland | Next.js zum Festpreis",
   },
   description:
-    "Webentwicklung Stuttgart: High-End Next.js Websites & Webanwendungen zum Festpreis. Schnell, DSGVO-konform & SEO-optimiert. Jetzt beraten lassen!",
+    "Webentwicklung Agentur für Deutschland: High-End Next.js Websites & Webanwendungen zum Festpreis. Schnell, DSGVO-konform & SEO-optimiert. Jetzt beraten lassen!",
   path: "/services/web-development",
 });
 
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Webentwicklung Stuttgart: Next.js Websites & Webanwendungen",
+  name: "Webentwicklung Agentur Deutschland: Next.js Websites & Webanwendungen",
   serviceType: "Web Development & Next.js Websites",
   provider: {
     "@type": "Organization",
@@ -22,7 +22,7 @@ const serviceJsonLd = {
   },
   areaServed: ["DE", "AT", "CH"],
   description:
-    "Professionelle Webentwicklung in Stuttgart zum Festpreis: High-Performance Next.js Websites, individuelle Web-Applikationen und Headless CMS.",
+    "Professionelle Webentwicklung für Unternehmen in Deutschland, Österreich und der Schweiz zum Festpreis: High-Performance Next.js Websites, individuelle Web-Applikationen und Headless CMS.",
 };
 
 const breadcrumbJsonLd = {
@@ -88,7 +88,7 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "Ist die Website zu 100% DSGVO-konform für den deutschen/europäischen Markt?",
+      name: "Ist die Website DSGVO-konform für den deutschen/europäischen Markt?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Ja, ausnahmslos. Wir implementieren datenschutzkonforme Lösungen: Lokales Font-Hosting, rechtssichere Cookie-Consent-Banner, Server-Hosting in der EU (Frankfurt) und verschlüsselte SSL-Übertragung nach deutschem Standard.",

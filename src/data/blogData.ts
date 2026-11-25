@@ -79,12 +79,12 @@ const baseBlogPosts: BlogPost[] = [
   {
     slug: "ki-automatisierung-unternehmen-2026",
     titleDe:
-      "Wie deutsche Unternehmen mit n8n & KI-Agenten 15+ Stunden pro Woche sparen",
+      "KI-Automatisierung: Wie Unternehmen mit n8n & KI-Agenten jede Woche Zeit sparen",
     seoTitleDe: "KI Automatisierung für Unternehmen",
     titleEn:
-      "How European Businesses Save 15+ Hours Weekly with n8n & Autonomous AI Agents",
+      "AI Automation: How Businesses Save Time Every Week with n8n & AI Agents",
     excerptDe:
-      "n8n KI-Agenten Automatisierung: Wie Unternehmen 15+ Stunden wöchentlich sparen und Prozesse mit n8n DSGVO-konform automatisieren. Leitfaden lesen!",
+      "n8n KI-Agenten Automatisierung: Wie Unternehmen wiederkehrende Aufgaben abgeben und Prozesse mit n8n DSGVO-konform automatisieren. Leitfaden lesen!",
     excerptEn:
       "Discover how modern companies automate repetitive workflows like invoice processing, CRM updates, and customer inquiries with smart n8n pipelines and full GDPR compliance.",
     category: "ai-automation",
@@ -105,14 +105,14 @@ const baseBlogPosts: BlogPost[] = [
       avatar: "/favicon.ico",
     },
     keyTakeawaysDe: [
-      "Bis zu 70% Zeitersparnis bei wiederkehrenden Routineaufgaben wie Datenübertragungen und Belegerfassung.",
-      "100% DSGVO-konform durch europäisches Self-Hosting auf deutschen Servern ohne Third-Party-Datenspeicherung.",
+      "Deutliche Zeitersparnis bei wiederkehrenden Routineaufgaben wie Datenübertragungen und Belegerfassung.",
+      "DSGVO-konform durch europäisches Self-Hosting auf deutschen Servern ohne Third-Party-Datenspeicherung.",
       "Nahtlose Integration von n8n mit bestehenden Systemen wie HubSpot, Slack, Salesforce und PostgreSQL.",
       "Amortisation (ROI) für mittelständische Unternehmen im Durchschnitt nach bereits 4–6 Wochen.",
     ],
     keyTakeawaysEn: [
-      "Up to 70% time reduction in repetitive routine tasks such as data entry and document processing.",
-      "100% GDPR-compliant via European self-hosting on German nodes with zero external data leaks.",
+      "Significant time savings in repetitive routine tasks such as data entry and document processing.",
+      "GDPR-compliant via European self-hosting on German nodes with zero external data leaks.",
       "Seamless integration connecting n8n with HubSpot, Slack, Salesforce, and PostgreSQL databases.",
       "Average positive return on investment (ROI) reached in just 4 to 6 weeks for mid-market firms.",
     ],
@@ -121,11 +121,11 @@ const baseBlogPosts: BlogPost[] = [
         headingDe: "1. Das Problem: Teure Routinearbeit lähmt Fachkräfte",
         headingEn: "1. The Bottleneck: Costly Manual Tasks Paralyze Teams",
         paragraphsDe: [
-          "In vielen mittelständischen Unternehmen verbringen qualifizierte Mitarbeiter bis zu 30% ihrer wöchentlichen Arbeitszeit mit dem Kopieren von Daten zwischen Excel, E-Mails, CRM und ERP-Systemen. Diese manuelle Fleißarbeit ist nicht nur fehleranfällig, sondern bindet wertvolle Kapazitäten, die für Vertrieb, Kundenbetreuung und Innovation fehlen.",
+          "In vielen mittelständischen Unternehmen verbringen qualifizierte Mitarbeiter einen erheblichen Teil ihrer Arbeitszeit mit dem Kopieren von Daten zwischen Excel, E-Mails, CRM und ERP-Systemen. Diese manuelle Fleißarbeit ist nicht nur fehleranfällig, sondern bindet wertvolle Kapazitäten, die für Vertrieb, Kundenbetreuung und Innovation fehlen.",
           "Hier setzt moderne KI-gestützte Workflow-Automatisierung an: Durch unsere maßgeschneiderte [KI-Automatisierung für Unternehmen](/services/ai-automation) und die nahtlose Anbindung an moderne [Webentwicklung](/services/web-development) werden Dokumente, Leads und Support-Tickets ohne menschliches Eingreifen fehlerfrei verarbeitet.",
         ],
         paragraphsEn: [
-          "In most mid-market organizations, skilled professionals spend up to 30% of their working hours manually copy-pasting data across spreadsheets, emails, CRMs, and accounting platforms. This routine overhead introduces human errors and diverts focus away from core growth.",
+          "In most mid-market organizations, skilled professionals spend a significant share of their working hours manually copy-pasting data across spreadsheets, emails, CRMs, and accounting platforms. This routine overhead introduces human errors and diverts focus away from core growth.",
           "This is where modern AI-driven automation changes the game: By pairing custom [AI & Automation services](/services/ai-automation) with high-performance [Web Development](/services/web-development), incoming documents, sales leads, and support requests are categorized, extracted, and synced with pinpoint accuracy in real time.",
         ],
         quoteDe: {
@@ -133,7 +133,7 @@ const baseBlogPosts: BlogPost[] = [
           author: "Nexa Solutions Automation Benchmark 2026",
         },
         quoteEn: {
-          text: "Companies leveraging n8n and smart AI agents cut client response turnaround from hours to under 30 seconds while eliminating data entry errors.",
+          text: "Companies leveraging n8n and smart AI agents cut client response turnaround from hours to seconds while reducing data entry errors.",
           author: "Nexa Solutions Automation Benchmark 2026",
         },
       },
@@ -165,16 +165,16 @@ const baseBlogPosts: BlogPost[] = [
       },
       {
         headingDe:
-          "3. Ein konkretes Praxisbeispiel: Lead-Qualifizierung in 60 Sekunden",
+          "3. Beispiel-Workflow: Lead-Qualifizierung in Sekunden",
         headingEn:
-          "3. Real-World Case Study: Lead Qualification in Under 60 Seconds",
+          "3. Example Workflow: Lead Qualification in Seconds",
         paragraphsDe: [
-          "Ein mittelständischer B2B-Dienstleister erhielt täglich 40 Kontaktanfragen über seine Website. Vor der Automatisierung prüfte ein Mitarbeiter jede Anfrage manuell, suchte im Handelsregister nach Unternehmensdaten und schickte eine Termineinladung – Verzögerung: oft 4 bis 24 Stunden.",
-          "Mit unserer n8n-Pipeline geschieht dieser Ablauf vollautomatisch:",
+          "Beispiel-Szenario: Ein mittelständischer B2B-Dienstleister erhält täglich viele Kontaktanfragen über seine Website. Ohne Automatisierung prüft ein Mitarbeiter jede Anfrage manuell, sucht im Handelsregister nach Unternehmensdaten und schickt eine Termineinladung – oft vergehen Stunden bis zur Antwort.",
+          "Mit einer n8n-Pipeline läuft dieser Ablauf vollautomatisch:",
         ],
         paragraphsEn: [
-          "A B2B consulting client received 40 inquiries daily via their web portal. Previously, team members checked submissions manually, verified company registries, and sent booking links — causing delays of 4 to 24 hours.",
-          "With our custom n8n pipeline, the workflow now runs end-to-end in real time:",
+          "Example scenario: A B2B consultancy receives many inquiries daily via its website. Without automation, team members check submissions manually, verify company registries, and send booking links — often taking hours to respond.",
+          "With an n8n pipeline, the workflow runs end-to-end automatically:",
         ],
         bulletsDe: [
           "1. Webhook empfängt das Website-Formular in Millisekunden.",
@@ -245,13 +245,13 @@ const baseBlogPosts: BlogPost[] = [
     },
     keyTakeawaysDe: [
       "Next.js Websites erreichen Ladezeiten unter 0.5 Sekunden – WordPress benötigt oft 2.5 bis 4 Sekunden.",
-      "Jede Sekunde Verzögerung bei der Seitenladezeit senkt die Konversionsrate nachweislich um durchschnittlich 7%.",
+      "Längere Ladezeiten kosten Conversions: Schon Zehntelsekunden machen messbar einen Unterschied.",
       "Keine fehleranfälligen PHP-Plugins oder Datenbank-Sicherheitslücken durch Jamstack- & Server-Side-Rendering.",
       "Volle redaktionelle Flexibilität durch moderne Headless CMS wie Sanity oder Strapi ohne Layout-Bruch.",
     ],
     keyTakeawaysEn: [
       "Next.js sites consistently hit sub-0.5s loading times — legacy WordPress sites typically lag at 2.5 to 4 seconds.",
-      "Every 1-second delay in page loading drops digital conversion rates by an average of 7%.",
+      "Slower load times cost conversions: even tenths of a second make a measurable difference.",
       "Zero vulnerable PHP plugins or SQL injection entry points thanks to modern Jamstack architecture.",
       "Total editorial control via headless CMS platforms (Sanity, Strapi) with zero risk of breaking styles.",
     ],
@@ -260,19 +260,19 @@ const baseBlogPosts: BlogPost[] = [
         headingDe: "1. Die Realität: Langsame Websites verbrennen Werbebudget",
         headingEn: "1. The Hidden Cost of Sluggish Legacy Websites",
         paragraphsDe: [
-          "Sie investieren tausende Euro in Google Ads, Social Media und SEO – doch wenn ein potenzieller Kunde auf Ihre Website klickt und mehr als 2 Sekunden auf den Seitenaufbau warten muss, springt er mit einer Wahrscheinlichkeit von über 53% wieder ab.",
+          "Sie investieren tausende Euro in Google Ads, Social Media und SEO – doch laut Google verlassen 53 % der mobilen Besucher eine Seite, wenn sie länger als 3 Sekunden lädt.",
           "Google bewertet 'Core Web Vitals' (LCP, INP, CLS) mittlerweile als zentralen Ranking-Faktor. Veraltete WordPress-Installationen mit 30 verschiedenen Plugins und aufgeblähten Page-Buildern scheitern regelmäßig an diesen Kriterien.",
         ],
         paragraphsEn: [
-          "When organizations pour marketing budgets into PPC ads and SEO, slow load times sabotage ROI before visitors even see the value proposition. Google research proves that bounce rates skyrocket by 53% when a page takes more than 2 seconds to render.",
+          "When organizations pour marketing budgets into PPC ads and SEO, slow load times sabotage ROI before visitors even see the value proposition. According to Google, 53% of mobile visitors leave a page that takes longer than 3 seconds to load.",
           "Core Web Vitals (Largest Contentful Paint, Interaction to Next Paint, Cumulative Layout Shift) now directly dictate your organic search standing. Bulky WordPress themes crammed with 30 third-party plugins consistently fail these modern web vitals.",
         ],
         quoteDe: {
-          text: "Eine Verbesserung der mobilen Ladezeit um nur 0.1 Sekunden steigerte bei unseren Kunden die Anfrage-Konversion um bis zu 8.4%.",
+          text: "Laut der Studie „Milliseconds Make Millions“ von Deloitte und Google steigerte eine um 0,1 Sekunden schnellere mobile Ladezeit die Conversion-Rate im Einzelhandel um 8,4 %.",
           author: "Nexa Solutions Performance Audit 2026",
         },
         quoteEn: {
-          text: "Trimming mobile page load latency by just 0.1 seconds yielded up to an 8.4% surge in qualified lead submissions across our portfolio.",
+          text: "According to the Deloitte and Google study \"Milliseconds Make Millions\", a 0.1-second faster mobile load time increased retail conversion rates by 8.4%.",
           author: "Nexa Solutions Performance Audit 2026",
         },
       },
@@ -340,20 +340,20 @@ const baseBlogPosts: BlogPost[] = [
         headingEn: "5. Total Cost of Ownership: WordPress vs. Next.js Over 3 Years",
         paragraphsDe: [
           "Viele Unternehmen unterschätzen die versteckten Folgekosten einer WordPress-Website: Regelmäßige Sicherheitsupdates, Plugin-Abonnements (ACF Pro, WPML, Elementor), Wartungsverträge gegen PHP-Inkompatibilitäten und teure Performance-Server summieren sich schnell auf tausende Euro pro Jahr.",
-          "Ein modernes Next.js-Projekt erfordert zwar eine strukturierte Initialentwicklung, zeichnet sich danach jedoch durch minimale Betriebskosten aus. Durch Serverless-Hosting (z. B. Vercel oder DSGVO-konforme Hetzner/Frankfurt-Cluster) und den Wegfall fragiler Plugins sparen Unternehmen über einen 3-Jahres-Horizont oft 30% bis 50% der Gesamtkosten ein. Berechnen Sie Ihre individuellen Projektkosten in unserem [Website-Kosten Leitfaden 2026](/website-kosten) oder lassen Sie sich zur [Webentwicklung Stuttgart](/services/web-development) beraten.",
+          "Ein modernes Next.js-Projekt erfordert zwar eine strukturierte Initialentwicklung, zeichnet sich danach jedoch durch minimale Betriebskosten aus. Durch Serverless-Hosting (z. B. Vercel oder DSGVO-konforme Hetzner/Frankfurt-Cluster) und den Wegfall fragiler Plugins sparen Unternehmen über mehrere Jahre einen erheblichen Teil der Gesamtkosten ein. Berechnen Sie Ihre individuellen Projektkosten in unserem [Website-Kosten Leitfaden 2026](/website-kosten) oder lassen Sie sich zur [Webentwicklung](/services/web-development) beraten.",
         ],
         paragraphsEn: [
           "Organizations often underestimate the compounding hidden maintenance costs of legacy WordPress: monthly plugin subscriptions, developer retainer fees for PHP upgrades, and expensive server tiers to counteract sluggish TTFB.",
           "Next.js applications represent an asset built on modern software principles: virtually zero plugin dependency churn, predictable serverless edge hosting, and robust long-term reliability. Explore detailed estimates in our [Website Cost Guide 2026](/website-kosten) and custom [Web Development Services](/services/web-development).",
         ],
         bulletsDe: [
-          "WordPress Folgekosten: [PREIS HIER EINTRAGEN: z. B. 150 – 400 € monatlich für Plugin-Lizenzen, Backups & technisches Update-Monitoring]",
-          "Next.js Betriebskosten: [PREIS HIER EINTRAGEN: z. B. ab 20 – 50 € monatlich für Serverless Edge Hosting]",
+          "WordPress Folgekosten: laufende Ausgaben für Plugin-Lizenzen, Backups, Sicherheits-Updates & technisches Monitoring",
+          "Next.js Betriebskosten: meist nur das Serverless Edge Hosting, das mit dem Traffic skaliert",
           "Wartungsaufwand: Nahezu null Plugin-Konflikte bei Next.js durch statische Generierung und versionierte Builds",
         ],
         bulletsEn: [
-          "WordPress Recurring TCO: [PREIS HIER EINTRAGEN: e.g. €150 – €400/mo for plugins, security patches & emergency fixes]",
-          "Next.js Cloud Hosting: [PREIS HIER EINTRAGEN: e.g. from €20 – €50/mo on serverless edge networks]",
+          "WordPress Recurring TCO: ongoing spend on plugin licences, security patches, backups & emergency fixes",
+          "Next.js Cloud Hosting: usually just serverless edge hosting that scales with your traffic",
           "Engineering Overhead: Zero plugin incompatibilities with decoupled Git-driven deployments",
         ],
       },
@@ -372,7 +372,7 @@ const baseBlogPosts: BlogPost[] = [
       {
         questionDe: "Ist Next.js für SEO wirklich besser als WordPress?",
         questionEn: "Is Next.js genuinely superior to WordPress for SEO?",
-        answerDe: "Ja, vor allem bei den Core Web Vitals (LCP, INP, CLS). Während WordPress-Themes dutzende ungenutzte Skripte laden, liefert Next.js serverseitig vorgerendertes, semantisches HTML mit Ladezeiten unter 500 ms. Google belohnt diese herausragende User Experience mit höheren Rankings.",
+        answerDe: "Ja, vor allem bei den Core Web Vitals (LCP, INP, CLS). Während WordPress-Themes dutzende ungenutzte Skripte laden, liefert Next.js serverseitig vorgerendertes, semantisches HTML mit sehr kurzen Ladezeiten. Google belohnt diese herausragende User Experience mit höheren Rankings.",
         answerEn: "Yes, particularly across Google's Core Web Vitals. Next.js delivers pre-rendered HTML with sub-500ms load times, resulting in 95-100 Lighthouse scores and superior organic search visibility.",
       },
       {
@@ -396,8 +396,8 @@ const baseBlogPosts: BlogPost[] = [
       {
         questionDe: "Wie hoch sind die Entwicklungskosten für eine Next.js Website?",
         questionEn: "What are the typical development costs for a Next.js website?",
-        answerDe: "Professionelle Unternehmens-Websites mit Next.js beginnen bei [PREIS HIER EINTRAGEN: z. B. ab 2.500 € bis 8.000 €] je nach Umfang, individuellem Design und CMS-Anbindung. Detaillierte Richtwerte finden Sie in unserem Website-Kostenrechner.",
-        answerEn: "Custom enterprise Next.js websites typically range from [PREIS HIER EINTRAGEN: e.g. from €2,500 to €8,000] depending on complexity and CMS integrations.",
+        answerDe: "Die Kosten einer Next.js Website hängen von Seitenumfang, individuellem Design, CMS-Anbindung und Schnittstellen ab. Alle Kostenfaktoren erklärt unser Website-Kosten-Leitfaden; ein verbindliches Festpreis-Angebot erhalten Sie nach einem kostenlosen Erstgespräch.",
+        answerEn: "The cost of a Next.js website depends on page count, custom design, CMS integration and third-party interfaces. Our website cost guide explains every factor, and you receive a binding fixed-price proposal after a free consultation.",
       },
     ],
     tags: [
@@ -416,14 +416,14 @@ const baseBlogPosts: BlogPost[] = [
   {
     slug: "react-native-cross-platform-apps",
     titleDe:
-      "React Native Apps 2026: 50% geringere Kosten für iOS & Android ohne Performance-Verlust",
-    seoTitleDe: "React Native Apps 2026: 50% Kosten sparen | Nexa",
+      "React Native Apps 2026: Eine Codebasis für iOS & Android – geringere Kosten ohne Performance-Verlust",
+    seoTitleDe: "React Native Apps 2026: Kosten sparen mit einer Codebasis",
     titleEn:
-      "React Native App Development: Save 50%",
+      "React Native App Development: One Codebase for iOS & Android",
     excerptDe:
-      "React Native Apps 2026 für iOS & Android: Bis zu 50% Entwicklungskosten sparen bei voller 60 FPS Performance. Jetzt Vorteile vergleichen & Kosten berechnen!",
+      "React Native Apps 2026 für iOS & Android: Eine Codebasis statt zwei, deutlich geringere Entwicklungskosten bei flüssiger Performance. Jetzt Vorteile vergleichen & Kosten berechnen!",
     excerptEn:
-      "Cross-platform iOS and Android apps with React Native: Cut dev costs by 50% with buttery 60 FPS native performance. Discover architecture benefits now!",
+      "Cross-platform iOS and Android apps with React Native: One codebase instead of two, significantly lower dev costs with smooth native performance. Discover architecture benefits now!",
     category: "mobile-apps",
     categoryLabelDe: "Mobile Apps",
     categoryLabelEn: "Mobile Apps",
@@ -442,13 +442,13 @@ const baseBlogPosts: BlogPost[] = [
       avatar: "/favicon.ico",
     },
     keyTakeawaysDe: [
-      "Über 85% Code-Wiederverwendbarkeit zwischen iOS und Android halbiert Entwicklungs- und Wartungskosten.",
+      "Eine gemeinsame Codebasis für iOS und Android senkt Entwicklungs- und Wartungskosten deutlich.",
       "Echte native UI-Komponenten garantieren ruckelfreie Animationen mit 60 bis 120 Bildern pro Sekunde.",
       "Schnellere Time-to-Market: Zeitgleicher Launch in Apple App Store und Google Play Store.",
       "Over-the-Air Updates (OTA) ermöglichen Bugfixes ohne zeitraubende Store-Prüfungsprozesse.",
     ],
     keyTakeawaysEn: [
-      "Over 85% shared code logic between iOS and Android slashes initial development and long-term maintenance costs by half.",
+      "One shared codebase for iOS and Android significantly reduces development and long-term maintenance costs.",
       "Real native UI components render smooth 60 to 120 FPS animations identical to pure Swift or Kotlin.",
       "Rapid time-to-market: Simultaneous synchronized launches across both Apple App Store and Google Play.",
       "Over-the-Air (OTA) patch releases deploy urgent bug fixes directly without waiting days for store reviews.",
@@ -648,11 +648,11 @@ const baseBlogPosts: BlogPost[] = [
         headingDe: "1. Der häufigste Fehler: Zu viel auf einmal bauen",
         headingEn: "1. The #1 Startup Trap: Building Too Much Too Soon",
         paragraphsDe: [
-          "Über 70% aller Softwareprojekte scheitern nicht an schlechtem Code, sondern daran, dass monatelang im stillen Kämmerlein an Features gebaut wird, die am Ende niemand braucht oder bezahlen will.",
+          "Viele Softwareprojekte scheitern nicht an schlechtem Code, sondern daran, dass monatelang im stillen Kämmerlein an Features gebaut wird, die am Ende niemand braucht oder bezahlen will.",
           "Ein erfolgreiches MVP (Minimum Viable Product) ist kein unfertiges Produkt voller Bugs – mit professioneller [MVP-Entwicklung](/services/mvp-development) ist es die schlankste Version einer Lösung, die ein echtes Problem für einen klar definierten Kundenkreis überzeugend löst.",
         ],
         paragraphsEn: [
-          "Over 70% of software initiatives flounder not due to poor code, but because teams spend months in isolation building features that end up solving the wrong problem for paying clients.",
+          "Many software initiatives flounder not due to poor code, but because teams spend months in isolation building features that end up solving the wrong problem for paying clients.",
           "A successful MVP is not an unpolished, buggy prototype — it is the leanest functional solution that solves one pressing problem exceptionally well for a targeted customer profile.",
         ],
       },
@@ -695,12 +695,12 @@ const baseBlogPosts: BlogPost[] = [
   {
     slug: "crm-lead-automation-n8n",
     titleDe:
-      "Automatisierte Lead-Qualifizierung: Von der Anfrage zum Kalendertermin in unter 60 Sekunden",
+      "Automatisierte Lead-Qualifizierung: Von der Anfrage zum Kalendertermin in Sekunden",
     seoTitleDe: "Automatisierte Lead-Qualifizierung mit n8n",
     titleEn:
-      "Automated Lead Qualification: From Form Submit to Booked Call in under 60 Seconds",
+      "Automated Lead Qualification: From Form Submit to Booked Call in Seconds",
     excerptDe:
-      "Automatisierte Lead-Qualifizierung mit n8n: In unter 60 Sekunden vom Kontaktformular zum Kalendertermin. Datenanreicherung & smartes Routing im B2B-Vertrieb.",
+      "Automatisierte Lead-Qualifizierung mit n8n: In Sekunden vom Kontaktformular zum Kalendertermin. Datenanreicherung & smartes Routing im B2B-Vertrieb.",
     excerptEn:
       "How modern B2B organizations eliminate sales lag and double deal closing rates with automated enrichment and instant AI qualification pipelines.",
     category: "ai-automation",
@@ -721,13 +721,13 @@ const baseBlogPosts: BlogPost[] = [
       avatar: "/favicon.ico",
     },
     keyTakeawaysDe: [
-      "Geschwindigkeit gewinnt Deals: Wer innerhalb von 5 Minuten auf einen Lead reagiert, hat eine 8-fach höhere Abschlusschance.",
+      "Geschwindigkeit gewinnt Deals: Je schneller Sie auf einen Lead reagieren, desto höher die Chance auf einen Abschluss.",
       "Automatische Lead-Anreicherung liefert Branche, Mitarbeiterzahl und Tech-Stack ohne manuelle Recherche.",
       "Intelligentes Routing leitet hochqualifizierte Leads direkt an Senior Account Executives weiter.",
       "Vollständige Integration in bestehende Kalender- und CRM-Landschaften (HubSpot, Google Workspace).",
     ],
     keyTakeawaysEn: [
-      "Speed wins enterprise deals: Responding within 5 minutes yields an 8x higher conversion rate than waiting an hour.",
+      "Speed wins deals: the faster you respond to a lead, the higher your chance of closing.",
       "Automated lead enrichment injects headcount, tech stack, and verified revenues without manual googling.",
       "Smart routing connects high-value accounts immediately to senior advisors.",
       "Zero friction sync across your calendar and CRM stack (HubSpot, Google Workspace, Calendly).",
@@ -737,11 +737,11 @@ const baseBlogPosts: BlogPost[] = [
         headingDe: "1. Der Geschwindigkeitsfaktor im B2B-Vertrieb",
         headingEn: "1. The Speed Imperative in High-Value Sales",
         paragraphsDe: [
-          "Studien von Harvard Business Review zeigen ein klares Bild: Die Wahrscheinlichkeit, einen Interessenten zu erreichen und zu konvertieren, sinkt nach den ersten 5 Minuten um das Achtfache. Trotzdem vergehen bei den meisten Unternehmen Stunden oder Tage bis zur ersten Kontaktaufnahme.",
-          "Mit intelligenter Workflow-Automatisierung über n8n und unserer maßgeschneiderten [KI-Automatisierung für Unternehmen](/services/ai-automation) wird jede neue Anfrage binnen Sekunden analysiert, mit Firmendaten angereichert und dem passenden Berater zugeordnet. Kombinieren Sie dies mit skalierbarer [Webentwicklung](/services/web-development) und agiler [MVP-Entwicklung](/services/mvp-development) für maximale Conversion. Lesen Sie auch, wie Sie mit [n8n & KI-Agenten 15+ Stunden sparen](/blog/ki-automatisierung-unternehmen-2026). Möchten Sie Ihre Lead-Prozesse beschleunigen? Jetzt [Kontakt aufnehmen](/contact).",
+          "Studien, u. a. in der Harvard Business Review, zeigen ein klares Bild: Die Chance, einen Interessenten zu erreichen und zu qualifizieren, sinkt deutlich, je länger die erste Antwort dauert. Trotzdem vergehen bei den meisten Unternehmen Stunden oder Tage bis zur ersten Kontaktaufnahme.",
+          "Mit intelligenter Workflow-Automatisierung über n8n und unserer maßgeschneiderten [KI-Automatisierung für Unternehmen](/services/ai-automation) wird jede neue Anfrage binnen Sekunden analysiert, mit Firmendaten angereichert und dem passenden Berater zugeordnet. Kombinieren Sie dies mit skalierbarer [Webentwicklung](/services/web-development) und agiler [MVP-Entwicklung](/services/mvp-development) für maximale Conversion. Lesen Sie auch, wie Sie mit [mit n8n & KI-Agenten Zeit sparen](/blog/ki-automatisierung-unternehmen-2026). Möchten Sie Ihre Lead-Prozesse beschleunigen? Jetzt [Kontakt aufnehmen](/contact).",
         ],
         paragraphsEn: [
-          "Studies published in Harvard Business Review reveal an undeniable trend: The odds of connecting with and qualifying a prospective buyer drop 8x after the first 5 minutes. Yet, most companies take hours or days to initiate contact.",
+          "Studies, including research published in Harvard Business Review, show a clear trend: the odds of reaching and qualifying a prospect drop sharply the longer the first response takes. Yet, most companies take hours or days to initiate contact.",
           "With intelligent workflow orchestration via n8n and our custom [AI & Automation](/services/ai-automation) solutions, every inbound request is scored in seconds, augmented with company firmographics, and matched with the ideal executive calendar. Seamlessly link these pipelines with our enterprise [Web Development](/services/web-development) services for a closed-loop funnel.",
         ],
       },
@@ -916,13 +916,13 @@ const baseBlogPosts: BlogPost[] = [
       "SaaS-Tools scheinen günstig, kosten bei Teams jedoch hunderte Euro pro Monat und bergen DSGVO-Risiken.",
       "Ein individuelles Buchungssystem gehört Ihnen dauerhaft ohne wiederkehrende Lizenzgebühren.",
       "Zwei-Wege-Synchronisation mit Outlook und Google verhindert Doppelbuchungen zuverlässig.",
-      "Automatisierte SMS- und WhatsApp-Reminder senken teure Terminausfälle (No-Shows) um bis zu 60%.",
+      "Automatisierte SMS- und WhatsApp-Reminder senken teure Terminausfälle (No-Shows) spürbar.",
     ],
     keyTakeawaysEn: [
       "SaaS platforms appear cheap initially but introduce compounding monthly seat costs and privacy issues.",
       "Custom booking software provides 100% brand control and zero recurring user license fees.",
       "Bi-directional calendar synchronization with Microsoft 365 and Google guarantees zero double-bookings.",
-      "Automated SMS and WhatsApp reminders reduce costly no-shows by up to 60%.",
+      "Automated SMS and WhatsApp reminders noticeably reduce costly no-shows.",
     ],
     sections: [
       {
@@ -994,7 +994,7 @@ const baseBlogPosts: BlogPost[] = [
         headingEn: "5. Conclusion: Planning Your Custom Booking Solution",
         paragraphsDe: [
           "Ein maßgeschneidertes Buchungssystem ist eine werthaltige Investition, die sich durch eingesparte SaaS-Gebühren, drastisch reduzierte No-Shows und eine höhere Buchungs-Conversion schnell rentiert. Wir kalkulieren jedes System als verbindliches Festpreisangebot ohne versteckte Kosten.",
-          "Möchten Sie Ihre Terminprozesse digitalisieren? Entdecken Sie unsere [Terminbuchungssystem-Lösung](/loesungen/terminbuchungssystem-entwickeln-lassen), unsere [Webentwicklung Stuttgart](/services/web-development) oder starten Sie einen Prototyp mit unserer [MVP-Entwicklung](/services/mvp-development).",
+          "Möchten Sie Ihre Terminprozesse digitalisieren? Entdecken Sie unsere [Terminbuchungssystem-Lösung](/loesungen/terminbuchungssystem-entwickeln-lassen), unsere [Webentwicklung](/services/web-development) oder starten Sie einen Prototyp mit unserer [MVP-Entwicklung](/services/mvp-development).",
         ],
         paragraphsEn: [
           "Investing in custom booking architecture eliminates recurring SaaS fees and protects brand equity. Explore our tailored [Web Development](/services/web-development) and [MVP Development](/services/mvp-development) to launch fast.",
@@ -1284,11 +1284,11 @@ const baseBlogPosts: BlogPost[] = [
           "5. n8n: Data Sovereign Multi-Agent Orchestration for Mid-Market Enterprises",
         paragraphsDe: [
           "Kein Überblick über deutsche KI-Pioniere wäre vollständig ohne n8n. Das in Berlin gegründete Unternehmen stieg 2026 nach einem strategischen Millionen-Investment von SAP und einer Bewertung von über 5 Milliarden Dollar zur Speerspitze der Workflow- und Agenten-Orchestrierung auf. Der entscheidende Erfolgsfaktor: n8n verbindet intuitive No-Code-Flexibilität mit kompromissloser Entwicklerkontrolle und der Möglichkeit des vollständigen Self-Hostings auf eigener deutscher Server-Infrastruktur.",
-          "Unternehmen nutzen n8n heute, um spezialisierte LLMs und KI-Agenten zu vernetzen. Ob automatisierte Rechnungsprüfung, intelligente Lead-Qualifizierung oder die Synchronisation von Datenbanken: Sämtliche Abläufe bleiben zu 100 % DSGVO-konform innerhalb der Europäischen Union. Wie Sie dieses Setup für Ihren Betrieb nutzen, erfahren Sie in unserem Fachartikel [n8n DSGVO-konform self-hosten](/blog/n8n-dsgvo-konform-self-hosten) sowie auf unserer Seite [n8n Agentur für Deutschland](/loesungen/n8n-agentur-deutschland).",
+          "Unternehmen nutzen n8n heute, um spezialisierte LLMs und KI-Agenten zu vernetzen. Ob automatisierte Rechnungsprüfung, intelligente Lead-Qualifizierung oder die Synchronisation von Datenbanken: Sämtliche Abläufe bleiben DSGVO-konform innerhalb der Europäischen Union. Wie Sie dieses Setup für Ihren Betrieb nutzen, erfahren Sie in unserem Fachartikel [n8n DSGVO-konform self-hosten](/blog/n8n-dsgvo-konform-self-hosten) sowie auf unserer Seite [n8n Agentur für Deutschland](/loesungen/n8n-agentur-deutschland).",
         ],
         paragraphsEn: [
           "Berlin-founded n8n rose to over $5B in valuation in 2026 backed by SAP, becoming the backbone for enterprise workflow automation and autonomous multi-agent pipelines.",
-          "Companies deploy n8n self-hosted across German servers for 100% GDPR conformance while connecting proprietary LLMs with CRMs and databases.",
+          "Companies deploy n8n self-hosted across German servers for GDPR conformance while connecting proprietary LLMs with CRMs and databases.",
         ],
         bulletsDe: [
           "Firmensitz: Berlin | Gegründet von Jan Oberhauser | Bewertung: > 5 Mrd. USD (2026)",
@@ -1300,7 +1300,7 @@ const baseBlogPosts: BlogPost[] = [
           "Headquarters: Berlin | Founded by Jan Oberhauser | Valuation: > $5B (2026)",
           "Strategic partnership: SAP enterprise investment in May 2026",
           "Core capability: Visual multi-agent pipeline orchestration with Python, JavaScript, and direct API hooks",
-          "Privacy standard: 100% self-hosted on Frankfurt cloud infrastructure",
+          "Privacy standard: fully self-hosted on Frankfurt cloud infrastructure",
         ],
       },
       {
@@ -1318,13 +1318,13 @@ const baseBlogPosts: BlogPost[] = [
         ],
         bulletsDe: [
           "1. Kundenservice: Integration von Voice- und Chat-Agenten für 24/7-Erreichbarkeit ohne Wartezeiten",
-          "2. Marketing & Vertrieb: Automatisierte Asset-Generierung und Lead-Anreicherung in unter 60 Sekunden",
+          "2. Marketing & Vertrieb: Automatisierte Asset-Generierung und Lead-Anreicherung in Sekunden",
           "3. Dokumentenmanagement: Automatisiertes Auslesen von Eingangsrechnungen, Verträgen und Formularen",
           "4. DSGVO-Sicherheit: Betrieb auf isolierten Servern ohne Weitergabe vertraulicher Unternehmensdaten",
         ],
         bulletsEn: [
           "1. Customer service: Deploying 24/7 voice agents with zero queue delays",
-          "2. Sales enablement: Instant lead enrichment and automated asset rendering under 60 seconds",
+          "2. Sales enablement: Instant lead enrichment and automated asset rendering in seconds",
           "3. Document intelligence: Automated extraction of invoices, contracts, and inquiry forms",
           "4. GDPR security: Isolated self-hosted nodes protecting company trade secrets",
         ],
@@ -1595,13 +1595,13 @@ const baseBlogPosts: BlogPost[] = [
       "Generative KI 'Made in Germany': Von der visuellen Spitzenforschung (FLUX von Black Forest Labs) bis zur mehrsprachigen Textgenerierung (DeepL) setzt Deutschland weltweite Qualitätsmaßstäbe.",
       "Vormarsch der Voice- und Agent-Systeme: Startups wie Parloa und telli automatisieren Telefonie und Kundenservice mit Latenzen unter 400 Millisekunden vollständig autonom.",
       "Sichere Enterprise-Plattformen: Lösungen wie Langdock schaffen kontrollierte, DSGVO-konforme LLM-Workspaces ohne Vendor-Lock-in für tausende Mitarbeiter.",
-      "Sofortige Wertschöpfung: Mittelständische Unternehmen reduzieren administrative Durchlaufzeiten um bis zu 80 % durch die Anbindung generativer KI an eigene Workflows und ERPs.",
+      "Schnelle Wertschöpfung: Mittelständische Unternehmen verkürzen administrative Durchlaufzeiten durch die Anbindung generativer KI an eigene Workflows und ERPs.",
     ],
     keyTakeawaysEn: [
       "Generative AI 'Made in Germany': From state-of-the-art vision synthesis (FLUX by Black Forest Labs) to multilingual text models (DeepL), German startups establish global benchmarks.",
       "Rise of Voice and Agentic Systems: Startups like Parloa and telli fully automate voice telephony and support workflows with sub-400ms conversational latencies.",
       "Secure enterprise deployment: Platforms like Langdock establish governed, GDPR-compliant LLM workspaces preventing vendor lock-in across enterprise teams.",
-      "Immediate business ROI: German mid-market organizations cut administrative processing times by up to 80% by integrating generative models directly into custom pipelines.",
+      "Fast business value: German mid-market organizations shorten administrative processing times by integrating generative models directly into custom pipelines.",
     ],
     sections: [
       {
@@ -1656,7 +1656,7 @@ const baseBlogPosts: BlogPost[] = [
         headingEn: "3. Tangible Enterprise Use Cases for German Companies",
         paragraphsDe: [
           "Wie lässt sich diese Technologie im täglichen Geschäftsbetrieb konkret monetarisieren? Hier sind vier bewährte Anwendungsfelder, die Nexa Solutions in der Praxis für Kunden implementiert:",
-          "1. Telefonzentralen und Support ohne Wartezeiten: Durch Voice-AI-Agenten wie Parloa oder telli werden bis zu 70 % aller Standardanrufe (z. B. Bestellstatus, Terminabsagen, Stammdatenänderungen) in Sekundenschnelle vollautomatisch abgeschlossen – bei voller CRM-Synchronisation.",
+          "1. Telefonzentralen und Support ohne Wartezeiten: Durch Voice-AI-Agenten wie Parloa oder telli wird ein Großteil der Standardanrufe (z. B. Bestellstatus, Terminabsagen, Stammdatenänderungen) in Sekundenschnelle vollautomatisch abgeschlossen – bei voller CRM-Synchronisation.",
           "2. Automatisierte Content- und Bildproduktion: Mit Modellen wie FLUX.1 können E-Commerce-Unternehmen Produktabbildungen, Werbebanner und Social-Media-Visuals für unterschiedliche Zielgruppen automatisiert und skaliert erstellen, ohne teure Fotoshootings.",
           "3. Intelligentes Wissensmanagement (RAG): Interne Handbücher, Sicherheitsvorschriften und Verträge werden über Plattformen wie Langdock indexiert. Mitarbeiter finden komplexe technische Antworten in Sekunden, ohne vertrauliche Firmendaten preiszugeben.",
           "4. Autonome Multi-Agenten-Workflows: Durch Tools wie n8n agieren generative KI-Modelle als aktive Sachbearbeiter, die E-Mails auswerten, PDF-Rechnungen parsen und Daten im ERP verbuchen. Erfahren Sie mehr auf unserer Seite zur [KI-Automatisierung für Unternehmen](/services/ai-automation).",
@@ -1682,7 +1682,7 @@ const baseBlogPosts: BlogPost[] = [
           "Explore our deep-dives on GDPR-compliant AI cloud architectures and self-hosted n8n setups.",
         ],
         quoteDe: {
-          text: "Europäische Unternehmen müssen keine Abstriche bei KI-Innovationen machen, um den EU AI Act und die DSGVO zu 100 % einzuhalten.",
+          text: "Europäische Unternehmen müssen keine Abstriche bei KI-Innovationen machen, um den EU AI Act und die DSGVO einzuhalten.",
           author: "Nexa Solutions Cloud & Compliance Benchmark",
         },
         quoteEn: {
@@ -1745,7 +1745,15 @@ const baseBlogPosts: BlogPost[] = [
   },
 ];
 
-export const blogPosts: BlogPost[] = [...baseBlogPosts, ...extendedBlogPosts];
+/**
+ * Posts merged into another page and 301-redirected in next.config.ts (SEO ground rule 1).
+ * They are excluded from listings, related posts and the sitemap, also when they come from the DB.
+ */
+export const MERGED_BLOG_SLUGS = new Set<string>(["app-entwicklung-kosten-2026"]);
+
+export const blogPosts: BlogPost[] = [...baseBlogPosts, ...extendedBlogPosts].filter(
+  (p) => !MERGED_BLOG_SLUGS.has(p.slug)
+);
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);

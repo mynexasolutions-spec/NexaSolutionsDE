@@ -250,7 +250,7 @@ const coreServices = [
       "Sub-second frictionless checkout",
       "Shopify / MedusaJS / Stripe",
       "Automated invoicing & tax handling",
-      "100% GDPR-compliant checkout",
+      "GDPR-compliant checkout",
     ],
   },
   {
@@ -389,7 +389,7 @@ const packages = [
       "Next.js 15 & Tailwind CSS",
       "Lighthouse 95+ performance guarantee",
       "Lead contact form & calendar booking sync",
-      "100% GDPR-compliant cookie management",
+      "GDPR-compliant cookie management",
       "Core SEO metadata & Google Search Console",
       "Delivery: 2–3 weeks",
     ],
@@ -476,7 +476,7 @@ const faqs = [
     qDe: "Kann ich Texte und Bilder nach dem Launch selbstständig bearbeiten?",
     qEn: "Can I edit content and images myself after the launch?",
     aDe: "Ja, absolut. Wir integrieren ein intuitives, visuelles Headless-CMS (wie Sanity oder Contentful). Damit können Sie Texte, Bilder, Blogbeiträge und Preise in Sekunden ändern – ganz ohne Programmierkenntnisse und ohne Gefahr zu laufen, das Design zu zerstören.",
-    aEn: "Yes, 100%. We integrate an intuitive, visual headless CMS (such as Sanity or Contentful). You and your team can update copy, images, case studies, and pricing in seconds — with zero coding knowledge and zero risk of breaking the layout.",
+    aEn: "Yes. We integrate an intuitive, visual headless CMS (such as Sanity or Contentful). You and your team can update copy, images, case studies, and pricing in seconds — with zero coding knowledge and zero risk of breaking the layout.",
   },
   {
     qDe: "Entwickeln Sie neben Websites auch mobile Apps und KI-Workflows?",
@@ -491,8 +491,8 @@ const faqs = [
     aEn: "A focused corporate website is typically delivered turnkey within 2 to 4 weeks. Larger web applications or e-commerce suites take approximately 4 to 8 weeks depending on scope. We work in disciplined, transparent sprints with live staging access.",
   },
   {
-    qDe: "Ist die Website zu 100% DSGVO-konform für den deutschen/europäischen Markt?",
-    qEn: "Is the website 100% GDPR-compliant for the German and EU markets?",
+    qDe: "Ist die Website DSGVO-konform für den deutschen/europäischen Markt?",
+    qEn: "Is the website GDPR-compliant for the German and EU markets?",
     aDe: "Ja, ausnahmslos. Wir implementieren datenschutzkonforme Lösungen: Lokales Font-Hosting (keine unautorisierten Google-Fonts-Verbindungen), rechtssichere Cookie-Consent-Banner, Server-Hosting in der EU (Frankfurt) und verschlüsselte SSL-Übertragung nach deutschem Standard.",
     aEn: "Yes, without exception. We implement strict EU privacy standards: self-hosted fonts (zero unauthorized third-party tracking calls), legally sound cookie consent management, EU server hosting (Frankfurt nodes), and enterprise SSL encryption.",
   },
@@ -632,7 +632,7 @@ export default function WebDevelopmentPage() {
 
               {/* Main Headline */}
               <h1 className="text-[35px] sm:text-[52px] lg:text-[58px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
-                {t("Webentwicklung Stuttgart: ", "High-Performance Websites & ")}
+                {t("Webentwicklung Agentur Deutschland: ", "High-Performance Websites & ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500">
                   {t("Ihre Next.js Agentur", "Apps That Convert")}
                 </span>
@@ -642,7 +642,7 @@ export default function WebDevelopmentPage() {
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {renderWithLinks(
                   t(
-                    "Möchten Sie eine professionelle Website programmieren lassen? Als spezialisierte Agentur für Webentwicklung in Stuttgart entwickeln wir zukunftssichere, hochperformante Next.js Webanwendungen, moderne Corporate Websites und skalierbare Online-Shops zum verbindlichen Festpreis. Berechnen Sie transparent Ihre [Website Kosten im Leitfaden](/website-kosten) – zu 100% DSGVO-konform mit Server-Hosting in Frankfurt.",
+                    "Möchten Sie eine professionelle Website programmieren lassen? Als spezialisierte Agentur für Webentwicklung für Unternehmen in ganz Deutschland entwickeln wir zukunftssichere, hochperformante Next.js Webanwendungen, moderne Corporate Websites und skalierbare Online-Shops zum verbindlichen Festpreis. Berechnen Sie transparent Ihre [Website Kosten im Leitfaden](/website-kosten) – DSGVO-konform mit Server-Hosting in Frankfurt.",
                     "We engineer custom, ultra-fast web platforms with Next.js, React, and TypeScript. Flawless Core Web Vitals, unmatched Google rankings, and intuitive UX built for measurable business growth."
                   )
                 )}
@@ -658,7 +658,7 @@ export default function WebDevelopmentPage() {
                   },
                   {
                     icon: ShieldCheck,
-                    label: t("100% DSGVO", "100% GDPR"),
+                    label: t("DSGVO-konform", "GDPR compliant"),
                     sub: t("Server in Frankfurt", "EU Hosted"),
                   },
                   {
@@ -1418,7 +1418,7 @@ export default function WebDevelopmentPage() {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-200 bg-orange-50 text-orange-700 text-xs font-bold tracking-wider uppercase mb-4">
                   <ShieldCheck className="w-3.5 h-3.5 text-orange-500" />
-                  <span>{t("100% BUDGETSICHERHEIT", "100% BUDGET PREDICTABILITY")}</span>
+                  <span>{t("BUDGETSICHERHEIT DURCH FESTPREIS", "FIXED-PRICE BUDGET CERTAINTY")}</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-[900] text-[#0F172A] tracking-tight mb-4">
                   {t("Webentwicklung zum Festpreis", "Fixed-Price Web Development")}
@@ -1465,7 +1465,7 @@ export default function WebDevelopmentPage() {
                 <div className="space-y-3 pt-5 border-t border-slate-100">
                   <div className="flex items-center gap-2.5 text-sm sm:text-base font-medium text-slate-700">
                     <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>{t("100% DSGVO-konforme Website erstellen lassen", "100% GDPR-compliant architecture guaranteed")}</span>
+                    <span>{t("DSGVO-konforme Website erstellen lassen", "GDPR-compliant architecture")}</span>
                   </div>
                   <div className="flex items-center gap-2.5 text-sm sm:text-base font-medium text-slate-700">
                     <Check className="w-4 h-4 text-emerald-600 shrink-0" />

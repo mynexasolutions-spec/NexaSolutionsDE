@@ -722,7 +722,9 @@ export async function getBlogsList() {
         return {
           ...sbBlog,
           faqs: (sbBlog.faqs && sbBlog.faqs.length > 0) ? sbBlog.faqs : (localMatch?.faqs || []),
-          seo_title_de: sbBlog.seo_title_de || localMatch?.seo_title_de || sbBlog.title_de,
+          // No title_de fallback here: callers fall back themselves, so a curated
+          // file seoTitleDe can win over a plain DB title (see blog/[slug]/layout.tsx)
+          seo_title_de: sbBlog.seo_title_de || localMatch?.seo_title_de || undefined,
           published_at: sbBlog.published_at || localMatch?.published_at,
           key_takeaways_de: (sbBlog.key_takeaways_de && sbBlog.key_takeaways_de.length > 0) ? sbBlog.key_takeaways_de : (localMatch?.key_takeaways_de || []),
           key_takeaways_en: (sbBlog.key_takeaways_en && sbBlog.key_takeaways_en.length > 0) ? sbBlog.key_takeaways_en : (localMatch?.key_takeaways_en || []),

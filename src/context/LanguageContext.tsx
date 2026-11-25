@@ -82,7 +82,7 @@ export function LanguageProvider({
         return;
       }
 
-      // 3. Reliable default for Stuttgart agency
+      // 3. Reliable default: German (primary market)
       setLangState("de");
     } catch {}
 

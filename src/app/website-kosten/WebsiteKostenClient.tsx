@@ -224,7 +224,7 @@ export default function WebsiteKostenClient() {
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  {t("100% DSGVO-konform", "100% GDPR Compliant")}
+                  {t("DSGVO-konform", "GDPR Compliant")}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
@@ -632,7 +632,7 @@ export default function WebsiteKostenClient() {
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                   <span className="text-xs sm:text-sm font-semibold text-slate-700">
-                    {t("100 % DSGVO-konform", "100% GDPR Compliant")}
+                    {t("DSGVO-konform", "GDPR Compliant")}
                   </span>
                 </div>
               </div>

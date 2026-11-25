@@ -43,3 +43,15 @@ next-env.d.ts
 # local persistent cache
 .data/
 
+
+# Google service account keys
+meagle360-seo-*.json
+
+# SEO planning docs (local only)
+SEO_PLAN_WEEKWISE.md
+nexa-solutions-de-seo-plan.md
+SEO_CHANGES.md
+SEARCH_CONSOLE_URLS.txt
+
+# Database schema (local only)
+*.sql

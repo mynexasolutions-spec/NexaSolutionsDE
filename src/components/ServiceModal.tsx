@@ -290,7 +290,7 @@ export default function ServiceModal({ serviceId, onClose, onGetQuote }: Service
         "Sichere API-Schnittstellen mit Role-based Access",
         "Automatisierte Text- & Datenextraktionspipelines",
         "Kostenoptimiertes Token-Management",
-        "100% DSGVO-konforme Datenverarbeitung",
+        "DSGVO-konforme Datenverarbeitung",
       ],
       deliverablesEn: [
         "Company-specific RAG knowledge base retrieval",
@@ -758,7 +758,7 @@ export default function ServiceModal({ serviceId, onClose, onGetQuote }: Service
             <div className="hidden sm:block text-slate-300">•</div>
             <div className="flex items-center gap-1.5 text-emerald-700 font-medium">
               <ShieldCheck className="w-4 h-4" />
-              <span>{t("100% Zufriedenheitsgarantie", "100% Satisfaction Guarantee")}</span>
+              <span>{t("Festpreis & persönliche Betreuung", "Fixed Price & Personal Support")}</span>
             </div>
           </div>
         </div>

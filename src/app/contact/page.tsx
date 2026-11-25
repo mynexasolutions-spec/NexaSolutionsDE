@@ -119,8 +119,8 @@ export default function ContactPage() {
         "Is the initial strategy call completely free?",
       ),
       a: t(
-        "Ja, zu 100%. Im 30-minütigen Video-Call besprechen wir Ihre technischen Anforderungen, Machbarkeit, Tech-Stack und geben eine unverbindliche Budgetschätzung.",
-        "Yes, 100%. In our 30-minute discovery call we discuss technical feasibility, tech stack, architecture, and provide a ballpark estimate without any obligation.",
+        "Ja. Im 30-minütigen Video-Call besprechen wir Ihre technischen Anforderungen, Machbarkeit, Tech-Stack und geben eine unverbindliche Budgetschätzung.",
+        "Yes. In our 30-minute discovery call we discuss technical feasibility, tech stack, architecture, and provide a ballpark estimate without any obligation.",
       ),
     },
     {
@@ -246,7 +246,7 @@ export default function ContactPage() {
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                {t("100% DSGVO & NDA", "100% GDPR & NDA")}
+                {t("DSGVO-konform & NDA", "GDPR & NDA")}
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />

@@ -19,6 +19,8 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import BusinessSystems from "@/components/BusinessSystems";
 import FaqSection from "@/components/FaqSection";
 import BookingSection from "@/components/BookingSection";
+import JsonLd from "@/components/JsonLd";
+import { homeFaqJsonLd } from "@/lib/homeFaqJsonLd";
 
 import dynamic from "next/dynamic";
 
@@ -74,6 +76,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#0F172A] selection:bg-orange-500 selection:text-white">
+      <JsonLd data={homeFaqJsonLd} />
       {/* Top Navbar */}
       <Navbar onOpenContact={() => handleOpenContact()} />
 

@@ -37,7 +37,7 @@ export interface SolutionPageData {
 export const solutionsData: SolutionPageData[] = [
   {
     slug: "zeiterfassung-software",
-    title: "Zeiterfassung Software entwickeln lassen | Nexa",
+    title: "Zeiterfassung Software entwickeln lassen | Nexa Solutions",
     titleEn: "Custom Time Tracking Software Development | Nexa Solutions",
     h1: "Individuelle Zeiterfassung & Personalverwaltung entwickeln lassen",
     h1En: "Custom Time Tracking & HR Management Software Development",
@@ -205,16 +205,16 @@ export const solutionsData: SolutionPageData[] = [
     h1: "Individuelles CRM-System für Ihr Unternehmen entwickeln lassen",
     h1En: "Develop a Custom CRM System Tailored to Your Business",
     description:
-      "Individuelles CRM statt überteuerter Standard-SaaS: Exakt auf Ihre Vertriebs- & Kundenprozesse zugeschnitten. DSGVO-konform und nahtlos integriert.",
+      "Individuelles CRM statt teurer Standard-SaaS: CRM Software individuell entwickeln lassen – exakt auf Ihre Vertriebsprozesse zugeschnitten, DSGVO-konform.",
     descriptionEn:
       "Custom CRM software instead of overpriced SaaS: Built precisely around your B2B sales and customer workflows. GDPR compliant and seamless integrations.",
     intro:
-      "Customer Relationship Management (CRM) ist das Herzstück jedes vertriebsstarken Unternehmens. Doch etablierte Branchenriesen wie Salesforce oder HubSpot sind oft überfrachtet mit ungenutzten Features, verursachen mit steigenden Nutzerzahlen explodierende Lizenzkosten und zwingen Ihre Vertriebsmitarbeiter in starre, unpassende Workflows. Nexa Solutions entwickelt individuelle, maßgeschneiderte CRM-Systeme, die exakt Ihre Lead-Qualifizierung, Angebotsphasen und Kundenbeziehungen abbilden – schlank, ultraschnell und ohne laufende Lizenzgebühren pro Benutzer.",
+      "Customer Relationship Management (CRM) ist das Herzstück jedes vertriebsstarken Unternehmens – und individuelle CRM Software Entwicklung eine der wirkungsvollsten Investitionen in Ihre Unternehmenssoftware. Doch etablierte Branchenriesen wie Salesforce oder HubSpot sind oft überfrachtet mit ungenutzten Features, verursachen mit steigenden Nutzerzahlen explodierende Lizenzkosten und zwingen Ihre Vertriebsmitarbeiter in starre, unpassende Workflows. Nexa Solutions entwickelt individuelle, maßgeschneiderte CRM-Systeme, die exakt Ihre Lead-Qualifizierung, Angebotsphasen und Kundenbeziehungen abbilden – schlank, ultraschnell und ohne laufende Lizenzgebühren pro Benutzer.",
     introEn:
       "Customer Relationship Management (CRM) forms the backbone of every revenue-driven enterprise. Yet generic giants like Salesforce or HubSpot are bloated with unused features, impose skyrocketing per-user license fees, and force your sales reps into rigid, ill-fitting workflows. Nexa Solutions builds custom CRM systems that mirror your exact lead qualification pipelines, deal stages, and account relationships—lean, lightning-fast, and with zero recurring per-user licensing.",
     badge: "Kein Lizenzmodell pro Nutzer",
     badgeEn: "Zero Per-Seat License Fees",
-    updatedAt: "2026-10-07T08:00:00.000Z",
+    updatedAt: "2026-11-25T08:00:00.000Z",
     sections: [
       {
         h2: "Individual-CRM vs. Standard-Software: Wo liegt der echte ROI?",
@@ -321,6 +321,12 @@ export const solutionsData: SolutionPageData[] = [
     ],
     faq: [
       {
+        q: "Was ist der Unterschied zwischen individueller CRM Software und einem Standard-CRM?",
+        qEn: "What is the difference between custom CRM software and an off-the-shelf CRM?",
+        a: "Ein Standard-CRM wie Salesforce oder HubSpot ist für möglichst viele Branchen gebaut: Sie passen Ihre Prozesse an die Software an und zahlen Lizenzen pro Nutzer. Wenn Sie CRM Software individuell entwickeln lassen, ist es umgekehrt: Datenmodell, Pipeline-Phasen, Angebotslogik und Schnittstellen werden exakt nach Ihren Abläufen gebaut, der Quellcode gehört Ihnen und es fallen keine Lizenzgebühren pro Benutzer an.",
+        aEn: "An off-the-shelf CRM such as Salesforce or HubSpot is built for as many industries as possible: you adapt your processes to the software and pay per-user licences. With custom CRM software it is the other way round: data model, pipeline stages, quoting logic and integrations are built exactly around your workflows, you own the source code, and there are no per-user licence fees.",
+      },
+      {
         q: "Ab welcher Unternehmensgröße lohnt sich ein individuelles CRM?",
         qEn: "When is a custom CRM commercially viable?",
         a: "Ein Individual-CRM lohnt sich typischerweise ab etwa 10 bis 15 CRM-Nutzern oder wenn Ihre Vertriebsprozesse so individuell sind, dass Standardsoftware aufwendig verbogen werden müsste. Auch Unternehmen, die strenge DSGVO-Vorgaben erfüllen müssen oder hohe SaaS-Lizenzkosten abbauen wollen, profitieren ab Tag eins.",
@@ -380,12 +386,12 @@ export const solutionsData: SolutionPageData[] = [
         h2En: "Why a Custom Booking System Converts More Appointments",
         body: [
           "Kunden erwarten heute, Termine unkompliziert rund um die Uhr online buchen zu können – sei es spätabends vom Smartphone oder am Wochenende. Ein reibungsloser, schneller Buchungsprozess ohne Registrierungszwang erhöht die Conversion-Rate signifikant.",
-          "Wenn Nutzer jedoch zu Drittanbieter-Portalen mit fremden Logos und Cookie-Bannern weitergeleitet werden, bricht das Vertrauen oft ab. Mit einem individualisierten Buchungssystem bleibt der Nutzer zu 100% in Ihrer Markenwelt.",
+          "Wenn Nutzer jedoch zu Drittanbieter-Portalen mit fremden Logos und Cookie-Bannern weitergeleitet werden, bricht das Vertrauen oft ab. Mit einem individualisierten Buchungssystem bleibt der Nutzer vollständig in Ihrer Markenwelt.",
           "Zudem können Sie den Buchungsablauf exakt auf Ihre Bedürfnisse anpassen: Vorab-Fragebögen zur Bedarfsanalyse, Auswahl von Mitarbeitern oder Räumen, Buchung von kostenpflichtigen Beratungsstunden mit direkter Online-Zahlung sowie automatische Zeitzonen-Erkennung.",
         ],
         bodyEn: [
           "Today's clients expect to book appointments effortlessly around the clock—whether on mobile late at night or over the weekend. A friction-free booking journey without forced registrations boosts conversion rates noticeably.",
-          "When visitors are redirected to third-party URLs displaying foreign branding and cookie banners, user confidence wavers. With a custom booking system, clients stay 100% inside your premium brand experience.",
+          "When visitors are redirected to third-party URLs displaying foreign branding and cookie banners, user confidence wavers. With a custom booking system, clients stay entirely inside your brand experience.",
           "Furthermore, you can customize the entire intake flow: Qualification surveys, staff or room assignment, paid consultation checkout, and automatic timezone detection.",
         ],
         bullets: [
@@ -431,19 +437,19 @@ export const solutionsData: SolutionPageData[] = [
         h2: "Reduktion von No-Shows durch smarte Erinnerungsketten",
         h2En: "Slashing No-Shows Through Smart Notification Sequences",
         body: [
-          "Terminausfälle kosten bares Geld. Mit automatisierten Erinnerungen per E-Mail, SMS oder WhatsApp senken unsere Kunden ihre Ausfallquoten im Schnitt um über 60%.",
+          "Terminausfälle kosten bares Geld. Mit automatisierten Erinnerungen per E-Mail, SMS oder WhatsApp lassen sich Ausfallquoten spürbar senken.",
           "Das System versendet eine Buchungsbestätigung mit ICS-Kalenderdatei zum direkten Import, gefolgt von einer freundlichen Erinnerung 24 Stunden und 2 Stunden vor dem Termin. Sollte der Kunde absagen müssen, kann er den Termin mit einem Klick selbstständig verschieben – der freigewordene Slot steht sofort wieder anderen Interessenten zur Verfügung.",
           "Lesen Sie auch unseren Leitfaden [Was kostet ein Terminbuchungssystem?](/blog/terminbuchungssystem-kosten) für detaillierte Budget-Einblicke.",
         ],
         bodyEn: [
-          "Missed appointments hurt your bottom line. Automated reminders via email, SMS, or WhatsApp reduce no-show rates by over 60% on average.",
+          "Missed appointments hurt your bottom line. Automated reminders via email, SMS, or WhatsApp noticeably reduce no-show rates.",
           "Clients receive an immediate confirmation with an ICS calendar attachment, followed by friendly reminder notifications 24 hours and 2 hours prior to the session. If clients must cancel, they can reschedule with one click—instantly reopening the slot for other prospects.",
           "Read our in-depth guide on [Booking System Development Costs](/blog/terminbuchungssystem-kosten) for budgeting benchmarks.",
         ],
       },
       {
-        h2: "100% DSGVO-konform und werbefrei",
-        h2En: "100% GDPR Compliant & Tracking Free",
+        h2: "DSGVO-konform und werbefrei",
+        h2En: "GDPR Compliant & Tracking Free",
         body: [
           "Im Gegensatz zu gängigen US-SaaS-Anbietern verarbeitet Ihr individuelles Buchungssystem Termindaten ausschließlich auf nach ISO 27001 zertifizierten Servern in Deutschland (Frankfurt am Main). Es werden keine Tracking-Pixel von Werbenetzwerken geladen.",
           "Möchten Sie Ihre Terminprozesse modernisieren? Besuchen Sie unsere Seite [Website Kosten](/website-kosten) oder vereinbaren Sie direkt Ihre kostenlose Erstberatung über unser [Kontaktformular](/contact).",
@@ -519,13 +525,13 @@ export const solutionsData: SolutionPageData[] = [
         ],
         bullets: [
           "Verständnis komplexer Fragen in über 50 Sprachen",
-          "RAG-Architektur: Antworten basieren zu 100% auf Ihren freigegebenen Dokumenten",
+          "RAG-Architektur: Antworten basieren auf Ihren freigegebenen Dokumenten",
           "Zero-Hallucination-Leitplanken und strikte Markenton-Vorgaben",
           "Nahtloses Handover an menschliche Agenten per Live-Chat oder Ticket",
         ],
         bulletsEn: [
           "Understands inquiries in over 50 languages with natural phrasing",
-          "RAG architecture: responses grounded 100% in your vetted documents",
+          "RAG architecture: responses grounded in your vetted documents",
           "Zero-hallucination guardrails and strict tone-of-voice alignment",
           "Seamless escalation to live agents via ticket or chat",
         ],
@@ -534,11 +540,11 @@ export const solutionsData: SolutionPageData[] = [
         h2: "Zwei Kernbereiche: Kundenservice & Lead-Generierung",
         h2En: "Dual Focus: Customer Support & High-Intent Lead Generation",
         body: [
-          "Im Kundensupport beantwortet der KI-Chatbot wiederkehrende Standardfragen zu Öffnungszeiten, Lieferfristen, Rückgabebedingungen oder technischen Spezifikationen sofort. Ihr Support-Team wird um bis zu 70% entlastet und gewinnt Zeit für anspruchsvolle Kundenfälle.",
+          "Im Kundensupport beantwortet der KI-Chatbot wiederkehrende Standardfragen zu Öffnungszeiten, Lieferfristen, Rückgabebedingungen oder technischen Spezifikationen sofort. Ihr Support-Team wird spürbar entlastet und gewinnt Zeit für anspruchsvolle Kundenfälle.",
           "Im Marketing fungiert der Chatbot als interaktiver Lead-Magnet: Er berät Besucher interaktiv zu passenden Produkten oder Dienstleistungen, fragt gezielt nach Anforderungen und erfasst Kontaktdaten direkt im Chatverlauf. Diese Leads werden über unsere [n8n Workflow-Automatisierung](/services/ai-automation) in Sekundenschnelle an Ihr [CRM-System](/loesungen/crm-system-entwickeln-lassen) übergeben.",
         ],
         bodyEn: [
-          "In customer support, the AI bot answers recurring questions regarding shipping times, warranties, return policies, and product details instantly. Your support staff is relieved of up to 70% of repetitive tickets.",
+          "In customer support, the AI bot answers recurring questions regarding shipping times, warranties, return policies, and product details instantly. Your support staff is relieved of repetitive tickets.",
           "In marketing and sales, the chatbot functions as an active lead magnet: It guides prospects toward matching solutions, captures project parameters, and gathers verified contact details directly within the conversation. Leads transfer to your [CRM system](/loesungen/crm-system-entwickeln-lassen) via [n8n Workflow Automation](/services/ai-automation) within seconds.",
         ],
         bullets: [
@@ -564,17 +570,17 @@ export const solutionsData: SolutionPageData[] = [
         ],
         bodyEn: [
           "For mid-sized enterprises, law firms, healthcare providers, and industrial corporations across Europe, AI compliance is non-negotiable. Exposing customer data or confidential corporate files to public US cloud APIs risks GDPR sanctions and intellectual property leaks.",
-          "Nexa Solutions builds sovereign, 100% GDPR-compliant AI infrastructure for your organization: We configure contractual Zero-Data-Retention (ZDR) agreements with EU data center clusters (Frankfurt am Main) or deploy leading open-source models (such as Llama 3, Mistral Large) straight onto your own on-premise servers or isolated Virtual Private Clouds (VPC).",
+          "Nexa Solutions builds sovereign, GDPR-compliant AI infrastructure for your organization: We configure contractual Zero-Data-Retention (ZDR) agreements with EU data center clusters (Frankfurt am Main) or deploy leading open-source models (such as Llama 3, Mistral Large) straight onto your own on-premise servers or isolated Virtual Private Clouds (VPC).",
           "Personally identifiable information (PII) is automatically scrubbed or pseudonymized locally before tokenization. The setup is fortified by standard Art. 28 GDPR data processing agreements (DPA) and tamper-proof audit trails.",
         ],
         bullets: [
-          "100% DSGVO-konform: Hosting in ISO-27001-zertifizierten deutschen Rechenzentren",
+          "DSGVO-konform: Hosting in ISO-27001-zertifizierten deutschen Rechenzentren",
           "Kein Modell-Training mit Ihren Firmendaten (Garantierte Zero Data Retention)",
           "On-Premise- und Private-VPC-Optionen für maximale Datensouveränität",
           "Lokale PII-Filterung & Anonymisierung sensibler Nutzerangaben vor Modellanfragen",
         ],
         bulletsEn: [
-          "100% GDPR compliant: Hosted in ISO 27001-certified German data centers",
+          "GDPR compliant: Hosted in ISO 27001-certified German data centers",
           "Zero public training on your business files (contractual Zero Data Retention)",
           "On-premise and isolated private VPC options for total data sovereignty",
           "Local PII scrubbing and anonymization of sensitive inputs prior to inference",
@@ -607,8 +613,8 @@ export const solutionsData: SolutionPageData[] = [
         aEn: "Never. We utilize enterprise API contracts with verified Zero Data Retention (ZDR) or host open-source models on your private European servers. You retain 100% intellectual property ownership.",
       },
       {
-        q: "Wie wird eine KI-Infrastruktur für Unternehmen 100% DSGVO-konform aufgebaut?",
-        qEn: "How is an enterprise AI infrastructure engineered to be 100% GDPR compliant?",
+        q: "Wie wird eine KI-Infrastruktur für Unternehmen DSGVO-konform aufgebaut?",
+        qEn: "How is an enterprise AI infrastructure engineered to be GDPR compliant?",
         a: "Eine DSGVO-konforme KI-Infrastruktur basiert auf drei Säulen: 1. Europäisches Cloud-Hosting (z. B. Frankfurt am Main) oder On-Premise-Server, 2. Vertraglich garantierte Zero-Data-Retention (keine Speicherung und kein Nachtraining durch Modellprovider) und 3. Lokale Vorfilterung zur Anonymisierung personenbezogener Daten (PII) vor der KI-Verarbeitung.",
         aEn: "GDPR-compliant AI infrastructure relies on three pillars: 1. European cloud hosting (e.g. Frankfurt am Main) or private on-premise hardware, 2. Contractually verified Zero Data Retention (preventing model providers from storing or retraining on prompts), and 3. Client-side PII scrubbing to anonymize personal records before AI inference.",
       },
@@ -633,7 +639,7 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "n8n-agentur-deutschland",
-    title: "n8n Agentur Deutschland: DSGVO-Workflows | Nexa",
+    title: "n8n Agentur Deutschland: DSGVO-Workflows | Nexa Solutions",
     titleEn: "n8n Agency Germany: GDPR Workflow Automation | Nexa Solutions",
     h1: "n8n Agentur Deutschland: Prozessautomatisierung & Self-Hosting",
     h1En: "n8n Agency Germany: Process Automation & Dedicated Self-Hosting",
@@ -663,13 +669,13 @@ export const solutionsData: SolutionPageData[] = [
           "Moreover, n8n provides immense financial advantages: While Zapier and Make bill for every single task or operation, n8n running on a modern virtual server executes unlimited workflows at flat, predictable hosting rates.",
         ],
         bullets: [
-          "100% DSGVO-konform: Betrieb auf ISO-27001-zertifizierten deutschen Servern",
+          "DSGVO-konform: Betrieb auf ISO-27001-zertifizierten deutschen Servern",
           "Keine nutzungsabhängigen Preisschocks bei hohem Workflow-Volumen",
           "Über 400 native Integrationen sowie beliebige Anbindung via REST-API, GraphQL und Webhooks",
           "Nahtlose Integration moderner KI-Modelle (OpenAI, Anthropic, lokale LLMs)",
         ],
         bulletsEn: [
-          "100% GDPR compliant: hosted on ISO 27001-certified German servers",
+          "GDPR compliant: hosted on ISO 27001-certified German servers",
           "Zero per-task fee escalations during high transaction volumes",
           "Over 400 native connectors plus universal REST, GraphQL, and Webhook support",
           "Seamless integration of modern AI models (OpenAI, Anthropic, local LLMs)",
@@ -730,8 +736,8 @@ export const solutionsData: SolutionPageData[] = [
       {
         q: "Was unterscheidet n8n von Zapier und Make?",
         qEn: "What distinguishes n8n from Zapier and Make?",
-        a: "n8n ist quelloffen und ermöglicht vollständiges Self-Hosting auf eigenen Servern in Deutschland. Im Gegensatz zu Zapier gibt es kein teures Pro-Task-Preissystem, was n8n bei hohen Transaktionsvolumina um bis zu 80% günstiger macht. Zudem bietet n8n mit nativem JavaScript/Python-Code im Flow maximale technische Flexibilität.",
-        aEn: "n8n is open-source and allows self-hosting on dedicated European servers. Unlike Zapier, there are no per-task fees, reducing operating costs by up to 80% at high volumes. n8n also allows native JavaScript and Python scripting inside nodes for unmatched flexibility.",
+        a: "n8n ist quelloffen und ermöglicht vollständiges Self-Hosting auf eigenen Servern in Deutschland. Im Gegensatz zu Zapier gibt es kein teures Pro-Task-Preissystem, was n8n bei hohen Transaktionsvolumina deutlich günstiger macht. Zudem bietet n8n mit nativem JavaScript/Python-Code im Flow maximale technische Flexibilität.",
+        aEn: "n8n is open-source and allows self-hosting on dedicated European servers. Unlike Zapier, there are no per-task fees, significantly reducing operating costs at high volumes. n8n also allows native JavaScript and Python scripting inside nodes for unmatched flexibility.",
       },
       {
         q: "Ist n8n für sensible Finanz- und Personaldaten geeignet?",
@@ -760,32 +766,32 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "restaurant-software-qr-menue",
-    title: "Restaurant Software & QR-Code App Gastronomie | Nexa Solutions",
+    title: "Restaurant & Gastronomie Software mit QR-Menü | Nexa Solutions",
     titleEn: "Restaurant Software & QR Code Menu Development | Nexa Solutions",
-    h1: "Restaurant Software & QR-Code App für die moderne Gastronomie",
+    h1: "Restaurant Software & Gastronomie Software mit QR-Code Menü",
     h1En: "Restaurant Software & Digital QR Code Menu Development",
     description:
-      "Digitale Gastronomie-Lösungen: Interaktives QR-Code Menü, Software für Restaurant & Catering, Angebotskalkulation & TSE/KassenSichV-Schnittstellen.",
+      "Gastronomie Software nach Maß: QR-Code Menü, Tischbestellung, Angebotssoftware für Catering & Erlebnisgastronomie sowie TSE/KassenSichV-Schnittstellen.",
     descriptionEn:
       "Digital hospitality solutions: Interactive QR code menus, table ordering, catering quotation software, and POS integrations. Boost revenue and relieve staff.",
     intro:
-      "Die Gastronomiebranche steht vor massiven Herausforderungen: Akuter Fachkräftemangel im Service, hohe Provisionsabgaben an Lieferplattformen (bis zu 30%) und steigende Betriebskosten. Ein maßgeschneidertes digitales QR-Code-Menü und eine moderne Restaurant-Software revolutionieren den Gastronomiebetrieb: Gäste scannen am Tisch einfach einen QR-Code, sehen eine appetitanregende, mehrsprachige Speisekarte mit tagesaktuellen Empfehlungen und können direkt digital bestellen und bezahlen. Nexa Solutions entwickelt individuelle Gastro-Systeme, die Servicekräfte spürbar entlasten und den Tischumsatz nachweislich steigern.",
+      "Die Gastronomiebranche steht vor massiven Herausforderungen: Akuter Fachkräftemangel im Service, hohe Provisionsabgaben an Lieferplattformen (bis zu 30%) und steigende Betriebskosten. Ein maßgeschneidertes digitales QR-Code-Menü und eine moderne Restaurant-Software revolutionieren den Gastronomiebetrieb: Gäste scannen am Tisch einfach einen QR-Code, sehen eine appetitanregende, mehrsprachige Speisekarte mit tagesaktuellen Empfehlungen und können direkt digital bestellen und bezahlen. Nexa Solutions entwickelt individuelle Gastronomie Software – vom QR-Menü über die Angebotssoftware für Events bis zur Kassenanbindung –, die Servicekräfte spürbar entlastet und den Tischumsatz steigert.",
     introEn:
       "Hospitality businesses face critical headwinds: acute staffing shortages in service, heavy commission cuts to delivery aggregators (up to 30%), and rising overhead. A bespoke digital QR code menu and modern restaurant management software modernize dining operations: Guests scan a QR code at their table, browse an appetizing multilingual menu with real-time daily specials, and order or pay directly from their smartphone. Nexa Solutions builds custom hospitality applications that ease the burden on waitstaff and demonstrably drive higher table spend.",
     badge: "Gastro-Digitalisierung & TSE",
     badgeEn: "Hospitality Digitalization & POS Sync",
     faqTitle: "FAQ zu Restaurant Software & QR-Menü",
     faqTitleEn: "FAQ: Restaurant Software & QR Code Menus",
-    updatedAt: "2026-10-07T08:00:00.000Z",
+    updatedAt: "2026-11-25T08:00:00.000Z",
     sections: [
       {
-        h2: "QR-Code Speisekarte & Digitales Self-Ordering am Tisch",
+        h2: "QR-Code Speisekarte & Bestellsoftware für Gastronomie",
         h2En: "Digital QR Code Menu & Table Self-Ordering",
         body: [
-          "Ihre Gäste scannen den Tisch-QR-Code und bestellen sofort kontaktlos im Browser – ohne App-Download. Das interaktive Menü steigert durch automatisiertes Upselling den Pro-Kopf-Umsatz um 15–25 % und entlastet das Servicepersonal in Spitzenzeiten spürbar.",
+          "Ihre Gäste scannen den Tisch-QR-Code und bestellen sofort kontaktlos im Browser – ohne App-Download. Die Bestellsoftware leitet jede Bestellung direkt an Küche und Theke weiter. Das interaktive Menü steigert durch automatisiertes Upselling den Pro-Kopf-Umsatz und entlastet das Servicepersonal in Spitzenzeiten spürbar.",
         ],
         bodyEn: [
-          "Guests simply scan the table QR code to browse and order directly in their mobile browser—zero app download required. Automated upselling prompts boost average guest spend by 15–25% while relieving waitstaff during peak rush hours.",
+          "Guests simply scan the table QR code to browse and order directly in their mobile browser—zero app download required. Automated upselling prompts boost average guest spend while relieving waitstaff during peak rush hours.",
         ],
         bullets: [
           "Sofortstart per Web-App: Kein App-Store-Download nötig",
@@ -801,10 +807,10 @@ export const solutionsData: SolutionPageData[] = [
         ],
       },
       {
-        h2: "Kassenschnittstellen & TSE KassenSichV-Konformität",
+        h2: "Gastrokasse mit TSE: Kassensoftware & KassenSichV-Konformität",
         h2En: "POS Integrations & Certified TSE Compliance",
         body: [
-          "Volle Gesetzeskonformität nach KassenSichV und GoBD: Unsere Restaurant-Software bindet führende POS-Kassensysteme (Vectron, Lightspeed, Orderbird) nahtlos an oder läuft eigenständig mit zertifizierter Cloud-TSE und manipulationssicherem digitalem Beleg.",
+          "Gesetzeskonformität nach KassenSichV und GoBD: Als Kassensoftware für die Gastronomie bindet unsere Restaurant-Software führende POS-Kassensysteme (Vectron, Lightspeed, Orderbird) nahtlos an oder läuft eigenständig mit zertifizierter Cloud-TSE und manipulationssicherem digitalem Beleg.",
         ],
         bodyEn: [
           "Fully compliant with KassenSichV and fiscal standards: Our restaurant management software syncs seamlessly with existing POS systems (Vectron, Lightspeed, Orderbird) or operates independently with certified Cloud TSE.",
@@ -826,7 +832,7 @@ export const solutionsData: SolutionPageData[] = [
         h2: "Eigene Abhol- & Lieferplattform (0 % Provision)",
         h2En: "Direct Pickup & Delivery Ordering (0% Commission)",
         body: [
-          "Befreien Sie Ihren Gastronomiebetrieb von bis zu 30 % Vermittlerprovision: Mit Ihrem eigenen Web-Bestellsystem wickeln Sie Abholungen und Lieferungen direkt ab, behalten 100 % Ihrer Marge und bauen wertvolle Kundendaten für Stammkunden-Aktionen auf.",
+          "Befreien Sie Ihren Gastronomiebetrieb von bis zu 30 % Vermittlerprovision: Mit Ihrem eigenen Web-Bestellsystem wickeln Sie Abholungen und Lieferungen direkt ab, behalten Ihre volle Marge und bauen wertvolle Kundendaten für Stammkunden-Aktionen auf.",
         ],
         bodyEn: [
           "Eliminate 30% aggregator commissions: Own your digital takeaway and delivery pipeline directly, protect your full gross margin, and build high-value customer relationships with built-in re-order marketing.",
@@ -845,13 +851,15 @@ export const solutionsData: SolutionPageData[] = [
         ],
       },
       {
-        h2: "Angebotssoftware Gastronomie: Catering- & Eventkalkulation",
-        h2En: "Hospitality Quoting: Catering & Banquet Cost Estimator",
+        h2: "Angebotssoftware & Bankettsoftware für Gastronomie: Catering- und Eventkalkulation",
+        h2En: "Hospitality Quoting Software: Catering & Banquet Cost Estimator",
         body: [
-          "Schluss mit fehlerhaften Tabellen: Kalkulieren Sie Caterings, Hochzeiten und Firmenevents in wenigen Minuten. Kunden erhalten ein interaktives Online-Angebot, passen Menüfolgen oder Pauschalen eigenständig an und bestätigen digital mit rechtssicherer Signatur.",
+          "Schluss mit fehlerhaften Tabellen: Mit einer Angebots- und Bankettsoftware für die Gastronomie kalkulieren Restaurants Caterings, Bankette, Hochzeiten und Firmenevents in wenigen Minuten. Kunden erhalten ein interaktives Online-Angebot, passen Menüfolgen oder Pauschalen eigenständig an und bestätigen digital mit rechtssicherer Signatur.",
+          "Im Unterschied zu Standard-Tools passen wir die Angebotssoftware an Ihre Abläufe an: Ihre Menüs, Getränkepauschalen, Raummieten und Personalkosten sind hinterlegt, sodass jedes Angebot automatisch korrekt kalkuliert ist und direkt an Küche und Service übergeben wird.",
         ],
         bodyEn: [
           "Replace cumbersome spreadsheets: Generate professional quotes for caterings, weddings, and corporate banquets in minutes. Clients configure menu options and beverage packages online and approve with legally binding e-signatures.",
+          "Unlike off-the-shelf tools, we tailor the quoting software to your workflows: your menus, beverage packages, room rentals and staff costs are stored, so every proposal is calculated correctly and handed straight to kitchen and service.",
         ],
         bullets: [
           "Automatisierte Menü- & Staffelpreiskalkulation nach Personenzahl",
@@ -864,6 +872,30 @@ export const solutionsData: SolutionPageData[] = [
           "Interactive digital proposals with deposit checkout & e-signing",
           "Direct dispatch to kitchen prep and ingredient purchasing",
           "Real-time margin forecasting and labor requirement analysis",
+        ],
+      },
+      {
+        h2: "Software für Erlebnisgastronomie: Events, Pakete & Gruppenbuchungen",
+        h2En: "Software for Experiential Dining: Events, Packages & Group Bookings",
+        body: [
+          "Erlebnisgastronomie – ob Dinnershow, Krimidinner, Kochkurs, Brauereiführung oder Escape-Dinner – lebt von Paketangeboten und Gruppenbuchungen. Eine Angebotssoftware für die Erlebnisgastronomie bündelt Ticket, Menü, Getränke und Programm in einem Angebot und rechnet Personenzahl, Termine und Kapazitäten automatisch mit.",
+          "Gäste und Firmenkunden buchen online, wählen Zusatzleistungen und leisten direkt eine Anzahlung. Ihr Team sieht alle Buchungen, Allergien und Sonderwünsche zentral – vom Angebot bis zur Abrechnung.",
+        ],
+        bodyEn: [
+          "Experiential dining – dinner shows, murder-mystery dinners, cooking classes, brewery tours or escape dinners – runs on packages and group bookings. Quoting software for experiential dining bundles ticket, menu, drinks and programme into one proposal and handles headcount, dates and capacities automatically.",
+          "Guests and corporate clients book online, pick add-ons and pay a deposit right away. Your team sees all bookings, allergies and special requests in one place – from proposal to invoice.",
+        ],
+        bullets: [
+          "Paket- und Ticketkalkulation für Events und Gruppen",
+          "Kapazitäts- und Terminverwaltung pro Veranstaltung",
+          "Online-Buchung mit Anzahlung und Gutscheinen",
+          "Allergien & Sonderwünsche zentral für Küche und Service",
+        ],
+        bulletsEn: [
+          "Package and ticket pricing for events and groups",
+          "Capacity and date management per event",
+          "Online booking with deposits and vouchers",
+          "Allergies & special requests centralised for kitchen and service",
         ],
       },
       {
@@ -901,6 +933,18 @@ export const solutionsData: SolutionPageData[] = [
         qEn: "Does the restaurant software include quotation tools for events and catering?",
         a: "Ja. Das optionale Angebotsmodul ermöglicht die schnelle, fehlerfreie Kalkulation von Banketten, Hochzeiten, Firmen-Events und Catering-Aufträgen inklusive digitaler Signatur, Anzahlungsabwicklung und automatischer Bedarfsermittlung für Küche und Service.",
         aEn: "Yes. The modular quotation engine enables fast, error-free cost calculation for banquets, weddings, corporate events, and catering orders—complete with e-signatures, deposit processing, and automated kitchen prep forecasting.",
+      },
+      {
+        q: "Was ist eine Angebotssoftware für die Gastronomie?",
+        qEn: "What is quoting software for restaurants and hospitality?",
+        a: "Eine Angebotssoftware für die Gastronomie erstellt Angebote für Caterings, Feiern, Firmenevents und Gruppenbuchungen automatisch aus Ihren hinterlegten Menüs, Pauschalen und Personalkosten. Kunden erhalten ein Online-Angebot, das sie anpassen und digital bestätigen können – ohne Excel und ohne Rechenfehler.",
+        aEn: "Quoting software for hospitality creates proposals for caterings, celebrations, corporate events and group bookings automatically from your stored menus, packages and staff costs. Clients receive an online proposal they can adjust and confirm digitally – no spreadsheets, no calculation errors.",
+      },
+      {
+        q: "Eignet sich die Gastronomie Software auch für Erlebnisgastronomie?",
+        qEn: "Is the software suitable for experiential dining venues?",
+        a: "Ja. Für Erlebnisgastronomie wie Dinnershows, Kochkurse oder Escape-Dinner bilden wir Pakete aus Ticket, Menü und Programm ab, inklusive Kapazitätsverwaltung, Online-Buchung mit Anzahlung und zentraler Übersicht über Allergien und Sonderwünsche.",
+        aEn: "Yes. For experiential venues such as dinner shows, cooking classes or escape dinners, we model packages of ticket, menu and programme – including capacity management, online booking with deposits and a central overview of allergies and special requests.",
       },
       {
         q: "Können ausverkaufte Gerichte oder Tagespreise schnell geändert werden?",

@@ -2,15 +2,18 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
-import { servicesData } from "@/data/servicesData";
+import { servicesData, MERGED_DE_SERVICE_TARGETS } from "@/data/servicesData";
 import ServiceDetailView from "@/components/ServiceDetailView";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
+// Merged pages are 301-redirected to /loesungen (next.config.ts), so they are not prerendered
 export function generateStaticParams() {
-  return servicesData.map((s) => ({ slug: s.slugDe }));
+  return servicesData
+    .filter((s) => !MERGED_DE_SERVICE_TARGETS[s.slugDe])
+    .map((s) => ({ slug: s.slugDe }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-import { blogPosts } from "@/data/blogData";
+import { blogPosts, MERGED_BLOG_SLUGS } from "@/data/blogData";
 import { solutionsData } from "@/data/solutions";
-import { servicesData } from "@/data/servicesData";
+import { servicesData, MERGED_DE_SERVICE_TARGETS } from "@/data/servicesData";
 import { getBlogsList } from "@/lib/db";
 
 export const revalidate = 3600;
@@ -62,12 +62,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: lastModDate,
       changeFrequency: "weekly",
       priority: 0.85,
-    },
-    {
-      url: `${SITE_URL}/our-work`,
-      lastModified: lastModDate,
-      changeFrequency: "weekly",
-      priority: 0.8,
     },
     {
       url: `${SITE_URL}/contact`,
@@ -171,6 +165,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.warn("Sitemap: Failed to load database blogs, falling back to static posts:", err);
   }
 
+  for (const slug of MERGED_BLOG_SLUGS) blogMap.delete(slug);
+
   const postRoutes: MetadataRoute.Sitemap = Array.from(blogMap.values()).flatMap(
     (post) => {
       const lastModified =
@@ -196,13 +192,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   // All 20 Localized Service detail routes (20 German + 20 English = 40 pages)
+  // Merged German pages are 301s to /loesungen (already listed above), so only the EN twin is listed
   const serviceRoutes: MetadataRoute.Sitemap = servicesData.flatMap((service) => [
-    {
-      url: `${SITE_URL}/de/services/${service.slugDe}`,
-      lastModified: lastModDate,
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    },
+    ...(MERGED_DE_SERVICE_TARGETS[service.slugDe]
+      ? []
+      : [
+          {
+            url: `${SITE_URL}/de/services/${service.slugDe}`,
+            lastModified: lastModDate,
+            changeFrequency: "weekly" as const,
+            priority: 0.9,
+          },
+        ]),
     {
       url: `${SITE_URL}/en/services/${service.slugEn}`,
       lastModified: lastModDate,

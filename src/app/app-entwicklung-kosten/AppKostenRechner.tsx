@@ -98,13 +98,13 @@ export default function AppKostenRechner() {
               <Calculator className="w-3.5 h-3.5" />
               <span>{t("Interaktiver Kosten-Kalkulator 2026", "Interactive Cost Calculator 2026")}</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-[900] tracking-tight">
-              {t("App-Kostenrechner", "App Cost Calculator")}
-            </h3>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-[900] tracking-tight">
+              {t("App Entwicklung Kosten Rechner", "App Development Cost Calculator")}
+            </h2>
             <p className="text-white/95 text-sm sm:text-base lg:text-lg mt-2 max-w-2xl font-normal leading-relaxed">
               {t(
-                "Wählen Sie Plattform, Projekttyp und gewünschte Features. Ermitteln Sie in Echtzeit Entwicklungsdauer und Budgetrahmen für Ihr individuelles Vorhaben.",
-                "Select platform, project scope, and custom features. Calculate estimated development timeline and budget ranges for your mobile application in real time."
+                "Wählen Sie Plattform, Projekttyp und gewünschte Features. Der Rechner ermittelt in Echtzeit die Entwicklungsdauer Ihrer App – Ihr verbindliches Festpreis-Angebot erhalten Sie anschließend kostenlos.",
+                "Select platform, project scope, and custom features. The calculator estimates your app's development timeline in real time – you then receive a free, binding fixed-price proposal."
               )}
             </p>
           </div>
@@ -131,7 +131,7 @@ export default function AppKostenRechner() {
               {t("Ziel-Plattform wählen", "Select Target Platform")}
             </label>
             <span className="text-xs sm:text-sm text-slate-500 font-medium">
-              {t("Cross-Platform spart bis zu 40% Kosten", "Cross-platform saves up to 40% in costs")}
+              {t("Cross-Platform spart Kosten durch eine Codebasis", "Cross-platform saves costs with one codebase")}
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -230,7 +230,7 @@ export default function AppKostenRechner() {
                     </span>
                   </div>
                   <div className="text-xs sm:text-sm text-[#EA580C] font-bold pl-6">
-                    {scope.labelPrice}
+                    {lang === "de" ? scope.hintDe : scope.hintEn}
                   </div>
                 </button>
               );
@@ -353,11 +353,11 @@ export default function AppKostenRechner() {
                 </span>
               </div>
               <div className="text-sm sm:text-base font-semibold text-slate-700">
-                {t("Geschätzter Preisrahmen: ", "Estimated Investment Range: ")}
+                {t("Kosten: ", "Cost: ")}
                 <span className="inline-block px-3 py-1 rounded-md bg-orange-100 text-orange-900 font-bold text-sm sm:text-base border border-orange-200/80">
                   {t(
-                    "[PREIS HIER EINTRAGEN: Individuelles Festpreis-Angebot auf Basis Ihrer Konfiguration]",
-                    "[PREIS HIER EINTRAGEN: Bespoke fixed-price proposal tailored to your exact scope]"
+                    "Kostenloses Festpreis-Angebot für genau diese Konfiguration",
+                    "Free fixed-price proposal for exactly this configuration"
                   )}
                 </span>
               </div>
@@ -373,12 +373,12 @@ export default function AppKostenRechner() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
-                <span>{t("Kostenlose Beratung anfragen", "Get Free Consultation")}</span>
+                <span>{t("Festpreis-Angebot anfragen", "Request Fixed-Price Proposal")}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-slate-500 font-medium">
                 <Shield className="w-4 h-4 text-emerald-600" />
-                <span>{t("100% unverbindlich & DSGVO-konform", "100% Non-binding & GDPR Compliant")}</span>
+                <span>{t("Unverbindlich & DSGVO-konform", "Non-binding & GDPR Compliant")}</span>
               </div>
             </div>
           </div>

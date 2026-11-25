@@ -28,20 +28,31 @@ export async function generateMetadata({
         slug: found.slug,
         titleDe: found.title_de || post?.titleDe || "Blog",
         titleEn: found.title_en || post?.titleEn || "Blog",
-        seoTitleDe: foundAny.seo_title_de || found.title_de || post?.seoTitleDe || "Blog",
-        excerptDe: found.excerpt_de || post?.excerptDe || "",
-        excerptEn: found.excerpt_en || post?.excerptEn || "",
+        // Explicit admin SEO title > curated file SEO title > plain DB title
+        seoTitleDe: foundAny.seo_title_de || post?.seoTitleDe || found.title_de || "Blog",
+        // Posts defined in src/data win over DB copies (the DB holds stale seeded
+        // excerpts, e.g. with "Stuttgart"/old claims). DB-only posts use the DB excerpt.
+        excerptDe: post?.excerptDe || found.excerpt_de || "",
+        excerptEn: post?.excerptEn || found.excerpt_en || "",
       } as any;
     }
   } catch {}
 
   if (!post) notFound();
 
-  const rawTitle = (post.seoTitleDe || post.titleDe).replace(/\s*\|\s*Nexa Solutions$/i, "").trim();
+  // Strip any brand suffix ("| Nexa" or "| Nexa Solutions") before re-adding it once
+  const rawTitle = (post.seoTitleDe || post.titleDe).replace(/\s*\|\s*Nexa(?: Solutions)?\s*$/i, "").trim();
   const brandSuffix = " | Nexa Solutions";
-  const title = (rawTitle.length + brandSuffix.length <= 55)
+  const MAX = 60;
+  const cutAtWord = (s: string) => {
+    if (s.length <= MAX) return s;
+    const cut = s.slice(0, MAX);
+    const lastSpace = cut.lastIndexOf(" ");
+    return (lastSpace > 30 ? cut.slice(0, lastSpace) : cut).replace(/[\s:,&–-]+$/, "");
+  };
+  const title = (rawTitle.length + brandSuffix.length <= MAX)
     ? `${rawTitle}${brandSuffix}`
-    : (rawTitle.length <= 55 ? rawTitle : rawTitle.slice(0, 55));
+    : cutAtWord(rawTitle);
 
   const deUrl = `${SITE_URL}/blog/${post.slug}`;
   const enUrl = `${SITE_URL}/en/blog/${post.slug}`;

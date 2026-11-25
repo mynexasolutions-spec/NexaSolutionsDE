@@ -26,12 +26,14 @@ export const siteDescriptionEn =
   "Leading web development agency in Germany: Next.js websites, mobile apps & AI workflow automation. Compliant & fixed price. Request a consultation!";
 
 export const siteTitleDe =
-  "Webentwicklung Agentur Stuttgart | Apps & n8n | Nexa";
+  "Webentwicklung & Webdesign Agentur Deutschland | Nexa Solutions";
 export const siteDescriptionDe =
-  "Webentwicklung Agentur Stuttgart: Maßgeschneiderte Websites, Apps & n8n Automatisierung zum Festpreis. Jetzt kostenlose Beratung anfragen!";
+  "Webentwicklung & Webdesign Agentur für Deutschland, Österreich und die Schweiz: Next.js Websites, Apps & n8n Automatisierung zum Festpreis. Jetzt beraten lassen!";
 
-const siteTitle = siteTitleEn;
-const siteDescription = siteDescriptionEn;
+// German is the primary market and the default (server-rendered) language,
+// so the default <title>/description must be German too.
+const siteTitle = siteTitleDe;
+const siteDescription = siteDescriptionDe;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -74,7 +76,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Nexa Solutions – Webentwicklung, Apps & n8n Automatisierung Stuttgart",
+        alt: "Nexa Solutions – Webentwicklung, Apps & n8n Automatisierung für Deutschland",
       },
     ],
   },
@@ -101,7 +103,7 @@ const organizationJsonLd = {
       inLanguage: ["de-DE", "en-US"],
     },
     {
-      "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+      "@type": ["Organization", "ProfessionalService"],
       "@id": `${SITE_URL}/#organization`,
       name: "Nexa Solutions",
       url: SITE_URL,
@@ -116,18 +118,12 @@ const organizationJsonLd = {
           availableLanguage: ["German", "English"],
         },
       ],
+      // Must match the Impressum (legal address). No street address published there.
       address: {
         "@type": "PostalAddress",
-        streetAddress: "[STRASSE HIER EINTRAGEN: z. B. Königstraße XX]",
-        postalCode: "[PLZ HIER EINTRAGEN: z. B. 70173]",
-        addressLocality: "Stuttgart",
-        addressRegion: "Baden-Württemberg",
-        addressCountry: "DE",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: "[LATITUDE HIER EINTRAGEN: z. B. 48.7758]",
-        longitude: "[LONGITUDE HIER EINTRAGEN: z. B. 9.1829]",
+        addressLocality: "New Delhi",
+        addressRegion: "Delhi",
+        addressCountry: "IN",
       },
       openingHoursSpecification: [
         {
@@ -187,44 +183,8 @@ const organizationJsonLd = {
         ],
       },
     },
-    {
-      "@type": "FAQPage",
-      "@id": `${SITE_URL}/#faq`,
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Wie setzen sich die Kosten und Projektlaufzeiten zusammen?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Wir arbeiten nach transparenten Festpreisen auf Basis eines vorab definierten Anforderungskatalogs – ohne unerwartete Nachforderungen. Kleinere Webauftritte dauern typischerweise 2 bis 4 Wochen, mobile Apps 4 bis 8 Wochen und umfangreiche Unternehmenssysteme 6 bis 10 Wochen.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Sind die entwickelten Websites und Apps barrierefrei nach dem BFSG-Gesetz?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Ja. Ab Juni 2025 gilt in Deutschland und der EU das Barrierefreiheitsstärkungsgesetz (BFSG). Als erfahrene BFSG Website Agentur bauen wir Anwendungen nach den internationalen WCAG 2.1 AA Standards mit semantischer Struktur, Screenreader-Unterstützung und optimalen Kontrasten.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Bietet Ihre Webentwicklung Agentur Stuttgart auch überregionalen Service?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Ja. Als Webentwicklung Agentur Stuttgart und bundesweit tätige Webdesign Agentur Deutschland betreuen wir Kunden in ganz Deutschland, Österreich und der Schweiz sowie international als Web Development Agency Germany.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Wie stellen Sie DSGVO-Konformität und Datensicherheit sicher?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Alle von uns gehosteten Systeme liegen in ISO-27001-zertifizierten Rechenzentren in Deutschland (Frankfurt am Main). Wir implementieren standardmäßig SSL-Verschlüsselung, Auftragsverarbeitungsverträge (AVV), Cookie-freie Analytics und GoBD-konforme Archivierung.",
-          },
-        },
-      ],
-    },
+    // The homepage FAQPage lives in src/lib/homeFaqJsonLd.ts and is rendered only on "/".
+    // Rendering it here put a second FAQPage on every page that has its own FAQ schema.
   ],
 };
 

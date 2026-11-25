@@ -3,17 +3,17 @@ import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: {
-    absolute: "KI Automatisierung Stuttgart | n8n Agentur Nexa",
+    absolute: "KI Automatisierung für Unternehmen | n8n Agentur Nexa",
   },
   description:
-    "KI Automatisierung Stuttgart: n8n Workflows, autonome KI-Agenten und DSGVO-konforme Prozessoptimierung für Unternehmen. Jetzt beraten lassen!",
+    "KI Automatisierung für Unternehmen in Deutschland: n8n Workflows, KI-Agenten und DSGVO-konforme Prozessoptimierung. Jetzt beraten lassen!",
   path: "/services/ai-automation",
 });
 
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "KI Automatisierung Stuttgart: n8n & KI-Agenten Entwicklung",
+  name: "KI Automatisierung für Unternehmen: n8n & KI-Agenten Entwicklung",
   serviceType: "Business Process Automation & n8n Workflows",
   provider: {
     "@type": "Organization",
@@ -83,7 +83,7 @@ const faqJsonLd = {
       name: "Wie schnell amortisiert sich die Investition in KI-Workflows (ROI)?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "In den meisten mittelständischen Unternehmen amortisiert sich ein Quick-Win-Workflow in unter 30 Tagen.",
+        text: "Wie schnell sich ein Workflow amortisiert, hängt vor allem von der eingesparten Arbeitszeit ab – deshalb starten wir mit den Prozessen, die am häufigsten manuell wiederholt werden.",
       },
     },
     {

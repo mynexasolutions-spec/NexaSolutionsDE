@@ -11,13 +11,13 @@ export const servicesBatch2: ServiceItemData[] = [
     titleEn: "LLM Integration",
     seoTitleDe: "LLM Integration Unternehmen | ChatGPT integrieren",
     seoTitleEn: "LLM Integration & Enterprise Generative AI Solutions | Nexa Solutions",
-    metaDescriptionDe: "LLM Integration für Unternehmen: ChatGPT integrieren mit RAG-Systemen, Vektordatenbanken & 100% DSGVO-Sicherheit. Jetzt unverbindlich anfragen!",
+    metaDescriptionDe: "LLM Integration für Unternehmen: ChatGPT integrieren mit RAG-Systemen, Vektordatenbanken & DSGVO-konformem Hosting. Jetzt unverbindlich anfragen!",
     metaDescriptionEn: "Integrate enterprise Large Language Models like GPT-4o, Claude 3.5 and Llama 3 via RAG pipelines into your business software. GDPR-compliant German engineering.",
     h1De: "LLM Integration für Unternehmen: ChatGPT in Unternehmen integrieren",
     h1En: "Enterprise LLM Integration & Generative AI Solutions for Business",
     badgeDe: "Generative KI & Sprachmodelle",
     badgeEn: "Generative AI & LLM Systems",
-    introDe: "Profitieren Sie von professioneller LLM Integration für Unternehmen: Wir helfen Ihnen dabei, fortschrittliche Modelle wie GPT-4o und ChatGPT in Unternehmen integrieren zu können. Mit maßgeschneiderter RAG System Entwicklung, Vektordatenbanken und autonomen Workflows verknüpfen wir Unternehmenswissen direkt mit Sprachmodellen – 100% DSGVO-konform und datensouverän gehostet.",
+    introDe: "Profitieren Sie von professioneller LLM Integration für Unternehmen: Wir helfen Ihnen dabei, fortschrittliche Modelle wie GPT-4o und ChatGPT in Unternehmen integrieren zu können. Mit maßgeschneiderter RAG System Entwicklung, Vektordatenbanken und autonomen Workflows verknüpfen wir Unternehmenswissen direkt mit Sprachmodellen – DSGVO-konform und datensouverän gehostet.",
     introEn: "We seamlessly integrate state-of-the-art Large Language Models (LLMs) such as OpenAI GPT-4o, Anthropic Claude, and self-hosted models via RAG pipelines into your enterprise applications. Unlock enterprise knowledge with strict GDPR data governance.",
     heroImage: "/images/ai-robot.png",
     primaryKeywordDe: "LLM Integration",
@@ -82,7 +82,7 @@ export const servicesBatch2: ServiceItemData[] = [
       points: [
         "Hybrid-RAG mit Vektordatenbanken (Pinecone / pgvector / Qdrant) für faktenbasierte Antworten aus Ihren Dokumenten",
         "DSGVO-konforme Enterprise-APIs oder On-Premises-Hosting (Ollama / vLLM / HuggingFace)",
-        "Semantisches Prompt-Caching zur Reduzierung der Token-Kosten um bis zu 60%",
+        "Semantisches Prompt-Caching zur spürbaren Reduzierung der Token-Kosten",
         "Function Calling & Agents zur automatischen Ausführung von Datenbankabfragen und Workflows",
       ],
     },
@@ -92,7 +92,7 @@ export const servicesBatch2: ServiceItemData[] = [
       points: [
         "Hybrid RAG with vector stores (Pinecone / pgvector / Qdrant) for verifiable, hallucination-free enterprise knowledge retrieval",
         "GDPR-compliant EU Enterprise APIs or dedicated private on-prem hosting (Ollama / vLLM)",
-        "Semantic prompt caching to diminish monthly token costs by up to 60%",
+        "Semantic prompt caching to noticeably reduce monthly token costs",
         "Structured Function Calling enabling LLMs to query production databases and trigger APIs safely",
       ],
     },
@@ -164,15 +164,15 @@ export const servicesBatch2: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "80% schnellere Recherche",
+        title: "Schnellere Recherche",
         description: "Mitarbeiter finden komplexe Fachinformationen in Tausenden internen Dokumenten in Sekunden statt Stunden.",
       },
       {
-        title: "100% DSGVO-Sicherheit",
+        title: "DSGVO-konforme Datenhaltung",
         description: "Garantiert kein Modelltraining mit Ihren Eingaben; Hosting in nach ISO 27001 zertifizierten EU-Rechenzentren.",
       },
       {
-        title: "60% geringere Betriebskosten",
+        title: "Geringere Betriebskosten",
         description: "Intelligentes Modell-Routing und Vektor-Caching minimieren teure Token-Abrechnungen spürbar.",
       },
       {
@@ -182,15 +182,15 @@ export const servicesBatch2: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "80% Faster Knowledge Retrieval",
+        title: "Faster Knowledge Retrieval",
         description: "Empower staff to extract precise operational insights from thousands of internal documents in seconds.",
       },
       {
-        title: "100% GDPR & Data Governance",
+        title: "GDPR & Data Governance",
         description: "Zero data retention agreements guarantee your internal prompts never train third-party foundation models.",
       },
       {
-        title: "60% Lower Operating Overhead",
+        title: "Lower Operating Overhead",
         description: "Smart semantic caching and adaptive multi-tier routing drastically curb monthly token expenditures.",
       },
       {
@@ -390,7 +390,7 @@ export const servicesBatch2: ServiceItemData[] = [
     challengesDe: [
       {
         title: "Überlastung durch repetitive Routineaufgaben",
-        description: "Qualifizierte Mitarbeiter verbringen bis zu 30% ihrer Arbeitszeit mit Dateneingabe, Textzusammenfassungen und Dokumentenablage.",
+        description: "Qualifizierte Mitarbeiter verbringen viel Arbeitszeit mit Dateneingabe, Textzusammenfassungen und Dokumentenablage.",
       },
       {
         title: "Fehlendes internes KI-Fachwissen",
@@ -408,7 +408,7 @@ export const servicesBatch2: ServiceItemData[] = [
     challengesEn: [
       {
         title: "Drain on High-Value Talent",
-        description: "Skilled specialists spend up to 30% of their working hours manually transcribing data, summarizing reports, and sorting tickets.",
+        description: "Skilled specialists spend a large share of their working hours manually transcribing data, summarizing reports, and sorting tickets.",
       },
       {
         title: "Unclear Strategic AI Roadmap",
@@ -428,7 +428,7 @@ export const servicesBatch2: ServiceItemData[] = [
       title: "Unser Ansatz: Wertschöpfende KI mit messbarem ROI",
       description: "Wir implementieren keine theoretischen Spielereien, sondern robuste KI-Systeme, die messbare Arbeitszeit einsparen und Fehlerquoten senken.",
       points: [
-        "Identifikation der wertschöpfendsten 20% Ihrer Prozesse, die 80% des Effizienzgewinns bringen",
+        "Identifikation der Prozesse mit dem größten Effizienzhebel",
         "Maßgeschneiderte KI-Modelle und Workflows statt unpassender Standard-Software von der Stange",
         "Nahtlose Integration in Ihre bestehende IT-Landschaft ohne störenden Systemwechsel",
         "Vollständige DSGVO-Konformität mit deutschem/europäischem Server-Hosting",
@@ -438,17 +438,17 @@ export const servicesBatch2: ServiceItemData[] = [
       title: "Our Approach: Value-First Business AI with Tangible ROI",
       description: "We do not build speculative toys. We develop production-grade AI platforms engineered to compress operational overhead and eliminate manual human error.",
       points: [
-        "Pinpointing the high-leverage 20% of repetitive operational tasks that unlock 80% of productivity gains",
+        "Pinpointing the repetitive tasks with the biggest productivity leverage",
         "Bespoke neural pipelines and automation engines tailored specifically to your exact domain requirements",
         "Seamless integration directly into current ERP, CRM, and cloud systems without organizational friction",
-        "100% GDPR compliance backed by ISO-27001 certified German and EU data center infrastructure",
+        "GDPR compliance backed by ISO-27001 certified German and EU data center infrastructure",
       ],
     },
 
     featuresDe: [
       {
         title: "Intelligente Dokumentenverarbeitung (IDP)",
-        description: "Automatische Extraktion und Validierung von Daten aus Rechnungen, Lieferscheinen und Verträgen mit 99% Genauigkeit.",
+        description: "Automatische Extraktion und Validierung von Daten aus Rechnungen, Lieferscheinen und Verträgen – mit automatischer Plausibilitätsprüfung.",
         scopeBadge: "Automatisierung",
       },
       {
@@ -480,7 +480,7 @@ export const servicesBatch2: ServiceItemData[] = [
     featuresEn: [
       {
         title: "Intelligent Document Processing (IDP)",
-        description: "Automated OCR extraction and validation of data from invoices, shipping manifests, and contracts with 99% accuracy.",
+        description: "Automated OCR extraction and validation of data from invoices, shipping manifests, and contracts – with automatic plausibility checks.",
         scopeBadge: "Automation",
       },
       {
@@ -512,15 +512,15 @@ export const servicesBatch2: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 70% Zeitersparnis",
+        title: "Deutliche Zeitersparnis",
         description: "Routineaufgaben werden von Minuten auf Sekunden verkürzt – Ihr Team gewinnt hunderte produktive Stunden pro Monat zurück.",
       },
       {
-        title: "99% weniger manuelle Tippfehler",
+        title: "Weniger manuelle Tippfehler",
         description: "KI liest Zahlen, Steuersätze und Adressen fehlerfrei aus und gleicht sie automatisch mit Stammdaten ab.",
       },
       {
-        title: "Schneller ROI in unter 90 Tagen",
+        title: "Messbarer ROI",
         description: "Dank gezieltem Phasen-Rollout amortisieren sich unsere maßgeschneiderten KI-Implementierungen im ersten Quartal.",
       },
       {
@@ -530,11 +530,11 @@ export const servicesBatch2: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "Up to 70% Time Savings",
+        title: "Significant Time Savings",
         description: "Manual transcription and sorting tasks collapse from hours to seconds, reclaiming significant productive bandwidth.",
       },
       {
-        title: "99% Reduction in Data Errors",
+        title: "Fewer Manual Data Errors",
         description: "Neural parsers extract line items, IBANs, and taxes flawlessly, cross-verifying entries against primary master records.",
       },
       {
@@ -776,8 +776,8 @@ export const servicesBatch2: ServiceItemData[] = [
       title: "Unsere All-in-One Gastronomie-Lösung",
       description: "Ein einheitliches Ökosystem, das Kasse, Tischservice, Küche, Abholung und Finanzen in Echtzeit miteinander verbindet.",
       points: [
-        "100% KassenSichV- & TSE-konformes Kassensystem mit digitalem Beleg (ohne Papierzwang)",
-        "Interaktive QR-Bestellung am Tisch direkt aufs Küchen-Display (KDS) – spart bis zu 40% Servicezeit",
+        "KassenSichV- & TSE-konformes Kassensystem mit digitalem Beleg (ohne Papierzwang)",
+        "Interaktive QR-Bestellung am Tisch direkt aufs Küchen-Display (KDS) – spart Laufwege im Service",
         "Eigener provisionsfreier Onlineshop für Abholer und Lieferservice ohne Portalgebühren",
         "Echtzeit-Verwaltung von Tischreservierungen mit SMS-Bestätigungen und No-Show-Schutz",
       ],
@@ -787,7 +787,7 @@ export const servicesBatch2: ServiceItemData[] = [
       description: "A synchronized restaurant operating ecosystem unifying order taking, table service, kitchen displays, and accounting in real time.",
       points: [
         "Fully certified German TSE cloud fiscal compliance (KassenSichV) with digital e-receipt support",
-        "Self-service QR table ordering routing orders directly to kitchen displays—cutting table wait times by 40%",
+        "Self-service QR table ordering routing orders directly to kitchen displays—cutting table wait times",
         "Direct branded online ordering platform for takeout and delivery with zero third-party commission deductions",
         "Live table reservation calendar with automated SMS reminders and deposit options to eliminate costly no-shows",
       ],
@@ -860,7 +860,7 @@ export const servicesBatch2: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 25% höherer Tischumsatz",
+        title: "Höherer Tischumsatz durch Upselling",
         description: "Durch unkomplizierte Nachbestellungen per QR-Code bestellen Gäste nachweislich mehr Getränke und Desserts.",
       },
       {
@@ -878,7 +878,7 @@ export const servicesBatch2: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "Up to 25% Higher Average Order Value",
+        title: "Higher Average Order Value via Upselling",
         description: "Frictionless QR ordering reliably prompts guests to order additional rounds of drinks, appetizers, and desserts.",
       },
       {
@@ -1002,7 +1002,7 @@ export const servicesBatch2: ServiceItemData[] = [
     faqDe: [
       {
         q: "Ist das Kassensystem rechtssicher nach KassenSichV und GoBD zertifiziert?",
-        a: "Ja, zu 100%. Unser Kassensystem integriert eine offizielle, vom BSI zertifizierte Cloud-TSE (Technische Sicherheitseinrichtung), erstellt digitale DSFinV-K-Exporte und erfüllt alle KassenSichV- und GoBD-Anforderungen für das deutsche Finanzamt.",
+        a: "Ja. Unser Kassensystem integriert eine offizielle, vom BSI zertifizierte Cloud-TSE (Technische Sicherheitseinrichtung), erstellt digitale DSFinV-K-Exporte und erfüllt alle KassenSichV- und GoBD-Anforderungen für das deutsche Finanzamt.",
       },
       {
         q: "Können wir unsere bestehenden Tablets und Belegdrucker weiterverwenden?",
@@ -1024,7 +1024,7 @@ export const servicesBatch2: ServiceItemData[] = [
     faqEn: [
       {
         q: "Is this POS system officially certified under German KassenSichV and GoBD laws?",
-        a: "Yes, 100%. Our platform integrates an official BSI-certified cloud TSE (Technical Security System), generates standardized DSFinV-K audit archives, and strictly complies with all German tax authority guidelines.",
+        a: "Yes. Our platform integrates an official BSI-certified cloud TSE (Technical Security System), generates standardized DSFinV-K audit archives, and strictly complies with all German tax authority guidelines.",
       },
       {
         q: "Can we reuse our existing hardware (iPads, Android tablets, receipt printers)?",
@@ -1094,7 +1094,7 @@ export const servicesBatch2: ServiceItemData[] = [
       },
       {
         title: "Explodierende monatliche Lizenzkosten",
-        description: "Große SaaS-Plattformen verlangen pro Mitarbeiter und Monat hohe Gebühren, bieten aber 80% Funktionen, die Sie gar nicht benötigen.",
+        description: "Große SaaS-Plattformen verlangen pro Mitarbeiter und Monat hohe Gebühren, bieten aber viele Funktionen, die Sie gar nicht benötigen.",
       },
       {
         title: "Ineffiziente manuelle Übergaben zwischen Abteilungen",
@@ -1112,7 +1112,7 @@ export const servicesBatch2: ServiceItemData[] = [
       },
       {
         title: "Escalating Per-Seat SaaS Licensing Fees",
-        description: "Off-the-shelf platforms charge exorbitant per-user monthly tolls while forcing teams into bloated workflows with 80% unnecessary features.",
+        description: "Off-the-shelf platforms charge exorbitant per-user monthly tolls while forcing teams into bloated workflows with many unnecessary features.",
       },
       {
         title: "Friction in Cross-Departmental Handoffs",
@@ -1483,7 +1483,7 @@ export const servicesBatch2: ServiceItemData[] = [
       description: "We architect secure, self-hosted automation pipelines running autonomously in the background with zero data loss.",
       points: [
         "Unifying your full tech stack: CRM, transactional email, ERP, banking feeds, Slack, and Google Workspace",
-        "Self-hosted n8n infrastructure deployed on German servers: 100% GDPR compliant with unlimited task execution",
+        "Self-hosted n8n infrastructure deployed on German servers: GDPR compliant with unlimited task execution",
         "Sub-second real-time synchronization: Data flows instantly between operational systems without human intervention",
         "Proactive exception monitoring: Automated alerts notify designated tech leads immediately if an external vendor API hiccups",
       ],
@@ -1529,7 +1529,7 @@ export const servicesBatch2: ServiceItemData[] = [
       },
       {
         title: "Instant Inbound Lead-to-CRM Routing",
-        description: "New inbound quote requests are enriched, injected into CRM, and pushed to sales reps on Slack or WhatsApp in under 5 seconds.",
+        description: "New inbound quote requests are enriched, injected into CRM, and pushed to sales reps on Slack or WhatsApp within seconds.",
         scopeBadge: "Sales Velocity",
       },
       {
@@ -1561,7 +1561,7 @@ export const servicesBatch2: ServiceItemData[] = [
       },
       {
         title: "Null manuelle Übertragungsfehler",
-        description: "APIs übertragen Datensätze mit 100%iger mathematischer Präzision; keine vergessenen Einträge oder Zahlendreher mehr.",
+        description: "APIs übertragen Datensätze automatisch und konsistent; keine vergessenen Einträge oder Zahlendreher durch manuelles Abtippen.",
       },
       {
         title: "Blitzschnelle Reaktionszeiten",
@@ -1579,7 +1579,7 @@ export const servicesBatch2: ServiceItemData[] = [
       },
       {
         title: "Zero Transcription & Sync Errors",
-        description: "Enterprise APIs process datasets with 100% mathematical precision—completely eliminating inverted figures and missed records.",
+        description: "Enterprise APIs transfer datasets automatically and consistently—no more inverted figures or missed records from manual typing.",
       },
       {
         title: "Sub-Minute Response Speed",
@@ -1698,7 +1698,7 @@ export const servicesBatch2: ServiceItemData[] = [
     faqDe: [
       {
         q: "Warum empfehlen Sie n8n statt Zapier oder Make?",
-        a: "n8n kann auf eigenen deutschen Servern betrieben werden – das garantiert 100% DSGVO-Konformität, absolute Datenhoheit und unbegrenzte Workflows ohne explodierende Kosten pro ausgeführter Aufgabe.",
+        a: "n8n kann auf eigenen deutschen Servern betrieben werden – das ermöglicht DSGVO-Konformität, volle Datenhoheit und unbegrenzte Workflows ohne explodierende Kosten pro ausgeführter Aufgabe.",
       },
       {
         q: "Können auch Programme ohne offizielle Schnittstelle angebunden werden?",
@@ -1720,7 +1720,7 @@ export const servicesBatch2: ServiceItemData[] = [
     faqEn: [
       {
         q: "Why do you recommend n8n over Zapier or Make?",
-        a: "n8n can be self-hosted on your private German cloud server—guaranteeing 100% GDPR compliance, total data sovereignty, and unlimited task volume with zero monthly execution surcharges.",
+        a: "n8n can be self-hosted on your private German cloud server—enabling GDPR compliance, full data sovereignty, and unlimited task volume with zero monthly execution surcharges.",
       },
       {
         q: "Can software tools without an official API still be automated?",
@@ -1751,13 +1751,13 @@ export const servicesBatch2: ServiceItemData[] = [
     titleEn: "AI Automation",
     seoTitleDe: "KI Agenten entwickeln lassen | KI für Unternehmen",
     seoTitleEn: "Autonomous AI Agents & Chatbot Automation Solutions | Nexa Solutions",
-    metaDescriptionDe: "KI Agenten für Unternehmen: Autonome KI Agenten entwickeln lassen mit n8n & LangGraph. 100% DSGVO-konform. Jetzt unverbindlich anfragen!",
+    metaDescriptionDe: "KI Agenten für Unternehmen: Autonome KI Agenten entwickeln lassen mit n8n & LangGraph. DSGVO-konform. Jetzt unverbindlich anfragen!",
     metaDescriptionEn: "Engineering autonomous AI agents and intelligent chatbots: Automate customer inquiries, multi-step research, and business workflows with cutting-edge AI.",
     h1De: "KI Agenten entwickeln lassen: Autonome KI Agenten für Unternehmen",
     h1En: "Autonomous AI Agents & Intelligent Workflow Automation",
     badgeDe: "Autonome Agenten & KI-Workflows",
     badgeEn: "Autonomous Agents & AI Systems",
-    introDe: "Möchten Sie autonome KI Agenten entwickeln lassen? Als Agentur für AI Agent Development in Germany konzipieren wir spezialisierte KI Agenten für Unternehmen, die komplexe Kundenanfragen verstehen, eigenständig Daten aus ERP- und CRM-Systemen abfragen und mehrstufige Arbeitsabläufe rund um die Uhr abarbeiten. Lassen Sie bei uns zukunftssichere KI Agenten für Unternehmen entwickeln – mit strikten Leitplanken und 100% DSGVO-Sicherheit.",
+    introDe: "Möchten Sie autonome KI Agenten entwickeln lassen? Als Agentur für AI Agent Development in Germany konzipieren wir spezialisierte KI Agenten für Unternehmen, die komplexe Kundenanfragen verstehen, eigenständig Daten aus ERP- und CRM-Systemen abfragen und mehrstufige Arbeitsabläufe rund um die Uhr abarbeiten. Lassen Sie bei uns zukunftssichere KI Agenten für Unternehmen entwickeln – mit strikten Leitplanken und DSGVO-konformem Betrieb.",
     introEn: "Move beyond simple trigger-and-action scripts: We engineer autonomous AI agents capable of understanding nuanced inquiries, performing multi-step data lookups, synthesizing reports, and executing multi-system business tasks 24/7.",
     heroImage: "/images/ai-robot.png",
     primaryKeywordDe: "KI-Automatisierung",
@@ -1845,7 +1845,7 @@ export const servicesBatch2: ServiceItemData[] = [
       },
       {
         title: "Intelligente Support- & Service-Agenten",
-        description: "Löst bis zu 75% aller Kundenanfragen autonom: prüft Bestellstatus, leitet Retouren ein und beantwortet Fachfragen.",
+        description: "Löst wiederkehrende Kundenanfragen autonom: prüft Bestellstatus, leitet Retouren ein und beantwortet Fachfragen.",
         scopeBadge: "Kundenservice",
       },
       {
@@ -1877,7 +1877,7 @@ export const servicesBatch2: ServiceItemData[] = [
       },
       {
         title: "Autonomous Customer Support Agents",
-        description: "Autonomously resolves up to 75% of customer tickets: checks live order statuses, initiates returns, and troubleshoots.",
+        description: "Autonomously resolves recurring customer tickets: checks live order statuses, initiates returns, and troubleshoots.",
         scopeBadge: "Customer Service",
       },
       {
@@ -1904,7 +1904,7 @@ export const servicesBatch2: ServiceItemData[] = [
 
     benefitsDe: [
       {
-        title: "Bis zu 75% geringeres Support-Ticketvolumen",
+        title: "Geringeres Support-Ticketvolumen",
         description: "Routinefragen werden in Sekunden ohne menschliches Eingreifen gelöst – Ihr Support-Team atmet spürbar auf.",
       },
       {
@@ -1922,7 +1922,7 @@ export const servicesBatch2: ServiceItemData[] = [
     ],
     benefitsEn: [
       {
-        title: "Up to 75% Ticket Deflection Rate",
+        title: "Higher Ticket Deflection Rate",
         description: "Routine requests resolve in seconds with zero human intervention, dramatically easing pressure on support personnel.",
       },
       {

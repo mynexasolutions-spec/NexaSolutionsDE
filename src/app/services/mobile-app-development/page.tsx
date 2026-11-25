@@ -95,8 +95,8 @@ const mobileCapabilities = [
       "Eine gemeinsame Codebasis für iOS und Android bei nativer 60 FPS Performance. Berechnen Sie vorab die [App Entwicklung Kosten](/app-entwicklung-kosten) mit unserem Rechner, lesen Sie unsere Analyse zu [React Native App Entwicklung](/blog/react-native-cross-platform-apps) oder starten Sie mit einer schnellen [MVP-Entwicklung](/services/mvp-development).",
     descEn:
       "A unified codebase powering iOS and Android at buttery-smooth 60 FPS. Calculate estimated [App Development Cost](/app-entwicklung-kosten) in advance, explore our [React Native app analysis](/blog/react-native-cross-platform-apps) or start with a [Rapid MVP Sprint](/services/mvp-development).",
-    tagsDe: ["50% geringere Kosten", "Schnellere Time-to-Market", "Gemeinsame UI-Komponenten"],
-    tagsEn: ["50% reduced costs", "Accelerated time-to-market", "Shared UI component library"],
+    tagsDe: ["Geringere Kosten", "Schnellere Time-to-Market", "Gemeinsame UI-Komponenten"],
+    tagsEn: ["Reduced costs", "Accelerated time-to-market", "Shared UI component library"],
   },
   {
     icon: Fingerprint,
@@ -144,8 +144,8 @@ const mobileCapabilities = [
   },
   {
     icon: ShieldCheck,
-    titleDe: "100% App Store & Play Store Garantie",
-    titleEn: "100% App Store & Play Store Guarantee",
+    titleDe: "Komplette App Store & Play Store Begleitung",
+    titleEn: "Full App Store & Play Store Submission Support",
     descDe:
       "Wir übernehmen den gesamten Zulassungsprozess: Screenshots, rechtliche Anforderungen, Datenschutz-Metadaten und den Dialog mit den Review-Teams von Apple und Google.",
     descEn:
@@ -167,18 +167,18 @@ const comparisonData = [
   {
     criterionDe: "Budget & Gesamtkosten",
     criterionEn: "Budget & Initial Investment",
-    crossDe: "Bis zu 50% günstiger durch gemeinsame Codebasis",
-    crossEn: "Up to 50% more affordable through unified code",
+    crossDe: "Deutlich günstiger durch gemeinsame Codebasis",
+    crossEn: "Significantly more affordable through unified code",
     nativeDe: "Doppelte Kosten (Swift für iOS + Kotlin für Android)",
     nativeEn: "Double the cost (Separate Swift & Kotlin developers)",
   },
   {
     criterionDe: "Performance & Flüssigkeit",
     criterionEn: "Performance & Rendering",
-    crossDe: "Butterweiche 60 FPS (99% identisch zu reinem Native)",
-    crossEn: "Buttery-smooth 60 FPS (99% identical to pure native)",
-    nativeDe: "100% nativer Hardware-Zugriff (ideal für High-End Games)",
-    nativeEn: "100% native hardware direct access (ideal for 3D games)",
+    crossDe: "Flüssige Performance, nah an reinem Native",
+    crossEn: "Smooth performance, close to pure native",
+    nativeDe: "Voller nativer Hardware-Zugriff (ideal für High-End Games)",
+    nativeEn: "Full native hardware access (ideal for 3D games)",
   },
   {
     criterionDe: "Wartung & Feature-Updates",
@@ -338,14 +338,14 @@ const faqs = [
   {
     qDe: "Lohnt sich Cross-Platform (React Native / Flutter) wirklich gegenüber nativer Entwicklung?",
     qEn: "Is cross-platform development (React Native / Flutter) truly comparable to native?",
-    aDe: "Ja, absolut. Über 80% aller Top-Apps (wie Instagram, Airbnb, Discord oder Shopify) setzen auf Cross-Platform. Sie erhalten eine einzige Codebasis für iOS und Android, halbieren die Entwicklungskosten und haben trotzdem vollen Zugriff auf alle Smartphone-Sensoren und flüssige 60 FPS Animationen.",
-    aEn: "Yes, without question. Over 80% of top consumer apps (including Instagram, Discord, and Shopify) leverage cross-platform frameworks. You maintain a single codebase for iOS and Android, cut upfront costs in half, and still enjoy 60 FPS performance and native sensor integration.",
+    aDe: "Ja. Bekannte Apps wie Instagram, Discord oder Shopify nutzen React Native. Sie erhalten eine einzige Codebasis für iOS und Android, senken die Entwicklungskosten deutlich und haben trotzdem vollen Zugriff auf alle Smartphone-Sensoren und flüssige Animationen.",
+    aEn: "Yes. Well-known apps such as Instagram, Discord and Shopify use React Native. You maintain a single codebase for iOS and Android, significantly reduce upfront costs, and still enjoy smooth performance and native sensor integration.",
   },
   {
     qDe: "Was passiert, wenn Apple oder Google die App im Store ablehnen?",
     qEn: "What happens if Apple or Google rejects our app during review?",
-    aDe: "Wir geben Ihnen eine 100%ige Zulassungsgarantie. Sollte das Review-Team von Apple oder Google Rückfragen oder Beanstandungen haben, beheben wir diese sofort auf unsere Kosten. Sie können jederzeit unverbindlich [Kontakt aufnehmen](/contact), um Ihr App-Projekt vorab durchzusprechen.",
-    aEn: "We back our work with a 100% App Store approval guarantee. If Apple or Google reviewers request modifications, our team resolves them immediately at no additional cost until your app is live.",
+    aDe: "Wir begleiten den gesamten Review-Prozess bei Apple und Google. Sollte das Review-Team Rückfragen oder Beanstandungen haben, beheben wir diese im Rahmen des Projekts ohne Zusatzkosten. Sie können jederzeit unverbindlich [Kontakt aufnehmen](/contact), um Ihr App-Projekt vorab durchzusprechen.",
+    aEn: "We manage the entire Apple and Google review process. If reviewers request modifications, our team resolves them within the project at no additional cost.",
   },
   {
     qDe: "Wer besitzt den Quellcode und die Urheberrechte nach Fertigstellung?",
@@ -459,13 +459,13 @@ export default function MobileAppPage() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
                   </span>
-                  <span>{t("Cross-Platform & Native iOS/Android • 100% Store Approval", "Cross-Platform & Native iOS/Android • 100% Store Approval")}</span>
+                  <span>{t("Cross-Platform & Native iOS/Android • Store-Release-Begleitung", "Cross-Platform & Native iOS/Android • Store Release Support")}</span>
                 </div>
               </div>
 
               {/* Main Headline */}
               <h1 className="text-[35px] sm:text-[52px] lg:text-[58px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.09] mb-5 sm:mb-6 text-center lg:text-left">
-                {t("App entwickeln lassen in Stuttgart: ", "Mobile Apps Designed to ")}
+                {t("App entwickeln lassen: ", "Mobile Apps Designed to ")}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-orange-400">
                   {t("Ihre App Entwicklung Agentur", "Captivate Users & Dominate")}
                 </span>
@@ -475,7 +475,7 @@ export default function MobileAppPage() {
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 sm:mb-8 max-w-2xl font-normal text-center lg:text-left mx-auto lg:mx-0">
                 {renderWithLinks(
                   t(
-                    "Möchten Sie eine professionelle App entwickeln lassen? Als erfahrene App Entwicklung Agentur in Stuttgart realisieren wir native & cross-platform iOS & Android App Entwicklung für Startups und den Mittelstand mit React Native und Flutter – mit Festpreis-Garantie, nativer 60 FPS Performance und 100% Store-Zulassung.",
+                    "Möchten Sie eine professionelle App entwickeln lassen? Als erfahrene App Entwicklung Agentur realisieren wir native & cross-platform iOS & Android App Entwicklung für Startups und den Mittelstand in ganz Deutschland mit React Native und Flutter – zum Festpreis, mit flüssiger nativer Performance und Begleitung bis zum Store-Release.",
                     "From initial Figma wireframes to worldwide Apple App Store & Google Play distribution: We build buttery-smooth, native & cross-platform mobile apps for iOS and Android with React Native and Flutter — maximizing reach while slashing engineering costs."
                   )
                 )}
@@ -686,7 +686,7 @@ export default function MobileAppPage() {
 
                         <div className="flex items-center justify-center gap-1.5 text-[10px] text-slate-400">
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                          <span>100% DSGVO & Local Data Privacy</span>
+                          <span>DSGVO & Local Data Privacy</span>
                         </div>
                       </div>
                     )}
@@ -789,8 +789,8 @@ export default function MobileAppPage() {
             </h2>
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
               {t(
-                "Warum 85% unserer Kunden auf React Native oder Flutter setzen – und wann reine Native Entwicklung sinnvoll ist.",
-                "Why 85% of our clients choose unified cross-platform stacks — and when pure native development makes sense."
+                "Wann Cross-Platform mit React Native oder Flutter die richtige Wahl ist – und wann reine Native Entwicklung sinnvoll ist.",
+                "When a unified cross-platform stack is the right choice — and when pure native development makes sense."
               )}
             </p>
           </div>

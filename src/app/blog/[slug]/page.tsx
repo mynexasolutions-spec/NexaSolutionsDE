@@ -15,7 +15,6 @@ import {
   CheckCircle2,
   Bookmark,
   ArrowRight,
-  Eye,
   MessageSquare,
   ChevronRight,
   Code2,
@@ -355,11 +354,7 @@ export default function SingleBlogPage({
               <Clock className="w-3.5 h-3.5 text-slate-400" />
               {readTime}
             </span>
-            <span className="text-slate-300">•</span>
-            <span className="flex items-center gap-1 text-slate-500">
-              <Eye className="w-3.5 h-3.5 text-slate-400" />
-              {post.views} {t("Aufrufe", "reads")}
-            </span>
+            {/* View counts removed: values were hard-coded, not measured (SEO ground rule 4) */}
           </div>
 
           {/* Article Title */}

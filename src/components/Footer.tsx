@@ -235,7 +235,7 @@ export default function Footer() {
                 },
                 {
                   title: t("CRM-Systeme", "Custom CRM Systems"),
-                  href: lang === "de" ? "/de/services/crm-system-entwicklung" : "/en/services/custom-crm-systems",
+                  href: lang === "de" ? "/loesungen/crm-system-entwickeln-lassen" : "/en/services/custom-crm-systems",
                   icon: Database,
                   badgeBg: "bg-emerald-100 text-emerald-600",
                 },
@@ -323,28 +323,28 @@ export default function Footer() {
                 </span>
               </a>
 
-              {/* Location Germany / Stuttgart Pill */}
+              {/* Service Area Pill (where we work – not an office address) */}
               <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
                 <div className="w-7 h-7 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center shrink-0">
                   <MapPin className="w-3.5 h-3.5 stroke-[2.2]" />
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="text-[13px] font-bold text-slate-900 truncate">
-                    {t("Stuttgart, Deutschland", "Stuttgart, Germany")}
+                    {t("Deutschland, Österreich & Schweiz", "Germany, Austria & Switzerland")}
                   </span>
                   <span className="text-[11px] text-slate-500 truncate">
-                    {t("[ADRESSE HIER EINTRAGEN: z. B. Königstraße XX, 70173 Stuttgart]", "[ENTER ADDRESS HERE: Stuttgart, Germany]")}
+                    {t("Projekte remote per Video-Call", "Remote projects via video call")}
                   </span>
                 </div>
               </div>
 
-              {/* Location Global Pill */}
+              {/* Office Pill – must match the Impressum */}
               <div className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
                 <div className="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
                   <MapPin className="w-3.5 h-3.5 stroke-[2.2]" />
                 </div>
                 <span className="text-[13.5px] xl:text-[14px] font-medium text-slate-800 truncate">
-                  Delhi, India
+                  {t("Büro: New Delhi, Indien", "Office: New Delhi, India")}
                 </span>
               </div>
             </div>

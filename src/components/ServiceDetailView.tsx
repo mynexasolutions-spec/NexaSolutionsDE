@@ -210,7 +210,7 @@ export default function ServiceDetailView({ service, locale }: ServiceDetailView
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>{isDe ? "100% DSGVO-konform" : "100% GDPR Compliant"}</span>
+                  <span>{isDe ? "DSGVO-konform" : "GDPR Compliant"}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />

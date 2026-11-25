@@ -6,13 +6,14 @@ import AppKostenClient from "./AppKostenClient";
 import { APP_COST_CONFIG } from "@/data/appKostenData";
 
 export const metadata: Metadata = pageMetadata({
-  title: "App Entwicklung Kosten 2026: Preise & Rechner | Nexa",
+  title: "App Entwicklung Kosten Rechner 2026: Faktoren & Festpreis",
   description:
-    "Was kostet eine App-Entwicklung? Preisbeispiele, Kostenfaktoren und Rechner für iOS & Android. Jetzt kostenlose Beratung aus Stuttgart anfragen!",
+    "App Entwicklung Kosten berechnen: Kostenrechner für iOS & Android, alle Kostenfaktoren vom MVP bis zur Enterprise-App. Jetzt kostenloses Festpreis-Angebot anfragen!",
   path: "/app-entwicklung-kosten",
+  // German-only URL (English is a client-side toggle) → no en-* alternate
   languages: {
     "de-DE": `${SITE_URL}/app-entwicklung-kosten`,
-    "en-US": `${SITE_URL}/app-entwicklung-kosten`,
+    "x-default": `${SITE_URL}/app-entwicklung-kosten`,
   },
 });
 
@@ -29,17 +30,26 @@ export default function AppKostenPage() {
       name: "Nexa Solutions",
       url: SITE_URL,
       areaServed: [
-        {
-          "@type": "City",
-          name: "Stuttgart",
-        },
-        {
-          "@type": "Country",
-          name: "Deutschland",
-        },
+        { "@type": "Country", name: "Deutschland" },
+        { "@type": "Country", name: "Österreich" },
+        { "@type": "Country", name: "Schweiz" },
       ],
     },
     url: `${SITE_URL}/app-entwicklung-kosten`,
+  };
+
+  const calculatorJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "App Entwicklung Kosten Rechner",
+    url: `${SITE_URL}/app-entwicklung-kosten#app-rechner`,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    inLanguage: "de-DE",
+    description:
+      "Kostenloser Online-Rechner: Schätzen Sie die Entwicklungsdauer Ihrer iOS- oder Android-App nach Plattform, Projektumfang, Funktionen und Design.",
+    isAccessibleForFree: true,
+    provider: { "@type": "Organization", name: "Nexa Solutions", url: SITE_URL },
   };
 
   const breadcrumbJsonLd = {
@@ -76,7 +86,7 @@ export default function AppKostenPage() {
 
   return (
     <>
-      <JsonLd data={[serviceJsonLd, breadcrumbJsonLd, faqJsonLd]} />
+      <JsonLd data={[serviceJsonLd, calculatorJsonLd, breadcrumbJsonLd, faqJsonLd]} />
       <AppKostenClient />
     </>
   );

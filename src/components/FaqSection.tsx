@@ -69,8 +69,8 @@ export default function FaqSection({ onOpenContact }: FaqSectionProps) {
         "Can we have an accessible website developed in compliance with BFSG?"
       ),
       a: t(
-        "Ja, absolut. Ab Juni 2025 gilt in Deutschland das Barrierefreiheitsstärkungsgesetz (BFSG). Als erfahrene BFSG Website Agentur stellen wir sicher, dass Sie eine barrierefreie Website erstellen lassen können, die zu 100 % den WCAG 2.1 AA Standards entspricht – inklusive Screenreader-Tauglichkeit, Farbkontrasten und Tastaturbedienung.",
-        "Yes, absolutely. Starting June 2025, the European Accessibility Act (BFSG) is legally binding. As a dedicated accessibility web agency, we ensure your website complies fully with WCAG 2.1 AA standards, including full screen reader support and keyboard navigation."
+        "Ja. Seit Juni 2025 gilt in Deutschland das Barrierefreiheitsstärkungsgesetz (BFSG). Als BFSG Website Agentur entwickeln wir barrierefreie Websites nach den WCAG 2.1 AA Standards – inklusive Screenreader-Tauglichkeit, Farbkontrasten und Tastaturbedienung.",
+        "Yes. Since June 2025, the German Accessibility Act (BFSG) has been legally binding. As an accessibility-focused web agency, we build websites to WCAG 2.1 AA standards, including full screen reader support and keyboard navigation."
       ),
     },
   ];

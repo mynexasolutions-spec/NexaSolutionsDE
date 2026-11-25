@@ -22,7 +22,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactModal from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
-import { blogPosts, blogCategories, BlogPost } from "@/data/blogData";
+import { blogPosts, blogCategories, BlogPost, MERGED_BLOG_SLUGS } from "@/data/blogData";
 
 const GERMAN_MONTH_MAP: Record<string, number> = {
   januar: 0, january: 0,
@@ -86,7 +86,9 @@ export default function BlogListingPage({
         if (res.ok) {
           const data = await res.json();
           if (data.blogs && data.blogs.length > 0) {
-            const mapped: BlogPost[] = data.blogs.map((b: any) => ({
+            const mapped: BlogPost[] = data.blogs
+              .filter((b: any) => !MERGED_BLOG_SLUGS.has(b.slug))
+              .map((b: any) => ({
               slug: b.slug,
               titleDe: b.title_de || b.titleDe,
               seoTitleDe: b.seo_title_de || b.seoTitleDe || b.title_de || b.titleDe,

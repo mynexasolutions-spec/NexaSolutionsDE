@@ -6,7 +6,7 @@ import AppKostenClient from "./AppKostenClient";
 import { APP_COST_CONFIG } from "@/data/appKostenData";
 
 export const metadata: Metadata = pageMetadata({
-  title: "App Entwicklung Kosten Rechner 2026: Faktoren & Festpreis",
+  title: "App Entwicklung Kosten Rechner 2026",
   description:
     "App Entwicklung Kosten berechnen: Kostenrechner für iOS & Android, alle Kostenfaktoren vom MVP bis zur Enterprise-App. Jetzt kostenloses Festpreis-Angebot anfragen!",
   path: "/app-entwicklung-kosten",

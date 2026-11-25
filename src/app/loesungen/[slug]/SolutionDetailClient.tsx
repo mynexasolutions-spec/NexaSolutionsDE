@@ -80,6 +80,15 @@ export default function SolutionDetailClient({
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeScreenTab, setActiveScreenTab] = useState<"menu" | "order" | "tse">("menu");
 
+  // The phone mockup, TSE/QR trust chips and "Gastro" copy only fit the restaurant page.
+  // All other solution pages (CRM, chatbot, n8n, ...) use neutral, data-driven versions.
+  const isRestaurant = solution.slug === "restaurant-software-qr-menue";
+  const CardIcon = isRestaurant ? UtensilsCrossed : Sparkles;
+  const highlightBullets = solution.sections
+    .slice(0, 2)
+    .flatMap((s) => (isEn && s.bulletsEn ? s.bulletsEn : s.bullets) ?? [])
+    .slice(0, 6);
+
   const h1 = isEn && solution.h1En ? solution.h1En : solution.h1;
   const intro = isEn && solution.introEn ? solution.introEn : solution.intro;
   const badge = isEn && solution.badgeEn ? solution.badgeEn : solution.badge;
@@ -156,12 +165,20 @@ export default function SolutionDetailClient({
 
                 {/* 4 Key Highlight Cards matching Mobile App Development */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-9">
-                  {[
-                    { icon: QrCode, label: t("QR-Bestellung", "QR Ordering"), sub: t("Ohne App-Download", "No App Download") },
-                    { icon: Gauge, label: t("Echtzeit-Küche", "Kitchen Display"), sub: t("Sofort am Display", "Live Sync") },
-                    { icon: ShieldCheck, label: t("TSE-Zertifiziert", "Fiscal Certified"), sub: t("100% KassenSichV", "Full Compliance") },
-                    { icon: Zap, label: t("0% Provision", "0% Commission"), sub: t("Voller Gewinn", "Keep 100% Margin") },
-                  ].map(({ icon: Icon, label, sub }) => (
+                  {(isRestaurant
+                    ? [
+                        { icon: QrCode, label: t("QR-Bestellung", "QR Ordering"), sub: t("Ohne App-Download", "No App Download") },
+                        { icon: Gauge, label: t("Echtzeit-Küche", "Kitchen Display"), sub: t("Sofort am Display", "Live Sync") },
+                        { icon: ShieldCheck, label: t("TSE-konform", "Fiscal Compliant"), sub: t("KassenSichV", "KassenSichV") },
+                        { icon: Zap, label: t("0% Provision", "0% Commission"), sub: t("Voller Gewinn", "Keep Your Margin") },
+                      ]
+                    : [
+                        { icon: ShieldCheck, label: t("DSGVO-konform", "GDPR Compliant"), sub: t("Hosting in Deutschland", "Hosted in Germany") },
+                        { icon: Receipt, label: t("Festpreis", "Fixed Price"), sub: t("Transparent kalkuliert", "Transparent quote") },
+                        { icon: Layers, label: t("Individuell", "Tailored"), sub: t("Exakt auf Ihre Prozesse", "Built around your workflows") },
+                        { icon: Sparkles, label: t("Persönlich", "Personal"), sub: t("Fester Ansprechpartner", "Dedicated contact") },
+                      ]
+                  ).map(({ icon: Icon, label, sub }) => (
                     <div
                       key={label}
                       className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between"
@@ -182,21 +199,63 @@ export default function SolutionDetailClient({
                     onClick={() => setContactOpen(true)}
                     className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-[#EA580C] to-[#F97316] hover:from-[#C2410C] hover:to-[#EA580C] text-white text-sm sm:text-base font-bold transition-all duration-300 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer"
                   >
-                    <span>{t("Gastro-Lösung unverbindlich anfragen", "Request Restaurant Solution")}</span>
+                    <span>
+                      {isRestaurant
+                        ? t("Gastro-Lösung unverbindlich anfragen", "Request Restaurant Solution")
+                        : t("Unverbindlich anfragen", "Request a Free Consultation")}
+                    </span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
 
                   <Link
-                    href="/website-kosten"
+                    href={isRestaurant ? "/app-entwicklung-kosten" : "/loesungen"}
                     className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-slate-300/80 bg-white/90 backdrop-blur-xs text-slate-800 text-sm sm:text-base font-bold hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 shadow-2xs hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                   >
                     <Sliders className="w-4 h-4 text-slate-500" />
-                    <span>{t("Preise & Kosten ansehen", "View Pricing & Details")}</span>
+                    <span>
+                      {isRestaurant
+                        ? t("Kosten verstehen", "Understand Costs")
+                        : t("Alle Lösungen ansehen", "View All Solutions")}
+                    </span>
                   </Link>
                 </div>
               </motion.div>
 
-              {/* Right Column: Signature Interactive Smartphone Mockup */}
+              {/* Right Column (non-restaurant pages): key benefits taken from the page's own content */}
+              {!isRestaurant && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  className="lg:col-span-5 flex justify-center"
+                >
+                  <div className="w-full max-w-[460px] rounded-3xl border border-slate-200/90 bg-white p-7 sm:p-9 shadow-xl shadow-slate-200/60">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-200 bg-blue-50 text-blue-700 text-xs font-bold tracking-wider uppercase mb-5">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>{t("Das erhalten Sie", "What you get")}</span>
+                    </div>
+                    <ul className="space-y-3.5">
+                      {highlightBullets.map((bullet, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-slate-700 font-medium leading-snug">
+                          <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[2.5]" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      type="button"
+                      onClick={() => setContactOpen(true)}
+                      className="mt-7 w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-sm sm:text-base font-bold transition-colors cursor-pointer"
+                    >
+                      <span>{t("Kostenloses Erstgespräch", "Free initial consultation")}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Right Column (restaurant page): Signature Interactive Smartphone Mockup */}
+              {isRestaurant && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -390,6 +449,7 @@ export default function SolutionDetailClient({
                   </div>
                 </div>
               </motion.div>
+              )}
             </div>
           </div>
         </section>
@@ -403,13 +463,20 @@ export default function SolutionDetailClient({
                 <span>{t("SYSTEM-MODULE", "CORE MODULES")}</span>
               </div>
               <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-[#0F172A] tracking-tight leading-[1.08] sm:leading-[1.15] mb-4 text-center">
-                {t("Alles, was moderne Gastronomie benötigt", "Everything Modern Restaurants Need")}
+                {isRestaurant
+                  ? t("Alles, was moderne Gastronomie benötigt", "Everything Modern Restaurants Need")
+                  : t("Leistungen & Funktionen im Überblick", "Features & Capabilities at a Glance")}
               </h2>
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
-                {t(
-                  "Von der digitalen Tischbestellung über TSE-Kassenschnittstellen bis hin zum Küchen-Display und automatischer DATEV-Exportierung.",
-                  "From digital table ordering to certified POS interfaces, kitchen display routing, and automated accounting workflows."
-                )}
+                {isRestaurant
+                  ? t(
+                      "Von der digitalen Tischbestellung über TSE-Kassenschnittstellen bis hin zum Küchen-Display und automatischer DATEV-Exportierung.",
+                      "From digital table ordering to certified POS interfaces, kitchen display routing, and automated accounting workflows."
+                    )
+                  : t(
+                      "Von der Konzeption über die Anbindung an Ihre bestehenden Systeme bis zum laufenden Betrieb – maßgeschneidert, DSGVO-konform und zum Festpreis.",
+                      "From concept and integration with your existing systems to ongoing operation – tailored, GDPR-compliant and at a fixed price."
+                    )}
               </p>
             </div>
 
@@ -431,7 +498,7 @@ export default function SolutionDetailClient({
                     <div>
                       {/* Icon container matching Mobile App Development */}
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 border border-blue-200 text-blue-600 inline-flex items-center justify-center mb-6 shrink-0 shadow-sm group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                        <UtensilsCrossed className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.8] group-hover:scale-110 transition-transform duration-300" />
+                        <CardIcon className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.8] group-hover:scale-110 transition-transform duration-300" />
                       </div>
 
                       <div className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1.5">
@@ -480,10 +547,15 @@ export default function SolutionDetailClient({
                 {faqHeading}
               </h2>
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal text-center">
-                {t(
-                  "Transparente Antworten auf die wichtigsten Fragen zu Einführung, Integration und TSE-Konformität.",
-                  "Clear answers regarding deployment, integration, and fiscal compliance."
-                )}
+                {isRestaurant
+                  ? t(
+                      "Transparente Antworten auf die wichtigsten Fragen zu Einführung, Integration und TSE-Konformität.",
+                      "Clear answers regarding deployment, integration, and fiscal compliance."
+                    )
+                  : t(
+                      "Transparente Antworten auf die wichtigsten Fragen zu Umsetzung, Integration, Datenschutz und Kosten.",
+                      "Clear answers on implementation, integration, data protection and costs."
+                    )}
               </p>
             </div>
 
@@ -536,14 +608,21 @@ export default function SolutionDetailClient({
             </div>
 
             <h2 className="text-[30px] sm:text-[45px] lg:text-[50px] font-[900] text-white tracking-tight leading-[1.10] sm:leading-[1.09] mb-5 text-center">
-              {t("Bereit für Ihre maßgeschneiderte Gastro-App?", "Ready for Your Custom Restaurant Platform?")}
+              {isRestaurant
+                ? t("Bereit für Ihre maßgeschneiderte Gastro-App?", "Ready for Your Custom Restaurant Platform?")
+                : t("Bereit für Ihre maßgeschneiderte Lösung?", "Ready for Your Custom Solution?")}
             </h2>
 
             <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
-              {t(
-                "Wir beraten Sie persönlich zu Software-Architektur, TSE-Kassenanbindung und Zeitplan. Erhalten Sie eine transparente Einschätzung innerhalb von 24 Stunden.",
-                "We personally consult you on software architecture, fiscal POS integration, and roadmap. Receive a transparent feasibility assessment within 24 hours."
-              )}
+              {isRestaurant
+                ? t(
+                    "Wir beraten Sie persönlich zu Software-Architektur, TSE-Kassenanbindung und Zeitplan. Erhalten Sie eine transparente Einschätzung innerhalb von 24 Stunden.",
+                    "We personally consult you on software architecture, fiscal POS integration, and roadmap. Receive a transparent feasibility assessment within 24 hours."
+                  )
+                : t(
+                    "Wir beraten Sie persönlich zu Architektur, Integration in Ihre bestehenden Systeme und Zeitplan – und erstellen Ihnen ein verbindliches Festpreis-Angebot.",
+                    "We personally advise you on architecture, integration with your existing systems and timeline – and prepare a binding fixed-price proposal."
+                  )}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -556,10 +635,14 @@ export default function SolutionDetailClient({
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <Link
-                href="/services/mobile-app-development"
+                href={isRestaurant ? "/services/mobile-app-development" : "/loesungen"}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white text-sm sm:text-base font-bold transition-all shadow-xs"
               >
-                <span>{t("Mobile App Services", "Mobile App Services")}</span>
+                <span>
+                  {isRestaurant
+                    ? t("Mobile App Services", "Mobile App Services")
+                    : t("Alle Lösungen", "All Solutions")}
+                </span>
               </Link>
             </div>
           </div>

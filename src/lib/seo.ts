@@ -4,6 +4,15 @@ import { SITE_URL } from "@/lib/site";
 export { SITE_URL };
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/opengraph-image`;
 
+/** Trim a meta description to `max` chars at a word boundary (Google cuts ~155–160 chars). */
+export function trimMetaDescription(text: string, max = 160): string {
+  const clean = (text || "").replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > 100 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:–-]+$/, "") + "…";
+}
+
 export function pageMetadata({
   title,
   description,

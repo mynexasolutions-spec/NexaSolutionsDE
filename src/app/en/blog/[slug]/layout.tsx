@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { blogPosts, getBlogPostBySlug } from "@/data/blogData";
 import { getBlogsList } from "@/lib/db";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL, trimMetaDescription } from "@/lib/seo";
 
 export const dynamicParams = true;
 
@@ -35,18 +35,26 @@ export async function generateMetadata({
 
   if (!post) notFound();
 
-  const rawTitle = (post.titleEn || "").replace(/\s*\|\s*Nexa Solutions$/i, "").trim();
+  const rawTitle = (post.titleEn || "").replace(/\s*\|\s*Nexa(?: Solutions)?\s*$/i, "").trim();
   const brandSuffix = " | Nexa Solutions";
-  const title = (rawTitle.length + brandSuffix.length <= 55)
+  const MAX = 60;
+  // Cut at a word boundary (a plain slice left titles ending mid-word)
+  const cutAtWord = (s: string) => {
+    if (s.length <= MAX) return s;
+    const cut = s.slice(0, MAX);
+    const lastSpace = cut.lastIndexOf(" ");
+    return (lastSpace > 30 ? cut.slice(0, lastSpace) : cut).replace(/[\s:,&–-]+$/, "");
+  };
+  const title = (rawTitle.length + brandSuffix.length <= MAX)
     ? `${rawTitle}${brandSuffix}`
-    : (rawTitle.length <= 55 ? rawTitle : rawTitle.slice(0, 55));
+    : cutAtWord(rawTitle);
 
   const deUrl = `${SITE_URL}/blog/${post.slug}`;
   const enUrl = `${SITE_URL}/en/blog/${post.slug}`;
 
   const metadata = pageMetadata({
     title,
-    description: post.excerptEn || post.excerptDe,
+    description: trimMetaDescription(post.excerptEn || post.excerptDe),
     path: `/en/blog/${post.slug}`,
     image: `/blog/${post.slug}/opengraph-image`,
     languages: {

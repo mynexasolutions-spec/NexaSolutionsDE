@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { blogPosts, getBlogPostBySlug } from "@/data/blogData";
 import { getBlogsList } from "@/lib/db";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL, trimMetaDescription } from "@/lib/seo";
 
 export const dynamicParams = true;
 
@@ -59,7 +59,7 @@ export async function generateMetadata({
 
   const metadata = pageMetadata({
     title,
-    description: post.excerptDe,
+    description: trimMetaDescription(post.excerptDe),
     path: `/blog/${post.slug}`,
     image: `/blog/${post.slug}/opengraph-image`,
     languages: {

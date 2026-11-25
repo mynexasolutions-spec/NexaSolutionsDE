@@ -37,6 +37,8 @@ export interface SolutionPageData {
 export const solutionsData: SolutionPageData[] = [
   {
     slug: "zeiterfassung-software",
+    faqTitle: "Häufige Fragen zur Zeiterfassung Software",
+    faqTitleEn: "FAQ: Time Tracking Software",
     title: "Zeiterfassung Software entwickeln lassen | Nexa Solutions",
     titleEn: "Custom Time Tracking Software Development | Nexa Solutions",
     h1: "Individuelle Zeiterfassung & Personalverwaltung entwickeln lassen",
@@ -200,6 +202,8 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "crm-system-entwickeln-lassen",
+    faqTitle: "Häufige Fragen zum individuellen CRM-System",
+    faqTitleEn: "FAQ: Custom CRM System",
     title: "Individuelles CRM System entwickeln lassen | Nexa Solutions",
     titleEn: "Custom CRM System Development | Nexa Solutions",
     h1: "Individuelles CRM-System für Ihr Unternehmen entwickeln lassen",
@@ -365,6 +369,8 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "terminbuchungssystem-entwickeln-lassen",
+    faqTitle: "Häufige Fragen zum Terminbuchungssystem",
+    faqTitleEn: "FAQ: Custom Booking System",
     title: "Terminbuchungssystem entwickeln lassen | Nexa Solutions",
     titleEn: "Custom Booking System Development | Nexa Solutions",
     h1: "Eigenes Terminbuchungssystem entwickeln lassen: DSGVO-konform",
@@ -494,21 +500,23 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "ki-chatbot-fuer-unternehmen",
-    title: "KI-Chatbot für Unternehmen entwickeln | Nexa Solutions",
-    titleEn: "AI Chatbots for Enterprise Development | Nexa Solutions",
-    h1: "Intelligente KI-Chatbots für Unternehmen entwickeln lassen",
-    h1En: "Develop Intelligent Enterprise AI Chatbots & Support Agents",
+    faqTitle: "Häufige Fragen zum KI Chatbot für Unternehmen",
+    faqTitleEn: "FAQ: AI Chatbot for Business",
+    title: "KI Chatbot für Unternehmen: DSGVO-konform | Nexa Solutions",
+    titleEn: "AI Chatbot for Business: GDPR-Compliant | Nexa Solutions",
+    h1: "KI Chatbot für Unternehmen: Individuell entwickeln lassen",
+    h1En: "AI Chatbot for Business: Custom-Built Support & Lead Agents",
     description:
-      "DSGVO-konforme KI-Chatbots für Support & Lead-Generierung: 24/7 Kundenberatung, RAG auf Unternehmenswissen & nahtlose CRM-Übergabe.",
+      "KI Chatbot für Unternehmen: DSGVO-konform, für Website & WhatsApp. Kundenservice rund um die Uhr, Lead-Generierung & CRM-Anbindung. Jetzt beraten lassen!",
     descriptionEn:
-      "GDPR-compliant AI chatbots for customer support & lead capture: 24/7 service, RAG on proprietary corporate data, and seamless CRM handoff.",
+      "GDPR-compliant AI chatbot for business: for your website & WhatsApp. 24/7 customer support, lead capture and CRM integration. Get advice now!",
     intro:
       "Kunden erwarten im digitalen Zeitalter sofortige Antworten auf ihre Fragen – egal ob am Wochenende oder um Mitternacht. Herkömmliche, regelbasierte Chatbots mit starren Klick-Menüs frustrieren Nutzer jedoch meist mehr, als sie helfen. Nexa Solutions entwickelt KI-gestützte Chatbots und autonome Konversations-Agenten, die auf modernsten Large Language Models (LLMs) basieren. Ausgestattet mit Retrieval-Augmented Generation (RAG) greifen unsere Chatbots direkt auf Ihr spezifisches Unternehmenswissen zu, antworten in natürlicher Sprache und qualifizieren Leads vollautomatisch vor.",
     introEn:
       "Modern customers demand instant answers to their questions—whether late at night or over the weekend. Yet traditional rule-based chatbots with rigid click trees frustrate users more than they help. Nexa Solutions builds AI chatbots and autonomous conversational agents powered by state-of-the-art Large Language Models (LLMs). Enhanced with Retrieval-Augmented Generation (RAG), our chatbots tap directly into your proprietary enterprise knowledge base, respond in natural human language, and pre-qualify leads on autopilot.",
     badge: "RAG & Zero Data Retention",
     badgeEn: "RAG & Zero Data Retention",
-    updatedAt: "2026-10-07T08:00:00.000Z",
+    updatedAt: "2026-11-26T08:00:00.000Z",
     sections: [
       {
         h2: "Vom starren Regel-Bot zum intelligenten KI-Berater",
@@ -516,23 +524,23 @@ export const solutionsData: SolutionPageData[] = [
         body: [
           "Klassische Chatbots stolpern bereits bei kleinen Tippfehlern oder leicht umformulierten Sätzen. Moderne generative KI versteht dagegen Kontext, Tonfall und Zwischenfragen spielend.",
           "Wir trainieren Ihren KI-Chatbot nicht mit statischen Antworten, sondern verbinden ihn über eine semantische Vektordatenbank mit Ihren internen Wissensquellen: Produktkatalogen, PDFs, FAQs, Bedienungsanleitungen und Datenbanken. Bei jeder Kundenanfrage sucht das RAG-System (Retrieval-Augmented Generation) in Millisekunden die relevantesten Fakten heraus und formuliert eine präzise, markenkonforme Antwort.",
-          "Das Ergebnis: Halluzinationen werden eliminiert, da der Bot ausschließlich auf verifizierten Fakten Ihres Unternehmens argumentiert. Wenn eine Frage nicht beantwortet werden kann, leitet der Bot höflich an einen menschlichen Mitarbeiter weiter.",
+          "Das Ergebnis: Halluzinationen werden deutlich reduziert, da der Bot ausschließlich auf verifizierten Fakten Ihres Unternehmens argumentiert. Wenn eine Frage nicht beantwortet werden kann, leitet der Bot höflich an einen menschlichen Mitarbeiter weiter.",
         ],
         bodyEn: [
           "Legacy chatbots stumble over simple typos or rephrased questions. Modern generative AI effortlessly understands nuance, context, and complex follow-ups.",
           "Rather than programming static response trees, we connect your AI bot to a semantic vector database indexing your internal documentation: product manuals, PDFs, FAQs, service specs, and knowledge bases. With Retrieval-Augmented Generation (RAG), the bot retrieves verified facts in milliseconds to craft accurate, brand-aligned answers.",
-          "Hallucinations are eliminated because the bot operates strictly within your authorized reference documents. If an inquiry falls outside its knowledge, it gracefully routes the conversation to a human teammate.",
+          "Hallucinations are greatly reduced because the bot operates strictly within your authorized reference documents. If an inquiry falls outside its knowledge, it gracefully routes the conversation to a human teammate.",
         ],
         bullets: [
-          "Verständnis komplexer Fragen in über 50 Sprachen",
+          "Verständnis komplexer Fragen in vielen Sprachen",
           "RAG-Architektur: Antworten basieren auf Ihren freigegebenen Dokumenten",
-          "Zero-Hallucination-Leitplanken und strikte Markenton-Vorgaben",
+          "Leitplanken gegen Halluzinationen und strikte Markenton-Vorgaben",
           "Nahtloses Handover an menschliche Agenten per Live-Chat oder Ticket",
         ],
         bulletsEn: [
-          "Understands inquiries in over 50 languages with natural phrasing",
+          "Understands inquiries in many languages with natural phrasing",
           "RAG architecture: responses grounded in your vetted documents",
-          "Zero-hallucination guardrails and strict tone-of-voice alignment",
+          "Guardrails against hallucinations and strict tone-of-voice alignment",
           "Seamless escalation to live agents via ticket or chat",
         ],
       },
@@ -575,7 +583,7 @@ export const solutionsData: SolutionPageData[] = [
         ],
         bullets: [
           "DSGVO-konform: Hosting in ISO-27001-zertifizierten deutschen Rechenzentren",
-          "Kein Modell-Training mit Ihren Firmendaten (Garantierte Zero Data Retention)",
+          "Kein Modell-Training mit Ihren Firmendaten (vertraglich vereinbarte Zero Data Retention)",
           "On-Premise- und Private-VPC-Optionen für maximale Datensouveränität",
           "Lokale PII-Filterung & Anonymisierung sensibler Nutzerangaben vor Modellanfragen",
         ],
@@ -584,6 +592,30 @@ export const solutionsData: SolutionPageData[] = [
           "Zero public training on your business files (contractual Zero Data Retention)",
           "On-premise and isolated private VPC options for total data sovereignty",
           "Local PII scrubbing and anonymization of sensitive inputs prior to inference",
+        ],
+      },
+      {
+        h2: "KI Chatbot für Ihre Website: Einbindung in bestehende Seiten",
+        h2En: "AI Chatbot for Your Website: Integration Into Existing Sites",
+        body: [
+          "Ein KI Chatbot für die Website ist der schnellste Weg, Besuchern rund um die Uhr zu antworten. Der Chatbot wird als schlankes Chat-Widget in Ihre bestehende Website eingebunden – ob WordPress, Shopify, TYPO3 oder eine individuelle Next.js-Seite – und übernimmt Look & Feel Ihrer Marke.",
+          "Gerade für den Mittelstand lohnt sich ein Chatbot im Kundenservice: Er beantwortet die immer gleichen Fragen sofort, qualifiziert Anfragen vor und übergibt komplexe Fälle samt Gesprächsverlauf an Ihr Team. So wird aus Ihrer Website ein Vertriebskanal, der auch nachts und am Wochenende arbeitet.",
+        ],
+        bodyEn: [
+          "An AI chatbot for your website is the fastest way to answer visitors around the clock. It is embedded as a lightweight chat widget into your existing site – whether WordPress, Shopify, TYPO3 or a custom Next.js site – and adopts your brand's look and feel.",
+          "Mid-sized companies in particular benefit from a customer-service chatbot: it answers the same questions instantly, pre-qualifies inquiries, and hands complex cases to your team together with the conversation history. Your website becomes a sales channel that also works at night and on weekends.",
+        ],
+        bullets: [
+          "Chat-Widget für WordPress, Shopify, TYPO3 und individuelle Websites",
+          "Erscheinungsbild und Tonalität passend zu Ihrer Marke",
+          "Vorqualifizierung von Anfragen und Übergabe samt Gesprächsverlauf",
+          "Mehrsprachig: Besucher schreiben in ihrer eigenen Sprache",
+        ],
+        bulletsEn: [
+          "Chat widget for WordPress, Shopify, TYPO3 and custom websites",
+          "Look and tone of voice matched to your brand",
+          "Pre-qualification of inquiries and handover with full conversation history",
+          "Multilingual: visitors write in their own language",
         ],
       },
       {
@@ -598,19 +630,49 @@ export const solutionsData: SolutionPageData[] = [
           "Schedule a discovery call to assess your technical requirements on our [AI Automation](/services/ai-automation) page or via our [Contact Form](/contact).",
         ],
       },
+      {
+        h2: "Chatbot Kosten: Wovon der Preis abhängt",
+        h2En: "Chatbot Costs: What Drives the Price",
+        body: [
+          "Die Chatbot Kosten hängen davon ab, wie viele Wissensquellen der Bot nutzt, welche Systeme (CRM, Ticketing, Kalender) angebunden werden und welche Datenschutzanforderungen gelten. Dazu kommen laufende Kosten für Sprachmodell und Hosting. Eine ausführliche Aufschlüsselung finden Sie in unserem Ratgeber [Chatbot Kosten 2026](/blog/was-kostet-ein-ki-chatbot-unternehmen).",
+          "Für Ihren konkreten Einsatzfall erstellen wir nach einem kostenlosen Erstgespräch ein verbindliches Festpreis-Angebot inklusive transparenter Aufstellung der laufenden Kosten. [Jetzt unverbindlich anfragen](/contact).",
+        ],
+        bodyEn: [
+          "Chatbot costs depend on how many knowledge sources the bot uses, which systems (CRM, ticketing, calendar) are connected, and which privacy requirements apply. On top come ongoing costs for the language model and hosting. A detailed breakdown is in our guide [Chatbot Costs 2026](/blog/was-kostet-ein-ki-chatbot-unternehmen).",
+          "For your specific use case we prepare a binding fixed-price proposal after a free initial consultation, including a transparent list of recurring costs. [Request a non-binding quote](/contact).",
+        ],
+      },
     ],
     faq: [
       {
+        q: "Was ist ein KI Chatbot für Unternehmen?",
+        qEn: "What is an AI chatbot for business?",
+        a: "Ein KI Chatbot für Unternehmen ist ein Gesprächsassistent auf Basis moderner Sprachmodelle, der Kundenfragen in natürlicher Sprache versteht und auf Grundlage Ihrer eigenen Dokumente beantwortet. Anders als regelbasierte Bots mit starren Klick-Menüs versteht er auch umformulierte Fragen, kann Termine vereinbaren, Leads erfassen und komplexe Fälle an Ihr Team übergeben.",
+        aEn: "An AI chatbot for business is a conversational assistant built on modern language models that understands customer questions in natural language and answers them based on your own documents. Unlike rule-based bots with rigid click menus, it also understands rephrased questions, can book appointments, capture leads and hand complex cases to your team.",
+      },
+      {
+        q: "Wie binde ich einen KI Chatbot in meine Website ein?",
+        qEn: "How do I add an AI chatbot to my website?",
+        a: "Der Chatbot wird als Chat-Widget per Code-Snippet oder Plugin in Ihre bestehende Website eingebunden – egal ob WordPress, Shopify, TYPO3 oder eine individuelle Lösung. Wir übernehmen Anbindung der Wissensquellen, Design-Anpassung an Ihre Marke und den Test vor dem Livegang.",
+        aEn: "The chatbot is added to your existing website as a chat widget via a code snippet or plugin – whether WordPress, Shopify, TYPO3 or a custom solution. We handle connecting the knowledge sources, matching the design to your brand, and testing before go-live.",
+      },
+      {
+        q: "Was kostet ein KI Chatbot für Unternehmen?",
+        qEn: "How much does an AI chatbot for business cost?",
+        a: "Die Chatbot Kosten hängen von der Zahl der Wissensquellen, den angebundenen Systemen (CRM, Ticketing, Kalender) und den Datenschutzanforderungen ab; dazu kommen laufende Kosten für Sprachmodell und Hosting. Nach einem kostenlosen Erstgespräch erhalten Sie ein verbindliches Festpreis-Angebot. Details finden Sie in unserem Ratgeber zu den Chatbot Kosten.",
+        aEn: "Chatbot costs depend on the number of knowledge sources, connected systems (CRM, ticketing, calendar) and privacy requirements, plus ongoing costs for the language model and hosting. After a free consultation you receive a binding fixed-price proposal. See our guide on chatbot costs for details.",
+      },
+      {
         q: "Erfindet der KI-Chatbot falsche Antworten (Halluzinationen)?",
         qEn: "Does the AI chatbot hallucinate or invent false answers?",
-        a: "Nein, dank RAG-Architektur (Retrieval-Augmented Generation) und strengen System-Prompts antwortet die KI nur auf Basis Ihrer freigegebenen Wissensdokumente. Ist eine Information nicht hinterlegt, gibt der Bot dies transparent zu und bietet an, die Frage an einen menschlichen Ansprechpartner weiterzuleiten.",
-        aEn: "No. Thanks to RAG architecture and rigorous system guardrails, the AI answers strictly using verified facts from your uploaded documentation. When information is unavailable, it transparently admits the limitation and offers to connect a human specialist.",
+        a: "Das Risiko ist durch die RAG-Architektur (Retrieval-Augmented Generation) und strenge System-Prompts deutlich reduziert: Die KI antwortet nur auf Basis Ihrer freigegebenen Wissensdokumente. Ist eine Information nicht hinterlegt, gibt der Bot dies transparent zu und bietet an, die Frage an einen menschlichen Ansprechpartner weiterzuleiten.",
+        aEn: "The risk is greatly reduced by RAG architecture and rigorous system guardrails: the AI answers strictly using verified facts from your uploaded documentation. When information is unavailable, it transparently admits the limitation and offers to connect a human specialist.",
       },
       {
         q: "Werden meine Unternehmensdaten zum Trainieren von KI-Modellen verwendet?",
         qEn: "Are company records used to train public AI models?",
-        a: "Nein, niemals. Wir nutzen Enterprise-APIs mit vertraglich garantierter Zero-Data-Retention (ZDR) oder hosten Open-Source-Modelle direkt auf Ihren eigenen europäischen Servern. Ihre Daten bleiben zu 100% in Ihrem Besitz.",
-        aEn: "Never. We utilize enterprise API contracts with verified Zero Data Retention (ZDR) or host open-source models on your private European servers. You retain 100% intellectual property ownership.",
+        a: "Nein. Wir nutzen Enterprise-APIs mit vertraglich garantierter Zero-Data-Retention (ZDR) oder hosten Open-Source-Modelle direkt auf Ihren eigenen europäischen Servern. Ihre Daten bleiben zu 100% in Ihrem Besitz.",
+        aEn: "No. We utilize enterprise API contracts with verified Zero Data Retention (ZDR) or host open-source models on your private European servers. You retain 100% intellectual property ownership.",
       },
       {
         q: "Wie wird eine KI-Infrastruktur für Unternehmen DSGVO-konform aufgebaut?",
@@ -639,6 +701,8 @@ export const solutionsData: SolutionPageData[] = [
   },
   {
     slug: "n8n-agentur-deutschland",
+    faqTitle: "Häufige Fragen zur n8n Agentur",
+    faqTitleEn: "FAQ: n8n Agency Germany",
     title: "n8n Agentur Deutschland: DSGVO-Workflows | Nexa Solutions",
     titleEn: "n8n Agency Germany: GDPR Workflow Automation | Nexa Solutions",
     h1: "n8n Agentur Deutschland: Prozessautomatisierung & Self-Hosting",
